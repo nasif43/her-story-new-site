@@ -1,0 +1,52 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --font-serif: 'Libre Caslon Text', Georgia, serif;
+    --font-sans: 'Hanken Grotesk', system-ui, sans-serif;
+  }
+
+  body {
+    font-family: var(--font-serif);
+    background-color: #fff8f6;
+    color: #261814;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-serif);
+  }
+
+  .font-sans-ui {
+    font-family: var(--font-sans);
+  }
+
+  .font-serif-editorial {
+    font-family: var(--font-serif);
+  }
+}
+
+@keyframes pulseDot {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.4); opacity: 0.6; }
+}
+
+.animate-pulse-dot {
+  animation: pulseDot 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+/* Custom scrollbar for editorial drawers */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #ffe9e3;
+}
+::-webkit-scrollbar-thumb {
+  background: #8d7167;
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #D64E0E;
+}
+

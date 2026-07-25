@@ -1,0 +1,6 @@
+{
+  "name": "HerStory Foundation",
+  "description": "Enabling dreamers through literature and art — HerStory Foundation & Publications platform.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
