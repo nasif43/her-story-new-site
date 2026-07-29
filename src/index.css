@@ -23,6 +23,75 @@
   .font-serif-editorial {
     font-family: var(--font-serif);
   }
+
+  .font-space {
+    font-family: 'Space Grotesk', sans-serif;
+  }
+
+  .font-inter {
+    font-family: 'Inter', sans-serif;
+  }
+}
+
+/* Project Ladyland Techno-Feminist Futurism Styles */
+.glass-panel {
+  background: rgba(6, 12, 37, 0.55);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.neon-text-glow {
+  text-shadow: 0 0 15px rgba(255, 69, 162, 0.6), 0 0 30px rgba(255, 69, 162, 0.4);
+}
+
+.neon-box-glow {
+  box-shadow: 0 0 20px rgba(0, 71, 255, 0.35), 0 0 40px rgba(0, 71, 255, 0.15);
+}
+
+.pink-neon-glow {
+  box-shadow: 0 0 20px rgba(255, 69, 162, 0.4);
+}
+
+.blob {
+  position: absolute;
+  filter: blur(80px);
+  z-index: -1;
+  opacity: 0.5;
+  border-radius: 50%;
+  transition: background-color 1s ease, transform 0.3s ease-out;
+}
+
+@keyframes morph {
+  0% { border-radius: 40% 60% 60% 40% / 60% 30% 70% 40%; }
+  50% { border-radius: 60% 40% 30% 70% / 50% 60% 40% 60%; }
+  100% { border-radius: 40% 60% 60% 40% / 60% 30% 70% 40%; }
+}
+
+@keyframes iridescent {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.amorphous-btn {
+  position: relative;
+  background: linear-gradient(45deg, #b9c3ff, #ffb0cd, #00dbe9, #b9c3ff);
+  background-size: 300% 300%;
+  animation: morph 6s ease-in-out infinite, iridescent 10s ease infinite;
+  border: none;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.3s ease, filter 0.3s ease;
+  overflow: hidden;
+}
+
+.amorphous-btn:hover {
+  animation-play-state: paused;
+  transform: scale(1.05);
+  filter: brightness(1.1);
 }
 
 @keyframes pulseDot {
