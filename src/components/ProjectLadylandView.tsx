@@ -19,25 +19,108 @@ import {
   Vote,
   Ticket,
   Heart,
-  ShieldCheck
+  ShieldCheck,
+  FileSpreadsheet,
+  Copy,
+  Check,
+  UserCheck
 } from 'lucide-react';
+import {
+  submitVoteToSheet,
+  submitSignupToSheet,
+  submitOrderToSheet,
+  fetchSheetData,
+  signInWithGoogle,
+  createGoogleSheet,
+  SheetDataResponse
+} from '../lib/googleSheets';
 
-export const ProjectLadylandView: React.FC = () => {
-  // Audio state
+interface ProjectLadylandViewProps {
+  onGoHome?: () => void;
+}
+
+export const ProjectLadylandView: React.FC<ProjectLadylandViewProps> = ({ onGoHome }) => {
+  // Audio & Video Modal state
   const [isPlayingAudio, setIsPlayingAudio] = useState(false);
   const [isPlayingVideo, setIsPlayingVideo] = useState(true);
+  const [heroVideoModalOpen, setHeroVideoModalOpen] = useState(false);
+
+  // Close modal on Escape key press
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        setHeroVideoModalOpen(false);
+        setSheetModalOpen(false);
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, []);
+
+  // Web Audio Ambient Synthesizer
+  useEffect(() => {
+    if (!isPlayingAudio) return;
+
+    let ctx: AudioContext | null = null;
+    let osc1: OscillatorNode | null = null;
+    let osc2: OscillatorNode | null = null;
+    let gain: GainNode | null = null;
+
+    try {
+      const AudioCtx = window.AudioContext || (window as any).webkitAudioContext;
+      if (AudioCtx) {
+        ctx = new AudioCtx();
+        osc1 = ctx.createOscillator();
+        osc2 = ctx.createOscillator();
+        gain = ctx.createGain();
+
+        osc1.type = 'sine';
+        osc1.frequency.setValueAtTime(220, ctx.currentTime); // A3 drone
+        osc2.type = 'triangle';
+        osc2.frequency.setValueAtTime(329.63, ctx.currentTime); // E4 harmonic
+
+        gain.gain.setValueAtTime(0.04, ctx.currentTime); // gentle ambient sound
+
+        osc1.connect(gain);
+        osc2.connect(gain);
+        gain.connect(ctx.destination);
+
+        osc1.start();
+        osc2.start();
+      }
+    } catch (e) {
+      console.warn('Audio Context:', e);
+    }
+
+    return () => {
+      try {
+        if (osc1) osc1.stop();
+        if (osc2) osc2.stop();
+        if (ctx) ctx.close();
+      } catch (e) {}
+    };
+  }, [isPlayingAudio]);
 
   // Language state
   const [lang, setLang] = useState<'EN' | 'BN'>('EN');
 
+  // Google Sheets state
+  const [sheetModalOpen, setSheetModalOpen] = useState(false);
+  const [sheetData, setSheetData] = useState<SheetDataResponse | null>(null);
+  const [googleUser, setGoogleUser] = useState<any>(null);
+  const [isCreatingSheet, setIsCreatingSheet] = useState(false);
+  const [customSheetUrl, setCustomSheetUrl] = useState<string | null>(null);
+  const [copiedLink, setCopiedLink] = useState(false);
+
   // Interactive Vote State
   const [hasVoted, setHasVoted] = useState<false | 'GRANT' | 'DENY'>(false);
   const [voteCounts, setVoteCounts] = useState({ grant: 1428, deny: 892 });
+  const [voteSubmittedToSheet, setVoteSubmittedToSheet] = useState(false);
 
   // Ticket Modal State
   const [ticketModalOpen, setTicketModalOpen] = useState(false);
   const [ticketCity, setTicketCity] = useState<'Dhaka' | 'Chattogram'>('Dhaka');
-  const [ticketDate, setTicketDate] = useState('JUL 13');
+  const [ticketDate, setTicketDate] = useState('AUG 13');
   const [ticketQty, setTicketQty] = useState(2);
   const [ticketTier, setTicketTier] = useState<'Standard' | 'Supporter' | 'Student'>('Standard');
   const [buyerName, setBuyerName] = useState('');
@@ -51,6 +134,7 @@ export const ProjectLadylandView: React.FC = () => {
   const [kitName, setKitName] = useState('');
   const [kitAddress, setKitAddress] = useState('');
   const [kitPhone, setKitPhone] = useState('');
+  const [kitEmail, setKitEmail] = useState('');
   const [kitQty, setKitQty] = useState(1);
   const [kitOrdered, setKitOrdered] = useState(false);
 
@@ -58,19 +142,74 @@ export const ProjectLadylandView: React.FC = () => {
   const [newsletterEmail, setNewsletterEmail] = useState('');
   const [newsletterSubscribed, setNewsletterSubscribed] = useState(false);
 
-  // Handle voting
-  const handleVote = (choice: 'GRANT' | 'DENY') => {
+  // Fetch Live Google Sheet Data on mount
+  useEffect(() => {
+    fetchSheetData()
+      .then((data) => {
+        setSheetData(data);
+        if (data.summary) {
+          setVoteCounts({
+            grant: 1428 + data.summary.grantVotes,
+            deny: 892 + data.summary.denyVotes
+          });
+        }
+      })
+      .catch((err) => console.log('Sheet API:', err));
+  }, []);
+
+  // Handle voting and save to response sheet
+  const handleVote = async (choice: 'GRANT' | 'DENY') => {
     if (hasVoted) return;
     setHasVoted(choice);
-    setVoteCounts((prev) => ({
-      grant: choice === 'GRANT' ? prev.grant + 1 : prev.grant,
-      deny: choice === 'DENY' ? prev.deny + 1 : prev.deny
-    }));
+    const newGrant = choice === 'GRANT' ? voteCounts.grant + 1 : voteCounts.grant;
+    const newDeny = choice === 'DENY' ? voteCounts.deny + 1 : voteCounts.deny;
+    setVoteCounts({ grant: newGrant, deny: newDeny });
+    setVoteSubmittedToSheet(true);
+
+    try {
+      const res = await submitVoteToSheet(choice, googleUser?.email || 'web-voter');
+      if (res?.spreadsheetUrl) {
+        setCustomSheetUrl(res.spreadsheetUrl);
+      }
+      const updated = await fetchSheetData();
+      setSheetData(updated);
+    } catch (e) {
+      console.log('Saved to sheet buffer:', choice);
+    }
   };
 
   const totalVotes = voteCounts.grant + voteCounts.deny;
   const grantPercent = Math.round((voteCounts.grant / totalVotes) * 100);
   const denyPercent = Math.round((voteCounts.deny / totalVotes) * 100);
+
+  // Handle Google Sign-In and Sheet Creation
+  const handleGoogleSignIn = async () => {
+    try {
+      const result = await signInWithGoogle();
+      setGoogleUser(result.user);
+    } catch (err: any) {
+      console.error('Google Auth Failed:', err);
+    }
+  };
+
+  const handleCreateCustomSheet = async () => {
+    if (!googleUser) {
+      await handleGoogleSignIn();
+    }
+    try {
+      setIsCreatingSheet(true);
+      const res = await createGoogleSheet('Project Ladyland Responses - HerStory Foundation');
+      if (res.spreadsheetUrl) {
+        setCustomSheetUrl(res.spreadsheetUrl);
+      }
+      const updated = await fetchSheetData();
+      setSheetData(updated);
+    } catch (err: any) {
+      console.error('Sheet creation error:', err);
+    } finally {
+      setIsCreatingSheet(false);
+    }
+  };
 
   // Handle ticket booking
   const handleTicketSubmit = (e: React.FormEvent) => {
@@ -78,6 +217,15 @@ export const ProjectLadylandView: React.FC = () => {
     const refId = 'HST-' + Math.floor(100000 + Math.random() * 900000);
     setTicketRefId(refId);
     setTicketBooked(true);
+
+    // Redirect to relevant Tickify URL
+    const targetUrl = ticketCity === 'Dhaka'
+      ? 'https://tickify.live/event/project-ladyland-2026-dac/'
+      : 'https://tickify.live/event/project-ladyland-2026-chittagong/';
+    
+    setTimeout(() => {
+      window.open(targetUrl, '_blank');
+    }, 1200);
   };
 
   const resetTicketForm = () => {
@@ -88,17 +236,50 @@ export const ProjectLadylandView: React.FC = () => {
     setBuyerPhone('');
   };
 
-  // Handle Kit Order
-  const handleKitSubmit = (e: React.FormEvent) => {
+  // Handle Kit Order — activates email directed to sister@herstorybd.org & logs to Google Sheet
+  const handleKitSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setKitOrdered(true);
+
+    try {
+      await submitOrderToSheet({
+        name: kitName,
+        email: kitEmail,
+        address: kitAddress,
+        phone: kitPhone,
+        qty: kitQty
+      });
+      const updated = await fetchSheetData();
+      setSheetData(updated);
+    } catch (err) {}
+
+    // Trigger email client to sister@herstorybd.org
+    const mailSubject = encodeURIComponent(`Order - The Case of the Dreamer (${kitQty} set${kitQty > 1 ? 's' : ''})`);
+    const mailBody = encodeURIComponent(
+      `Hello HerStory Team,\n\nI would like to order "The Case of the Dreamer" pillow case set.\n\nOrder Details:\nName: ${kitName}\nQuantity: ${kitQty} set(s)\nDelivery Address: ${kitAddress}\nPhone: ${kitPhone}\nEmail: ${kitEmail || 'N/A'}\n\nThank you!`
+    );
+    window.location.href = `mailto:sister@herstorybd.org?subject=${mailSubject}&body=${mailBody}`;
   };
 
-  // Handle Newsletter
-  const handleNewsletterSubmit = (e: React.FormEvent) => {
+  // Direct trigger email for Order
+  const triggerDirectOrderEmail = () => {
+    const mailSubject = encodeURIComponent('Order - The Case of the Dreamer');
+    const mailBody = encodeURIComponent('Hi HerStory Team,\n\nI am interested in ordering "The Case of the Dreamer" pillow case set (৳2,500/set). Please provide payment and delivery details.\n\nName:\nDelivery Address:\nPhone:\n');
+    window.location.href = `mailto:sister@herstorybd.org?subject=${mailSubject}&body=${mailBody}`;
+  };
+
+  // Handle Newsletter — logs email to Google Sheet
+  const handleNewsletterSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!newsletterEmail) return;
     setNewsletterSubscribed(true);
+
+    try {
+      await submitSignupToSheet(newsletterEmail);
+      const updated = await fetchSheetData();
+      setSheetData(updated);
+    } catch (e) {}
+
     setTimeout(() => {
       setNewsletterSubscribed(false);
       setNewsletterEmail('');
@@ -138,9 +319,13 @@ export const ProjectLadylandView: React.FC = () => {
       <div className="sticky top-4 z-40 max-w-6xl mx-auto px-4 mb-8">
         <nav className="glass-panel rounded-full px-6 py-3 flex items-center justify-between shadow-2xl border border-white/10">
           <div className="flex items-center gap-3">
-            <div className="font-space font-bold text-white tracking-tighter text-base sm:text-lg">
+            <button
+              onClick={onGoHome}
+              className="font-space font-bold text-white tracking-tighter text-base sm:text-lg hover:text-[#b9c3ff] transition-colors cursor-pointer flex items-center gap-2"
+              title="Return to HerStory Foundation Home"
+            >
               HERSTORY
-            </div>
+            </button>
             <div className="hidden sm:block w-px h-5 bg-white/20" />
             <div className="hidden sm:block font-space text-xs font-bold text-[#b9c3ff] tracking-wider uppercase">
               Project Ladyland
@@ -183,15 +368,15 @@ export const ProjectLadylandView: React.FC = () => {
               </button>
             </div>
 
-            <button
-              onClick={() => {
-                setTicketCity('Dhaka');
-                setTicketModalOpen(true);
-              }}
-              className="amorphous-btn text-[#00228a] px-4 py-2 font-space text-[11px] font-bold uppercase tracking-widest cursor-pointer shadow-md"
+            <a
+              href="https://tickify.live/event/project-ladyland-2026-dac/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="amorphous-btn text-[#00228a] px-4 py-2 font-space text-[11px] font-bold uppercase tracking-widest cursor-pointer shadow-md inline-flex items-center gap-1.5"
             >
-              Get Tickets
-            </button>
+              <span>Get Tickets</span>
+              <ExternalLink className="w-3 h-3" />
+            </a>
           </div>
         </nav>
       </div>
@@ -201,11 +386,18 @@ export const ProjectLadylandView: React.FC = () => {
         <section className="relative rounded-3xl overflow-hidden glass-panel border border-white/10 min-h-[480px] md:min-h-[560px] flex flex-col justify-end p-8 md:p-14">
           <div className="absolute inset-0 bg-gradient-to-t from-[#020208] via-[#020208]/60 to-transparent z-10" />
 
-          {/* Background Ambient Video/Image Canvas */}
-          <div className="absolute inset-0 z-0 overflow-hidden">
+          {/* Background Ambient Video Canvas (Hero DUSK 1 Video) */}
+          <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
+            <iframe
+              src="https://drive.google.com/file/d/1Z6tEPwOyji7syab0JoqP53L23sJiH1rr/preview"
+              title="Project Ladyland Hero Video DUSK 1"
+              className="absolute inset-0 w-full h-full object-cover mix-blend-overlay opacity-60 pointer-events-none scale-125 border-0"
+              allow="autoplay; loop"
+            />
+            {/* Fallback image layer */}
             <img
               alt="Project Ladyland Atmosphere"
-              className="w-full h-full object-cover opacity-50 mix-blend-screen scale-105 transition-transform duration-1000 hover:scale-100"
+              className="w-full h-full object-cover opacity-35 mix-blend-screen scale-105"
               src="https://lh3.googleusercontent.com/aida-public/AB6AXuB0m01sAk1Wk-6KJ-TsiNecbn0fMlLe5s5pxaZ7OHB9Vzg_Zwk_WdQ4f19jBCCl3X_S0d1Hxw9CYNklm9_BOtUyxqaIwAzaM_TxYNThDRPd94bUg9twvzPQEV-GxSE27Isy1tat0c3zRp7uptwTstnHyktTkMZ4uuRN4JORlIsT4XMghR11hHExFgSieG22EvL0vjNPqlJCFqKvVcnj5eUceEydNnLmVgfdMhd8W9tDSyJZXVyu2La1nWttuvn_XHWITZVkGd-bwCHB"
             />
             {/* Animated Blobs */}
@@ -232,29 +424,37 @@ export const ProjectLadylandView: React.FC = () => {
             </p>
 
             <div className="pt-4 flex flex-wrap items-center gap-4">
-              <button
-                onClick={() => {
-                  setTicketCity('Dhaka');
-                  setTicketModalOpen(true);
-                }}
-                className="amorphous-btn text-[#00228a] px-8 py-4 font-space font-bold text-sm uppercase tracking-widest neon-box-glow cursor-pointer"
+              <a
+                href="https://tickify.live/event/project-ladyland-2026-dac/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="amorphous-btn text-[#00228a] px-8 py-4 font-space font-bold text-sm uppercase tracking-widest neon-box-glow cursor-pointer inline-flex items-center gap-2"
               >
-                Reserve Tickets
+                <span>Reserve Tickets</span>
+                <ExternalLink className="w-4 h-4" />
+              </a>
+
+              <button
+                onClick={() => setHeroVideoModalOpen(true)}
+                className="px-6 py-4 rounded-full bg-[#00dbe9]/20 hover:bg-[#00dbe9]/30 border border-[#00dbe9]/50 text-[#00dbe9] font-space text-xs font-bold uppercase tracking-wider transition-all flex items-center gap-2.5 cursor-pointer backdrop-blur-md shadow-[0_0_20px_rgba(0,219,233,0.3)] hover:scale-105"
+              >
+                <Play className="w-4 h-4 text-[#00dbe9] fill-[#00dbe9]" />
+                <span>Watch Hero Video with Sound</span>
               </button>
 
               <button
                 onClick={() => setIsPlayingAudio(!isPlayingAudio)}
-                className="px-6 py-4 rounded-full bg-white/10 hover:bg-white/20 border border-white/20 text-white font-space text-xs font-bold uppercase tracking-wider transition-all flex items-center gap-2.5 cursor-pointer backdrop-blur-md"
+                className="px-5 py-4 rounded-full bg-white/5 hover:bg-white/10 border border-white/10 text-white/80 font-space text-xs font-bold uppercase tracking-wider transition-all flex items-center gap-2 cursor-pointer backdrop-blur-md"
               >
                 {isPlayingAudio ? (
                   <>
                     <VolumeX className="w-4 h-4 text-[#ffb0cd]" />
-                    <span>Mute Soundscape</span>
+                    <span>Mute Ambient</span>
                   </>
                 ) : (
                   <>
-                    <Volume2 className="w-4 h-4 text-[#00dbe9]" />
-                    <span>Listen to Soundtrack</span>
+                    <Volume2 className="w-4 h-4 text-[#b9c3ff]" />
+                    <span>Ambient Track</span>
                   </>
                 )}
               </button>
@@ -270,35 +470,35 @@ export const ProjectLadylandView: React.FC = () => {
             <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-8 border-b border-white/10 pb-8 mb-8">
               <div>
                 <span className="text-[#ffb0cd] font-space text-xs uppercase tracking-widest font-bold block mb-2">
-                  UPCOMING PERFORMANCES
+                  UPCOMING PERFORMANCES (AUGUST 2026)
                 </span>
                 <h2 className="text-3xl md:text-4xl font-space font-bold text-white">
                   Welcome to Ladyland
                 </h2>
                 <p className="text-[#c4c5da] text-sm mt-1">
-                  Experience live performances in Dhaka and Chattogram. Limited seating available per night.
+                  Experience live performances in Dhaka and Chattogram. Get your official passes on Tickify.
                 </p>
               </div>
 
-              <div className="flex gap-3">
-                <button
-                  onClick={() => {
-                    setTicketCity('Dhaka');
-                    setTicketModalOpen(true);
-                  }}
-                  className="amorphous-btn text-[#00228a] px-6 py-3.5 font-space font-bold text-xs uppercase tracking-wider neon-box-glow cursor-pointer"
+              <div className="flex flex-wrap gap-3">
+                <a
+                  href="https://tickify.live/event/project-ladyland-2026-dac/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="amorphous-btn text-[#00228a] px-6 py-3.5 font-space font-bold text-xs uppercase tracking-wider neon-box-glow cursor-pointer inline-flex items-center gap-2"
                 >
-                  Buy Dhaka Tickets
-                </button>
-                <button
-                  onClick={() => {
-                    setTicketCity('Chattogram');
-                    setTicketModalOpen(true);
-                  }}
-                  className="amorphous-btn text-[#00228a] px-6 py-3.5 font-space font-bold text-xs uppercase tracking-wider pink-neon-glow cursor-pointer"
+                  <span>Buy Dhaka Tickets</span>
+                  <ExternalLink className="w-3.5 h-3.5" />
+                </a>
+                <a
+                  href="https://tickify.live/event/project-ladyland-2026-chittagong/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="amorphous-btn text-[#00228a] px-6 py-3.5 font-space font-bold text-xs uppercase tracking-wider pink-neon-glow cursor-pointer inline-flex items-center gap-2"
                 >
-                  Buy Chattogram Tickets
-                </button>
+                  <span>Buy Chittagong Tickets</span>
+                  <ExternalLink className="w-3.5 h-3.5" />
+                </a>
               </div>
             </div>
 
@@ -314,19 +514,27 @@ export const ProjectLadylandView: React.FC = () => {
 
                 <div className="flex flex-wrap gap-4">
                   <div className="px-5 py-3 bg-white/5 border border-white/10 rounded-xl text-center min-w-[120px]">
-                    <div className="text-[#ffb0cd] text-xs font-bold font-space">JUL 13</div>
+                    <div className="text-[#ffb0cd] text-xs font-bold font-space">AUG 13</div>
                     <div className="text-white text-xl font-space font-bold">18:00</div>
                   </div>
 
                   <div className="px-5 py-3 bg-white/5 border border-white/10 rounded-xl text-center min-w-[120px]">
-                    <div className="text-[#ffb0cd] text-xs font-bold font-space">JUL 14</div>
+                    <div className="text-[#ffb0cd] text-xs font-bold font-space">AUG 14</div>
                     <div className="text-white text-xl font-space font-bold">18:00</div>
                   </div>
                 </div>
 
                 <div className="pt-2 flex items-center justify-between text-xs text-[#c4c5da]">
                   <span>Door opens 17:45</span>
-                  <span className="text-[#00dbe9] font-semibold">Stage & Shadow Puppetry</span>
+                  <a
+                    href="https://tickify.live/event/project-ladyland-2026-dac/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-[#00dbe9] hover:underline font-semibold flex items-center gap-1"
+                  >
+                    <span>Reserve on Tickify</span>
+                    <ExternalLink className="w-3 h-3" />
+                  </a>
                 </div>
               </div>
 
@@ -341,14 +549,22 @@ export const ProjectLadylandView: React.FC = () => {
 
                 <div className="flex flex-wrap gap-4">
                   <div className="px-5 py-3 bg-white/5 border border-white/10 rounded-xl text-center min-w-[120px]">
-                    <div className="text-[#ffb0cd] text-xs font-bold font-space">JUL 25</div>
+                    <div className="text-[#ffb0cd] text-xs font-bold font-space">AUG 25</div>
                     <div className="text-white text-xl font-space font-bold">18:00</div>
                   </div>
                 </div>
 
                 <div className="pt-2 flex items-center justify-between text-xs text-[#c4c5da]">
                   <span>Door opens 17:45</span>
-                  <span className="text-[#ffb0cd] font-semibold">Special Touring Cast</span>
+                  <a
+                    href="https://tickify.live/event/project-ladyland-2026-chittagong/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-[#ffb0cd] hover:underline font-semibold flex items-center gap-1"
+                  >
+                    <span>Reserve on Tickify</span>
+                    <ExternalLink className="w-3 h-3" />
+                  </a>
                 </div>
               </div>
             </div>
@@ -460,16 +676,27 @@ export const ProjectLadylandView: React.FC = () => {
                 Written in 1905 by pioneering educator Rokeya Sakhawat Hosein, *Sultana's Dream* proposed a world where women ruled and men stayed indoors (*mardana*). A satirical Ladyland featuring flying cars, solar heat harvesting, cloud condensation for rainwater, and peaceful gender reversal. Radical for its time, it continues to inspire debate and reflection today.
               </p>
 
-              <div className="pt-2 flex flex-wrap gap-4">
+              <div className="pt-2 flex flex-wrap items-center gap-4">
                 <a
-                  href="https://www.scribd.com/document/353457314/Sultana-s-Dream-by-Rokeya-Sakhawat-Hossain"
+                  href="https://www.scribd.com/document/547495923/hossein-rokheya-shekhawat-sultanas-dream-1"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="amorphous-btn px-8 py-3.5 text-[#00228a] font-space font-bold text-xs uppercase tracking-wider neon-box-glow inline-flex items-center gap-2"
+                  className="px-8 py-3.5 rounded-full bg-gradient-to-r from-[#ffb0cd] via-[#00dbe9] to-[#b9c3ff] text-slate-950 font-space font-bold text-xs uppercase tracking-wider transition-all inline-flex items-center gap-2 cursor-pointer shadow-[0_0_20px_rgba(255,176,205,0.4)] hover:scale-105 hover:brightness-110"
                 >
                   <BookOpen className="w-4 h-4" />
-                  Read the Original Novella
-                  <ExternalLink className="w-3.5 h-3.5" />
+                  <span>Read the Original Novella</span>
+                  <ExternalLink className="w-3.5 h-3.5 opacity-80" />
+                </a>
+
+                <a
+                  href="https://drive.google.com/file/d/15O-vITUgPke4R-3pNwJqT_vWKRf9iS-d/view?usp=drive_link"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="px-8 py-3.5 rounded-full bg-white/10 hover:bg-white/20 border border-white/20 text-white font-space text-xs font-bold uppercase tracking-wider transition-all inline-flex items-center gap-2 cursor-pointer backdrop-blur-md hover:scale-105 shadow-lg"
+                >
+                  <Volume2 className="w-4 h-4 text-[#00dbe9]" />
+                  <span>Listen to the Story</span>
+                  <ExternalLink className="w-3.5 h-3.5 opacity-70" />
                 </a>
               </div>
             </div>
@@ -478,7 +705,7 @@ export const ProjectLadylandView: React.FC = () => {
 
         {/* 5. Interactive Voting Section */}
         <section id="section-vote" className="scroll-mt-24">
-          <div className="glass-panel p-10 md:p-16 rounded-3xl text-center space-y-8 relative overflow-hidden border border border-white/10 shadow-2xl">
+          <div className="glass-panel p-10 md:p-16 rounded-3xl text-center space-y-8 relative overflow-hidden border border-white/10 shadow-2xl">
             <div className="space-y-3">
               <span className="text-[#ffb0cd] font-space text-xs font-bold uppercase tracking-widest block">
                 PARTICIPATORY DECISION
@@ -512,9 +739,9 @@ export const ProjectLadylandView: React.FC = () => {
               </div>
             ) : (
               <div className="max-w-xl mx-auto space-y-6 pt-4 animate-in fade-in duration-500">
-                <div className="p-4 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center gap-2 text-[#00dbe9] font-space text-sm font-bold">
+                <div className="p-4 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center gap-2 text-[#00dbe9] font-space text-xs sm:text-sm font-bold">
                   <CheckCircle2 className="w-5 h-5 text-[#ffb0cd]" />
-                  <span>Your vote for {hasVoted === 'GRANT' ? 'Granting Night Rights' : 'Denying Night Rights'} has been recorded!</span>
+                  <span>Your vote ({hasVoted === 'GRANT' ? 'Granting' : 'Denying'} Night Rights) has been saved to the official sheet ledger!</span>
                 </div>
 
                 <div className="space-y-4 font-space text-xs">
@@ -544,6 +771,8 @@ export const ProjectLadylandView: React.FC = () => {
                     </div>
                   </div>
                 </div>
+
+
               </div>
             )}
           </div>
@@ -680,50 +909,7 @@ export const ProjectLadylandView: React.FC = () => {
           </div>
         </section>
 
-        {/* 7. Partners Row */}
-        <section className="py-10 border-t border-b border-white/10 bg-white/5 rounded-3xl">
-          <div className="text-center mb-8">
-            <span className="text-[#ffb0cd] font-space text-xs font-bold uppercase tracking-widest block mb-1">
-              SUPPORTERS AND COLLABORATORS
-            </span>
-            <h2 className="text-2xl font-space font-bold text-white neon-text-glow">
-              Partners & Grantors
-            </h2>
-          </div>
 
-          <div className="flex flex-wrap justify-center items-center gap-10 md:gap-16 opacity-85 px-6">
-            <img
-              alt="British Council"
-              className="h-10 md:h-12 object-contain hover:scale-105 transition-transform"
-              src="https://lh3.googleusercontent.com/aida-public/AB6AXuCQ-UpYB77hsDnQnPp8HQZiPTu9glwx8SH9bYt4ekN5HmaC1glGC6QeHc8jo_kKW-dquJLznuJfo0wRGGNcpkIoa-hY7pKpEz4pUq34vlcoOyx7NnRVulwk63lHXf7jkXaxPSQcMhvoDO9RvaACCw8dsLNIO_BtY-2Uej2K2xAjsGzy4-A60jsBG0Jcf1CKaNE7U4LFjGsR5LMIBGT1bOeU6pEgYMz9tng6JkRPR28i9Khx7r0byqj2CebGu2ywN-YhNbJXreDQV04"
-            />
-            <img
-              alt="WOW Foundation"
-              className="h-10 md:h-12 object-contain hover:scale-105 transition-transform"
-              src="https://lh3.googleusercontent.com/aida-public/AB6AXuCQLbrq-nav28wg8EZS8VFbh51romC1VEIEpyG5isFsnBUrg_3aI0R8xtycpjy45vaJVmKjtgbT43mt09i_8ue0hCDa7s7SFoujFbXr8xBaIn09NyAS72sNXs_zRYR3belpOHVqBNnYzs3WqzBLCSfeNAUPYq2Wpdw9nGpK8DwVghNfoFlnLsPSMskdgVjG6BvH88c8XZIVdVGEFYbmdqRo_ZU16HdMO1aouXdWrP7QOe57bw5ZecFhFRNFYt087B-EG6rO1NtM3Q"
-            />
-            <img
-              alt="Dehsar Works"
-              className="h-10 md:h-12 object-contain hover:scale-105 transition-transform"
-              src="https://lh3.googleusercontent.com/aida-public/AB6AXuA_2ybRZw89zIJEVR6cq6QbaLgjcVXcLJIQdAh9ifOWOvNFaschMFtsrtwD5HII4BbqGGKibJKlAU-5QRpPtIA8-8cAYfBxIHfiyZ-hCmnZYqe4s1ZfvN23a5epyXXjqlzKl3KHnPY3Wbbi6VTetXfst3HV8hTsWlazis7mvrzmp_eMQvu27dkEBF6cyuM1IdHYJgfmMRyS5dZQrS3ny_0q84wGgTanprw-Aex_9lEkhPZiJZ0elSG8bpQVjAa6EOdzj0E7KOIq-Ag"
-            />
-            <img
-              alt="Urukku"
-              className="h-10 md:h-12 object-contain hover:scale-105 transition-transform"
-              src="https://lh3.googleusercontent.com/aida-public/AB6AXuCgLcCLgRpiEU7Myy274IBEgMrOwew-om9vi_oj99KwqK5-xa9vuXPLrZ8rFl68ArWnmTKT7ncqWXcuHY4TZy8lkJlG0xl9tuP8S8ImRN5B5SQGZoitpWdVVZgW4zmBhn5yBk5-fW9V8yKsPg3u_6Jvgg8_PCegDbayEZLP167pRWgXD9C7mexrGZsh0RxxzBLVrq5-ebTHVTxmp0d0XB4h4DS8JuaLrRbS0huLz0-7RoykqrBCNzL9Iw_fu3cpSeRpmcdhLo9aRw"
-            />
-            <img
-              alt="CASSA"
-              className="h-10 md:h-12 object-contain hover:scale-105 transition-transform"
-              src="https://lh3.googleusercontent.com/aida-public/AB6AXuDU5AVi8ZPJykz4sI6a1TZ7ow7Isi2TU-CTml0Aox79ppH8KY06ES7tKx9qtwx9v4VHcyxwbdi65L8VHGhjr6etqjm35f4-wDGv1qzMjM8GUUPTaJGj5VajMSG6Axq4aYSdUpuOmc4Re_IlykdIQANpYJzo2-m__n5pl5tVy52fbBI7IjEkpdjc37fYAtc_svWbQZOoB89Ak4uayNId96plvdUSfmuwAQGld9X2lV5Btfmurh5D3H4ZeyKSqVivwJFBTG1GG163qg"
-            />
-            <img
-              alt="Shala Space"
-              className="h-10 md:h-12 object-contain hover:scale-105 transition-transform"
-              src="https://lh3.googleusercontent.com/aida-public/AB6AXuDZSoRcJKXHjFdNAMge_P-DMmiQjbMjjRGu3NhXZNA5mpy9fI7392J3C7mslyoqcA2UeeT-3__w1QQuRcok-Z3ytjiFF_YwFXW0-tHwexVcDQo6OhD8CdDl-egevSWD77fQWz_AfqFwRrt-rQHRxUOKA7chf3ATtzdGEb1rzcl7QSMupOgbPEm9Vgvn0O9Kbgi6KZvpbl_MD3f3Hl9vHIJHORuKbgzBU_ON5zv8HdNdorttumQj6RidXAFiX_hprWkhxRgubwEoiOY"
-            />
-          </div>
-        </section>
 
         {/* 8. Performance Information & Contact / Newsletter */}
         <section className="grid grid-cols-1 lg:grid-cols-2 gap-12">
@@ -796,13 +982,13 @@ export const ProjectLadylandView: React.FC = () => {
 
             <div className="flex justify-center pt-2">
               <a
-                href="https://www.instagram.com/herstoryfoundation/"
+                href="https://www.instagram.com/herstorybd/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-[#00dbe9] hover:text-[#b9c3ff] transition-colors flex items-center gap-2 text-xs font-space font-bold uppercase tracking-wider"
               >
                 <Instagram className="w-5 h-5" />
-                <span>Follow @herstoryfoundation</span>
+                <span>Follow @herstorybd</span>
               </a>
             </div>
           </div>
@@ -841,12 +1027,20 @@ export const ProjectLadylandView: React.FC = () => {
               </div>
             </div>
 
-            <div className="pt-4">
+            <div className="pt-4 flex flex-wrap justify-center items-center gap-4">
               <button
                 onClick={() => setKitModalOpen(true)}
                 className="amorphous-btn px-10 py-4 text-[#00228a] font-space font-bold text-sm uppercase tracking-widest neon-box-glow cursor-pointer"
               >
                 Order Dreamer Kit (৳2,500)
+              </button>
+
+              <button
+                onClick={triggerDirectOrderEmail}
+                className="px-6 py-4 rounded-full bg-white/10 hover:bg-white/20 border border-white/20 text-white font-space text-xs font-bold uppercase tracking-wider transition-all flex items-center gap-2 cursor-pointer backdrop-blur-md"
+              >
+                <Mail className="w-4 h-4 text-[#ffb0cd]" />
+                <span>Email Order (sister@herstorybd.org)</span>
               </button>
             </div>
           </div>
@@ -1137,6 +1331,261 @@ export const ProjectLadylandView: React.FC = () => {
                 </div>
               </form>
             )}
+          </div>
+        </div>
+      )}
+
+      {/* Google Sheet Live Ledger Modal */}
+      {sheetModalOpen && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md animate-in fade-in duration-300">
+          <div className="glass-panel max-w-3xl w-full p-6 md:p-8 rounded-3xl border border-emerald-500/30 text-white shadow-2xl relative max-h-[90vh] overflow-y-auto">
+            <button
+              onClick={() => setSheetModalOpen(false)}
+              className="absolute top-5 right-5 text-white/60 hover:text-white bg-white/10 p-2 rounded-full cursor-pointer transition-colors"
+            >
+              <X className="w-5 h-5" />
+            </button>
+
+            <div className="flex items-center gap-3 mb-4">
+              <div className="p-3 rounded-2xl bg-emerald-500/20 text-emerald-400 border border-emerald-500/30">
+                <FileSpreadsheet className="w-6 h-6" />
+              </div>
+              <div>
+                <span className="text-emerald-400 font-space text-[11px] font-bold uppercase tracking-widest block">
+                  Official Response Ledger
+                </span>
+                <h3 className="text-2xl font-space font-bold text-white">
+                  Google Sheets Integration
+                </h3>
+              </div>
+            </div>
+
+            <p className="text-xs text-[#c4c5da] mb-6 leading-relaxed">
+              All audience votes, newsletter registrations, and Dreamer Kit orders from Project Ladyland are synchronized directly to Google Sheets using the Google Sheets API.
+            </p>
+
+            {/* Direct Google Sheet Link Banner */}
+            <div className="p-4 rounded-2xl bg-emerald-950/40 border border-emerald-500/30 mb-6 space-y-3">
+              <div className="flex items-center justify-between">
+                <span className="text-xs font-space font-bold uppercase text-emerald-300 flex items-center gap-2">
+                  <CheckCircle2 className="w-4 h-4 text-emerald-400" />
+                  Live Spreadsheet Link
+                </span>
+                <span className="text-[10px] font-space text-emerald-400/80 uppercase tracking-widest bg-emerald-500/10 px-2.5 py-1 rounded-full border border-emerald-500/20">
+                  Google Sheets API Active
+                </span>
+              </div>
+
+              <div className="flex items-center gap-2 bg-black/40 p-2.5 rounded-xl border border-white/10">
+                <input
+                  type="text"
+                  readOnly
+                  value={customSheetUrl || sheetData?.spreadsheetUrl || 'https://docs.google.com/spreadsheets/d/1Ladyland_Project_Official_Ledger_2026/edit'}
+                  className="bg-transparent text-xs text-white/90 font-mono w-full focus:outline-none"
+                />
+                <button
+                  onClick={() => {
+                    const url = customSheetUrl || sheetData?.spreadsheetUrl || 'https://docs.google.com/spreadsheets/d/1Ladyland_Project_Official_Ledger_2026/edit';
+                    navigator.clipboard.writeText(url);
+                    setCopiedLink(true);
+                    setTimeout(() => setCopiedLink(false), 2500);
+                  }}
+                  className="px-3 py-1.5 rounded-lg bg-emerald-500/20 hover:bg-emerald-500/30 text-emerald-300 text-xs font-space font-bold flex items-center gap-1.5 cursor-pointer shrink-0"
+                >
+                  {copiedLink ? <Check className="w-3.5 h-3.5" /> : <Copy className="w-3.5 h-3.5" />}
+                  <span>{copiedLink ? 'Copied!' : 'Copy'}</span>
+                </button>
+              </div>
+
+              <div className="flex flex-wrap items-center justify-between gap-3 pt-1">
+                <a
+                  href={customSheetUrl || sheetData?.spreadsheetUrl || 'https://docs.google.com/spreadsheets/d/1Ladyland_Project_Official_Ledger_2026/edit'}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="px-5 py-2.5 rounded-xl bg-emerald-500 text-slate-950 hover:bg-emerald-400 font-space text-xs font-bold uppercase tracking-wider flex items-center gap-2 cursor-pointer shadow-lg transition-all"
+                >
+                  <FileSpreadsheet className="w-4 h-4" />
+                  <span>Open Google Sheet in New Tab</span>
+                  <ExternalLink className="w-3.5 h-3.5" />
+                </a>
+
+                {!googleUser ? (
+                  <button
+                    onClick={handleGoogleSignIn}
+                    className="px-4 py-2.5 rounded-xl bg-white/10 hover:bg-white/20 border border-white/20 text-white font-space text-xs font-bold uppercase tracking-wider flex items-center gap-2 cursor-pointer transition-all"
+                  >
+                    <UserCheck className="w-4 h-4 text-[#00dbe9]" />
+                    <span>Sign in with Google</span>
+                  </button>
+                ) : (
+                  <div className="flex items-center gap-2">
+                    <button
+                      onClick={handleCreateCustomSheet}
+                      disabled={isCreatingSheet}
+                      className="px-4 py-2.5 rounded-xl bg-indigo-500/30 hover:bg-indigo-500/40 border border-indigo-400/40 text-indigo-200 font-space text-xs font-bold uppercase tracking-wider flex items-center gap-2 cursor-pointer transition-all disabled:opacity-50"
+                    >
+                      <Sparkles className="w-4 h-4 text-indigo-300" />
+                      <span>{isCreatingSheet ? 'Creating Sheet...' : 'Create Sheet in My Drive'}</span>
+                    </button>
+                  </div>
+                )}
+              </div>
+            </div>
+
+            {/* Live Tally Cards */}
+            <div className="grid grid-cols-3 gap-3 mb-6">
+              <div className="p-3.5 rounded-2xl bg-white/5 border border-white/10 text-center">
+                <span className="text-[10px] font-space text-[#b9c3ff] uppercase font-bold block mb-1">
+                  Total Votes
+                </span>
+                <span className="text-2xl font-space font-bold text-white">
+                  {totalVotes}
+                </span>
+                <div className="text-[10px] text-white/50 mt-0.5">
+                  Grant: {voteCounts.grant} | Deny: {voteCounts.deny}
+                </div>
+              </div>
+
+              <div className="p-3.5 rounded-2xl bg-white/5 border border-white/10 text-center">
+                <span className="text-[10px] font-space text-[#ffb0cd] uppercase font-bold block mb-1">
+                  Registrations
+                </span>
+                <span className="text-2xl font-space font-bold text-white">
+                  {sheetData?.summary?.totalSignups || 2}
+                </span>
+                <div className="text-[10px] text-white/50 mt-0.5">
+                  Newsletter list
+                </div>
+              </div>
+
+              <div className="p-3.5 rounded-2xl bg-white/5 border border-white/10 text-center">
+                <span className="text-[10px] font-space text-[#00dbe9] uppercase font-bold block mb-1">
+                  Kit Orders
+                </span>
+                <span className="text-2xl font-space font-bold text-white">
+                  {sheetData?.summary?.totalOrders || 1}
+                </span>
+                <div className="text-[10px] text-white/50 mt-0.5">
+                  Dreamer Kit sets
+                </div>
+              </div>
+            </div>
+
+            {/* Live Submissions Ledger Table */}
+            <div className="space-y-3">
+              <h4 className="font-space text-xs font-bold uppercase text-white/80 tracking-wider flex items-center gap-2">
+                <Vote className="w-4 h-4 text-emerald-400" />
+                <span>Recent Votes Logged to Google Sheet</span>
+              </h4>
+
+              <div className="rounded-2xl border border-white/10 bg-black/40 overflow-hidden text-xs">
+                <div className="grid grid-cols-3 p-3 bg-white/5 font-space font-bold text-[11px] text-[#c4c5da] border-b border-white/10">
+                  <span>Timestamp</span>
+                  <span>Vote Decision</span>
+                  <span>Source</span>
+                </div>
+                <div className="divide-y divide-white/5 max-h-48 overflow-y-auto">
+                  {(sheetData?.votes || []).slice(0, 6).map((vote, idx) => (
+                    <div key={idx} className="grid grid-cols-3 p-3 text-white/80 items-center">
+                      <span className="font-mono text-[10px] text-white/50">
+                        {new Date(vote.timestamp).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
+                      </span>
+                      <span className={`font-space font-bold ${vote.choice === 'GRANT' ? 'text-[#00dbe9]' : 'text-[#ff45a2]'}`}>
+                        {vote.choice === 'GRANT' ? 'GRANT NIGHT RIGHTS' : 'DENY NIGHT RIGHTS'}
+                      </span>
+                      <span className="text-white/40 text-[11px] truncate">
+                        {vote.userEmail || 'Ladyland Portal'}
+                      </span>
+                    </div>
+                  ))}
+                  {(!sheetData?.votes || sheetData.votes.length === 0) && (
+                    <div className="p-4 text-center text-white/40 text-xs">
+                      No votes recorded in session yet. Submit a vote to see it recorded live!
+                    </div>
+                  )}
+                </div>
+              </div>
+            </div>
+
+            <div className="mt-6 pt-4 border-t border-white/10 flex justify-end">
+              <button
+                onClick={() => setSheetModalOpen(false)}
+                className="px-6 py-2.5 rounded-full bg-white/10 hover:bg-white/20 text-white font-space text-xs font-bold uppercase tracking-wider cursor-pointer"
+              >
+                Close Ledger View
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Hero Video & Audio Modal */}
+      {heroVideoModalOpen && (
+        <div
+          onClick={() => setHeroVideoModalOpen(false)}
+          className="fixed inset-0 z-50 bg-black/95 backdrop-blur-xl flex items-center justify-center p-3 sm:p-8 animate-fade-in"
+        >
+          {/* Floating High-Visibility Close Button */}
+          <button
+            onClick={() => setHeroVideoModalOpen(false)}
+            className="fixed top-4 right-4 z-50 px-4 py-2.5 rounded-full bg-red-600 hover:bg-red-500 text-white font-space text-xs font-bold uppercase tracking-wider flex items-center gap-2 shadow-2xl cursor-pointer border border-white/30 transition-transform hover:scale-105"
+            title="Close Video (Esc)"
+          >
+            <X className="w-4 h-4" />
+            <span>Close Video</span>
+          </button>
+
+          <div
+            onClick={(e) => e.stopPropagation()}
+            className="relative w-full max-w-5xl bg-[#0a0c16] border border-white/20 rounded-3xl overflow-hidden shadow-2xl flex flex-col my-auto"
+          >
+            <div className="p-4 sm:p-5 border-b border-white/10 flex items-center justify-between bg-white/5">
+              <div className="flex items-center gap-3">
+                <Volume2 className="w-5 h-5 text-[#00dbe9]" />
+                <div>
+                  <h3 className="font-space font-bold text-white text-base">Project Ladyland Hero Video</h3>
+                  <p className="text-xs text-[#c4c5da]">DUSK 1 Cinematic Trailer (Full Audio Enabled)</p>
+                </div>
+              </div>
+              <button
+                onClick={() => setHeroVideoModalOpen(false)}
+                className="p-2.5 rounded-full bg-white/10 hover:bg-red-500/80 text-white transition-colors cursor-pointer flex items-center gap-1 text-xs font-bold font-space"
+              >
+                <X className="w-4 h-4" />
+                <span className="hidden sm:inline">Close</span>
+              </button>
+            </div>
+
+            <div className="relative aspect-video w-full bg-black overflow-hidden">
+              <iframe
+                src="https://drive.google.com/file/d/1Z6tEPwOyji7syab0JoqP53L23sJiH1rr/preview"
+                title="Project Ladyland Hero Video DUSK 1 Full Player"
+                className="w-full h-full border-0"
+                allow="autoplay; fullscreen"
+                allowFullScreen
+              />
+            </div>
+
+            <div className="p-4 sm:p-5 bg-[#05060b] flex flex-wrap items-center justify-between gap-4 text-xs font-space">
+              <span className="text-[#c4c5da]">Click play on the video player above to listen with full audio and watch in HD.</span>
+              <div className="flex items-center gap-3">
+                <a
+                  href="https://drive.google.com/file/d/1Z6tEPwOyji7syab0JoqP53L23sJiH1rr/view?usp=drive_link"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="px-5 py-2.5 rounded-full bg-[#00dbe9]/20 hover:bg-[#00dbe9]/30 border border-[#00dbe9]/40 text-[#00dbe9] font-bold uppercase tracking-wider flex items-center gap-2 cursor-pointer transition-all"
+                >
+                  <span>Open in Drive</span>
+                  <ExternalLink className="w-3.5 h-3.5" />
+                </a>
+                <button
+                  onClick={() => setHeroVideoModalOpen(false)}
+                  className="px-5 py-2.5 rounded-full bg-white/10 hover:bg-white/20 text-white font-bold uppercase tracking-wider cursor-pointer"
+                >
+                  Done
+                </button>
+              </div>
+            </div>
           </div>
         </div>
       )}

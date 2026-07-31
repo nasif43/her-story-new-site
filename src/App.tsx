@@ -33,12 +33,14 @@ export default function App() {
       {/* Animated WebGL Shader Background */}
       <ShaderBackground />
 
-      {/* Top Header */}
-      <Header
-        activeTab={activeTab}
-        setActiveTab={setActiveTab}
-        onOpenSearch={() => setSearchOpen(true)}
-      />
+      {/* Top Header (Hidden on Project Ladyland page as per design requirement) */}
+      {activeTab !== 'ladyland' && (
+        <Header
+          activeTab={activeTab}
+          setActiveTab={setActiveTab}
+          onOpenSearch={() => setSearchOpen(true)}
+        />
+      )}
 
       {/* Main View Router */}
       <main className="flex-1 relative z-10 pb-16">
@@ -85,7 +87,7 @@ export default function App() {
         )}
 
         {activeTab === 'ladyland' && (
-          <ProjectLadylandView />
+          <ProjectLadylandView onGoHome={() => setActiveTab('home')} />
         )}
       </main>
 
