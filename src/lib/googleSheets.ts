@@ -56,6 +56,9 @@ export async function fetchSheetData(): Promise<SheetDataResponse> {
   return res.json();
 }
 
+const metaEnv = (import.meta as any).env || {};
+const webhookUrl = metaEnv.VITE_GOOGLE_SHEET_WEBHOOK_URL;
+
 export async function submitVoteToSheet(choice: 'GRANT' | 'DENY', userEmail?: string) {
   const payload = {
     type: 'vote',
@@ -64,7 +67,6 @@ export async function submitVoteToSheet(choice: 'GRANT' | 'DENY', userEmail?: st
     userEmail: userEmail || 'anonymous'
   };
 
-  const webhookUrl = import.meta.env.VITE_GOOGLE_SHEET_WEBHOOK_URL;
   if (webhookUrl) {
     try {
       fetch(webhookUrl, {
@@ -101,7 +103,6 @@ export async function submitSignupToSheet(email: string) {
     timestamp: new Date().toISOString()
   };
 
-  const webhookUrl = import.meta.env.VITE_GOOGLE_SHEET_WEBHOOK_URL;
   if (webhookUrl) {
     try {
       fetch(webhookUrl, {
@@ -137,7 +138,6 @@ export async function submitOrderToSheet(orderData: { name: string; email: strin
     timestamp: new Date().toISOString()
   };
 
-  const webhookUrl = import.meta.env.VITE_GOOGLE_SHEET_WEBHOOK_URL;
   if (webhookUrl) {
     try {
       fetch(webhookUrl, {

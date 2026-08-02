@@ -383,26 +383,14 @@ export const ProjectLadylandView: React.FC<ProjectLadylandViewProps> = ({ onGoHo
 
       <main className="relative z-10 max-w-7xl mx-auto px-4 md:px-12 space-y-24">
         {/* 1. Cinematic Hero & Video Section */}
-        <section className="relative rounded-3xl overflow-hidden glass-panel border border-white/10 min-h-[480px] md:min-h-[560px] flex flex-col justify-end p-8 md:p-14">
-          <div className="absolute inset-0 bg-gradient-to-t from-[#020208] via-[#020208]/60 to-transparent z-10" />
-
-          {/* Background Ambient Video Canvas (Hero DUSK 1 Video) */}
-          <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
-            <iframe
-              src="https://drive.google.com/file/d/1Z6tEPwOyji7syab0JoqP53L23sJiH1rr/preview"
-              title="Project Ladyland Hero Video DUSK 1"
-              className="absolute inset-0 w-full h-full object-cover mix-blend-overlay opacity-60 pointer-events-none scale-125 border-0"
-              allow="autoplay; loop"
-            />
-            {/* Fallback image layer */}
+        <section className="relative rounded-3xl overflow-hidden glass-panel border border-white/10 p-8 md:p-14 bg-[#0a0c16]/80">
+          {/* Background Image Layer */}
+          <div className="absolute inset-0 z-0 overflow-hidden opacity-30 pointer-events-none">
             <img
+              src="https://lh3.googleusercontent.com/aida-public/AB6AXuA4KzhtZM8kzeSrkno0sNyOOWzyNBFGfafe-VoxWarpVHudrvZP8X71ziqHbWHIwvsu9NkYCASKDCN4VUnYg1cyElvddkEU2T13XVMCzyDD0bPYu-Gqs-7lvGjwJ24VvJyiSFwywtCcPl89nWhg7WNOrpfPq892oYIjNEFSW9t0DpJAMYVLfozI00kaZnQeDa_Qt02ct9GiWRF4jiHBCmGpqEidUevBZPRPahFgo4h_4aYc0tUcIhfw34kC3fRYaFZ2LDqToYN7DhI"
               alt="Project Ladyland Atmosphere"
-              className="w-full h-full object-cover opacity-35 mix-blend-screen scale-105"
-              src="https://lh3.googleusercontent.com/aida-public/AB6AXuB0m01sAk1Wk-6KJ-TsiNecbn0fMlLe5s5pxaZ7OHB9Vzg_Zwk_WdQ4f19jBCCl3X_S0d1Hxw9CYNklm9_BOtUyxqaIwAzaM_TxYNThDRPd94bUg9twvzPQEV-GxSE27Isy1tat0c3zRp7uptwTstnHyktTkMZ4uuRN4JORlIsT4XMghR11hHExFgSieG22EvL0vjNPqlJCFqKvVcnj5eUceEydNnLmVgfdMhd8W9tDSyJZXVyu2La1nWttuvn_XHWITZVkGd-bwCHB"
+              className="w-full h-full object-cover"
             />
-            {/* Animated Blobs */}
-            <div className="blob w-[380px] h-[380px] bg-[#ffb0cd]/30 top-10 -left-20 animate-pulse" />
-            <div className="blob w-[320px] h-[320px] bg-[#00dbe9]/20 bottom-10 -right-20 animate-pulse" />
           </div>
 
           <div className="relative z-20 space-y-6 max-w-3xl">
@@ -415,15 +403,15 @@ export const ProjectLadylandView: React.FC<ProjectLadylandViewProps> = ({ onGoHo
               </span>
             </div>
 
-            <h1 className="font-space text-4xl sm:text-6xl md:text-7xl font-bold tracking-tight text-white leading-none">
+            <h1 className="font-space text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight text-white leading-none">
               PROJECT LADYLAND
             </h1>
 
             <p className="text-lg md:text-xl text-[#c4c5da] font-inter leading-relaxed font-light">
-              A speculative techno-feminist performance inspired by Rokeya Sakhawat Hossain's 1905 utopian vision *Sultana's Dream*. Reimagining climate harmony, carecraft, and universal equality through participatory theatre, shadow puppetry, and recycled ornamentation.
+              A speculative techno-feminist performance inspired by Rokeya Sakhawat Hossain's 1905 utopian vision <i>Sultana's Dream</i>. Reimagining climate harmony, carecraft, and universal equality through participatory theatre, shadow puppetry, and recycled ornamentation.
             </p>
 
-            <div className="pt-4 flex flex-wrap items-center gap-4">
+            <div className="pt-2">
               <a
                 href="https://tickify.live/event/project-ladyland-2026-dac/"
                 target="_blank"
@@ -433,32 +421,14 @@ export const ProjectLadylandView: React.FC<ProjectLadylandViewProps> = ({ onGoHo
                 <span>Reserve Tickets</span>
                 <ExternalLink className="w-4 h-4" />
               </a>
-
-              <button
-                onClick={() => setHeroVideoModalOpen(true)}
-                className="px-6 py-4 rounded-full bg-[#00dbe9]/20 hover:bg-[#00dbe9]/30 border border-[#00dbe9]/50 text-[#00dbe9] font-space text-xs font-bold uppercase tracking-wider transition-all flex items-center gap-2.5 cursor-pointer backdrop-blur-md shadow-[0_0_20px_rgba(0,219,233,0.3)] hover:scale-105"
-              >
-                <Play className="w-4 h-4 text-[#00dbe9] fill-[#00dbe9]" />
-                <span>Watch Hero Video with Sound</span>
-              </button>
-
-              <button
-                onClick={() => setIsPlayingAudio(!isPlayingAudio)}
-                className="px-5 py-4 rounded-full bg-white/5 hover:bg-white/10 border border-white/10 text-white/80 font-space text-xs font-bold uppercase tracking-wider transition-all flex items-center gap-2 cursor-pointer backdrop-blur-md"
-              >
-                {isPlayingAudio ? (
-                  <>
-                    <VolumeX className="w-4 h-4 text-[#ffb0cd]" />
-                    <span>Mute Ambient</span>
-                  </>
-                ) : (
-                  <>
-                    <Volume2 className="w-4 h-4 text-[#b9c3ff]" />
-                    <span>Ambient Track</span>
-                  </>
-                )}
-              </button>
             </div>
+          </div>
+
+          {/* Background Ambient design layers */}
+          <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none opacity-40">
+            {/* Animated Blobs */}
+            <div className="blob w-[380px] h-[380px] bg-[#ffb0cd]/20 top-10 -left-20 animate-pulse" />
+            <div className="blob w-[320px] h-[320px] bg-[#00dbe9]/10 bottom-10 -right-20 animate-pulse" />
           </div>
         </section>
 
@@ -549,6 +519,10 @@ export const ProjectLadylandView: React.FC<ProjectLadylandViewProps> = ({ onGoHo
 
                 <div className="flex flex-wrap gap-4">
                   <div className="px-5 py-3 bg-white/5 border border-white/10 rounded-xl text-center min-w-[120px]">
+                    <div className="text-[#ffb0cd] text-xs font-bold font-space">AUG 24</div>
+                    <div className="text-white text-xl font-space font-bold">18:00</div>
+                  </div>
+                  <div className="px-5 py-3 bg-white/5 border border-white/10 rounded-xl text-center min-w-[120px]">
                     <div className="text-[#ffb0cd] text-xs font-bold font-space">AUG 25</div>
                     <div className="text-white text-xl font-space font-bold">18:00</div>
                   </div>
@@ -638,8 +612,8 @@ export const ProjectLadylandView: React.FC<ProjectLadylandViewProps> = ({ onGoHo
 
             <div className="relative rounded-2xl overflow-hidden aspect-video border border-white/10 shadow-2xl">
               <img
-                src="https://lh3.googleusercontent.com/aida-public/AB6AXuA4KzhtZM8kzeSrkno0sNyOOWzyNBFGfafe-VoxWarpVHudrvZP8X71ziqHbWHIwvsu9NkYCASKDCN4VUnYg1cyElvddkEU2T13XVMCzyDD0bPYu-Gqs-7lvGjwJ24VvJyiSFwywtCcPl89nWhg7WNOrpfPq892oYIjNEFSW9t0DpJAMYVLfozI00kaZnQeDa_Qt02ct9GiWRF4jiHBCmGpqEidUevBZPRPahFgo4h_4aYc0tUcIhfw34kC3fRYaFZ2LDqToYN7DhI"
-                alt="Ladyland Performance Scene"
+                src="/ladyland-header.png"
+                alt="Project Ladyland Shadow Puppet"
                 className="w-full h-full object-cover"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-[#020208] via-transparent to-transparent opacity-60" />
@@ -673,7 +647,7 @@ export const ProjectLadylandView: React.FC<ProjectLadylandViewProps> = ({ onGoHo
                 Feminist Science Fiction Legacy
               </h3>
               <p className="text-base text-[#c4c5da] leading-relaxed">
-                Written in 1905 by pioneering educator Rokeya Sakhawat Hosein, *Sultana's Dream* proposed a world where women ruled and men stayed indoors (*mardana*). A satirical Ladyland featuring flying cars, solar heat harvesting, cloud condensation for rainwater, and peaceful gender reversal. Radical for its time, it continues to inspire debate and reflection today.
+                Written in 1905 by pioneering educator Rokeya Sakhawat Hosein, <i>Sultana's Dream</i> proposed a world where women ruled and men stayed indoors (<i>mardana</i>). A satirical Ladyland featuring flying cars, solar heat harvesting, cloud condensation for rainwater, and peaceful gender reversal. Radical for its time, it continues to inspire debate and reflection today.
               </p>
 
               <div className="pt-2 flex flex-wrap items-center gap-4">
@@ -802,10 +776,6 @@ export const ProjectLadylandView: React.FC<ProjectLadylandViewProps> = ({ onGoHo
                     <strong className="text-white">HerStory Foundation</strong>
                   </li>
                   <li>
-                    <span className="text-white/60 text-[10px] uppercase font-space block">Co-Producer</span>
-                    <strong className="text-white">Risana Malek</strong>
-                  </li>
-                  <li>
                     <span className="text-white/60 text-[10px] uppercase font-space block">Supported by</span>
                     <strong className="text-white">British Council and Women of the World (WOW) Foundation</strong>
                   </li>
@@ -842,8 +812,8 @@ export const ProjectLadylandView: React.FC<ProjectLadylandViewProps> = ({ onGoHo
                     <strong className="text-white">Bappy Ameen</strong>
                   </li>
                   <li>
-                    <span className="text-white/60 text-[10px] uppercase font-space block">Scenography</span>
-                    <strong className="text-white">Sara Anjuman</strong>
+                    <span className="text-white/60 text-[10px] uppercase font-space block">Co-Producer</span>
+                    <strong className="text-white">Risana Malek</strong>
                   </li>
                 </ul>
               </div>
@@ -875,6 +845,7 @@ export const ProjectLadylandView: React.FC<ProjectLadylandViewProps> = ({ onGoHo
                   Creative
                 </h5>
                 <ul className="text-[#c4c5da] space-y-3 text-sm">
+                  <li><span className="text-white/60 text-[10px] uppercase font-space block">Light Design</span><strong className="text-white">Junaid Eusuf</strong></li>
                   <li><span className="text-white/60 text-[10px] uppercase font-space block">Props Design</span><strong className="text-white">Urukku.Bangladesh, Taranum Nirbir, Manzoor Real, Faiza Fairooz (Rhimjhim)</strong></li>
                   <li><span className="text-white/60 text-[10px] uppercase font-space block">Crescent Arc Design</span><strong className="text-white">Rashed Chowdhury (Dehsar Works)</strong></li>
                   <li><span className="text-white/60 text-[10px] uppercase font-space block">Music</span><strong className="text-white">J0N4K1 / জোনাকি</strong></li>
@@ -884,15 +855,6 @@ export const ProjectLadylandView: React.FC<ProjectLadylandViewProps> = ({ onGoHo
                   <li><span className="text-white/60 text-[10px] uppercase font-space block">Costume</span><strong className="text-white">Bushra Islam Labonno</strong></li>
                   <li><span className="text-white/60 text-[10px] uppercase font-space block">Make-up</span><strong className="text-white">Robin Ahmed</strong></li>
                   <li><span className="text-white/60 text-[10px] uppercase font-space block">Communication Design</span><strong className="text-white">Tanaya Sayma</strong></li>
-                </ul>
-              </div>
-
-              <div className="space-y-3">
-                <h5 className="text-[#ffb0cd] font-space font-bold text-xs uppercase tracking-widest border-b border-white/10 pb-2">
-                  Design & Tech
-                </h5>
-                <ul className="text-[#c4c5da] space-y-3 text-sm">
-                  <li><span className="text-white/60 text-[10px] uppercase font-space block">Light Design</span><strong className="text-white">Junaid Eusuf</strong></li>
                 </ul>
               </div>
             </div>
@@ -1005,7 +967,7 @@ export const ProjectLadylandView: React.FC<ProjectLadylandViewProps> = ({ onGoHo
                 The Case of the Dreamer
               </h2>
               <p className="text-[#c4c5da] text-base leading-relaxed">
-                A set of two pillow cases inspired by *Sultana's Dream*. Screen printed and hand-embroidered by local artisans to ensure safe and fruitful dreaming.
+                A set of two pillow cases inspired by <i>Sultana's Dream</i>. Screen printed and hand-embroidered by local artisans to ensure safe and fruitful dreaming.
               </p>
             </div>
 
@@ -1514,77 +1476,6 @@ export const ProjectLadylandView: React.FC<ProjectLadylandViewProps> = ({ onGoHo
               >
                 Close Ledger View
               </button>
-            </div>
-          </div>
-        </div>
-      )}
-
-      {/* Hero Video & Audio Modal */}
-      {heroVideoModalOpen && (
-        <div
-          onClick={() => setHeroVideoModalOpen(false)}
-          className="fixed inset-0 z-50 bg-black/95 backdrop-blur-xl flex items-center justify-center p-3 sm:p-8 animate-fade-in"
-        >
-          {/* Floating High-Visibility Close Button */}
-          <button
-            onClick={() => setHeroVideoModalOpen(false)}
-            className="fixed top-4 right-4 z-50 px-4 py-2.5 rounded-full bg-red-600 hover:bg-red-500 text-white font-space text-xs font-bold uppercase tracking-wider flex items-center gap-2 shadow-2xl cursor-pointer border border-white/30 transition-transform hover:scale-105"
-            title="Close Video (Esc)"
-          >
-            <X className="w-4 h-4" />
-            <span>Close Video</span>
-          </button>
-
-          <div
-            onClick={(e) => e.stopPropagation()}
-            className="relative w-full max-w-5xl bg-[#0a0c16] border border-white/20 rounded-3xl overflow-hidden shadow-2xl flex flex-col my-auto"
-          >
-            <div className="p-4 sm:p-5 border-b border-white/10 flex items-center justify-between bg-white/5">
-              <div className="flex items-center gap-3">
-                <Volume2 className="w-5 h-5 text-[#00dbe9]" />
-                <div>
-                  <h3 className="font-space font-bold text-white text-base">Project Ladyland Hero Video</h3>
-                  <p className="text-xs text-[#c4c5da]">DUSK 1 Cinematic Trailer (Full Audio Enabled)</p>
-                </div>
-              </div>
-              <button
-                onClick={() => setHeroVideoModalOpen(false)}
-                className="p-2.5 rounded-full bg-white/10 hover:bg-red-500/80 text-white transition-colors cursor-pointer flex items-center gap-1 text-xs font-bold font-space"
-              >
-                <X className="w-4 h-4" />
-                <span className="hidden sm:inline">Close</span>
-              </button>
-            </div>
-
-            <div className="relative aspect-video w-full bg-black overflow-hidden">
-              <iframe
-                src="https://drive.google.com/file/d/1Z6tEPwOyji7syab0JoqP53L23sJiH1rr/preview"
-                title="Project Ladyland Hero Video DUSK 1 Full Player"
-                className="w-full h-full border-0"
-                allow="autoplay; fullscreen"
-                allowFullScreen
-              />
-            </div>
-
-            <div className="p-4 sm:p-5 bg-[#05060b] flex flex-wrap items-center justify-between gap-4 text-xs font-space">
-              <span className="text-[#c4c5da]">Click play on the video player above to listen with full audio and watch in HD.</span>
-              <div className="flex items-center gap-3">
-                <a
-                  href="https://drive.google.com/file/d/1Z6tEPwOyji7syab0JoqP53L23sJiH1rr/view?usp=drive_link"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="px-5 py-2.5 rounded-full bg-[#00dbe9]/20 hover:bg-[#00dbe9]/30 border border-[#00dbe9]/40 text-[#00dbe9] font-bold uppercase tracking-wider flex items-center gap-2 cursor-pointer transition-all"
-                >
-                  <span>Open in Drive</span>
-                  <ExternalLink className="w-3.5 h-3.5" />
-                </a>
-                <button
-                  onClick={() => setHeroVideoModalOpen(false)}
-                  className="px-5 py-2.5 rounded-full bg-white/10 hover:bg-white/20 text-white font-bold uppercase tracking-wider cursor-pointer"
-                >
-                  Done
-                </button>
-              </div>
             </div>
           </div>
         </div>
