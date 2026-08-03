@@ -1,5 +1,6 @@
 import express from 'express';
 import path from 'path';
+import fs from 'fs';
 import { fileURLToPath } from 'url';
 import { google } from 'googleapis';
 
@@ -280,8 +281,27 @@ async function startServer() {
   } else {
     const distPath = path.join(process.cwd(), 'dist');
     app.use(express.static(distPath));
-    app.get('*', (_req, res) => {
-      res.sendFile(path.join(distPath, 'index.html'));
+    app.get('*', async (req, res) => {
+      try {
+        const indexPath = path.join(distPath, 'index.html');
+        let html = await fs.promises.readFile(indexPath, 'utf-8');
+        
+        // Dynamically resolve protocol and host
+        const host = req.get('host') || '';
+        const protocol = req.headers['x-forwarded-proto'] || req.protocol || 'http';
+        const baseUrl = process.env.APP_URL || `${protocol}://${host}`;
+        
+        // Remove trailing slash if present
+        const cleanBaseUrl = baseUrl.endsWith('/') ? baseUrl.slice(0, -1) : baseUrl;
+        
+        // Replace fallback URL with actual domain URL
+        html = html.replace(/https:\/\/herstorybd\.org\/thumbnail_image\.jpeg/g, `${cleanBaseUrl}/thumbnail_image.jpeg`);
+        
+        res.setHeader('Content-Type', 'text/html');
+        res.send(html);
+      } catch (err) {
+        res.sendFile(path.join(distPath, 'index.html'));
+      }
     });
   }
 

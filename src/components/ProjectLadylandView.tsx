@@ -833,7 +833,7 @@ export const ProjectLadylandView: React.FC<ProjectLadylandViewProps> = ({ onGoHo
                 CAST
               </h5>
               <ul className="text-[#c4c5da] space-y-3 text-sm">
-                <li><span className="text-white/60 text-[10px] uppercase font-space block">Sultana</span><strong className="text-white">Maisha Mashiya</strong></li>
+                <li><span className="text-white/60 text-[10px] uppercase font-space block">Sultana</span><strong className="text-white">Maisha Masfica Tanisa</strong></li>
                 <li><span className="text-white/60 text-[10px] uppercase font-space block">Sutrodor</span><strong className="text-white">Tawsiad Shaolin</strong></li>
                 <li><span className="text-white/60 text-[10px] uppercase font-space block">Sara</span><strong className="text-white">Mithila Paul</strong></li>
                 <li><span className="text-white/60 text-[10px] uppercase font-space block">Shishir</span><strong className="text-white">Salim Shadman (Sasha)</strong></li>
