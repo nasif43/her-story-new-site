@@ -30,7 +30,7 @@ export const Header: React.FC<HeaderProps> = ({
   };
 
   return (
-    <header className="backdrop-blur-md bg-[#fff8f6]/80 w-full h-20 flex justify-between items-center px-4 md:px-12 max-w-7xl mx-auto z-50 sticky top-0 border-b border-[#ffe9e3] transition-colors">
+    <header className="backdrop-blur-md bg-transparent w-full h-20 flex justify-between items-center px-4 md:px-12 max-w-7xl mx-auto z-50 sticky top-0 border-b border-[#ffe9e3]/30 transition-colors">
       {/* Logo / Brand Home Link */}
       <button
         onClick={() => handleNavClick('home')}

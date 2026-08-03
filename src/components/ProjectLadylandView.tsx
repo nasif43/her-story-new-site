@@ -114,7 +114,7 @@ export const ProjectLadylandView: React.FC<ProjectLadylandViewProps> = ({ onGoHo
 
   // Interactive Vote State
   const [hasVoted, setHasVoted] = useState<false | 'GRANT' | 'DENY'>(false);
-  const [voteCounts, setVoteCounts] = useState({ grant: 1428, deny: 892 });
+  const [voteCounts, setVoteCounts] = useState({ grant: 0, deny: 0 });
   const [voteSubmittedToSheet, setVoteSubmittedToSheet] = useState(false);
 
   // Ticket Modal State
@@ -149,8 +149,8 @@ export const ProjectLadylandView: React.FC<ProjectLadylandViewProps> = ({ onGoHo
         setSheetData(data);
         if (data.summary) {
           setVoteCounts({
-            grant: 1428 + data.summary.grantVotes,
-            deny: 892 + data.summary.denyVotes
+            grant: data.summary.grantVotes,
+            deny: data.summary.denyVotes
           });
         }
       })
@@ -179,8 +179,8 @@ export const ProjectLadylandView: React.FC<ProjectLadylandViewProps> = ({ onGoHo
   };
 
   const totalVotes = voteCounts.grant + voteCounts.deny;
-  const grantPercent = Math.round((voteCounts.grant / totalVotes) * 100);
-  const denyPercent = Math.round((voteCounts.deny / totalVotes) * 100);
+  const grantPercent = totalVotes > 0 ? Math.round((voteCounts.grant / totalVotes) * 100) : 0;
+  const denyPercent = totalVotes > 0 ? Math.round((voteCounts.deny / totalVotes) * 100) : 0;
 
   // Handle Google Sign-In and Sheet Creation
   const handleGoogleSignIn = async () => {
@@ -387,7 +387,7 @@ export const ProjectLadylandView: React.FC<ProjectLadylandViewProps> = ({ onGoHo
           {/* Background Image Layer */}
           <div className="absolute inset-0 z-0 overflow-hidden opacity-30 pointer-events-none">
             <img
-              src="https://lh3.googleusercontent.com/aida-public/AB6AXuA4KzhtZM8kzeSrkno0sNyOOWzyNBFGfafe-VoxWarpVHudrvZP8X71ziqHbWHIwvsu9NkYCASKDCN4VUnYg1cyElvddkEU2T13XVMCzyDD0bPYu-Gqs-7lvGjwJ24VvJyiSFwywtCcPl89nWhg7WNOrpfPq892oYIjNEFSW9t0DpJAMYVLfozI00kaZnQeDa_Qt02ct9GiWRF4jiHBCmGpqEidUevBZPRPahFgo4h_4aYc0tUcIhfw34kC3fRYaFZ2LDqToYN7DhI"
+              src="/header-image.png"
               alt="Project Ladyland Atmosphere"
               className="w-full h-full object-cover"
             />
@@ -788,8 +788,16 @@ export const ProjectLadylandView: React.FC<ProjectLadylandViewProps> = ({ onGoHo
                 </h5>
                 <ul className="text-[#c4c5da] space-y-3 text-sm">
                   <li>
+                    <span className="text-white/60 text-[10px] uppercase font-space block">Inspired by</span>
+                    <strong className="text-white">Sultana's Dream by Begum Rokeya Sakhawat Hossain</strong>
+                  </li>
+                  <li>
                     <span className="text-white/60 text-[10px] uppercase font-space block">Written by</span>
-                    <strong className="text-white">Zohra Binte Zaman, Anika Bushra Shoshee, Nafisa A. Iqbal, Upama Adhikary</strong>
+                    <strong className="text-white">Zohra Binte Zaman</strong>
+                  </li>
+                  <li>
+                    <span className="text-white/60 text-[10px] uppercase font-space block">Co-writers</span>
+                    <strong className="text-white">Anika Bushra Shoshee, Nafisa A. Iqbal, Upama Adhikary</strong>
                   </li>
                   <li>
                     <span className="text-white/60 text-[10px] uppercase font-space block">Edited by</span>
@@ -805,7 +813,7 @@ export const ProjectLadylandView: React.FC<ProjectLadylandViewProps> = ({ onGoHo
                 <ul className="text-[#c4c5da] space-y-3 text-sm">
                   <li>
                     <span className="text-white/60 text-[10px] uppercase font-space block">Acting Director</span>
-                    <strong className="text-white">Wajed-Al-Rahman</strong>
+                    <strong className="text-white">Wajed Al-Rahman</strong>
                   </li>
                   <li>
                     <span className="text-white/60 text-[10px] uppercase font-space block">Production Manager</span>
@@ -813,7 +821,7 @@ export const ProjectLadylandView: React.FC<ProjectLadylandViewProps> = ({ onGoHo
                   </li>
                   <li>
                     <span className="text-white/60 text-[10px] uppercase font-space block">Co-Producer</span>
-                    <strong className="text-white">Risana Malek</strong>
+                    <strong className="text-white">Risana Nahreen Malik</strong>
                   </li>
                 </ul>
               </div>
@@ -822,19 +830,19 @@ export const ProjectLadylandView: React.FC<ProjectLadylandViewProps> = ({ onGoHo
             {/* Column 2: Performers */}
             <div className="space-y-3">
               <h5 className="text-[#ffb0cd] font-space font-bold text-xs uppercase tracking-widest border-b border-white/10 pb-2">
-                Performers (Character : Actor)
+                CAST
               </h5>
               <ul className="text-[#c4c5da] space-y-3 text-sm">
-                <li><span className="text-white/60 text-[10px] uppercase font-space block">Momo</span><strong className="text-white">Afrida Amir</strong></li>
-                <li><span className="text-white/60 text-[10px] uppercase font-space block">Bidut</span><strong className="text-white">Dipu Mahmud</strong></li>
-                <li><span className="text-white/60 text-[10px] uppercase font-space block">Robots</span><strong className="text-white">Israt Jahan Ikra</strong></li>
-                <li><span className="text-white/60 text-[10px] uppercase font-space block">Dadima</span><strong className="text-white">Juliet Rajena Quiah</strong></li>
+                <li><span className="text-white/60 text-[10px] uppercase font-space block">Sultana</span><strong className="text-white">Maisha Mashiya</strong></li>
+                <li><span className="text-white/60 text-[10px] uppercase font-space block">Sutrodor</span><strong className="text-white">Tawsiad Shaolin</strong></li>
                 <li><span className="text-white/60 text-[10px] uppercase font-space block">Sara</span><strong className="text-white">Mithila Paul</strong></li>
-                <li><span className="text-white/60 text-[10px] uppercase font-space block">Kolpona</span><strong className="text-white">Muntasrin Rahman Mim</strong></li>
-                <li><span className="text-white/60 text-[10px] uppercase font-space block">Premik</span><strong className="text-white">Ohiduzzaman</strong></li>
                 <li><span className="text-white/60 text-[10px] uppercase font-space block">Shishir</span><strong className="text-white">Salim Shadman (Sasha)</strong></li>
-                <li><span className="text-white/60 text-[10px] uppercase font-space block">Shutrodor</span><strong className="text-white">Soptorshi Datta</strong></li>
-                <li><span className="text-white/60 text-[10px] uppercase font-space block">Sultana</span><strong className="text-white">Tasniad Shaolin</strong></li>
+                <li><span className="text-white/60 text-[10px] uppercase font-space block">Robots</span><strong className="text-white">Israt Jahan Ikra</strong></li>
+                <li><span className="text-white/60 text-[10px] uppercase font-space block">Dadima</span><strong className="text-white">Juliet Rajeena Quiah</strong></li>
+                <li><span className="text-white/60 text-[10px] uppercase font-space block">Kolpona</span><strong className="text-white">Muntasrin Rahman (Mim)</strong></li>
+                <li><span className="text-white/60 text-[10px] uppercase font-space block">Bidut</span><strong className="text-white">Dipu Mahmud</strong></li>
+                <li><span className="text-white/60 text-[10px] uppercase font-space block">Motmo</span><strong className="text-white">Afrida Amir</strong></li>
+                <li><span className="text-white/60 text-[10px] uppercase font-space block">Taj</span><strong className="text-white">Ohiduzzaman (Tony)</strong></li>
               </ul>
             </div>
 
@@ -842,19 +850,25 @@ export const ProjectLadylandView: React.FC<ProjectLadylandViewProps> = ({ onGoHo
             <div className="space-y-10">
               <div className="space-y-3">
                 <h5 className="text-[#ffb0cd] font-space font-bold text-xs uppercase tracking-widest border-b border-white/10 pb-2">
-                  Creative
+                  LADYLAND PRODUCTION
                 </h5>
                 <ul className="text-[#c4c5da] space-y-3 text-sm">
-                  <li><span className="text-white/60 text-[10px] uppercase font-space block">Light Design</span><strong className="text-white">Junaid Eusuf</strong></li>
+                  <li><span className="text-white/60 text-[10px] uppercase font-space block">Art Direction</span><strong className="text-white">Hridita Anisha</strong></li>
                   <li><span className="text-white/60 text-[10px] uppercase font-space block">Props Design</span><strong className="text-white">Urukku.Bangladesh, Taranum Nirbir, Manzoor Real, Faiza Fairooz (Rhimjhim)</strong></li>
-                  <li><span className="text-white/60 text-[10px] uppercase font-space block">Crescent Arc Design</span><strong className="text-white">Rashed Chowdhury (Dehsar Works)</strong></li>
+                  <li><span className="text-white/60 text-[10px] uppercase font-space block">Light Design</span><strong className="text-white">Junaid Eusuf</strong></li>
+                  <li><span className="text-white/60 text-[10px] uppercase font-space block">Crescent Arc Design</span><strong className="text-white">Rashed Chowdhury, Rizat Hasan, Debjoti Barman Katha, Fatima Kamal Anonna (Dehsar Works)</strong></li>
                   <li><span className="text-white/60 text-[10px] uppercase font-space block">Music</span><strong className="text-white">J0N4K1 / জোনাকি</strong></li>
-                  <li><span className="text-white/60 text-[10px] uppercase font-space block">Shadow Puppetry</span><strong className="text-white">Shafrin Islam (Puppeteer), Anika Tabassum Nuzhat (Assistant)</strong></li>
+                  <li><span className="text-white/60 text-[10px] uppercase font-space block">Composition</span><strong className="text-white">Death Weil</strong></li>
+                  <li><span className="text-white/60 text-[10px] uppercase font-space block">Shadow Puppeteer</span><strong className="text-white">Shafrin Islam</strong></li>
+                  <li><span className="text-white/60 text-[10px] uppercase font-space block">Shadow Puppet Assistant</span><strong className="text-white">Anika Tabassum Nuzhat</strong></li>
                   <li><span className="text-white/60 text-[10px] uppercase font-space block">Animation</span><strong className="text-white">Fahim Arif</strong></li>
                   <li><span className="text-white/60 text-[10px] uppercase font-space block">Choreography</span><strong className="text-white">Shovan Surjo</strong></li>
                   <li><span className="text-white/60 text-[10px] uppercase font-space block">Costume</span><strong className="text-white">Bushra Islam Labonno</strong></li>
                   <li><span className="text-white/60 text-[10px] uppercase font-space block">Make-up</span><strong className="text-white">Robin Ahmed</strong></li>
+                  <li><span className="text-white/60 text-[10px] uppercase font-space block">Stage Assistants</span><strong className="text-white">Priti Das, Md. Tanvir Jaman</strong></li>
                   <li><span className="text-white/60 text-[10px] uppercase font-space block">Communication Design</span><strong className="text-white">Tanaya Sayma</strong></li>
+                  <li><span className="text-white/60 text-[10px] uppercase font-space block">Volunteer Coordination</span><strong className="text-white">Senin Chowdhury</strong></li>
+                  <li><span className="text-white/60 text-[10px] uppercase font-space block">Videography</span><strong className="text-white">Hamid Hossen</strong></li>
                 </ul>
               </div>
             </div>
@@ -863,10 +877,10 @@ export const ProjectLadylandView: React.FC<ProjectLadylandViewProps> = ({ onGoHo
           {/* Gratitude */}
           <div className="p-6 rounded-2xl bg-white/5 border border-white/10 space-y-2">
             <span className="text-[#b9c3ff] font-space text-xs font-bold uppercase tracking-widest block">
-              SPECIAL THANKS & GRATITUDE
+              GRATITUDE
             </span>
             <p className="text-xs text-[#c4c5da] leading-relaxed">
-              Shala Space, Mallik Yishorja and the brilliant students of Jadur Kathi, Maria and Shakil. Centre for Astronomy Space Science and Astrophysics, Bangladesh (CASSA) of IUB, Brio and Epi restaurants.
+              Dehsar Works, Urukku Bangladesh, Shala Space, Mallik Yishorja and the brilliant students of Jadur Kathi, Centre for Astronomy Space Science and Astrophysics, Bangladesh (CASSA) of IUB, Brio and Epi restaurants, Maria and Shakil, Abrar Shams Chowdhury, Muhtasim Hossain.
             </p>
           </div>
         </section>
