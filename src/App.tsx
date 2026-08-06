@@ -21,12 +21,36 @@ import { SisterLibraryView } from './components/SisterLibraryView';
 import { ReflectionsView } from './components/ReflectionsView';
 
 export default function App() {
-  const [activeTab, setActiveTab] = useState<NavTab>('home');
+  const getTabFromPath = (): NavTab => {
+    const path = window.location.pathname.replace(/^\/+|\/+$/g, '');
+    if (['dreams', 'books', 'sister-library', 'reflections', 'ladyland'].includes(path)) {
+      return path as NavTab;
+    }
+    return 'home';
+  };
+
+  const [activeTab, setActiveTabState] = useState<NavTab>(getTabFromPath);
   const [searchOpen, setSearchOpen] = useState(false);
   const [ourStoryOpen, setOurStoryOpen] = useState(false);
   const [footerModalType, setFooterModalType] = useState<'contact' | 'privacy' | 'terms' | 'newsletter' | null>(null);
 
   const [selectedDetailItem, setSelectedDetailItem] = useState<DreamItem | BookItem | ReflectionItem | null>(null);
+
+  const setActiveTab = (tab: NavTab) => {
+    setActiveTabState(tab);
+    const targetPath = tab === 'home' ? '/' : `/${tab}`;
+    if (window.location.pathname !== targetPath) {
+      window.history.pushState(null, '', targetPath);
+    }
+  };
+
+  React.useEffect(() => {
+    const handlePopState = () => {
+      setActiveTabState(getTabFromPath());
+    };
+    window.addEventListener('popstate', handlePopState);
+    return () => window.removeEventListener('popstate', handlePopState);
+  }, []);
 
   return (
     <div className="min-h-screen flex flex-col justify-between relative selection:bg-[#D672CE]/30 text-[#261814]">
