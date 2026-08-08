@@ -812,7 +812,11 @@ export const ProjectLadylandView: React.FC<ProjectLadylandViewProps> = ({ onGoHo
                 </h5>
                 <ul className="text-[#c4c5da] space-y-3 text-sm">
                   <li>
-                    <span className="text-white/60 text-[10px] uppercase font-space block">Acting Director</span>
+                    <span className="text-white/60 text-[10px] uppercase font-space block">Production and Vision</span>
+                    <strong className="text-white">Katerina Don</strong>
+                  </li>
+                  <li>
+                    <span className="text-white/60 text-[10px] uppercase font-space block">Staging Director</span>
                     <strong className="text-white">Wajed Al-Rahman</strong>
                   </li>
                   <li>
@@ -822,6 +826,10 @@ export const ProjectLadylandView: React.FC<ProjectLadylandViewProps> = ({ onGoHo
                   <li>
                     <span className="text-white/60 text-[10px] uppercase font-space block">Co-Producer</span>
                     <strong className="text-white">Risana Nahreen Malik</strong>
+                  </li>
+                  <li>
+                    <span className="text-white/60 text-[10px] uppercase font-space block">Co-Producer</span>
+                    <strong className="text-white">Khandakar Imdadul Haque Sohan</strong>
                   </li>
                 </ul>
               </div>
@@ -835,7 +843,7 @@ export const ProjectLadylandView: React.FC<ProjectLadylandViewProps> = ({ onGoHo
               <ul className="text-[#c4c5da] space-y-3 text-sm">
                 <li><span className="text-white/60 text-[10px] uppercase font-space block">Sultana</span><strong className="text-white">Maisha Masfica Tanisa</strong></li>
                 <li><span className="text-white/60 text-[10px] uppercase font-space block">Sutrodor</span><strong className="text-white">Tawsiad Shaolin</strong></li>
-                <li><span className="text-white/60 text-[10px] uppercase font-space block">Sara</span><strong className="text-white">Mithila Paul</strong></li>
+                <li><span className="text-white/60 text-[10px] uppercase font-space block">Sara</span><strong className="text-white">Priti Das</strong></li>
                 <li><span className="text-white/60 text-[10px] uppercase font-space block">Shishir</span><strong className="text-white">Salim Shadman (Sasha)</strong></li>
                 <li><span className="text-white/60 text-[10px] uppercase font-space block">Robots</span><strong className="text-white">Israt Jahan Ikra</strong></li>
                 <li><span className="text-white/60 text-[10px] uppercase font-space block">Dadima</span><strong className="text-white">Juliet Rajeena Quiah</strong></li>
@@ -875,13 +883,23 @@ export const ProjectLadylandView: React.FC<ProjectLadylandViewProps> = ({ onGoHo
           </div>
 
           {/* Gratitude */}
-          <div className="p-6 rounded-2xl bg-white/5 border border-white/10 space-y-2">
-            <span className="text-[#b9c3ff] font-space text-xs font-bold uppercase tracking-widest block">
-              GRATITUDE
-            </span>
-            <p className="text-xs text-[#c4c5da] leading-relaxed">
-              Dehsar Works, Urukku Bangladesh, Shala Space, Mallik Yishorja and the brilliant students of Jadur Kathi, Centre for Astronomy Space Science and Astrophysics, Bangladesh (CASSA) of IUB, Brio and Epi restaurants, Maria and Shakil, Abrar Shams Chowdhury, Muhtasim Hossain.
-            </p>
+          <div className="p-6 rounded-2xl bg-white/5 border border-white/10 space-y-3">
+            <div>
+              <span className="text-[#b9c3ff] font-space text-xs font-bold uppercase tracking-widest block mb-1">
+                GRATITUDE
+              </span>
+              <p className="text-xs text-[#c4c5da] leading-relaxed">
+                Dehsar Works, Urukku Bangladesh, Shala Space, Mallik Yishorja and the brilliant students of Jadur Kathi, Centre for Astronomy Space Science and Astrophysics, Bangladesh (CASSA) of IUB, Brio and Epi restaurants, Maria and Shakil, Abrar Shams Chowdhury, Muhtasim Hossain, Sizan Jim, Nazzim Rabbi.
+              </p>
+            </div>
+            <div className="border-t border-white/5 pt-3">
+              <span className="text-[#ffb0cd] font-space text-xs font-bold uppercase tracking-widest block mb-1">
+                VOLUNTEERS
+              </span>
+              <p className="text-xs text-[#c4c5da] leading-relaxed">
+                Jahin Labiba, Nazifa Mubassera, Nabila Hasan, MD RATUL HASAN, Mst.Sanjida Akter Riya, Ahmed Rafi, Tasnima Razzaque Zulfa, Rico, Mehzabeen Haque Mrittika, Zumaina.
+              </p>
+            </div>
           </div>
         </section>
 
