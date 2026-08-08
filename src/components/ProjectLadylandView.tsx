@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { TRANSLATIONS } from '../data/translations';
 import {
   Calendar,
   MapPin,
@@ -102,7 +103,25 @@ export const ProjectLadylandView: React.FC<ProjectLadylandViewProps> = ({ onGoHo
   }, [isPlayingAudio]);
 
   // Language state
-  const [lang, setLang] = useState<'EN' | 'BN'>('EN');
+  const [lang, setLang] = useState<'EN' | 'BN'>(() => {
+    if (typeof window !== 'undefined') {
+      const params = new URLSearchParams(window.location.search);
+      const urlLang = params.get('lang')?.toUpperCase();
+      if (urlLang === 'BN' || urlLang === 'EN') {
+        return urlLang;
+      }
+    }
+    return 'EN';
+  });
+
+  const handleSetLang = (newLang: 'EN' | 'BN') => {
+    setLang(newLang);
+    if (typeof window !== 'undefined') {
+      const url = new URL(window.location.href);
+      url.searchParams.set('lang', newLang);
+      window.history.replaceState({}, '', url.toString());
+    }
+  };
 
   // Google Sheets state
   const [sheetModalOpen, setSheetModalOpen] = useState(false);
@@ -354,17 +373,17 @@ export const ProjectLadylandView: React.FC<ProjectLadylandViewProps> = ({ onGoHo
             {/* Language Switch */}
             <div className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/5 border border-white/10 font-space text-[10px]">
               <button
-                onClick={() => setLang('EN')}
+                onClick={() => handleSetLang('EN')}
                 className={`font-bold ${lang === 'EN' ? 'text-[#b9c3ff]' : 'text-[#c4c5da] hover:text-white'}`}
               >
-                EN
+                {TRANSLATIONS.header_toggle[lang].split(' / ')[0]}
               </button>
               <span className="opacity-20">/</span>
               <button
-                onClick={() => setLang('BN')}
+                onClick={() => handleSetLang('BN')}
                 className={`font-bold ${lang === 'BN' ? 'text-[#ffb0cd]' : 'text-[#c4c5da] hover:text-white'}`}
               >
-                BN
+                {TRANSLATIONS.header_toggle[lang].split(' / ')[1]}
               </button>
             </div>
 
@@ -374,7 +393,7 @@ export const ProjectLadylandView: React.FC<ProjectLadylandViewProps> = ({ onGoHo
               rel="noopener noreferrer"
               className="amorphous-btn text-[#00228a] px-4 py-2 font-space text-[11px] font-bold uppercase tracking-widest cursor-pointer shadow-md inline-flex items-center gap-1.5"
             >
-              <span>Get Tickets</span>
+              <span>{TRANSLATIONS.header_get_tickets[lang]}</span>
               <ExternalLink className="w-3 h-3" />
             </a>
           </div>
@@ -396,19 +415,23 @@ export const ProjectLadylandView: React.FC<ProjectLadylandViewProps> = ({ onGoHo
           <div className="relative z-20 space-y-6 max-w-3xl">
             <div className="flex flex-wrap items-center gap-3">
               <span className="px-3.5 py-1 rounded-full bg-[#ff45a2]/20 border border-[#ff45a2]/40 text-[#ffb0cd] font-space text-[11px] font-bold uppercase tracking-widest">
-                IMMERSIVE THEATRICAL ODYSSEY
+                {TRANSLATIONS.hero_immersive[lang]}
               </span>
               <span className="px-3.5 py-1 rounded-full bg-[#0047ff]/20 border border-[#0047ff]/40 text-[#b9c3ff] font-space text-[11px] font-bold uppercase tracking-widest backdrop-blur-sm">
-                DHAKA & CHATTOGRAM 2026
+                {TRANSLATIONS.hero_cities[lang]}
               </span>
             </div>
 
             <h1 className="font-space text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight text-white leading-none">
-              PROJECT LADYLAND
+              {TRANSLATIONS.hero_title[lang]}
             </h1>
 
             <p className="text-lg md:text-xl text-[#c4c5da] font-inter leading-relaxed font-light">
-              A speculative techno-feminist performance inspired by Rokeya Sakhawat Hossain's 1905 utopian vision <i>Sultana's Dream</i>. Reimagining climate harmony, carecraft, and universal equality through participatory theatre, shadow puppetry, and recycled ornamentation.
+              {lang === 'EN' ? (
+                <>A speculative techno-feminist performance inspired by Rokeya Sakhawat Hossain's 1905 utopian vision <i>Sultana's Dream</i>. Reimagining climate harmony, carecraft, and universal equality through participatory theatre, shadow puppetry, and recycled ornamentation.</>
+              ) : (
+                TRANSLATIONS.hero_description.BN
+              )}
             </p>
 
             <div className="pt-2">
@@ -418,7 +441,7 @@ export const ProjectLadylandView: React.FC<ProjectLadylandViewProps> = ({ onGoHo
                 rel="noopener noreferrer"
                 className="amorphous-btn text-[#00228a] px-8 py-4 font-space font-bold text-sm uppercase tracking-widest neon-box-glow cursor-pointer inline-flex items-center gap-2"
               >
-                <span>Reserve Tickets</span>
+                <span>{TRANSLATIONS.hero_reserve_tickets[lang]}</span>
                 <ExternalLink className="w-4 h-4" />
               </a>
             </div>
@@ -440,13 +463,13 @@ export const ProjectLadylandView: React.FC<ProjectLadylandViewProps> = ({ onGoHo
             <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-8 border-b border-white/10 pb-8 mb-8">
               <div>
                 <span className="text-[#ffb0cd] font-space text-xs uppercase tracking-widest font-bold block mb-2">
-                  UPCOMING PERFORMANCES (AUGUST 2026)
+                  {TRANSLATIONS.show_upcoming_title[lang]}
                 </span>
                 <h2 className="text-3xl md:text-4xl font-space font-bold text-white">
-                  Welcome to Ladyland
+                  {TRANSLATIONS.show_welcome[lang]}
                 </h2>
                 <p className="text-[#c4c5da] text-sm mt-1">
-                  Experience live performances in Dhaka and Chattogram. Get your official passes on Tickify.
+                  {TRANSLATIONS.show_welcome_desc[lang]}
                 </p>
               </div>
 
@@ -457,7 +480,7 @@ export const ProjectLadylandView: React.FC<ProjectLadylandViewProps> = ({ onGoHo
                   rel="noopener noreferrer"
                   className="amorphous-btn text-[#00228a] px-6 py-3.5 font-space font-bold text-xs uppercase tracking-wider neon-box-glow cursor-pointer inline-flex items-center gap-2"
                 >
-                  <span>Buy Dhaka Tickets</span>
+                  <span>{TRANSLATIONS.show_buy_dhaka[lang]}</span>
                   <ExternalLink className="w-3.5 h-3.5" />
                 </a>
                 <a
@@ -466,7 +489,7 @@ export const ProjectLadylandView: React.FC<ProjectLadylandViewProps> = ({ onGoHo
                   rel="noopener noreferrer"
                   className="amorphous-btn text-[#00228a] px-6 py-3.5 font-space font-bold text-xs uppercase tracking-wider pink-neon-glow cursor-pointer inline-flex items-center gap-2"
                 >
-                  <span>Buy Chittagong Tickets</span>
+                  <span>{TRANSLATIONS.show_buy_chittagong[lang]}</span>
                   <ExternalLink className="w-3.5 h-3.5" />
                 </a>
               </div>
@@ -478,31 +501,31 @@ export const ProjectLadylandView: React.FC<ProjectLadylandViewProps> = ({ onGoHo
                 <div className="flex items-center gap-2 text-[#b9c3ff]">
                   <MapPin className="w-4 h-4 text-[#00dbe9]" />
                   <span className="font-space text-xs font-bold uppercase tracking-wider">
-                    Bangladesh Mahila Samity, Dhaka
+                    {TRANSLATIONS.venue_dhaka[lang]}
                   </span>
                 </div>
 
                 <div className="flex flex-wrap gap-4">
                   <div className="px-5 py-3 bg-white/5 border border-white/10 rounded-xl text-center min-w-[120px]">
-                    <div className="text-[#ffb0cd] text-xs font-bold font-space">AUG 13</div>
-                    <div className="text-white text-xl font-space font-bold">18:00</div>
+                    <div className="text-[#ffb0cd] text-xs font-bold font-space">{TRANSLATIONS.date_aug13[lang]}</div>
+                    <div className="text-white text-xl font-space font-bold">{TRANSLATIONS.time_6pm[lang]}</div>
                   </div>
 
                   <div className="px-5 py-3 bg-white/5 border border-white/10 rounded-xl text-center min-w-[120px]">
-                    <div className="text-[#ffb0cd] text-xs font-bold font-space">AUG 14</div>
-                    <div className="text-white text-xl font-space font-bold">18:00</div>
+                    <div className="text-[#ffb0cd] text-xs font-bold font-space">{TRANSLATIONS.date_aug14[lang]}</div>
+                    <div className="text-white text-xl font-space font-bold">{TRANSLATIONS.time_6pm[lang]}</div>
                   </div>
                 </div>
 
                 <div className="pt-2 flex items-center justify-between text-xs text-[#c4c5da]">
-                  <span>Door opens 17:45</span>
+                  <span>{TRANSLATIONS.show_door_opens[lang]}</span>
                   <a
                     href="https://tickify.live/event/project-ladyland-2026-dac/"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-[#00dbe9] hover:underline font-semibold flex items-center gap-1"
                   >
-                    <span>Reserve on Tickify</span>
+                    <span>{TRANSLATIONS.show_reserve_tickify[lang]}</span>
                     <ExternalLink className="w-3 h-3" />
                   </a>
                 </div>
@@ -513,30 +536,30 @@ export const ProjectLadylandView: React.FC<ProjectLadylandViewProps> = ({ onGoHo
                 <div className="flex items-center gap-2 text-[#ffb0cd]">
                   <MapPin className="w-4 h-4 text-[#ff45a2]" />
                   <span className="font-space text-xs font-bold uppercase tracking-wider">
-                    Chittagong Theatre Institute, Chattogram
+                    {TRANSLATIONS.venue_chittagong[lang]}
                   </span>
                 </div>
 
                 <div className="flex flex-wrap gap-4">
                   <div className="px-5 py-3 bg-white/5 border border-white/10 rounded-xl text-center min-w-[120px]">
-                    <div className="text-[#ffb0cd] text-xs font-bold font-space">AUG 24</div>
-                    <div className="text-white text-xl font-space font-bold">18:00</div>
+                    <div className="text-[#ffb0cd] text-xs font-bold font-space">{TRANSLATIONS.date_aug24[lang]}</div>
+                    <div className="text-white text-xl font-space font-bold">{TRANSLATIONS.time_6pm[lang]}</div>
                   </div>
                   <div className="px-5 py-3 bg-white/5 border border-white/10 rounded-xl text-center min-w-[120px]">
-                    <div className="text-[#ffb0cd] text-xs font-bold font-space">AUG 25</div>
-                    <div className="text-white text-xl font-space font-bold">18:00</div>
+                    <div className="text-[#ffb0cd] text-xs font-bold font-space">{TRANSLATIONS.date_aug25[lang]}</div>
+                    <div className="text-white text-xl font-space font-bold">{TRANSLATIONS.time_6pm[lang]}</div>
                   </div>
                 </div>
 
                 <div className="pt-2 flex items-center justify-between text-xs text-[#c4c5da]">
-                  <span>Door opens 17:45</span>
+                  <span>{TRANSLATIONS.show_door_opens[lang]}</span>
                   <a
                     href="https://tickify.live/event/project-ladyland-2026-chittagong/"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-[#ffb0cd] hover:underline font-semibold flex items-center gap-1"
                   >
-                    <span>Reserve on Tickify</span>
+                    <span>{TRANSLATIONS.show_reserve_tickify[lang]}</span>
                     <ExternalLink className="w-3 h-3" />
                   </a>
                 </div>
@@ -545,11 +568,11 @@ export const ProjectLadylandView: React.FC<ProjectLadylandViewProps> = ({ onGoHo
           </div>
         </section>
 
-        {/* 3. "WHAT FUTURE DO WE WANT?" Banner & Reimagining */}
+        {/* 3. "{TRANSLATIONS.future_question[lang]}" Banner & Reimagining */}
         <section id="section-synopsis" className="scroll-mt-24 space-y-16">
           <div className="text-center space-y-4">
             <h2 className="text-4xl sm:text-6xl md:text-7xl font-space font-bold text-[#ffb0cd] neon-text-glow tracking-tighter uppercase">
-              WHAT FUTURE DO WE WANT?
+              {TRANSLATIONS.future_question[lang]}
             </h2>
             <div className="w-24 h-1 bg-gradient-to-r from-[#00dbe9] via-[#ffb0cd] to-[#b9c3ff] mx-auto rounded-full" />
           </div>
@@ -559,16 +582,16 @@ export const ProjectLadylandView: React.FC<ProjectLadylandViewProps> = ({ onGoHo
               <div className="flex items-center gap-3">
                 <div className="w-10 h-[2px] bg-[#ffb0cd]" />
                 <span className="text-[#ffb0cd] font-space text-xs uppercase tracking-[0.2em] font-bold">
-                  THE DREAM — A REIMAGINING
+                  {TRANSLATIONS.dream_reimagining[lang]}
                 </span>
               </div>
 
               <h3 className="text-3xl sm:text-5xl font-space font-bold text-white leading-tight">
-                A Reimagining
+                {TRANSLATIONS.reimagining_title[lang]}
               </h3>
 
               <p className="text-base sm:text-lg text-[#c4c5da] font-inter leading-relaxed">
-                Project Ladyland is an immersive theatrical odyssey inspired by Rokeya Sahawat Hossain's 1905 utopian vision. In this realm, the aggressive friction of the old world is replaced by the fluid bioluminescence of a society governed by science, empathy, and collective grace. But there is one crack in the foundation...
+                {TRANSLATIONS.reimagining_desc[lang]}
               </p>
 
               {/* Bengali Poem Card */}
@@ -599,14 +622,14 @@ export const ProjectLadylandView: React.FC<ProjectLadylandViewProps> = ({ onGoHo
             </div>
           </div>
 
-          {/* WHERE IS LADYLAND? */}
+          {/* {TRANSLATIONS.where_title[lang]} */}
           <div className="glass-panel p-8 md:p-12 rounded-3xl space-y-8 border border-white/10">
             <div className="space-y-4">
               <h4 className="text-2xl md:text-3xl font-space font-bold text-[#ffb0cd] uppercase tracking-wider neon-text-glow">
-                WHERE IS LADYLAND?
+                {TRANSLATIONS.where_title[lang]}
               </h4>
               <p className="text-base md:text-lg text-[#c4c5da] leading-relaxed font-inter">
-                Ladyland is a dream in which the urgent issues threatening our world have been solved. A recycled dream where waste has been turned into wealth and beings live in harmony with nature. To make Ladyland we took the plastics and packaging waste which surrounds us and turned it into the ornamentation of the dream. To write Ladyland we took the experiences and facts of gender inequality and turned it into a question — how do we create a world where trust and balance reign?
+                {TRANSLATIONS.where_desc[lang]}
               </p>
             </div>
 
@@ -641,13 +664,17 @@ export const ProjectLadylandView: React.FC<ProjectLadylandViewProps> = ({ onGoHo
 
             <div className="lg:col-span-2 space-y-6">
               <span className="text-[#00dbe9] font-space text-xs font-bold uppercase tracking-widest block">
-                THE LITERARY ROOTS
+                {TRANSLATIONS.literary_roots[lang]}
               </span>
               <h3 className="text-3xl md:text-4xl font-space font-bold text-white">
-                Feminist Science Fiction Legacy
+                {TRANSLATIONS.legacy_title[lang]}
               </h3>
               <p className="text-base text-[#c4c5da] leading-relaxed">
-                Written in 1905 by pioneering educator Rokeya Sakhawat Hosein, <i>Sultana's Dream</i> proposed a world where women ruled and men stayed indoors (<i>mardana</i>). A satirical Ladyland featuring flying cars, solar heat harvesting, cloud condensation for rainwater, and peaceful gender reversal. Radical for its time, it continues to inspire debate and reflection today.
+                {lang === 'EN' ? (
+                  <>Written in 1905 by pioneering educator Rokeya Sakhawat Hosein, <i>Sultana's Dream</i> proposed a world where women ruled and men stayed indoors (<i>mardana</i>). A satirical Ladyland featuring flying cars, solar heat harvesting, cloud condensation for rainwater, and peaceful gender reversal. Radical for its time, it continues to inspire debate and reflection today.</>
+                ) : (
+                  TRANSLATIONS.legacy_desc.BN
+                )}
               </p>
 
               <div className="pt-2 flex flex-wrap items-center gap-4">
@@ -682,13 +709,13 @@ export const ProjectLadylandView: React.FC<ProjectLadylandViewProps> = ({ onGoHo
           <div className="glass-panel p-10 md:p-16 rounded-3xl text-center space-y-8 relative overflow-hidden border border-white/10 shadow-2xl">
             <div className="space-y-3">
               <span className="text-[#ffb0cd] font-space text-xs font-bold uppercase tracking-widest block">
-                PARTICIPATORY DECISION
+                {TRANSLATIONS.participatory_decision[lang]}
               </span>
               <h3 className="text-3xl sm:text-5xl font-space font-bold text-white">
-                The Final Choice is Yours
+                {TRANSLATIONS.final_choice[lang]}
               </h3>
               <p className="text-base sm:text-lg text-[#c4c5da] max-w-2xl mx-auto">
-                Is the night for all? Should Ladyland vote to grant men night-rights or deny them access to the night?
+                {TRANSLATIONS.vote_question[lang]}
               </p>
             </div>
 
@@ -699,7 +726,7 @@ export const ProjectLadylandView: React.FC<ProjectLadylandViewProps> = ({ onGoHo
                   onClick={() => handleVote('GRANT')}
                   className="amorphous-btn w-full sm:w-auto px-10 py-4 text-[#00228a] font-space font-bold text-sm uppercase tracking-widest neon-box-glow cursor-pointer"
                 >
-                  GRANT NIGHT RIGHTS
+                  {TRANSLATIONS.vote_grant[lang]}
                 </button>
 
                 <span className="text-white/40 font-space italic text-sm">OR</span>
@@ -708,7 +735,7 @@ export const ProjectLadylandView: React.FC<ProjectLadylandViewProps> = ({ onGoHo
                   onClick={() => handleVote('DENY')}
                   className="amorphous-btn w-full sm:w-auto px-10 py-4 text-[#00228a] font-space font-bold text-sm uppercase tracking-widest pink-neon-glow cursor-pointer"
                 >
-                  DENY NIGHT RIGHTS
+                  {TRANSLATIONS.vote_deny[lang]}
                 </button>
               </div>
             ) : (
@@ -721,7 +748,7 @@ export const ProjectLadylandView: React.FC<ProjectLadylandViewProps> = ({ onGoHo
                 <div className="space-y-4 font-space text-xs">
                   <div>
                     <div className="flex justify-between text-white font-bold mb-1">
-                      <span>GRANT NIGHT RIGHTS</span>
+                      <span>{TRANSLATIONS.vote_grant[lang]}</span>
                       <span>{grantPercent}% ({voteCounts.grant} votes)</span>
                     </div>
                     <div className="w-full h-3 bg-white/10 rounded-full overflow-hidden">
@@ -734,7 +761,7 @@ export const ProjectLadylandView: React.FC<ProjectLadylandViewProps> = ({ onGoHo
 
                   <div>
                     <div className="flex justify-between text-white font-bold mb-1">
-                      <span>DENY NIGHT RIGHTS</span>
+                      <span>{TRANSLATIONS.vote_deny[lang]}</span>
                       <span>{denyPercent}% ({voteCounts.deny} votes)</span>
                     </div>
                     <div className="w-full h-3 bg-white/10 rounded-full overflow-hidden">
@@ -752,14 +779,14 @@ export const ProjectLadylandView: React.FC<ProjectLadylandViewProps> = ({ onGoHo
           </div>
         </section>
 
-        {/* 6. Production & Cast Directory ("MAKING LADYLAND") */}
+        {/* 6. Production & Cast Directory ("{TRANSLATIONS.making_ladyland[lang]}") */}
         <section id="section-cast" className="scroll-mt-24 space-y-12">
           <div className="border-b border-white/10 pb-6">
             <span className="text-[#b9c3ff] font-space text-xs font-bold uppercase tracking-widest block mb-2">
-              THE DREAMERS
+              {TRANSLATIONS.dreamers_title[lang]}
             </span>
             <h2 className="text-3xl md:text-5xl font-space font-bold text-white">
-              MAKING LADYLAND
+              {TRANSLATIONS.making_ladyland[lang]}
             </h2>
           </div>
 
@@ -768,15 +795,15 @@ export const ProjectLadylandView: React.FC<ProjectLadylandViewProps> = ({ onGoHo
             <div className="space-y-10">
               <div className="space-y-3">
                 <h5 className="text-[#ffb0cd] font-space font-bold text-xs uppercase tracking-widest border-b border-white/10 pb-2">
-                  Production
+                  {TRANSLATIONS.production_title[lang]}
                 </h5>
                 <ul className="text-[#c4c5da] space-y-3 text-sm">
                   <li>
-                    <span className="text-white/60 text-[10px] uppercase font-space block">Produced by</span>
+                    <span className="text-white/60 text-[10px] uppercase font-space block">{TRANSLATIONS.produced_by[lang]}</span>
                     <strong className="text-white">HerStory Foundation</strong>
                   </li>
                   <li>
-                    <span className="text-white/60 text-[10px] uppercase font-space block">Supported by</span>
+                    <span className="text-white/60 text-[10px] uppercase font-space block">{TRANSLATIONS.supported_by[lang]}</span>
                     <strong className="text-white">British Council and Women of the World (WOW) Foundation</strong>
                   </li>
                 </ul>
@@ -784,23 +811,23 @@ export const ProjectLadylandView: React.FC<ProjectLadylandViewProps> = ({ onGoHo
 
               <div className="space-y-3">
                 <h5 className="text-[#ffb0cd] font-space font-bold text-xs uppercase tracking-widest border-b border-white/10 pb-2">
-                  Editorial
+                  {TRANSLATIONS.editorial_title[lang]}
                 </h5>
                 <ul className="text-[#c4c5da] space-y-3 text-sm">
                   <li>
-                    <span className="text-white/60 text-[10px] uppercase font-space block">Inspired by</span>
+                    <span className="text-white/60 text-[10px] uppercase font-space block">{TRANSLATIONS.inspired_by[lang]}</span>
                     <strong className="text-white">Sultana's Dream by Begum Rokeya Sakhawat Hossain</strong>
                   </li>
                   <li>
-                    <span className="text-white/60 text-[10px] uppercase font-space block">Written by</span>
+                    <span className="text-white/60 text-[10px] uppercase font-space block">{TRANSLATIONS.written_by[lang]}</span>
                     <strong className="text-white">Zohra Binte Zaman</strong>
                   </li>
                   <li>
-                    <span className="text-white/60 text-[10px] uppercase font-space block">Co-writers</span>
+                    <span className="text-white/60 text-[10px] uppercase font-space block">{TRANSLATIONS.co_writers[lang]}</span>
                     <strong className="text-white">Anika Bushra Shoshee, Nafisa A. Iqbal, Upama Adhikary</strong>
                   </li>
                   <li>
-                    <span className="text-white/60 text-[10px] uppercase font-space block">Edited by</span>
+                    <span className="text-white/60 text-[10px] uppercase font-space block">{TRANSLATIONS.edited_by[lang]}</span>
                     <strong className="text-white">Khandakar Imdadul Haque Sohan and Katerina Don</strong>
                   </li>
                 </ul>
@@ -808,27 +835,27 @@ export const ProjectLadylandView: React.FC<ProjectLadylandViewProps> = ({ onGoHo
 
               <div className="space-y-3">
                 <h5 className="text-[#ffb0cd] font-space font-bold text-xs uppercase tracking-widest border-b border-white/10 pb-2">
-                  Direction
+                  {TRANSLATIONS.direction_title[lang]}
                 </h5>
                 <ul className="text-[#c4c5da] space-y-3 text-sm">
                   <li>
-                    <span className="text-white/60 text-[10px] uppercase font-space block">Production and Vision</span>
+                    <span className="text-white/60 text-[10px] uppercase font-space block">{TRANSLATIONS.production_vision[lang]}</span>
                     <strong className="text-white">Katerina Don</strong>
                   </li>
                   <li>
-                    <span className="text-white/60 text-[10px] uppercase font-space block">Staging Director</span>
+                    <span className="text-white/60 text-[10px] uppercase font-space block">{TRANSLATIONS.staging_director[lang]}</span>
                     <strong className="text-white">Wajed Al-Rahman</strong>
                   </li>
                   <li>
-                    <span className="text-white/60 text-[10px] uppercase font-space block">Production Manager</span>
+                    <span className="text-white/60 text-[10px] uppercase font-space block">{TRANSLATIONS.production_manager[lang]}</span>
                     <strong className="text-white">Bappy Ameen</strong>
                   </li>
                   <li>
-                    <span className="text-white/60 text-[10px] uppercase font-space block">Co-Producer</span>
+                    <span className="text-white/60 text-[10px] uppercase font-space block">{TRANSLATIONS.co_producer[lang]}</span>
                     <strong className="text-white">Risana Nahreen Malik</strong>
                   </li>
                   <li>
-                    <span className="text-white/60 text-[10px] uppercase font-space block">Co-Producer</span>
+                    <span className="text-white/60 text-[10px] uppercase font-space block">{TRANSLATIONS.co_producer[lang]}</span>
                     <strong className="text-white">Khandakar Imdadul Haque Sohan</strong>
                   </li>
                 </ul>
@@ -838,19 +865,19 @@ export const ProjectLadylandView: React.FC<ProjectLadylandViewProps> = ({ onGoHo
             {/* Column 2: Performers */}
             <div className="space-y-3">
               <h5 className="text-[#ffb0cd] font-space font-bold text-xs uppercase tracking-widest border-b border-white/10 pb-2">
-                CAST
+                {TRANSLATIONS.cast_title[lang]}
               </h5>
               <ul className="text-[#c4c5da] space-y-3 text-sm">
-                <li><span className="text-white/60 text-[10px] uppercase font-space block">Sultana</span><strong className="text-white">Maisha Masfica Tanisa</strong></li>
-                <li><span className="text-white/60 text-[10px] uppercase font-space block">Sutrodor</span><strong className="text-white">Tawsiad Shaolin</strong></li>
-                <li><span className="text-white/60 text-[10px] uppercase font-space block">Sara</span><strong className="text-white">Priti Das</strong></li>
-                <li><span className="text-white/60 text-[10px] uppercase font-space block">Shishir</span><strong className="text-white">Salim Shadman (Sasha)</strong></li>
-                <li><span className="text-white/60 text-[10px] uppercase font-space block">Robots</span><strong className="text-white">Israt Jahan Ikra</strong></li>
-                <li><span className="text-white/60 text-[10px] uppercase font-space block">Dadima</span><strong className="text-white">Juliet Rajeena Quiah</strong></li>
-                <li><span className="text-white/60 text-[10px] uppercase font-space block">Kolpona</span><strong className="text-white">Muntasrin Rahman (Mim)</strong></li>
-                <li><span className="text-white/60 text-[10px] uppercase font-space block">Bidut</span><strong className="text-white">Dipu Mahmud</strong></li>
-                <li><span className="text-white/60 text-[10px] uppercase font-space block">Motmo</span><strong className="text-white">Afrida Amir</strong></li>
-                <li><span className="text-white/60 text-[10px] uppercase font-space block">Taj</span><strong className="text-white">Ohiduzzaman (Tony)</strong></li>
+                <li><span className="text-white/60 text-[10px] uppercase font-space block">{TRANSLATIONS.cast_sultana[lang]}</span><strong className="text-white">Maisha Masfica Tanisa</strong></li>
+                <li><span className="text-white/60 text-[10px] uppercase font-space block">{TRANSLATIONS.cast_sutrodor[lang]}</span><strong className="text-white">Tawsiad Shaolin</strong></li>
+                <li><span className="text-white/60 text-[10px] uppercase font-space block">{TRANSLATIONS.cast_sara[lang]}</span><strong className="text-white">Priti Das</strong></li>
+                <li><span className="text-white/60 text-[10px] uppercase font-space block">{TRANSLATIONS.cast_shishir[lang]}</span><strong className="text-white">Salim Shadman (Sasha)</strong></li>
+                <li><span className="text-white/60 text-[10px] uppercase font-space block">{TRANSLATIONS.cast_robots[lang]}</span><strong className="text-white">Israt Jahan Ikra</strong></li>
+                <li><span className="text-white/60 text-[10px] uppercase font-space block">{TRANSLATIONS.cast_dadima[lang]}</span><strong className="text-white">Juliet Rajeena Quiah</strong></li>
+                <li><span className="text-white/60 text-[10px] uppercase font-space block">{TRANSLATIONS.cast_kolpona[lang]}</span><strong className="text-white">Muntasrin Rahman (Mim)</strong></li>
+                <li><span className="text-white/60 text-[10px] uppercase font-space block">{TRANSLATIONS.cast_bidut[lang]}</span><strong className="text-white">Dipu Mahmud</strong></li>
+                <li><span className="text-white/60 text-[10px] uppercase font-space block">{TRANSLATIONS.cast_motmo[lang]}</span><strong className="text-white">Afrida Amir</strong></li>
+                <li><span className="text-white/60 text-[10px] uppercase font-space block">{TRANSLATIONS.cast_taj[lang]}</span><strong className="text-white">Ohiduzzaman (Tony)</strong></li>
               </ul>
             </div>
 
@@ -858,25 +885,25 @@ export const ProjectLadylandView: React.FC<ProjectLadylandViewProps> = ({ onGoHo
             <div className="space-y-10">
               <div className="space-y-3">
                 <h5 className="text-[#ffb0cd] font-space font-bold text-xs uppercase tracking-widest border-b border-white/10 pb-2">
-                  LADYLAND PRODUCTION
+                  {TRANSLATIONS.ladyland_prod_title[lang]}
                 </h5>
                 <ul className="text-[#c4c5da] space-y-3 text-sm">
-                  <li><span className="text-white/60 text-[10px] uppercase font-space block">Art Direction</span><strong className="text-white">Hridita Anisha</strong></li>
-                  <li><span className="text-white/60 text-[10px] uppercase font-space block">Props Design</span><strong className="text-white">Urukku.Bangladesh, Taranum Nirbir, Manzoor Real, Faiza Fairooz (Rhimjhim)</strong></li>
-                  <li><span className="text-white/60 text-[10px] uppercase font-space block">Light Design</span><strong className="text-white">Junaid Eusuf</strong></li>
-                  <li><span className="text-white/60 text-[10px] uppercase font-space block">Crescent Arc Design</span><strong className="text-white">Rashed Chowdhury, Rizat Hasan, Debjoti Barman Katha, Fatima Kamal Anonna (Dehsar Works)</strong></li>
-                  <li><span className="text-white/60 text-[10px] uppercase font-space block">Music</span><strong className="text-white">J0N4K1 / জোনাকি</strong></li>
-                  <li><span className="text-white/60 text-[10px] uppercase font-space block">Composition</span><strong className="text-white">Death Weil</strong></li>
-                  <li><span className="text-white/60 text-[10px] uppercase font-space block">Shadow Puppeteer</span><strong className="text-white">Shafrin Islam</strong></li>
-                  <li><span className="text-white/60 text-[10px] uppercase font-space block">Shadow Puppet Assistant</span><strong className="text-white">Anika Tabassum Nuzhat</strong></li>
-                  <li><span className="text-white/60 text-[10px] uppercase font-space block">Animation</span><strong className="text-white">Fahim Arif</strong></li>
-                  <li><span className="text-white/60 text-[10px] uppercase font-space block">Choreography</span><strong className="text-white">Shovan Surjo</strong></li>
-                  <li><span className="text-white/60 text-[10px] uppercase font-space block">Costume</span><strong className="text-white">Bushra Islam Labonno</strong></li>
-                  <li><span className="text-white/60 text-[10px] uppercase font-space block">Make-up</span><strong className="text-white">Robin Ahmed</strong></li>
-                  <li><span className="text-white/60 text-[10px] uppercase font-space block">Stage Assistants</span><strong className="text-white">Priti Das, Md. Tanvir Jaman</strong></li>
-                  <li><span className="text-white/60 text-[10px] uppercase font-space block">Communication Design</span><strong className="text-white">Tanaya Sayma</strong></li>
-                  <li><span className="text-white/60 text-[10px] uppercase font-space block">Volunteer Coordination</span><strong className="text-white">Senin Chowdhury</strong></li>
-                  <li><span className="text-white/60 text-[10px] uppercase font-space block">Videography</span><strong className="text-white">Hamid Hossen</strong></li>
+                  <li><span className="text-white/60 text-[10px] uppercase font-space block">{TRANSLATIONS.art_direction[lang]}</span><strong className="text-white">Hridita Anisha</strong></li>
+                  <li><span className="text-white/60 text-[10px] uppercase font-space block">{TRANSLATIONS.props_design[lang]}</span><strong className="text-white">Urukku.Bangladesh, Taranum Nirbir, Manzoor Real, Faiza Fairooz (Rhimjhim)</strong></li>
+                  <li><span className="text-white/60 text-[10px] uppercase font-space block">{TRANSLATIONS.light_design[lang]}</span><strong className="text-white">Junaid Eusuf</strong></li>
+                  <li><span className="text-white/60 text-[10px] uppercase font-space block">{TRANSLATIONS.crescent_arc_design[lang]}</span><strong className="text-white">Rashed Chowdhury, Rizat Hasan, Debjoti Barman Katha, Fatima Kamal Anonna (Dehsar Works)</strong></li>
+                  <li><span className="text-white/60 text-[10px] uppercase font-space block">{TRANSLATIONS.music[lang]}</span><strong className="text-white">J0N4K1 / জোনাকি</strong></li>
+                  <li><span className="text-white/60 text-[10px] uppercase font-space block">{TRANSLATIONS.composition[lang]}</span><strong className="text-white">Death Weil</strong></li>
+                  <li><span className="text-white/60 text-[10px] uppercase font-space block">{TRANSLATIONS.shadow_puppeteer[lang]}</span><strong className="text-white">Shafrin Islam</strong></li>
+                  <li><span className="text-white/60 text-[10px] uppercase font-space block">{TRANSLATIONS.shadow_puppet_assistant[lang]}</span><strong className="text-white">Anika Tabassum Nuzhat</strong></li>
+                  <li><span className="text-white/60 text-[10px] uppercase font-space block">{TRANSLATIONS.animation[lang]}</span><strong className="text-white">Fahim Arif</strong></li>
+                  <li><span className="text-white/60 text-[10px] uppercase font-space block">{TRANSLATIONS.choreography[lang]}</span><strong className="text-white">Shovan Surjo</strong></li>
+                  <li><span className="text-white/60 text-[10px] uppercase font-space block">{TRANSLATIONS.costume[lang]}</span><strong className="text-white">Bushra Islam Labonno</strong></li>
+                  <li><span className="text-white/60 text-[10px] uppercase font-space block">{TRANSLATIONS.makeup[lang]}</span><strong className="text-white">Robin Ahmed</strong></li>
+                  <li><span className="text-white/60 text-[10px] uppercase font-space block">{TRANSLATIONS.stage_assistants[lang]}</span><strong className="text-white">Priti Das, Md. Tanvir Jaman</strong></li>
+                  <li><span className="text-white/60 text-[10px] uppercase font-space block">{TRANSLATIONS.communication_design[lang]}</span><strong className="text-white">Tanaya Sayma</strong></li>
+                  <li><span className="text-white/60 text-[10px] uppercase font-space block">{TRANSLATIONS.volunteer_coordination[lang]}</span><strong className="text-white">Senin Chowdhury</strong></li>
+                  <li><span className="text-white/60 text-[10px] uppercase font-space block">{TRANSLATIONS.videography[lang]}</span><strong className="text-white">Hamid Hossen</strong></li>
                 </ul>
               </div>
             </div>
@@ -886,18 +913,18 @@ export const ProjectLadylandView: React.FC<ProjectLadylandViewProps> = ({ onGoHo
           <div className="p-6 rounded-2xl bg-white/5 border border-white/10 space-y-3">
             <div>
               <span className="text-[#b9c3ff] font-space text-xs font-bold uppercase tracking-widest block mb-1">
-                GRATITUDE
+                {TRANSLATIONS.gratitude_title[lang]}
               </span>
               <p className="text-xs text-[#c4c5da] leading-relaxed">
-                Dehsar Works, Urukku Bangladesh, Shala Space, Mallik Yishorja and the brilliant students of Jadur Kathi, Centre for Astronomy Space Science and Astrophysics, Bangladesh (CASSA) of IUB, Brio and Epi restaurants, Maria and Shakil, Abrar Shams Chowdhury, Muhtasim Hossain, Sizan Jim, Nazzim Rabbi.
+                {TRANSLATIONS.gratitude_desc[lang]}
               </p>
             </div>
             <div className="border-t border-white/5 pt-3">
               <span className="text-[#ffb0cd] font-space text-xs font-bold uppercase tracking-widest block mb-1">
-                VOLUNTEERS
+                {TRANSLATIONS.volunteers_title[lang]}
               </span>
               <p className="text-xs text-[#c4c5da] leading-relaxed">
-                Jahin Labiba, Nazifa Mubassera, Nabila Hasan, MD RATUL HASAN, Mst.Sanjida Akter Riya, Ahmed Rafi, Tasnima Razzaque Zulfa, Rico, Mehzabeen Haque Mrittika, Zumaina.
+                {TRANSLATIONS.volunteers_desc[lang]}
               </p>
             </div>
           </div>
@@ -909,36 +936,36 @@ export const ProjectLadylandView: React.FC<ProjectLadylandViewProps> = ({ onGoHo
         <section className="grid grid-cols-1 lg:grid-cols-2 gap-12">
           <div className="space-y-8">
             <div>
-              <h2 className="text-3xl font-space font-bold text-white mb-2">Performance Information</h2>
-              <p className="text-[#c4c5da] text-sm">Planning your journey to Ladyland.</p>
+              <h2 className="text-3xl font-space font-bold text-white mb-2">{TRANSLATIONS.perf_info_title[lang]}</h2>
+              <p className="text-[#c4c5da] text-sm">{TRANSLATIONS.perf_info_desc[lang]}</p>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div className="p-5 rounded-2xl bg-white/5 border border-white/10 space-y-1">
                 <div className="flex items-center gap-2 text-[#b9c3ff] font-space text-xs font-bold uppercase tracking-wider">
                   <Calendar className="w-4 h-4" />
-                  <span>Arrival</span>
+                  <span>{TRANSLATIONS.arrival_title[lang]}</span>
                 </div>
-                <p className="text-white text-base font-bold pt-1">Doors open at 17:45</p>
-                <p className="text-[#c4c5da] text-xs">Please arrive 30 mins before performance.</p>
+                <p className="text-white text-base font-bold pt-1">{TRANSLATIONS.arrival_time[lang]}</p>
+                <p className="text-[#c4c5da] text-xs">{TRANSLATIONS.arrival_desc[lang]}</p>
               </div>
 
               <div className="p-5 rounded-2xl bg-white/5 border border-white/10 space-y-1">
                 <div className="flex items-center gap-2 text-[#ffb0cd] font-space text-xs font-bold uppercase tracking-wider">
                   <Mail className="w-4 h-4" />
-                  <span>Refunds</span>
+                  <span>{TRANSLATIONS.refunds_title[lang]}</span>
                 </div>
                 <p className="text-white text-base font-bold pt-1">arefin@cholpori.com</p>
-                <p className="text-[#c4c5da] text-xs">Valid up to 48 hours before showtime.</p>
+                <p className="text-[#c4c5da] text-xs">{TRANSLATIONS.refunds_desc[lang]}</p>
               </div>
 
               <div className="p-5 rounded-2xl bg-white/5 border border-white/10 space-y-1 md:col-span-2">
                 <div className="flex items-center gap-2 text-[#00dbe9] font-space text-xs font-bold uppercase tracking-wider">
                   <Phone className="w-4 h-4" />
-                  <span>Queries & Help</span>
+                  <span>{TRANSLATIONS.queries_title[lang]}</span>
                 </div>
                 <p className="text-white text-base font-bold pt-1">Bappy Ameen — 01911-495422</p>
-                <p className="text-[#c4c5da] text-xs">Technical support, seating & general inquiries</p>
+                <p className="text-[#c4c5da] text-xs">{TRANSLATIONS.queries_desc[lang]}</p>
               </div>
             </div>
           </div>
@@ -960,7 +987,7 @@ export const ProjectLadylandView: React.FC<ProjectLadylandViewProps> = ({ onGoHo
                 <input
                   type="email"
                   required
-                  placeholder="Enter your email address"
+                  placeholder={TRANSLATIONS.newsletter_placeholder[lang]}
                   value={newsletterEmail}
                   onChange={(e) => setNewsletterEmail(e.target.value)}
                   className="w-full bg-white/5 border border-white/10 rounded-xl px-5 py-3.5 text-white text-xs focus:outline-none focus:border-[#b9c3ff]"
@@ -993,7 +1020,7 @@ export const ProjectLadylandView: React.FC<ProjectLadylandViewProps> = ({ onGoHo
           <div className="glass-panel p-8 md:p-14 rounded-3xl text-center space-y-8 border border-white/10 shadow-2xl">
             <div className="max-w-3xl mx-auto space-y-3">
               <span className="text-[#00dbe9] font-space text-xs font-bold uppercase tracking-widest block">
-                DREAMER KIT MERCHANDISE
+                {TRANSLATIONS.merchandise_tag[lang]}
               </span>
               <h2 className="text-3xl sm:text-5xl font-space font-bold text-white">
                 The Case of the Dreamer
@@ -1485,7 +1512,7 @@ export const ProjectLadylandView: React.FC<ProjectLadylandViewProps> = ({ onGoHo
                         {new Date(vote.timestamp).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
                       </span>
                       <span className={`font-space font-bold ${vote.choice === 'GRANT' ? 'text-[#00dbe9]' : 'text-[#ff45a2]'}`}>
-                        {vote.choice === 'GRANT' ? 'GRANT NIGHT RIGHTS' : 'DENY NIGHT RIGHTS'}
+                        {vote.choice === 'GRANT' ? '{TRANSLATIONS.vote_grant[lang]}' : '{TRANSLATIONS.vote_deny[lang]}'}
                       </span>
                       <span className="text-white/40 text-[11px] truncate">
                         {vote.userEmail || 'Ladyland Portal'}
