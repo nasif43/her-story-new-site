@@ -520,16 +520,16 @@ export const ProjectLadylandView: React.FC<ProjectLadylandViewProps> = ({ onGoHo
                 <div className="flex flex-wrap gap-4">
                   <div className="px-5 py-3 bg-white/5 border border-white/10 rounded-xl text-center min-w-[120px]">
                     <div className="text-[#ffb0cd] text-xs font-bold font-space">AUG 24</div>
-                    <div className="text-white text-xl font-space font-bold">18:00</div>
+                    <div className="text-white text-xl font-space font-bold">7:00 PM</div>
                   </div>
                   <div className="px-5 py-3 bg-white/5 border border-white/10 rounded-xl text-center min-w-[120px]">
                     <div className="text-[#ffb0cd] text-xs font-bold font-space">AUG 25</div>
-                    <div className="text-white text-xl font-space font-bold">18:00</div>
+                    <div className="text-white text-xl font-space font-bold">7:00 PM</div>
                   </div>
                 </div>
 
                 <div className="pt-2 flex items-center justify-between text-xs text-[#c4c5da]">
-                  <span>Door opens 17:45</span>
+                  <span>Door opens 6:45</span>
                   <a
                     href="https://tickify.live/event/project-ladyland-2026-chittagong/"
                     target="_blank"
