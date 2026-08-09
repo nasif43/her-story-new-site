@@ -343,11 +343,11 @@ export const ProjectLadylandView: React.FC<ProjectLadylandViewProps> = ({ onGoHo
               className="font-space font-bold text-white tracking-tighter text-base sm:text-lg hover:text-[#b9c3ff] transition-colors cursor-pointer flex items-center gap-2"
               title="Return to HerStory Foundation Home"
             >
-              HERSTORY
+              {TRANSLATIONS.header_herstory[lang]}
             </button>
             <div className="hidden sm:block w-px h-5 bg-white/20" />
             <div className="hidden sm:block font-space text-xs font-bold text-[#b9c3ff] tracking-wider uppercase">
-              Project Ladyland
+              {TRANSLATIONS.header_project_ladyland[lang]}
             </div>
           </div>
 
