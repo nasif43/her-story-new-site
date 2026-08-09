@@ -82,12 +82,12 @@ export const TRANSLATIONS = {
     "BN": "২৫ আগস্ট"
   },
   "time_6pm": {
-    "EN": "18:00",
-    "BN": "সন্ধ্যা ৬টা"
+    "EN": "7:00 PM",
+    "BN": "সন্ধ্যা ৭টা"
   },
   "show_door_opens": {
-    "EN": "Door opens 17:45",
-    "BN": "হল খুলবে ৫.৪৫ মিনিটে"
+    "EN": "Door opens 6:45 pm",
+    "BN": "হল খুলবে ৬:৪৫ মিনিটে"
   },
   "show_reserve_tickify": {
     "EN": "Reserve on Tickify",
