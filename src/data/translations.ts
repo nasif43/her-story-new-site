@@ -424,5 +424,173 @@ export const TRANSLATIONS = {
   "merchandise_email_btn": {
     "EN": "EMAIL ORDER (SISTER@HERSTORYBD.ORG)",
     "BN": "ইমেইলের মাধ্যমে অর্ডার করুন (SISTER@HERSTORYBD.ORG)"
+  },
+  "nav_performances": {
+    "EN": "Performances",
+    "BN": "প্রদর্শনী"
+  },
+  "nav_reimagining": {
+    "EN": "Reimagining",
+    "BN": "নতুন ভাবনা"
+  },
+  "nav_the_vote": {
+    "EN": "The Vote",
+    "BN": "সিদ্ধান্ত"
+  },
+  "nav_the_dreamers": {
+    "EN": "The Dreamers",
+    "BN": "স্বপ্নদর্শী"
+  },
+  "nav_dreamer_kit": {
+    "EN": "Dreamer Kit",
+    "BN": "ড্রিমার কিট"
+  },
+  "org_herstory_foundation": {
+    "EN": "HerStory Foundation",
+    "BN": "হারস্টোরি ফাউন্ডেশন"
+  },
+  "org_british_council_wow": {
+    "EN": "British Council and Women of the World (WOW) Foundation",
+    "BN": "ব্রিটিশ কাউন্সিল ও উইমেন অব দ্য ওয়ার্ল্ড (ওয়াও) ফাউন্ডেশন"
+  },
+  "work_sultanas_dream": {
+    "EN": "Sultana's Dream by Begum Rokeya Sakhawat Hossain",
+    "BN": "বেগম রোকেয়া সাখাওয়াত হোসেনের ‘সুলতানার স্বপ্ন’"
+  },
+  "person_zohra": {
+    "EN": "Zohra Binte Zaman",
+    "BN": "জোহরা বিনতে জামান"
+  },
+  "person_co_writers": {
+    "EN": "Anika Bushra Shoshee, Nafisa A. Iqbal, Upama Adhikary",
+    "BN": "আনিকা বুশরা শশী, নাফিসা এ. ইকবাল, উপমা অধিকারী"
+  },
+  "person_editors": {
+    "EN": "Khandakar Imdadul Haque Sohan and Katerina Don",
+    "BN": "খন্দকার ইমদাদুল হক সোহান ও ক্যাটেরিনা ডন"
+  },
+  "person_katerina": {
+    "EN": "Katerina Don",
+    "BN": "ক্যাটেরিনা ডন"
+  },
+  "person_wajed": {
+    "EN": "Wajed Al-Rahman",
+    "BN": "ওয়াজেদ আল-রহমান"
+  },
+  "person_bappy": {
+    "EN": "Bappy Ameen",
+    "BN": "বাপ্পী আমিন"
+  },
+  "person_risana": {
+    "EN": "Risana Nahreen Malik",
+    "BN": "রিসানা নাহরিন মালিক"
+  },
+  "person_sohan": {
+    "EN": "Khandakar Imdadul Haque Sohan",
+    "BN": "খন্দকার ইমদাদুল হক সোহান"
+  },
+  "cast_name_sultana": {
+    "EN": "Maisha Masfica Tanisa",
+    "BN": "মাইশা মাশফিকা তানিসা"
+  },
+  "cast_name_sutrodor": {
+    "EN": "Tawsiad Shaolin",
+    "BN": "তাওসিয়াদ শাওলিন"
+  },
+  "cast_name_sara": {
+    "EN": "Mithila Paul",
+    "BN": "মিথিলা পাল"
+  },
+  "cast_name_shishir": {
+    "EN": "Salim Shadman (Sasha)",
+    "BN": "সালিম শাদমান (সাশা)"
+  },
+  "cast_name_robots": {
+    "EN": "Israt Jahan Ikra",
+    "BN": "ইশরাত জাহান ইকরা"
+  },
+  "cast_name_dadima": {
+    "EN": "Juliet Rajeena Quiah",
+    "BN": "জুলিয়েট রাজীনা কুইয়াহ"
+  },
+  "cast_name_kolpona": {
+    "EN": "Muntasrin Rahman (Mim)",
+    "BN": "মুন্তাসরিন রহমান (মিম)"
+  },
+  "cast_name_bidut": {
+    "EN": "Dipu Mahmud",
+    "BN": "দীপু মাহমুদ"
+  },
+  "cast_name_motmo": {
+    "EN": "Afrida Amir",
+    "BN": "আফ্রাইদা আমির"
+  },
+  "cast_name_taj": {
+    "EN": "Ohiduzzaman (Tony)",
+    "BN": "অহিদুজ্জামান (টনি)"
+  },
+  "person_hridita": {
+    "EN": "Hridita Anisha",
+    "BN": "হৃদিতা আনিশা"
+  },
+  "person_props": {
+    "EN": "Urukku.Bangladesh, Taranum Nirbir, Manzoor Real, Faiza Fairooz (Rhimjhim)",
+    "BN": "উড়ুক্কু বাংলাদেশ, তারান্নুম নিবিড়, মনজুর রিয়েল, ফাইজা ফাইরুজ (রিমঝিম)"
+  },
+  "person_junaid": {
+    "EN": "Junaid Eusuf",
+    "BN": "জুনায়েদ ইউসুফ"
+  },
+  "person_crescent": {
+    "EN": "Rashed Chowdhury, Rizat Hasan, Debjoti Barman Katha, Fatima Kamal Anonna (Dehsar Works)",
+    "BN": "রাশেদ চৌধুরী, রিজাত হাসান, দেবজ্যোতি বর্মণ কথা, ফাতিমা কামাল অনন্যা (দেহসার ওয়ার্কস)"
+  },
+  "person_music": {
+    "EN": "J0N4K1 /  জোনাকী",
+    "BN": "J0N4K1 / জোনাকী"
+  },
+  "person_death_weil": {
+    "EN": "Death Weil",
+    "BN": "ডেথ ওয়াইল"
+  },
+  "person_shafrin": {
+    "EN": "Shafrin Islam",
+    "BN": "শাফরিন ইসলাম"
+  },
+  "person_anika_tabassum": {
+    "EN": "Anika Tabassum Nuzhat",
+    "BN": "আনিকা তাবাসসুম নুজহাত"
+  },
+  "person_fahim": {
+    "EN": "Fahim Arif",
+    "BN": "ফাহিম আরিফ"
+  },
+  "person_shovan": {
+    "EN": "Shovan Surjo",
+    "BN": "শোভন সূর্য"
+  },
+  "person_bushra": {
+    "EN": "Bushra Islam Labonno",
+    "BN": "বুশরা ইসলাম লাবণ্য"
+  },
+  "person_robin": {
+    "EN": "Robin Ahmed",
+    "BN": "রবিন আহমেদ"
+  },
+  "person_stage_assistants": {
+    "EN": "Priti Das, Md. Tanvir Jaman",
+    "BN": "প্রীতি দাস, মো. তানভীর জামান"
+  },
+  "person_tanaya": {
+    "EN": "Tanaya Sayma",
+    "BN": "তনয়া সায়মা"
+  },
+  "person_senin": {
+    "EN": "Senin Chowdhury",
+    "BN": "সেনিন চৌধুরী"
+  },
+  "person_hamid": {
+    "EN": "Hamid Hossen",
+    "BN": "হামিদ হোসেন"
   }
 } as const;

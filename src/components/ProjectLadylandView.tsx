@@ -353,19 +353,19 @@ export const ProjectLadylandView: React.FC<ProjectLadylandViewProps> = ({ onGoHo
 
           <div className="hidden md:flex items-center gap-6 font-space text-xs tracking-wider uppercase">
             <a href="#section-tickets" className="text-[#c4c5da] hover:text-[#b9c3ff] transition-colors">
-              Performances
+              {TRANSLATIONS.nav_performances[lang]}
             </a>
             <a href="#section-synopsis" className="text-[#c4c5da] hover:text-[#b9c3ff] transition-colors">
-              Reimagining
+              {TRANSLATIONS.nav_reimagining[lang]}
             </a>
             <a href="#section-vote" className="text-[#c4c5da] hover:text-[#b9c3ff] transition-colors">
-              The Vote
+              {TRANSLATIONS.nav_the_vote[lang]}
             </a>
             <a href="#section-cast" className="text-[#c4c5da] hover:text-[#b9c3ff] transition-colors">
-              The Dreamers
+              {TRANSLATIONS.nav_the_dreamers[lang]}
             </a>
             <a href="#section-dreamer-kit" className="text-[#c4c5da] hover:text-[#b9c3ff] transition-colors">
-              Dreamer Kit
+              {TRANSLATIONS.nav_dreamer_kit[lang]}
             </a>
           </div>
 
@@ -487,113 +487,35 @@ export const ProjectLadylandView: React.FC<ProjectLadylandViewProps> = ({ onGoHo
                   href="https://tickify.live/event/project-ladyland-2026-chittagong/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="amorphous-btn text-[#00228a] px-6 py-3.5 font-space font-bold text-xs uppercase tracking-wider pink-neon-glow cursor-pointer inline-flex items-center gap-2"
+                  className="text-[#ffb0cd] hover:underline font-semibold flex items-center gap-1"
                 >
-                  <span>{TRANSLATIONS.show_buy_chittagong[lang]}</span>
-                  <ExternalLink className="w-3.5 h-3.5" />
+                  <span>{TRANSLATIONS.show_reserve_tickify[lang]}</span>
+                  <ExternalLink className="w-3 h-3" />
                 </a>
-              </div>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              {/* Dhaka Performance Location */}
-              <div className="bg-white/5 border border-white/10 p-6 rounded-2xl space-y-4 hover:border-[#b9c3ff]/50 transition-all">
-                <div className="flex items-center gap-2 text-[#b9c3ff]">
-                  <MapPin className="w-4 h-4 text-[#00dbe9]" />
-                  <span className="font-space text-xs font-bold uppercase tracking-wider">
-                    {TRANSLATIONS.venue_dhaka[lang]}
-                  </span>
-                </div>
-
-                <div className="flex flex-wrap gap-4">
-                  <div className="px-5 py-3 bg-white/5 border border-white/10 rounded-xl text-center min-w-[120px]">
-                    <div className="text-[#ffb0cd] text-xs font-bold font-space">{TRANSLATIONS.date_aug13[lang]}</div>
-                    <div className="text-white text-xl font-space font-bold">{TRANSLATIONS.time_6pm[lang]}</div>
-                  </div>
-
-                  <div className="px-5 py-3 bg-white/5 border border-white/10 rounded-xl text-center min-w-[120px]">
-                    <div className="text-[#ffb0cd] text-xs font-bold font-space">{TRANSLATIONS.date_aug14[lang]}</div>
-                    <div className="text-white text-xl font-space font-bold">{TRANSLATIONS.time_6pm[lang]}</div>
-                  </div>
-                </div>
-
-                <div className="pt-2 flex items-center justify-between text-xs text-[#c4c5da]">
-                  <span>{TRANSLATIONS.show_door_opens[lang]}</span>
-                  <a
-                    href="https://tickify.live/event/project-ladyland-2026-dac/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-[#00dbe9] hover:underline font-semibold flex items-center gap-1"
-                  >
-                    <span>{TRANSLATIONS.show_reserve_tickify[lang]}</span>
-                    <ExternalLink className="w-3 h-3" />
-                  </a>
-                </div>
-              </div>
-
-              {/* Chattogram Performance Location */}
-              <div className="bg-white/5 border border-white/10 p-6 rounded-2xl space-y-4 hover:border-[#ffb0cd]/50 transition-all">
-                <div className="flex items-center gap-2 text-[#ffb0cd]">
-                  <MapPin className="w-4 h-4 text-[#ff45a2]" />
-                  <span className="font-space text-xs font-bold uppercase tracking-wider">
-                    {TRANSLATIONS.venue_chittagong[lang]}
-                  </span>
-                </div>
-
-                <div className="flex flex-wrap gap-4">
-                  <div className="px-5 py-3 bg-white/5 border border-white/10 rounded-xl text-center min-w-[120px]">
-                    <div className="text-[#ffb0cd] text-xs font-bold font-space">{TRANSLATIONS.date_aug24[lang]}</div>
-                    <div className="text-white text-xl font-space font-bold">{TRANSLATIONS.time_6pm[lang]}</div>
-                  </div>
-                  <div className="px-5 py-3 bg-white/5 border border-white/10 rounded-xl text-center min-w-[120px]">
-                    <div className="text-[#ffb0cd] text-xs font-bold font-space">{TRANSLATIONS.date_aug25[lang]}</div>
-                    <div className="text-white text-xl font-space font-bold">{TRANSLATIONS.time_6pm[lang]}</div>
-                  </div>
-                </div>
-
-                <div className="pt-2 flex items-center justify-between text-xs text-[#c4c5da]">
-                  <span>{TRANSLATIONS.show_door_opens[lang]}</span>
-                  <a
-                    href="https://tickify.live/event/project-ladyland-2026-chittagong/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-[#ffb0cd] hover:underline font-semibold flex items-center gap-1"
-                  >
-                    <span>{TRANSLATIONS.show_reserve_tickify[lang]}</span>
-                    <ExternalLink className="w-3 h-3" />
-                  </a>
-                </div>
               </div>
             </div>
           </div>
         </section>
 
-        {/* 3. "{TRANSLATIONS.future_question[lang]}" Banner & Reimagining */}
+        {/* 3. "WHAT FUTURE DO WE WANT?" Banner & Reimagining */}
         <section id="section-synopsis" className="scroll-mt-24 space-y-16">
-          <div className="text-center space-y-4">
-            <h2 className="text-4xl sm:text-6xl md:text-7xl font-space font-bold text-[#ffb0cd] neon-text-glow tracking-tighter uppercase">
+          <div className="py-12 px-6 rounded-3xl bg-gradient-to-r from-[#ff45a2]/20 via-[#00dbe9]/20 to-[#b9c3ff]/20 border border-white/15 text-center relative overflow-hidden backdrop-blur-xl">
+            <h2 className="text-3xl md:text-5xl font-space font-bold text-white tracking-widest uppercase glow-text">
               {TRANSLATIONS.future_question[lang]}
             </h2>
-            <div className="w-24 h-1 bg-gradient-to-r from-[#00dbe9] via-[#ffb0cd] to-[#b9c3ff] mx-auto rounded-full" />
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div className="space-y-6">
-              <div className="flex items-center gap-3">
-                <div className="w-10 h-[2px] bg-[#ffb0cd]" />
-                <span className="text-[#ffb0cd] font-space text-xs uppercase tracking-[0.2em] font-bold">
-                  {TRANSLATIONS.dream_reimagining[lang]}
-                </span>
-              </div>
-
-              <h3 className="text-3xl sm:text-5xl font-space font-bold text-white leading-tight">
+              <span className="text-[#ffb0cd] font-space text-xs font-bold uppercase tracking-widest block">
+                {TRANSLATIONS.dream_reimagining[lang]}
+              </span>
+              <h3 className="text-3xl md:text-4xl font-space font-bold text-white">
                 {TRANSLATIONS.reimagining_title[lang]}
               </h3>
-
-              <p className="text-base sm:text-lg text-[#c4c5da] font-inter leading-relaxed">
+              <p className="text-base md:text-lg text-[#c4c5da] leading-relaxed">
                 {TRANSLATIONS.reimagining_desc[lang]}
               </p>
-
               {/* Bengali Poem Card */}
               <div className="p-6 rounded-2xl bg-white/5 border border-white/10 space-y-3 font-serif-editorial text-center shadow-lg">
                 <p className="text-xl md:text-2xl italic leading-relaxed text-transparent bg-clip-text bg-gradient-to-r from-[#b9c3ff] via-[#00dbe9] to-[#ffb0cd] animate-pulse">
@@ -685,7 +607,7 @@ export const ProjectLadylandView: React.FC<ProjectLadylandViewProps> = ({ onGoHo
                   className="px-8 py-3.5 rounded-full bg-gradient-to-r from-[#ffb0cd] via-[#00dbe9] to-[#b9c3ff] text-slate-950 font-space font-bold text-xs uppercase tracking-wider transition-all inline-flex items-center gap-2 cursor-pointer shadow-[0_0_20px_rgba(255,176,205,0.4)] hover:scale-105 hover:brightness-110"
                 >
                   <BookOpen className="w-4 h-4" />
-                  <span>Read the Original Novella</span>
+                  <span>{TRANSLATIONS.read_novella[lang]}</span>
                   <ExternalLink className="w-3.5 h-3.5 opacity-80" />
                 </a>
 
@@ -696,7 +618,7 @@ export const ProjectLadylandView: React.FC<ProjectLadylandViewProps> = ({ onGoHo
                   className="px-8 py-3.5 rounded-full bg-white/10 hover:bg-white/20 border border-white/20 text-white font-space text-xs font-bold uppercase tracking-wider transition-all inline-flex items-center gap-2 cursor-pointer backdrop-blur-md hover:scale-105 shadow-lg"
                 >
                   <Volume2 className="w-4 h-4 text-[#00dbe9]" />
-                  <span>Listen to the Story</span>
+                  <span>{TRANSLATIONS.listen_story[lang]}</span>
                   <ExternalLink className="w-3.5 h-3.5 opacity-70" />
                 </a>
               </div>
@@ -729,7 +651,7 @@ export const ProjectLadylandView: React.FC<ProjectLadylandViewProps> = ({ onGoHo
                   {TRANSLATIONS.vote_grant[lang]}
                 </button>
 
-                <span className="text-white/40 font-space italic text-sm">OR</span>
+                <span className="text-white/40 font-space italic text-sm">{TRANSLATIONS.vote_or[lang]}</span>
 
                 <button
                   onClick={() => handleVote('DENY')}
@@ -800,11 +722,11 @@ export const ProjectLadylandView: React.FC<ProjectLadylandViewProps> = ({ onGoHo
                 <ul className="text-[#c4c5da] space-y-3 text-sm">
                   <li>
                     <span className="text-white/60 text-[10px] uppercase font-space block">{TRANSLATIONS.produced_by[lang]}</span>
-                    <strong className="text-white">HerStory Foundation</strong>
+                    <strong className="text-white">{TRANSLATIONS.org_herstory_foundation[lang]}</strong>
                   </li>
                   <li>
                     <span className="text-white/60 text-[10px] uppercase font-space block">{TRANSLATIONS.supported_by[lang]}</span>
-                    <strong className="text-white">British Council and Women of the World (WOW) Foundation</strong>
+                    <strong className="text-white">{TRANSLATIONS.org_british_council_wow[lang]}</strong>
                   </li>
                 </ul>
               </div>
@@ -816,19 +738,19 @@ export const ProjectLadylandView: React.FC<ProjectLadylandViewProps> = ({ onGoHo
                 <ul className="text-[#c4c5da] space-y-3 text-sm">
                   <li>
                     <span className="text-white/60 text-[10px] uppercase font-space block">{TRANSLATIONS.inspired_by[lang]}</span>
-                    <strong className="text-white">Sultana's Dream by Begum Rokeya Sakhawat Hossain</strong>
+                    <strong className="text-white">{TRANSLATIONS.work_sultanas_dream[lang]}</strong>
                   </li>
                   <li>
                     <span className="text-white/60 text-[10px] uppercase font-space block">{TRANSLATIONS.written_by[lang]}</span>
-                    <strong className="text-white">Zohra Binte Zaman</strong>
+                    <strong className="text-white">{TRANSLATIONS.person_zohra[lang]}</strong>
                   </li>
                   <li>
                     <span className="text-white/60 text-[10px] uppercase font-space block">{TRANSLATIONS.co_writers[lang]}</span>
-                    <strong className="text-white">Anika Bushra Shoshee, Nafisa A. Iqbal, Upama Adhikary</strong>
+                    <strong className="text-white">{TRANSLATIONS.person_co_writers[lang]}</strong>
                   </li>
                   <li>
                     <span className="text-white/60 text-[10px] uppercase font-space block">{TRANSLATIONS.edited_by[lang]}</span>
-                    <strong className="text-white">Khandakar Imdadul Haque Sohan and Katerina Don</strong>
+                    <strong className="text-white">{TRANSLATIONS.person_editors[lang]}</strong>
                   </li>
                 </ul>
               </div>
@@ -840,23 +762,23 @@ export const ProjectLadylandView: React.FC<ProjectLadylandViewProps> = ({ onGoHo
                 <ul className="text-[#c4c5da] space-y-3 text-sm">
                   <li>
                     <span className="text-white/60 text-[10px] uppercase font-space block">{TRANSLATIONS.production_vision[lang]}</span>
-                    <strong className="text-white">Katerina Don</strong>
+                    <strong className="text-white">{TRANSLATIONS.person_katerina[lang]}</strong>
                   </li>
                   <li>
                     <span className="text-white/60 text-[10px] uppercase font-space block">{TRANSLATIONS.staging_director[lang]}</span>
-                    <strong className="text-white">Wajed Al-Rahman</strong>
+                    <strong className="text-white">{TRANSLATIONS.person_wajed[lang]}</strong>
                   </li>
                   <li>
                     <span className="text-white/60 text-[10px] uppercase font-space block">{TRANSLATIONS.production_manager[lang]}</span>
-                    <strong className="text-white">Bappy Ameen</strong>
+                    <strong className="text-white">{TRANSLATIONS.person_bappy[lang]}</strong>
                   </li>
                   <li>
                     <span className="text-white/60 text-[10px] uppercase font-space block">{TRANSLATIONS.co_producer[lang]}</span>
-                    <strong className="text-white">Risana Nahreen Malik</strong>
+                    <strong className="text-white">{TRANSLATIONS.person_risana[lang]}</strong>
                   </li>
                   <li>
                     <span className="text-white/60 text-[10px] uppercase font-space block">{TRANSLATIONS.co_producer[lang]}</span>
-                    <strong className="text-white">Khandakar Imdadul Haque Sohan</strong>
+                    <strong className="text-white">{TRANSLATIONS.person_sohan[lang]}</strong>
                   </li>
                 </ul>
               </div>
@@ -868,16 +790,16 @@ export const ProjectLadylandView: React.FC<ProjectLadylandViewProps> = ({ onGoHo
                 {TRANSLATIONS.cast_title[lang]}
               </h5>
               <ul className="text-[#c4c5da] space-y-3 text-sm">
-                <li><span className="text-white/60 text-[10px] uppercase font-space block">{TRANSLATIONS.cast_sultana[lang]}</span><strong className="text-white">Maisha Masfica Tanisa</strong></li>
-                <li><span className="text-white/60 text-[10px] uppercase font-space block">{TRANSLATIONS.cast_sutrodor[lang]}</span><strong className="text-white">Tawsiad Shaolin</strong></li>
-                <li><span className="text-white/60 text-[10px] uppercase font-space block">{TRANSLATIONS.cast_sara[lang]}</span><strong className="text-white">Priti Das</strong></li>
-                <li><span className="text-white/60 text-[10px] uppercase font-space block">{TRANSLATIONS.cast_shishir[lang]}</span><strong className="text-white">Salim Shadman (Sasha)</strong></li>
-                <li><span className="text-white/60 text-[10px] uppercase font-space block">{TRANSLATIONS.cast_robots[lang]}</span><strong className="text-white">Israt Jahan Ikra</strong></li>
-                <li><span className="text-white/60 text-[10px] uppercase font-space block">{TRANSLATIONS.cast_dadima[lang]}</span><strong className="text-white">Juliet Rajeena Quiah</strong></li>
-                <li><span className="text-white/60 text-[10px] uppercase font-space block">{TRANSLATIONS.cast_kolpona[lang]}</span><strong className="text-white">Muntasrin Rahman (Mim)</strong></li>
-                <li><span className="text-white/60 text-[10px] uppercase font-space block">{TRANSLATIONS.cast_bidut[lang]}</span><strong className="text-white">Dipu Mahmud</strong></li>
-                <li><span className="text-white/60 text-[10px] uppercase font-space block">{TRANSLATIONS.cast_motmo[lang]}</span><strong className="text-white">Afrida Amir</strong></li>
-                <li><span className="text-white/60 text-[10px] uppercase font-space block">{TRANSLATIONS.cast_taj[lang]}</span><strong className="text-white">Ohiduzzaman (Tony)</strong></li>
+                <li><span className="text-white/60 text-[10px] uppercase font-space block">{TRANSLATIONS.cast_sultana[lang]}</span><strong className="text-white">{TRANSLATIONS.cast_name_sultana[lang]}</strong></li>
+                <li><span className="text-white/60 text-[10px] uppercase font-space block">{TRANSLATIONS.cast_sutrodor[lang]}</span><strong className="text-white">{TRANSLATIONS.cast_name_sutrodor[lang]}</strong></li>
+                <li><span className="text-white/60 text-[10px] uppercase font-space block">{TRANSLATIONS.cast_sara[lang]}</span><strong className="text-white">{TRANSLATIONS.cast_name_sara[lang]}</strong></li>
+                <li><span className="text-white/60 text-[10px] uppercase font-space block">{TRANSLATIONS.cast_shishir[lang]}</span><strong className="text-white">{TRANSLATIONS.cast_name_shishir[lang]}</strong></li>
+                <li><span className="text-white/60 text-[10px] uppercase font-space block">{TRANSLATIONS.cast_robots[lang]}</span><strong className="text-white">{TRANSLATIONS.cast_name_robots[lang]}</strong></li>
+                <li><span className="text-white/60 text-[10px] uppercase font-space block">{TRANSLATIONS.cast_dadima[lang]}</span><strong className="text-white">{TRANSLATIONS.cast_name_dadima[lang]}</strong></li>
+                <li><span className="text-white/60 text-[10px] uppercase font-space block">{TRANSLATIONS.cast_kolpona[lang]}</span><strong className="text-white">{TRANSLATIONS.cast_name_kolpona[lang]}</strong></li>
+                <li><span className="text-white/60 text-[10px] uppercase font-space block">{TRANSLATIONS.cast_bidut[lang]}</span><strong className="text-white">{TRANSLATIONS.cast_name_bidut[lang]}</strong></li>
+                <li><span className="text-white/60 text-[10px] uppercase font-space block">{TRANSLATIONS.cast_motmo[lang]}</span><strong className="text-white">{TRANSLATIONS.cast_name_motmo[lang]}</strong></li>
+                <li><span className="text-white/60 text-[10px] uppercase font-space block">{TRANSLATIONS.cast_taj[lang]}</span><strong className="text-white">{TRANSLATIONS.cast_name_taj[lang]}</strong></li>
               </ul>
             </div>
 
@@ -888,28 +810,26 @@ export const ProjectLadylandView: React.FC<ProjectLadylandViewProps> = ({ onGoHo
                   {TRANSLATIONS.ladyland_prod_title[lang]}
                 </h5>
                 <ul className="text-[#c4c5da] space-y-3 text-sm">
-                  <li><span className="text-white/60 text-[10px] uppercase font-space block">{TRANSLATIONS.art_direction[lang]}</span><strong className="text-white">Hridita Anisha</strong></li>
-                  <li><span className="text-white/60 text-[10px] uppercase font-space block">{TRANSLATIONS.props_design[lang]}</span><strong className="text-white">Urukku.Bangladesh, Taranum Nirbir, Manzoor Real, Faiza Fairooz (Rhimjhim)</strong></li>
-                  <li><span className="text-white/60 text-[10px] uppercase font-space block">{TRANSLATIONS.light_design[lang]}</span><strong className="text-white">Junaid Eusuf</strong></li>
-                  <li><span className="text-white/60 text-[10px] uppercase font-space block">{TRANSLATIONS.crescent_arc_design[lang]}</span><strong className="text-white">Rashed Chowdhury, Rizat Hasan, Debjoti Barman Katha, Fatima Kamal Anonna (Dehsar Works)</strong></li>
-                  <li><span className="text-white/60 text-[10px] uppercase font-space block">{TRANSLATIONS.music[lang]}</span><strong className="text-white">J0N4K1 / জোনাকি</strong></li>
-                  <li><span className="text-white/60 text-[10px] uppercase font-space block">{TRANSLATIONS.composition[lang]}</span><strong className="text-white">Death Weil</strong></li>
-                  <li><span className="text-white/60 text-[10px] uppercase font-space block">{TRANSLATIONS.shadow_puppeteer[lang]}</span><strong className="text-white">Shafrin Islam</strong></li>
-                  <li><span className="text-white/60 text-[10px] uppercase font-space block">{TRANSLATIONS.shadow_puppet_assistant[lang]}</span><strong className="text-white">Anika Tabassum Nuzhat</strong></li>
-                  <li><span className="text-white/60 text-[10px] uppercase font-space block">{TRANSLATIONS.animation[lang]}</span><strong className="text-white">Fahim Arif</strong></li>
-                  <li><span className="text-white/60 text-[10px] uppercase font-space block">{TRANSLATIONS.choreography[lang]}</span><strong className="text-white">Shovan Surjo</strong></li>
-                  <li><span className="text-white/60 text-[10px] uppercase font-space block">{TRANSLATIONS.costume[lang]}</span><strong className="text-white">Bushra Islam Labonno</strong></li>
-                  <li><span className="text-white/60 text-[10px] uppercase font-space block">{TRANSLATIONS.makeup[lang]}</span><strong className="text-white">Robin Ahmed</strong></li>
-                  <li><span className="text-white/60 text-[10px] uppercase font-space block">{TRANSLATIONS.stage_assistants[lang]}</span><strong className="text-white">Priti Das, Md. Tanvir Jaman</strong></li>
-                  <li><span className="text-white/60 text-[10px] uppercase font-space block">{TRANSLATIONS.communication_design[lang]}</span><strong className="text-white">Tanaya Sayma</strong></li>
-                  <li><span className="text-white/60 text-[10px] uppercase font-space block">{TRANSLATIONS.volunteer_coordination[lang]}</span><strong className="text-white">Senin Chowdhury</strong></li>
-                  <li><span className="text-white/60 text-[10px] uppercase font-space block">{TRANSLATIONS.videography[lang]}</span><strong className="text-white">Hamid Hossen</strong></li>
+                  <li><span className="text-white/60 text-[10px] uppercase font-space block">{TRANSLATIONS.art_direction[lang]}</span><strong className="text-white">{TRANSLATIONS.person_hridita[lang]}</strong></li>
+                  <li><span className="text-white/60 text-[10px] uppercase font-space block">{TRANSLATIONS.props_design[lang]}</span><strong className="text-white">{TRANSLATIONS.person_props[lang]}</strong></li>
+                  <li><span className="text-white/60 text-[10px] uppercase font-space block">{TRANSLATIONS.light_design[lang]}</span><strong className="text-white">{TRANSLATIONS.person_junaid[lang]}</strong></li>
+                  <li><span className="text-white/60 text-[10px] uppercase font-space block">{TRANSLATIONS.crescent_arc_design[lang]}</span><strong className="text-white">{TRANSLATIONS.person_crescent[lang]}</strong></li>
+                  <li><span className="text-white/60 text-[10px] uppercase font-space block">{TRANSLATIONS.music[lang]}</span><strong className="text-white">{TRANSLATIONS.person_music[lang]}</strong></li>
+                  <li><span className="text-white/60 text-[10px] uppercase font-space block">{TRANSLATIONS.composition[lang]}</span><strong className="text-white">{TRANSLATIONS.person_death_weil[lang]}</strong></li>
+                  <li><span className="text-white/60 text-[10px] uppercase font-space block">{TRANSLATIONS.shadow_puppeteer[lang]}</span><strong className="text-white">{TRANSLATIONS.person_shafrin[lang]}</strong></li>
+                  <li><span className="text-white/60 text-[10px] uppercase font-space block">{TRANSLATIONS.shadow_puppet_assistant[lang]}</span><strong className="text-white">{TRANSLATIONS.person_anika_tabassum[lang]}</strong></li>
+                  <li><span className="text-white/60 text-[10px] uppercase font-space block">{TRANSLATIONS.animation[lang]}</span><strong className="text-white">{TRANSLATIONS.person_fahim[lang]}</strong></li>
+                  <li><span className="text-white/60 text-[10px] uppercase font-space block">{TRANSLATIONS.choreography[lang]}</span><strong className="text-white">{TRANSLATIONS.person_shovan[lang]}</strong></li>
+                  <li><span className="text-white/60 text-[10px] uppercase font-space block">{TRANSLATIONS.costume[lang]}</span><strong className="text-white">{TRANSLATIONS.person_bushra[lang]}</strong></li>
+                  <li><span className="text-white/60 text-[10px] uppercase font-space block">{TRANSLATIONS.makeup[lang]}</span><strong className="text-white">{TRANSLATIONS.person_robin[lang]}</strong></li>
+                  <li><span className="text-white/60 text-[10px] uppercase font-space block">{TRANSLATIONS.stage_assistants[lang]}</span><strong className="text-white">{TRANSLATIONS.person_stage_assistants[lang]}</strong></li>
+                  <li><span className="text-white/60 text-[10px] uppercase font-space block">{TRANSLATIONS.communication_design[lang]}</span><strong className="text-white">{TRANSLATIONS.person_tanaya[lang]}</strong></li>
+                  <li><span className="text-white/60 text-[10px] uppercase font-space block">{TRANSLATIONS.volunteer_coordination[lang]}</span><strong className="text-white">{TRANSLATIONS.person_senin[lang]}</strong></li>
+                  <li><span className="text-white/60 text-[10px] uppercase font-space block">{TRANSLATIONS.videography[lang]}</span><strong className="text-white">{TRANSLATIONS.person_hamid[lang]}</strong></li>
                 </ul>
               </div>
             </div>
           </div>
-
-          {/* Gratitude */}
           <div className="p-6 rounded-2xl bg-white/5 border border-white/10 space-y-3">
             <div>
               <span className="text-[#b9c3ff] font-space text-xs font-bold uppercase tracking-widest block mb-1">
