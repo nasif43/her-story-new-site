@@ -111,7 +111,7 @@ export const ProjectLadylandView: React.FC<ProjectLadylandViewProps> = ({ onGoHo
         return urlLang;
       }
     }
-    return 'EN';
+    return 'BN';
   });
 
   const handleSetLang = (newLang: 'EN' | 'BN') => {
