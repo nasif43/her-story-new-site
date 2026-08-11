@@ -487,11 +487,82 @@ export const ProjectLadylandView: React.FC<ProjectLadylandViewProps> = ({ onGoHo
                   href="https://tickify.live/event/project-ladyland-2026-chittagong/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-[#ffb0cd] hover:underline font-semibold flex items-center gap-1"
+                  className="amorphous-btn text-[#00228a] px-6 py-3.5 font-space font-bold text-xs uppercase tracking-wider pink-neon-glow cursor-pointer inline-flex items-center gap-2"
                 >
-                  <span>{TRANSLATIONS.show_reserve_tickify[lang]}</span>
-                  <ExternalLink className="w-3 h-3" />
+                  <span>{TRANSLATIONS.show_buy_chittagong[lang]}</span>
+                  <ExternalLink className="w-3.5 h-3.5" />
                 </a>
+              </div>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              {/* Dhaka Performance Location */}
+              <div className="bg-white/5 border border-white/10 p-6 rounded-2xl space-y-4 hover:border-[#b9c3ff]/50 transition-all">
+                <div className="flex items-center gap-2 text-[#b9c3ff]">
+                  <MapPin className="w-4 h-4 text-[#00dbe9]" />
+                  <span className="font-space text-xs font-bold uppercase tracking-wider">
+                    {TRANSLATIONS.venue_dhaka[lang]}
+                  </span>
+                </div>
+
+                <div className="flex flex-wrap gap-4">
+                  <div className="px-5 py-3 bg-white/5 border border-white/10 rounded-xl text-center min-w-[120px]">
+                    <div className="text-[#ffb0cd] text-xs font-bold font-space">{TRANSLATIONS.date_aug13[lang]}</div>
+                    <div className="text-white text-xl font-space font-bold">{TRANSLATIONS.time_6pm[lang]}</div>
+                  </div>
+
+                  <div className="px-5 py-3 bg-white/5 border border-white/10 rounded-xl text-center min-w-[120px]">
+                    <div className="text-[#ffb0cd] text-xs font-bold font-space">{TRANSLATIONS.date_aug14[lang]}</div>
+                    <div className="text-white text-xl font-space font-bold">{TRANSLATIONS.time_6pm[lang]}</div>
+                  </div>
+                </div>
+
+                <div className="pt-2 flex items-center justify-between text-xs text-[#c4c5da]">
+                  <span>{TRANSLATIONS.show_door_opens[lang]}</span>
+                  <a
+                    href="https://tickify.live/event/project-ladyland-2026-dac/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-[#00dbe9] hover:underline font-semibold flex items-center gap-1"
+                  >
+                    <span>{TRANSLATIONS.show_reserve_tickify[lang]}</span>
+                    <ExternalLink className="w-3 h-3" />
+                  </a>
+                </div>
+              </div>
+
+              {/* Chattogram Performance Location */}
+              <div className="bg-white/5 border border-white/10 p-6 rounded-2xl space-y-4 hover:border-[#ffb0cd]/50 transition-all">
+                <div className="flex items-center gap-2 text-[#ffb0cd]">
+                  <MapPin className="w-4 h-4 text-[#ff45a2]" />
+                  <span className="font-space text-xs font-bold uppercase tracking-wider">
+                    {TRANSLATIONS.venue_chittagong[lang]}
+                  </span>
+                </div>
+
+                <div className="flex flex-wrap gap-4">
+                  <div className="px-5 py-3 bg-white/5 border border-white/10 rounded-xl text-center min-w-[120px]">
+                    <div className="text-[#ffb0cd] text-xs font-bold font-space">{TRANSLATIONS.date_aug24[lang]}</div>
+                    <div className="text-white text-xl font-space font-bold">{TRANSLATIONS.time_6pm[lang]}</div>
+                  </div>
+                  <div className="px-5 py-3 bg-white/5 border border-white/10 rounded-xl text-center min-w-[120px]">
+                    <div className="text-[#ffb0cd] text-xs font-bold font-space">{TRANSLATIONS.date_aug25[lang]}</div>
+                    <div className="text-white text-xl font-space font-bold">{TRANSLATIONS.time_6pm[lang]}</div>
+                  </div>
+                </div>
+
+                <div className="pt-2 flex items-center justify-between text-xs text-[#c4c5da]">
+                  <span>{TRANSLATIONS.show_door_opens[lang]}</span>
+                  <a
+                    href="https://tickify.live/event/project-ladyland-2026-chittagong/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-[#ffb0cd] hover:underline font-semibold flex items-center gap-1"
+                  >
+                    <span>{TRANSLATIONS.show_reserve_tickify[lang]}</span>
+                    <ExternalLink className="w-3 h-3" />
+                  </a>
+                </div>
               </div>
             </div>
           </div>
@@ -1011,7 +1082,7 @@ export const ProjectLadylandView: React.FC<ProjectLadylandViewProps> = ({ onGoHo
                   <div className="text-[#ffb0cd] uppercase font-bold text-[10px]">Reference ID</div>
                   <div className="text-xl font-mono font-bold text-white tracking-widest">{ticketRefId}</div>
                   <div className="text-[#c4c5da] pt-1">
-                    {ticketCity} — {ticketDate} @ 18:00 ({ticketQty} Seat{ticketQty > 1 ? 's' : ''})
+                    {ticketCity} — {ticketDate} @ 7:00 PM ({ticketQty} Seat{ticketQty > 1 ? 's' : ''})
                   </div>
                 </div>
 
@@ -1039,7 +1110,7 @@ export const ProjectLadylandView: React.FC<ProjectLadylandViewProps> = ({ onGoHo
                       onChange={(e) => {
                         const city = e.target.value as 'Dhaka' | 'Chattogram';
                         setTicketCity(city);
-                        setTicketDate(city === 'Dhaka' ? 'JUL 13' : 'JUL 25');
+                        setTicketDate(city === 'Dhaka' ? 'AUG 13' : 'AUG 24');
                       }}
                       className="w-full bg-white/10 border border-white/20 p-2.5 rounded-xl text-xs text-white focus:outline-none focus:border-[#00dbe9]"
                     >
@@ -1059,11 +1130,14 @@ export const ProjectLadylandView: React.FC<ProjectLadylandViewProps> = ({ onGoHo
                     >
                       {ticketCity === 'Dhaka' ? (
                         <>
-                          <option value="JUL 13" className="bg-[#11131d]">JUL 13 (18:00)</option>
-                          <option value="JUL 14" className="bg-[#11131d]">JUL 14 (18:00)</option>
+                          <option value="AUG 13" className="bg-[#11131d]">AUG 13 (7:00 PM)</option>
+                          <option value="AUG 14" className="bg-[#11131d]">AUG 14 (7:00 PM)</option>
                         </>
                       ) : (
-                        <option value="JUL 25" className="bg-[#11131d]">JUL 25 (18:00)</option>
+                        <>
+                          <option value="AUG 24" className="bg-[#11131d]">AUG 24 (7:00 PM)</option>
+                          <option value="AUG 25" className="bg-[#11131d]">AUG 25 (7:00 PM)</option>
+                        </>
                       )}
                     </select>
                   </div>
@@ -1432,7 +1506,7 @@ export const ProjectLadylandView: React.FC<ProjectLadylandViewProps> = ({ onGoHo
                         {new Date(vote.timestamp).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
                       </span>
                       <span className={`font-space font-bold ${vote.choice === 'GRANT' ? 'text-[#00dbe9]' : 'text-[#ff45a2]'}`}>
-                        {vote.choice === 'GRANT' ? '{TRANSLATIONS.vote_grant[lang]}' : '{TRANSLATIONS.vote_deny[lang]}'}
+                        {vote.choice === 'GRANT' ? TRANSLATIONS.vote_grant[lang] : TRANSLATIONS.vote_deny[lang]}
                       </span>
                       <span className="text-white/40 text-[11px] truncate">
                         {vote.userEmail || 'Ladyland Portal'}

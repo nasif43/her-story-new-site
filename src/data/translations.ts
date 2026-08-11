@@ -86,7 +86,7 @@ export const TRANSLATIONS = {
     "BN": "সন্ধ্যা ৭টা"
   },
   "show_door_opens": {
-    "EN": "Door opens 6:45 pm",
+    "EN": "Door opens 6:45 PM",
     "BN": "হল খুলবে ৬:৪৫ মিনিটে"
   },
   "show_reserve_tickify": {
@@ -362,8 +362,8 @@ export const TRANSLATIONS = {
     "BN": "আগমন"
   },
   "arrival_time": {
-    "EN": "Doors open at 17:45",
-    "BN": "হল খুলবে ৫.৪৫ মিনিটে"
+    "EN": "Doors open at 6:45 PM",
+    "BN": "হল খুলবে ৬:৪৫ মিনিটে"
   },
   "arrival_desc": {
     "EN": "Please arrive 30 mins before performance.",
