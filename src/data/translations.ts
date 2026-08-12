@@ -498,8 +498,8 @@ export const TRANSLATIONS = {
     "BN": "তাওসিয়াদ শাওলিন"
   },
   "cast_name_sara": {
-    "EN": "Mithila Paul",
-    "BN": "মিথিলা পাল"
+    "EN": "Priti Das",
+    "BN": "প্রীতি দাস"
   },
   "cast_name_shishir": {
     "EN": "Salim Shadman (Sasha)",
