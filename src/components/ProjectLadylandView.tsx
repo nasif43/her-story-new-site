@@ -138,8 +138,8 @@ export const ProjectLadylandView: React.FC<ProjectLadylandViewProps> = ({ onGoHo
 
   // Ticket Modal State
   const [ticketModalOpen, setTicketModalOpen] = useState(false);
-  const [ticketCity, setTicketCity] = useState<'Dhaka' | 'Chattogram'>('Dhaka');
-  const [ticketDate, setTicketDate] = useState('AUG 13');
+  const [ticketCity, setTicketCity] = useState<'Dhaka' | 'Chattogram'>('Chattogram');
+  const [ticketDate, setTicketDate] = useState('AUG 24');
   const [ticketQty, setTicketQty] = useState(2);
   const [ticketTier, setTicketTier] = useState<'Standard' | 'Supporter' | 'Student'>('Standard');
   const [buyerName, setBuyerName] = useState('');
@@ -387,15 +387,18 @@ export const ProjectLadylandView: React.FC<ProjectLadylandViewProps> = ({ onGoHo
               </button>
             </div>
 
-            <a
-              href="https://tickify.live/event/project-ladyland-2026-dac/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="amorphous-btn text-[#00228a] px-4 py-2 font-space text-[11px] font-bold uppercase tracking-widest cursor-pointer shadow-md inline-flex items-center gap-1.5"
-            >
-              <span>{TRANSLATIONS.header_get_tickets[lang]}</span>
-              <ExternalLink className="w-3 h-3" />
-            </a>
+            <div className="flex items-center gap-2">
+              <span className="hidden lg:inline-flex px-2.5 py-1 rounded-full bg-red-500/20 border border-red-500/40 text-red-300 font-space text-[10px] font-bold uppercase tracking-wider line-through">
+                {TRANSLATIONS.dhaka_sold_out_badge[lang]}
+              </span>
+              <a
+                href="#section-tickets"
+                className="amorphous-btn text-[#00228a] px-4 py-2 font-space text-[11px] font-bold uppercase tracking-widest cursor-pointer shadow-md inline-flex items-center gap-1.5"
+              >
+                <span>{TRANSLATIONS.header_get_tickets[lang]}</span>
+                <ChevronRight className="w-3 h-3" />
+              </a>
+            </div>
           </div>
         </nav>
       </div>
@@ -420,6 +423,10 @@ export const ProjectLadylandView: React.FC<ProjectLadylandViewProps> = ({ onGoHo
               <span className="px-3.5 py-1 rounded-full bg-[#0047ff]/20 border border-[#0047ff]/40 text-[#b9c3ff] font-space text-[11px] font-bold uppercase tracking-widest backdrop-blur-sm">
                 {TRANSLATIONS.hero_cities[lang]}
               </span>
+              <span className="px-3.5 py-1 rounded-full bg-red-500/20 border border-red-500/40 text-red-300 font-space text-[11px] font-bold uppercase tracking-widest backdrop-blur-sm flex items-center gap-1.5 shadow-md">
+                <span className="w-2 h-2 rounded-full bg-red-400 animate-pulse"></span>
+                <span>{TRANSLATIONS.dhaka_sold_out[lang]}</span>
+              </span>
             </div>
 
             <h1 className="font-space text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight text-white leading-none">
@@ -434,16 +441,21 @@ export const ProjectLadylandView: React.FC<ProjectLadylandViewProps> = ({ onGoHo
               )}
             </p>
 
-            <div className="pt-2">
+            <div className="pt-2 flex flex-wrap items-center gap-4">
               <a
-                href="https://tickify.live/event/project-ladyland-2026-dac/"
+                href="https://tickify.live/event/project-ladyland-2026-chittagong/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="amorphous-btn text-[#00228a] px-8 py-4 font-space font-bold text-sm uppercase tracking-widest neon-box-glow cursor-pointer inline-flex items-center gap-2"
               >
-                <span>{TRANSLATIONS.hero_reserve_tickets[lang]}</span>
+                <span>{lang === 'EN' ? 'GET CHATTOGRAM TICKETS' : 'চট্টগ্রামের টিকিট কাটুন'}</span>
                 <ExternalLink className="w-4 h-4" />
               </a>
+
+              <div className="px-4 py-3 rounded-2xl bg-red-950/70 border border-red-500/50 text-red-200 font-space text-xs font-bold uppercase tracking-wider flex items-center gap-2 backdrop-blur-md shadow-lg">
+                <span className="w-2 h-2 rounded-full bg-red-400 animate-ping"></span>
+                <span>{TRANSLATIONS.dhaka_sold_out[lang]}</span>
+              </div>
             </div>
           </div>
 
@@ -473,16 +485,13 @@ export const ProjectLadylandView: React.FC<ProjectLadylandViewProps> = ({ onGoHo
                 </p>
               </div>
 
-              <div className="flex flex-wrap gap-3">
-                <a
-                  href="https://tickify.live/event/project-ladyland-2026-dac/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="amorphous-btn text-[#00228a] px-6 py-3.5 font-space font-bold text-xs uppercase tracking-wider neon-box-glow cursor-pointer inline-flex items-center gap-2"
-                >
-                  <span>{TRANSLATIONS.show_buy_dhaka[lang]}</span>
-                  <ExternalLink className="w-3.5 h-3.5" />
-                </a>
+              <div className="flex flex-wrap items-center gap-3">
+                <div className="px-6 py-3.5 rounded-2xl bg-red-950/60 border border-red-500/50 text-red-300 font-space font-bold text-xs uppercase tracking-wider inline-flex items-center gap-2 shadow-inner">
+                  <span className="line-through">{TRANSLATIONS.show_buy_dhaka[lang]}</span>
+                  <span className="bg-red-500/30 text-red-100 text-[10px] px-2 py-0.5 rounded border border-red-400/40">
+                    {lang === 'EN' ? 'SOLD OUT' : 'আসন পূর্ণ'}
+                  </span>
+                </div>
                 <a
                   href="https://tickify.live/event/project-ladyland-2026-chittagong/"
                   target="_blank"
@@ -496,38 +505,52 @@ export const ProjectLadylandView: React.FC<ProjectLadylandViewProps> = ({ onGoHo
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              {/* Dhaka Performance Location */}
-              <div className="bg-white/5 border border-white/10 p-6 rounded-2xl space-y-4 hover:border-[#b9c3ff]/50 transition-all">
-                <div className="flex items-center gap-2 text-[#b9c3ff]">
-                  <MapPin className="w-4 h-4 text-[#00dbe9]" />
-                  <span className="font-space text-xs font-bold uppercase tracking-wider">
-                    {TRANSLATIONS.venue_dhaka[lang]}
+              {/* Dhaka Performance Location (SOLD OUT OVERLAY) */}
+              <div className="relative bg-red-950/20 border border-red-500/40 p-6 rounded-2xl space-y-4 overflow-hidden group">
+                {/* Sold out overlay banner */}
+                <div className="p-3 bg-red-950/80 border border-red-500/60 rounded-xl text-center flex items-center justify-center gap-2 shadow-lg backdrop-blur-md">
+                  <span className="w-2.5 h-2.5 rounded-full bg-red-400 animate-pulse" />
+                  <span className="font-space text-xs md:text-sm font-bold text-red-200 tracking-wide uppercase">
+                    {TRANSLATIONS.dhaka_sold_out[lang]}
                   </span>
                 </div>
 
-                <div className="flex flex-wrap gap-4">
-                  <div className="px-5 py-3 bg-white/5 border border-white/10 rounded-xl text-center min-w-[120px]">
-                    <div className="text-[#ffb0cd] text-xs font-bold font-space">{TRANSLATIONS.date_aug13[lang]}</div>
-                    <div className="text-white text-xl font-space font-bold">{TRANSLATIONS.time_6pm[lang]}</div>
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-2 text-red-300 opacity-80">
+                    <MapPin className="w-4 h-4 text-red-400" />
+                    <span className="font-space text-xs font-bold uppercase tracking-wider line-through">
+                      {TRANSLATIONS.venue_dhaka[lang]}
+                    </span>
+                  </div>
+                  <span className="px-2.5 py-0.5 rounded bg-red-500/30 text-red-100 font-space text-[10px] font-bold border border-red-400/40 uppercase">
+                    {lang === 'EN' ? 'FULL CAPACITY' : 'আসন পূর্ণ'}
+                  </span>
+                </div>
+
+                <div className="flex flex-wrap gap-4 opacity-75">
+                  <div className="relative px-5 py-3 bg-red-950/40 border border-red-500/30 rounded-xl text-center min-w-[120px] overflow-hidden">
+                    <div className="text-red-300/70 text-xs font-bold font-space line-through">{TRANSLATIONS.date_aug13[lang]}</div>
+                    <div className="text-red-200/60 text-xl font-space font-bold line-through">{TRANSLATIONS.time_6pm[lang]}</div>
+                    <span className="absolute inset-0 bg-black/40 flex items-center justify-center font-space text-[10px] font-bold text-red-300 uppercase tracking-widest rotate-[-12deg] border-y border-red-500/30">
+                      {lang === 'EN' ? 'SOLD OUT' : 'আসন পূর্ণ'}
+                    </span>
                   </div>
 
-                  <div className="px-5 py-3 bg-white/5 border border-white/10 rounded-xl text-center min-w-[120px]">
-                    <div className="text-[#ffb0cd] text-xs font-bold font-space">{TRANSLATIONS.date_aug14[lang]}</div>
-                    <div className="text-white text-xl font-space font-bold">{TRANSLATIONS.time_6pm[lang]}</div>
+                  <div className="relative px-5 py-3 bg-red-950/40 border border-red-500/30 rounded-xl text-center min-w-[120px] overflow-hidden">
+                    <div className="text-red-300/70 text-xs font-bold font-space line-through">{TRANSLATIONS.date_aug14[lang]}</div>
+                    <div className="text-red-200/60 text-xl font-space font-bold line-through">{TRANSLATIONS.time_6pm[lang]}</div>
+                    <span className="absolute inset-0 bg-black/40 flex items-center justify-center font-space text-[10px] font-bold text-red-300 uppercase tracking-widest rotate-[-12deg] border-y border-red-500/30">
+                      {lang === 'EN' ? 'SOLD OUT' : 'আসন পূর্ণ'}
+                    </span>
                   </div>
                 </div>
 
-                <div className="pt-2 flex items-center justify-between text-xs text-[#c4c5da]">
-                  <span>{TRANSLATIONS.show_door_opens[lang]}</span>
-                  <a
-                    href="https://tickify.live/event/project-ladyland-2026-dac/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-[#00dbe9] hover:underline font-semibold flex items-center gap-1"
-                  >
-                    <span>{TRANSLATIONS.show_reserve_tickify[lang]}</span>
-                    <ExternalLink className="w-3 h-3" />
-                  </a>
+                <div className="pt-2 flex flex-wrap items-center justify-between gap-2 text-xs text-red-300/80">
+                  <span className="line-through opacity-60">{TRANSLATIONS.show_door_opens[lang]}</span>
+                  <span className="font-space font-bold text-[11px] text-red-300 bg-red-500/20 px-3 py-1 rounded-full border border-red-500/40 flex items-center gap-1.5">
+                    <span className="w-1.5 h-1.5 rounded-full bg-red-400"></span>
+                    <span>{TRANSLATIONS.dhaka_tickets_sold_out_msg[lang]}</span>
+                  </span>
                 </div>
               </div>
 
@@ -1109,12 +1132,15 @@ export const ProjectLadylandView: React.FC<ProjectLadylandViewProps> = ({ onGoHo
                       value={ticketCity}
                       onChange={(e) => {
                         const city = e.target.value as 'Dhaka' | 'Chattogram';
+                        if (city === 'Dhaka') return;
                         setTicketCity(city);
-                        setTicketDate(city === 'Dhaka' ? 'AUG 13' : 'AUG 24');
+                        setTicketDate('AUG 24');
                       }}
                       className="w-full bg-white/10 border border-white/20 p-2.5 rounded-xl text-xs text-white focus:outline-none focus:border-[#00dbe9]"
                     >
-                      <option value="Dhaka" className="bg-[#11131d]">Dhaka (Mahila Samity)</option>
+                      <option value="Dhaka" disabled className="bg-[#11131d] text-gray-500 line-through">
+                        Dhaka (Mahila Samity) — SOLD OUT / আসন পূর্ণ
+                      </option>
                       <option value="Chattogram" className="bg-[#11131d]">Chattogram (Theatre Inst.)</option>
                     </select>
                   </div>
@@ -1128,20 +1154,18 @@ export const ProjectLadylandView: React.FC<ProjectLadylandViewProps> = ({ onGoHo
                       onChange={(e) => setTicketDate(e.target.value)}
                       className="w-full bg-white/10 border border-white/20 p-2.5 rounded-xl text-xs text-white focus:outline-none focus:border-[#00dbe9]"
                     >
-                      {ticketCity === 'Dhaka' ? (
-                        <>
-                          <option value="AUG 13" className="bg-[#11131d]">AUG 13 (7:00 PM)</option>
-                          <option value="AUG 14" className="bg-[#11131d]">AUG 14 (7:00 PM)</option>
-                        </>
-                      ) : (
-                        <>
-                          <option value="AUG 24" className="bg-[#11131d]">AUG 24 (7:00 PM)</option>
-                          <option value="AUG 25" className="bg-[#11131d]">AUG 25 (7:00 PM)</option>
-                        </>
-                      )}
+                      <option value="AUG 24" className="bg-[#11131d]">AUG 24 (7:00 PM)</option>
+                      <option value="AUG 25" className="bg-[#11131d]">AUG 25 (7:00 PM)</option>
                     </select>
                   </div>
                 </div>
+
+                {ticketCity === 'Dhaka' && (
+                  <div className="p-3 rounded-xl bg-red-950/70 border border-red-500/50 text-red-200 font-space text-xs font-bold flex items-center gap-2">
+                    <span>⚠️</span>
+                    <span>{TRANSLATIONS.dhaka_sold_out[lang]}</span>
+                  </div>
+                )}
 
                 <div className="grid grid-cols-2 gap-3">
                   <div>

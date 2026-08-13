@@ -53,6 +53,18 @@ export const TRANSLATIONS = {
     "EN": "BUY DHAKA TICKETS",
     "BN": "ঢাকার টিকিট কিনুন"
   },
+  "dhaka_sold_out": {
+    "EN": "DHAKA SHOWS AT FULL CAPACITY",
+    "BN": "ঢাকার সব প্রদর্শনীর আসন পূর্ণ হয়ে গিয়েছে"
+  },
+  "dhaka_sold_out_badge": {
+    "EN": "DHAKA SOLD OUT",
+    "BN": "ঢাকা সোল্ড আউট"
+  },
+  "dhaka_tickets_sold_out_msg": {
+    "EN": "Dhaka show tickets are no longer available.",
+    "BN": "ঢাকার প্রদর্শনীর টিকিট আর পাওয়া যাচ্ছে না।"
+  },
   "show_buy_chittagong": {
     "EN": "BUY CHITTAGONG TICKETS",
     "BN": "চট্টগ্রামের টিকিট কিনুন"
