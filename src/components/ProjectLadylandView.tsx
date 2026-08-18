@@ -568,10 +568,6 @@ export const ProjectLadylandView: React.FC<ProjectLadylandViewProps> = ({ onGoHo
                     <div className="text-[#ffb0cd] text-xs font-bold font-space">{TRANSLATIONS.date_aug24[lang]}</div>
                     <div className="text-white text-xl font-space font-bold">{TRANSLATIONS.time_6pm[lang]}</div>
                   </div>
-                  <div className="px-5 py-3 bg-white/5 border border-white/10 rounded-xl text-center min-w-[120px]">
-                    <div className="text-[#ffb0cd] text-xs font-bold font-space">{TRANSLATIONS.date_aug25[lang]}</div>
-                    <div className="text-white text-xl font-space font-bold">{TRANSLATIONS.time_6pm[lang]}</div>
-                  </div>
                 </div>
 
                 <div className="pt-2 flex items-center justify-between text-xs text-[#c4c5da]">
@@ -1155,7 +1151,6 @@ export const ProjectLadylandView: React.FC<ProjectLadylandViewProps> = ({ onGoHo
                       className="w-full bg-white/10 border border-white/20 p-2.5 rounded-xl text-xs text-white focus:outline-none focus:border-[#00dbe9]"
                     >
                       <option value="AUG 24" className="bg-[#11131d]">AUG 24 (7:00 PM)</option>
-                      <option value="AUG 25" className="bg-[#11131d]">AUG 25 (7:00 PM)</option>
                     </select>
                   </div>
                 </div>
