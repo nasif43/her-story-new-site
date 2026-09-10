@@ -45,7 +45,7 @@ export const OngoingProgramme: React.FC<OngoingProgrammeProps> = ({
           <div className="flex items-center gap-4">
             <button
               onClick={() => onSelectDream(ladylandItem)}
-              className="font-sans-ui text-xs font-bold text-white uppercase tracking-wider border-b-2 border-white hover:text-[#D672CE] hover:border-[#D672CE] transition-all pb-1 cursor-pointer"
+              className="font-sans-ui text-xs font-bold text-white uppercase tracking-wider border-b-2 border-white hover:text-white/70 hover:border-white/70 transition-all pb-1 cursor-pointer"
             >
               LEARN MORE
             </button>

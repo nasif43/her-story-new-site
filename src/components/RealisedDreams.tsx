@@ -25,7 +25,7 @@ export const RealisedDreams: React.FC<RealisedDreamsProps> = ({
         <h2 className="font-serif-editorial text-3xl sm:text-4xl md:text-5xl text-[#D64E0E] font-semibold">
           Realised Dreams
         </h2>
-        <div className="w-24 h-1 bg-[#D672CE] mx-auto mt-4 rounded-full" />
+        <div className="w-24 h-1 bg-white/90 mx-auto mt-4 rounded-full" />
       </div>
 
       {/* Filter Categories */}

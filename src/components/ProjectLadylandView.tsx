@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { PhotoCarousel } from './Carousel';
 import { TRANSLATIONS } from '../data/translations';
 import {
   Calendar,
@@ -159,7 +160,17 @@ export const ProjectLadylandView: React.FC<ProjectLadylandViewProps> = ({ onGoHo
 
   // Newsletter State
   const [newsletterEmail, setNewsletterEmail] = useState('');
+  
   const [newsletterSubscribed, setNewsletterSubscribed] = useState(false);
+    const [expandedPillow, setExpandedPillowState] = useState<string | null>(null);
+
+  useEffect(() => {
+        (window as any).setExpandedPillow = setExpandedPillowState;
+    return () => {
+            delete (window as any).setExpandedPillow;
+    };
+  }, []);
+
 
   // Fetch Live Google Sheet Data on mount
   useEffect(() => {
@@ -381,7 +392,7 @@ export const ProjectLadylandView: React.FC<ProjectLadylandViewProps> = ({ onGoHo
               <span className="opacity-20">/</span>
               <button
                 onClick={() => handleSetLang('BN')}
-                className={`font-bold ${lang === 'BN' ? 'text-[#ffb0cd]' : 'text-[#c4c5da] hover:text-white'}`}
+                className={`font-bold ${lang === 'BN' ? 'text-white drop-shadow-[0_0_8px_rgba(255,255,255,0.8)]' : 'text-[#c4c5da] hover:text-white'}`}
               >
                 {TRANSLATIONS.header_toggle[lang].split(' / ')[1]}
               </button>
@@ -407,17 +418,18 @@ export const ProjectLadylandView: React.FC<ProjectLadylandViewProps> = ({ onGoHo
         {/* 1. Cinematic Hero & Video Section */}
         <section className="relative rounded-3xl overflow-hidden glass-panel border border-white/10 p-8 md:p-14 bg-[#0a0c16]/80">
           {/* Background Image Layer */}
-          <div className="absolute inset-0 z-0 overflow-hidden opacity-30 pointer-events-none">
+          <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
             <img
-              src="/header-image.png"
+              src="/images/header/header-26.jpg"
               alt="Project Ladyland Atmosphere"
-              className="w-full h-full object-cover"
+              className="w-full h-full object-cover opacity-50 mix-blend-screen"
             />
+            <div className="absolute inset-0 bg-gradient-to-r from-[#0a0c16] via-[#0a0c16]/70 to-transparent" />
           </div>
 
           <div className="relative z-20 space-y-6 max-w-3xl">
             <div className="flex flex-wrap items-center gap-3">
-              <span className="px-3.5 py-1 rounded-full bg-[#ff45a2]/20 border border-[#ff45a2]/40 text-[#ffb0cd] font-space text-[11px] font-bold uppercase tracking-widest">
+              <span className="px-3.5 py-1 rounded-full bg-[#ff45a2]/20 border border-[#ff45a2]/40 text-white drop-shadow-[0_0_8px_rgba(255,255,255,0.8)] font-space text-[11px] font-bold uppercase tracking-widest">
                 {TRANSLATIONS.hero_immersive[lang]}
               </span>
               <span className="px-3.5 py-1 rounded-full bg-[#0047ff]/20 border border-[#0047ff]/40 text-[#b9c3ff] font-space text-[11px] font-bold uppercase tracking-widest backdrop-blur-sm">
@@ -429,11 +441,11 @@ export const ProjectLadylandView: React.FC<ProjectLadylandViewProps> = ({ onGoHo
               </span>
             </div>
 
-            <h1 className="font-space text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight text-white leading-none">
+            <h1 className="font-space text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-[#ffffff] via-[#ffb0cd] to-[#00dbe9] drop-shadow-[0_0_15px_rgba(255,255,255,0.3)] leading-none">
               {TRANSLATIONS.hero_title[lang]}
             </h1>
 
-            <p className="text-lg md:text-xl text-[#c4c5da] font-inter leading-relaxed font-light">
+            <p className="text-lg md:text-xl text-white font-inter leading-relaxed font-light drop-shadow-md">
               {lang === 'EN' ? (
                 <>A speculative techno-feminist performance inspired by Rokeya Sakhawat Hossain's 1905 utopian vision <i>Sultana's Dream</i>. Reimagining climate harmony, carecraft, and universal equality through participatory theatre, shadow puppetry, and recycled ornamentation.</>
               ) : (
@@ -474,7 +486,7 @@ export const ProjectLadylandView: React.FC<ProjectLadylandViewProps> = ({ onGoHo
 
             <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-8 border-b border-white/10 pb-8 mb-8">
               <div>
-                <span className="text-[#ffb0cd] font-space text-xs uppercase tracking-widest font-bold block mb-2">
+                <span className="text-white drop-shadow-[0_0_8px_rgba(255,255,255,0.8)] font-space text-xs uppercase tracking-widest font-bold block mb-2">
                   {TRANSLATIONS.show_upcoming_title[lang]}
                 </span>
                 <h2 className="text-3xl md:text-4xl font-space font-bold text-white">
@@ -556,7 +568,7 @@ export const ProjectLadylandView: React.FC<ProjectLadylandViewProps> = ({ onGoHo
 
               {/* Chattogram Performance Location */}
               <div className="bg-white/5 border border-white/10 p-6 rounded-2xl space-y-4 hover:border-[#ffb0cd]/50 transition-all">
-                <div className="flex items-center gap-2 text-[#ffb0cd]">
+                <div className="flex items-center gap-2 text-white drop-shadow-[0_0_8px_rgba(255,255,255,0.8)]">
                   <MapPin className="w-4 h-4 text-[#ff45a2]" />
                   <span className="font-space text-xs font-bold uppercase tracking-wider">
                     {TRANSLATIONS.venue_chittagong[lang]}
@@ -565,7 +577,7 @@ export const ProjectLadylandView: React.FC<ProjectLadylandViewProps> = ({ onGoHo
 
                 <div className="flex flex-wrap gap-4">
                   <div className="px-5 py-3 bg-white/5 border border-white/10 rounded-xl text-center min-w-[120px]">
-                    <div className="text-[#ffb0cd] text-xs font-bold font-space">{TRANSLATIONS.date_aug24[lang]}</div>
+                    <div className="text-white drop-shadow-[0_0_8px_rgba(255,255,255,0.8)] text-xs font-bold font-space">{TRANSLATIONS.date_aug24[lang]}</div>
                     <div className="text-white text-xl font-space font-bold">{TRANSLATIONS.time_6pm[lang]}</div>
                   </div>
                 </div>
@@ -576,7 +588,7 @@ export const ProjectLadylandView: React.FC<ProjectLadylandViewProps> = ({ onGoHo
                     href="https://tickify.live/event/project-ladyland-2026-chittagong/"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-[#ffb0cd] hover:underline font-semibold flex items-center gap-1"
+                    className="text-white drop-shadow-[0_0_8px_rgba(255,255,255,0.8)] hover:underline font-semibold flex items-center gap-1"
                   >
                     <span>{TRANSLATIONS.show_reserve_tickify[lang]}</span>
                     <ExternalLink className="w-3 h-3" />
@@ -586,6 +598,13 @@ export const ProjectLadylandView: React.FC<ProjectLadylandViewProps> = ({ onGoHo
             </div>
           </div>
         </section>
+
+
+        {/* CAROUSEL SECTION */}
+        <section className="scroll-mt-24 mb-16 relative">
+          <PhotoCarousel images={Array.from({length: 25}, (_, i) => `/images/carousel/Project Ladyland 2026_PC Shadab Shahrokh Hai for HerStory Foundation_${i+1}.jpg`)} />
+        </section>
+
 
         {/* 3. "WHAT FUTURE DO WE WANT?" Banner & Reimagining */}
         <section id="section-synopsis" className="scroll-mt-24 space-y-16">
@@ -597,7 +616,7 @@ export const ProjectLadylandView: React.FC<ProjectLadylandViewProps> = ({ onGoHo
 
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div className="space-y-6">
-              <span className="text-[#ffb0cd] font-space text-xs font-bold uppercase tracking-widest block">
+              <span className="text-white drop-shadow-[0_0_8px_rgba(255,255,255,0.8)] font-space text-xs font-bold uppercase tracking-widest block">
                 {TRANSLATIONS.dream_reimagining[lang]}
               </span>
               <h3 className="text-3xl md:text-4xl font-space font-bold text-white">
@@ -635,9 +654,86 @@ export const ProjectLadylandView: React.FC<ProjectLadylandViewProps> = ({ onGoHo
           </div>
 
           {/* {TRANSLATIONS.where_title[lang]} */}
+          </section>
+        
+        <section id="section-vote" className="scroll-mt-24">
+          <div className="glass-panel p-10 md:p-16 rounded-3xl text-center space-y-8 relative overflow-hidden border border-white/10 shadow-2xl">
+            <div className="space-y-3">
+              <span className="text-white drop-shadow-[0_0_8px_rgba(255,255,255,0.8)] font-space text-xs font-bold uppercase tracking-widest block">
+                {TRANSLATIONS.participatory_decision[lang]}
+              </span>
+              <h3 className="text-3xl sm:text-5xl font-space font-bold text-white">
+                {TRANSLATIONS.final_choice[lang]}
+              </h3>
+              <p className="text-base sm:text-lg text-[#c4c5da] max-w-2xl mx-auto">
+                {TRANSLATIONS.vote_question[lang]}
+              </p>
+            </div>
+
+            {/* Voting Buttons or Results */}
+            {!hasVoted ? (
+              <div className="flex flex-col sm:flex-row justify-center items-center gap-6 pt-4">
+                <button
+                  onClick={() => handleVote('GRANT')}
+                  className="amorphous-btn w-full sm:w-auto px-10 py-4 text-[#00228a] font-space font-bold text-sm uppercase tracking-widest neon-box-glow cursor-pointer"
+                >
+                  {TRANSLATIONS.vote_grant[lang]}
+                </button>
+
+                <span className="text-white/40 font-space italic text-sm">{TRANSLATIONS.vote_or[lang]}</span>
+
+                <button
+                  onClick={() => handleVote('DENY')}
+                  className="amorphous-btn w-full sm:w-auto px-10 py-4 text-[#00228a] font-space font-bold text-sm uppercase tracking-widest pink-neon-glow cursor-pointer"
+                >
+                  {TRANSLATIONS.vote_deny[lang]}
+                </button>
+              </div>
+            ) : (
+              <div className="max-w-xl mx-auto space-y-6 pt-4 animate-in fade-in duration-500">
+                <div className="p-4 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center gap-2 text-[#00dbe9] font-space text-xs sm:text-sm font-bold">
+                  <CheckCircle2 className="w-5 h-5 text-white drop-shadow-[0_0_8px_rgba(255,255,255,0.8)]" />
+                  <span>Your vote ({hasVoted === 'GRANT' ? 'Granting' : 'Denying'} Night Rights) has been saved to the official sheet ledger!</span>
+                </div>
+
+                <div className="space-y-4 font-space text-xs">
+                  <div>
+                    <div className="flex justify-between text-white font-bold mb-1">
+                      <span>{TRANSLATIONS.vote_grant[lang]}</span>
+                      <span>{grantPercent}% ({voteCounts.grant} votes)</span>
+                    </div>
+                    <div className="w-full h-3 bg-white/10 rounded-full overflow-hidden">
+                      <div
+                        className="h-full bg-gradient-to-r from-[#00dbe9] to-[#b9c3ff] transition-all duration-1000"
+                        style={{ width: `${grantPercent}%` }}
+                      />
+                    </div>
+                  </div>
+
+                  <div>
+                    <div className="flex justify-between text-white font-bold mb-1">
+                      <span>{TRANSLATIONS.vote_deny[lang]}</span>
+                      <span>{denyPercent}% ({voteCounts.deny} votes)</span>
+                    </div>
+                    <div className="w-full h-3 bg-white/10 rounded-full overflow-hidden">
+                      <div
+                        className="h-full bg-gradient-to-r from-[#ff45a2] to-[#ffb0cd] transition-all duration-1000"
+                        style={{ width: `${denyPercent}%` }}
+                      />
+                    </div>
+                  </div>
+                </div>
+
+
+              </div>
+            )}
+          </div>
+        </section>
+        
+        <section className="scroll-mt-24 space-y-16">
           <div className="glass-panel p-8 md:p-12 rounded-3xl space-y-8 border border-white/10">
             <div className="space-y-4">
-              <h4 className="text-2xl md:text-3xl font-space font-bold text-[#ffb0cd] uppercase tracking-wider neon-text-glow">
+              <h4 className="text-2xl md:text-3xl font-space font-bold text-white drop-shadow-[0_0_8px_rgba(255,255,255,0.8)] uppercase tracking-wider neon-text-glow">
                 {TRANSLATIONS.where_title[lang]}
               </h4>
               <p className="text-base md:text-lg text-[#c4c5da] leading-relaxed font-inter">
@@ -655,6 +751,104 @@ export const ProjectLadylandView: React.FC<ProjectLadylandViewProps> = ({ onGoHo
             </div>
           </div>
         </section>
+        
+        
+        {/* PRESS SECTION */}
+        <section className="scroll-mt-24 mb-16">
+          <div className="glass-panel p-8 md:p-12 rounded-3xl border border-white/10 shadow-2xl">
+            <h3 className="text-3xl font-space font-bold text-white mb-8 neon-text-glow">Press & Reviews</h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+              <a href="https://www.nutshelltoday.com/article/project-ladyland-sultana-reboot" target="_blank" rel="noopener noreferrer" className="rounded-2xl bg-white/5 hover:bg-white/10 border border-white/10 transition-transform hover:-translate-y-2 block overflow-hidden group">
+                <div className="aspect-video w-full overflow-hidden">
+                  <img src="https://www.nutshelltoday.com/article/project-ladyland-sultana-reboot/opengraph-image?v=2026-08-17T06%3A54%3A51.334Z" alt="Lucid Dreaming" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-80 mix-blend-luminosity hover:mix-blend-normal" />
+                </div>
+                <div className="p-6">
+                  <h4 className="text-[#00dbe9] font-space font-bold text-lg mb-2 leading-tight">Lucid Dreaming</h4>
+                  <p className="text-xs text-[#c4c5da] uppercase font-space">Nutshell Today</p>
+                </div>
+              </a>
+              <a href="https://www.tbsnews.net/splash/project-ladyland-sultana-dreams-again-121-years-later-1515161" target="_blank" rel="noopener noreferrer" className="rounded-2xl bg-white/5 hover:bg-white/10 border border-white/10 transition-transform hover:-translate-y-2 block overflow-hidden group">
+                <div className="aspect-video w-full overflow-hidden">
+                  <img src="https://www.tbsnews.net/sites/default/files/styles/social_share/public/images/2026/08/14/project_ladyland_2026_pc_shadab_shahrokh_hai_for_herstory_foundation_2.jpg" alt="Project Ladyland: Sultana dreams again" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-80 mix-blend-luminosity hover:mix-blend-normal" />
+                </div>
+                <div className="p-6">
+                  <h4 className="text-white drop-shadow-[0_0_8px_rgba(255,255,255,0.8)] font-space font-bold text-lg mb-2 leading-tight">Project Ladyland: Sultana dreams again, 121 years later</h4>
+                  <p className="text-xs text-[#c4c5da] uppercase font-space">The Business Standard</p>
+                </div>
+              </a>
+              <a href="https://tob.news/in-lady-land-the-tables-turn/" target="_blank" rel="noopener noreferrer" className="rounded-2xl bg-white/5 hover:bg-white/10 border border-white/10 transition-transform hover:-translate-y-2 block overflow-hidden group">
+                <div className="aspect-video w-full overflow-hidden">
+                  <img src="https://tob.news/wp-content/uploads/2026/08/Project-Lady-Land-1.jpg" alt="In Lady Land, the tables turn" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-80 mix-blend-luminosity hover:mix-blend-normal" />
+                </div>
+                <div className="p-6">
+                  <h4 className="text-[#b9c3ff] font-space font-bold text-lg mb-2 leading-tight">In Lady Land, the tables turn</h4>
+                  <p className="text-xs text-[#c4c5da] uppercase font-space">TOB News</p>
+                </div>
+              </a>
+              <a href="https://www.newagebd.net/post/theatre/309897/project-ladyland-2026-satirises-sunset-law" target="_blank" rel="noopener noreferrer" className="rounded-2xl bg-white/5 hover:bg-white/10 border border-white/10 transition-transform hover:-translate-y-2 block overflow-hidden group">
+                <div className="aspect-video w-full overflow-hidden">
+                  <img src="https://outspoken.newagebd.com/files/img/202608/b1bacf8a49cf087ba58de1275dd2e7be_og.jpg" alt="Project Ladyland 2026 satirises Sunset Law" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-80 mix-blend-luminosity hover:mix-blend-normal" />
+                </div>
+                <div className="p-6">
+                  <h4 className="text-[#ff45a2] font-space font-bold text-lg mb-2 leading-tight">Project Ladyland 2026 satirises Sunset Law</h4>
+                  <p className="text-xs text-[#c4c5da] uppercase font-space">New Age</p>
+                </div>
+              </a>
+            </div>
+          </div>
+        </section>
+    
+        
+        <section id="section-dreamer-kit" className="scroll-mt-24">
+          <div className="glass-panel p-8 md:p-14 rounded-3xl text-center space-y-8 border border-white/10 shadow-2xl">
+            <div className="max-w-3xl mx-auto space-y-3">
+              <span className="text-[#00dbe9] font-space text-xs font-bold uppercase tracking-widest block">
+                {TRANSLATIONS.merchandise_tag[lang]}
+              </span>
+              <h2 className="text-3xl sm:text-5xl font-space font-bold text-white">
+                The Case of the Dreamer
+              </h2>
+              <p className="text-[#c4c5da] text-base leading-relaxed">
+                A set of two pillow cases inspired by <i>Sultana's Dream</i>. Screen printed and hand-embroidered by local artisans to ensure safe and fruitful dreaming.
+              </p>
+            </div>
+
+            <div className="max-w-4xl mx-auto space-y-4">
+              <div className="glass-panel p-2 rounded-2xl overflow-hidden border border-white/10 group cursor-pointer" onClick={() => (window as any).setExpandedPillow("/images/pillow-cases/Pillow Case 1.png")}>
+                <img src="/images/pillow-cases/Pillow Case 1.png" className="w-full h-[400px] object-cover rounded-xl opacity-90 group-hover:scale-[1.02] transition-transform duration-500" alt="Main Pillow Case" />
+              </div>
+              <div className="grid grid-cols-3 gap-4">
+                <div className="glass-panel p-2 rounded-xl overflow-hidden border border-white/10 group cursor-pointer" onClick={() => (window as any).setExpandedPillow("/images/pillow-cases/Pillow Case 2.png")}>
+                  <img src="/images/pillow-cases/Pillow Case 2.png" className="w-full h-32 md:h-48 object-cover rounded-lg opacity-90 group-hover:scale-105 transition-transform duration-500" alt="Pillow Case 2" />
+                </div>
+                <div className="glass-panel p-2 rounded-xl overflow-hidden border border-white/10 group cursor-pointer" onClick={() => (window as any).setExpandedPillow("/images/pillow-cases/Pillow Case 3.png")}>
+                  <img src="/images/pillow-cases/Pillow Case 3.png" className="w-full h-32 md:h-48 object-cover rounded-lg opacity-90 group-hover:scale-105 transition-transform duration-500" alt="Pillow Case 3" />
+                </div>
+                <div className="glass-panel p-2 rounded-xl overflow-hidden border border-white/10 group cursor-pointer" onClick={() => (window as any).setExpandedPillow("/images/pillow-cases/Pillow 4.png")}>
+                  <img src="/images/pillow-cases/Pillow 4.png" className="w-full h-32 md:h-48 object-cover rounded-lg opacity-90 group-hover:scale-105 transition-transform duration-500" alt="Pillow Case 4" />
+                </div>
+              </div>
+            </div>
+            
+            <div className="pt-4 flex flex-wrap justify-center items-center gap-4">
+              <button
+                onClick={() => setKitModalOpen(true)}
+                className="amorphous-btn px-10 py-4 text-[#00228a] font-space font-bold text-sm uppercase tracking-widest neon-box-glow cursor-pointer"
+              >
+                Order Dreamer Kit (৳2,500)
+              </button>
+
+              <button
+                onClick={triggerDirectOrderEmail}
+                className="px-6 py-4 rounded-full bg-white/10 hover:bg-white/20 border border-white/20 text-white font-space text-xs font-bold uppercase tracking-wider transition-all flex items-center gap-2 cursor-pointer backdrop-blur-md"
+              >
+                <Mail className="w-4 h-4 text-white drop-shadow-[0_0_8px_rgba(255,255,255,0.8)]" />
+                <span>Email Order (sister@herstorybd.org)</span>
+              </button>
+            </div>
+          </div>
+        </section>
+
 
         {/* 4. Literary Roots (Sultana's Dream 1905) */}
         <section id="section-literary" className="glass-panel p-8 md:p-12 rounded-3xl border-l-4 border-l-[#00dbe9]">
@@ -717,79 +911,7 @@ export const ProjectLadylandView: React.FC<ProjectLadylandViewProps> = ({ onGoHo
         </section>
 
         {/* 5. Interactive Voting Section */}
-        <section id="section-vote" className="scroll-mt-24">
-          <div className="glass-panel p-10 md:p-16 rounded-3xl text-center space-y-8 relative overflow-hidden border border-white/10 shadow-2xl">
-            <div className="space-y-3">
-              <span className="text-[#ffb0cd] font-space text-xs font-bold uppercase tracking-widest block">
-                {TRANSLATIONS.participatory_decision[lang]}
-              </span>
-              <h3 className="text-3xl sm:text-5xl font-space font-bold text-white">
-                {TRANSLATIONS.final_choice[lang]}
-              </h3>
-              <p className="text-base sm:text-lg text-[#c4c5da] max-w-2xl mx-auto">
-                {TRANSLATIONS.vote_question[lang]}
-              </p>
-            </div>
-
-            {/* Voting Buttons or Results */}
-            {!hasVoted ? (
-              <div className="flex flex-col sm:flex-row justify-center items-center gap-6 pt-4">
-                <button
-                  onClick={() => handleVote('GRANT')}
-                  className="amorphous-btn w-full sm:w-auto px-10 py-4 text-[#00228a] font-space font-bold text-sm uppercase tracking-widest neon-box-glow cursor-pointer"
-                >
-                  {TRANSLATIONS.vote_grant[lang]}
-                </button>
-
-                <span className="text-white/40 font-space italic text-sm">{TRANSLATIONS.vote_or[lang]}</span>
-
-                <button
-                  onClick={() => handleVote('DENY')}
-                  className="amorphous-btn w-full sm:w-auto px-10 py-4 text-[#00228a] font-space font-bold text-sm uppercase tracking-widest pink-neon-glow cursor-pointer"
-                >
-                  {TRANSLATIONS.vote_deny[lang]}
-                </button>
-              </div>
-            ) : (
-              <div className="max-w-xl mx-auto space-y-6 pt-4 animate-in fade-in duration-500">
-                <div className="p-4 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center gap-2 text-[#00dbe9] font-space text-xs sm:text-sm font-bold">
-                  <CheckCircle2 className="w-5 h-5 text-[#ffb0cd]" />
-                  <span>Your vote ({hasVoted === 'GRANT' ? 'Granting' : 'Denying'} Night Rights) has been saved to the official sheet ledger!</span>
-                </div>
-
-                <div className="space-y-4 font-space text-xs">
-                  <div>
-                    <div className="flex justify-between text-white font-bold mb-1">
-                      <span>{TRANSLATIONS.vote_grant[lang]}</span>
-                      <span>{grantPercent}% ({voteCounts.grant} votes)</span>
-                    </div>
-                    <div className="w-full h-3 bg-white/10 rounded-full overflow-hidden">
-                      <div
-                        className="h-full bg-gradient-to-r from-[#00dbe9] to-[#b9c3ff] transition-all duration-1000"
-                        style={{ width: `${grantPercent}%` }}
-                      />
-                    </div>
-                  </div>
-
-                  <div>
-                    <div className="flex justify-between text-white font-bold mb-1">
-                      <span>{TRANSLATIONS.vote_deny[lang]}</span>
-                      <span>{denyPercent}% ({voteCounts.deny} votes)</span>
-                    </div>
-                    <div className="w-full h-3 bg-white/10 rounded-full overflow-hidden">
-                      <div
-                        className="h-full bg-gradient-to-r from-[#ff45a2] to-[#ffb0cd] transition-all duration-1000"
-                        style={{ width: `${denyPercent}%` }}
-                      />
-                    </div>
-                  </div>
-                </div>
-
-
-              </div>
-            )}
-          </div>
-        </section>
+        
 
         {/* 6. Production & Cast Directory ("{TRANSLATIONS.making_ladyland[lang]}") */}
         <section id="section-cast" className="scroll-mt-24 space-y-12">
@@ -806,7 +928,7 @@ export const ProjectLadylandView: React.FC<ProjectLadylandViewProps> = ({ onGoHo
             {/* Column 1: Production, Editorial, Direction */}
             <div className="space-y-10">
               <div className="space-y-3">
-                <h5 className="text-[#ffb0cd] font-space font-bold text-xs uppercase tracking-widest border-b border-white/10 pb-2">
+                <h5 className="text-white drop-shadow-[0_0_8px_rgba(255,255,255,0.8)] font-space font-bold text-xs uppercase tracking-widest border-b border-white/10 pb-2">
                   {TRANSLATIONS.production_title[lang]}
                 </h5>
                 <ul className="text-[#c4c5da] space-y-3 text-sm">
@@ -822,7 +944,7 @@ export const ProjectLadylandView: React.FC<ProjectLadylandViewProps> = ({ onGoHo
               </div>
 
               <div className="space-y-3">
-                <h5 className="text-[#ffb0cd] font-space font-bold text-xs uppercase tracking-widest border-b border-white/10 pb-2">
+                <h5 className="text-white drop-shadow-[0_0_8px_rgba(255,255,255,0.8)] font-space font-bold text-xs uppercase tracking-widest border-b border-white/10 pb-2">
                   {TRANSLATIONS.editorial_title[lang]}
                 </h5>
                 <ul className="text-[#c4c5da] space-y-3 text-sm">
@@ -846,7 +968,7 @@ export const ProjectLadylandView: React.FC<ProjectLadylandViewProps> = ({ onGoHo
               </div>
 
               <div className="space-y-3">
-                <h5 className="text-[#ffb0cd] font-space font-bold text-xs uppercase tracking-widest border-b border-white/10 pb-2">
+                <h5 className="text-white drop-shadow-[0_0_8px_rgba(255,255,255,0.8)] font-space font-bold text-xs uppercase tracking-widest border-b border-white/10 pb-2">
                   {TRANSLATIONS.direction_title[lang]}
                 </h5>
                 <ul className="text-[#c4c5da] space-y-3 text-sm">
@@ -876,7 +998,7 @@ export const ProjectLadylandView: React.FC<ProjectLadylandViewProps> = ({ onGoHo
 
             {/* Column 2: Performers */}
             <div className="space-y-3">
-              <h5 className="text-[#ffb0cd] font-space font-bold text-xs uppercase tracking-widest border-b border-white/10 pb-2">
+              <h5 className="text-white drop-shadow-[0_0_8px_rgba(255,255,255,0.8)] font-space font-bold text-xs uppercase tracking-widest border-b border-white/10 pb-2">
                 {TRANSLATIONS.cast_title[lang]}
               </h5>
               <ul className="text-[#c4c5da] space-y-3 text-sm">
@@ -896,7 +1018,7 @@ export const ProjectLadylandView: React.FC<ProjectLadylandViewProps> = ({ onGoHo
             {/* Column 3: Creative, Design & Tech */}
             <div className="space-y-10">
               <div className="space-y-3">
-                <h5 className="text-[#ffb0cd] font-space font-bold text-xs uppercase tracking-widest border-b border-white/10 pb-2">
+                <h5 className="text-white drop-shadow-[0_0_8px_rgba(255,255,255,0.8)] font-space font-bold text-xs uppercase tracking-widest border-b border-white/10 pb-2">
                   {TRANSLATIONS.ladyland_prod_title[lang]}
                 </h5>
                 <ul className="text-[#c4c5da] space-y-3 text-sm">
@@ -930,7 +1052,7 @@ export const ProjectLadylandView: React.FC<ProjectLadylandViewProps> = ({ onGoHo
               </p>
             </div>
             <div className="border-t border-white/5 pt-3">
-              <span className="text-[#ffb0cd] font-space text-xs font-bold uppercase tracking-widest block mb-1">
+              <span className="text-white drop-shadow-[0_0_8px_rgba(255,255,255,0.8)] font-space text-xs font-bold uppercase tracking-widest block mb-1">
                 {TRANSLATIONS.volunteers_title[lang]}
               </span>
               <p className="text-xs text-[#c4c5da] leading-relaxed">
@@ -961,7 +1083,7 @@ export const ProjectLadylandView: React.FC<ProjectLadylandViewProps> = ({ onGoHo
               </div>
 
               <div className="p-5 rounded-2xl bg-white/5 border border-white/10 space-y-1">
-                <div className="flex items-center gap-2 text-[#ffb0cd] font-space text-xs font-bold uppercase tracking-wider">
+                <div className="flex items-center gap-2 text-white drop-shadow-[0_0_8px_rgba(255,255,255,0.8)] font-space text-xs font-bold uppercase tracking-wider">
                   <Mail className="w-4 h-4" />
                   <span>{TRANSLATIONS.refunds_title[lang]}</span>
                 </div>
@@ -989,7 +1111,7 @@ export const ProjectLadylandView: React.FC<ProjectLadylandViewProps> = ({ onGoHo
 
             {newsletterSubscribed ? (
               <div className="p-4 rounded-xl bg-white/10 border border-[#00dbe9] text-[#00dbe9] font-space text-xs font-bold flex items-center gap-2">
-                <CheckCircle2 className="w-4 h-4 text-[#ffb0cd]" />
+                <CheckCircle2 className="w-4 h-4 text-white drop-shadow-[0_0_8px_rgba(255,255,255,0.8)]" />
                 <span>Thank you for subscribing to HerStory updates!</span>
               </div>
             ) : (
@@ -1026,56 +1148,7 @@ export const ProjectLadylandView: React.FC<ProjectLadylandViewProps> = ({ onGoHo
         </section>
 
         {/* 9. DREAMER KIT: "The Case of the Dreamer" */}
-        <section id="section-dreamer-kit" className="scroll-mt-24">
-          <div className="glass-panel p-8 md:p-14 rounded-3xl text-center space-y-8 border border-white/10 shadow-2xl">
-            <div className="max-w-3xl mx-auto space-y-3">
-              <span className="text-[#00dbe9] font-space text-xs font-bold uppercase tracking-widest block">
-                {TRANSLATIONS.merchandise_tag[lang]}
-              </span>
-              <h2 className="text-3xl sm:text-5xl font-space font-bold text-white">
-                The Case of the Dreamer
-              </h2>
-              <p className="text-[#c4c5da] text-base leading-relaxed">
-                A set of two pillow cases inspired by <i>Sultana's Dream</i>. Screen printed and hand-embroidered by local artisans to ensure safe and fruitful dreaming.
-              </p>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-              <div className="glass-panel p-3 rounded-2xl overflow-hidden aspect-square border border-white/10 group">
-                <img
-                  alt="The Case of the Dreamer - View 1"
-                  className="w-full h-full object-cover rounded-xl opacity-90 group-hover:scale-105 transition-transform duration-500"
-                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuDVaZZakFzp4UsXAkIRF30I8MN5-CO8yZUe0sEdkUynLDHpAoRM5OJZDsMFMeaqLKsb6E4I5tYSdF-KsP0echEdFn1BioPng1il_TE3gNJQM9r_wfFZYvMDSNGwhczb3rsuENluMXY6aTyfNqDb8xe58KYUgBwenFNhBNS_6-gw28rbK15uEMJGMPMD-JiJiiyq5xj2xx_BfIt2lyGtViRQmahn6A0DYOJifQN6ree2P_pl0FtNnZOWi219U_4nQLff2vZLQBxleceK"
-                />
-              </div>
-
-              <div className="glass-panel p-3 rounded-2xl overflow-hidden aspect-square border border-white/10 group">
-                <img
-                  alt="The Case of the Dreamer - View 2"
-                  className="w-full h-full object-cover rounded-xl opacity-90 group-hover:scale-105 transition-transform duration-500"
-                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuAyjYfsCyGZkNIkKJN8Mp6lZZ797OpQMNThjwKA-gtOwsuRL87tngLNh6XjefHW0WtF1lZkKwueMzu-bBYH1GY5pl-Mx2gxX8O4hzZ8e53rO1y1SH8iPGOd34hBCPcFoZqxad7fIEXsdYD8ivSaBDGhCYmkyr-YecPg_xdDqZc74Fcfoz4eYde84dRusNuVrgTQeGwr4ePzeLKwWpkC_04i4mj7tLvF14RPl177lJPd-VmHj41g_wkqZS73pVJHgX_-HrQBW7YJxh3C"
-                />
-              </div>
-            </div>
-
-            <div className="pt-4 flex flex-wrap justify-center items-center gap-4">
-              <button
-                onClick={() => setKitModalOpen(true)}
-                className="amorphous-btn px-10 py-4 text-[#00228a] font-space font-bold text-sm uppercase tracking-widest neon-box-glow cursor-pointer"
-              >
-                Order Dreamer Kit (৳2,500)
-              </button>
-
-              <button
-                onClick={triggerDirectOrderEmail}
-                className="px-6 py-4 rounded-full bg-white/10 hover:bg-white/20 border border-white/20 text-white font-space text-xs font-bold uppercase tracking-wider transition-all flex items-center gap-2 cursor-pointer backdrop-blur-md"
-              >
-                <Mail className="w-4 h-4 text-[#ffb0cd]" />
-                <span>Email Order (sister@herstorybd.org)</span>
-              </button>
-            </div>
-          </div>
-        </section>
+        
       </main>
 
       {/* Ticket Booking Modal */}
@@ -1098,7 +1171,7 @@ export const ProjectLadylandView: React.FC<ProjectLadylandViewProps> = ({ onGoHo
                 </p>
 
                 <div className="p-4 rounded-2xl bg-white/5 border border-white/10 space-y-1 text-xs">
-                  <div className="text-[#ffb0cd] uppercase font-bold text-[10px]">Reference ID</div>
+                  <div className="text-white drop-shadow-[0_0_8px_rgba(255,255,255,0.8)] uppercase font-bold text-[10px]">Reference ID</div>
                   <div className="text-xl font-mono font-bold text-white tracking-widest">{ticketRefId}</div>
                   <div className="text-[#c4c5da] pt-1">
                     {ticketCity} — {ticketDate} @ 7:00 PM ({ticketQty} Seat{ticketQty > 1 ? 's' : ''})
@@ -1267,7 +1340,7 @@ export const ProjectLadylandView: React.FC<ProjectLadylandViewProps> = ({ onGoHo
 
             {kitOrdered ? (
               <div className="text-center py-6 space-y-4 font-space">
-                <ShoppingBag className="w-14 h-14 text-[#ffb0cd] mx-auto animate-bounce" />
+                <ShoppingBag className="w-14 h-14 text-white drop-shadow-[0_0_8px_rgba(255,255,255,0.8)] mx-auto animate-bounce" />
                 <h3 className="text-2xl font-bold text-white">Order Placed!</h3>
                 <p className="text-xs text-[#c4c5da] font-inter">
                   Thank you for supporting HerStory Foundation. Your order for <strong className="text-white">The Case of the Dreamer</strong> pillow case set ({kitQty} set{kitQty > 1 ? 's' : ''}) has been placed.
@@ -1288,7 +1361,7 @@ export const ProjectLadylandView: React.FC<ProjectLadylandViewProps> = ({ onGoHo
               </div>
             ) : (
               <form onSubmit={handleKitSubmit} className="space-y-4">
-                <div className="flex items-center gap-2 text-[#ffb0cd]">
+                <div className="flex items-center gap-2 text-white drop-shadow-[0_0_8px_rgba(255,255,255,0.8)]">
                   <ShoppingBag className="w-5 h-5" />
                   <h3 className="font-space text-xl font-bold text-white">Order Dreamer Kit</h3>
                 </div>
@@ -1481,7 +1554,7 @@ export const ProjectLadylandView: React.FC<ProjectLadylandViewProps> = ({ onGoHo
               </div>
 
               <div className="p-3.5 rounded-2xl bg-white/5 border border-white/10 text-center">
-                <span className="text-[10px] font-space text-[#ffb0cd] uppercase font-bold block mb-1">
+                <span className="text-[10px] font-space text-white drop-shadow-[0_0_8px_rgba(255,255,255,0.8)] uppercase font-bold block mb-1">
                   Registrations
                 </span>
                 <span className="text-2xl font-space font-bold text-white">
@@ -1552,6 +1625,38 @@ export const ProjectLadylandView: React.FC<ProjectLadylandViewProps> = ({ onGoHo
           </div>
         </div>
       )}
+
+
+      
+      {/* Expanded Pillow Case Modal */}
+      {expandedPillow && (
+        <div className="fixed inset-0 z-[100] flex flex-col items-center justify-center bg-black/95 p-4 animate-in fade-in" onClick={() => setExpandedPillowState(null)}>
+          <button 
+            onClick={() => setExpandedPillowState(null)}
+            className="absolute top-6 right-6 text-white p-2 rounded-full bg-white/10 hover:bg-white/20"
+          >
+            <X className="w-6 h-6" />
+          </button>
+          <img src={expandedPillow} className="max-w-full max-h-[85vh] object-contain rounded-lg" alt="Expanded Pillow" />
+        </div>
+      )}
+
+
+      {/* Floating Audio Story Link */}
+      <a
+        href="https://drive.google.com/file/d/15O-vITUgPke4R-3pNwJqT_vWKRf9iS-d/view?usp=drive_link"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="fixed bottom-6 right-6 z-50 flex items-center gap-3 bg-[#020208]/80 hover:bg-[#11131d] border border-[#00dbe9]/50 p-3 pr-5 rounded-full shadow-[0_0_20px_rgba(0,219,233,0.3)] backdrop-blur-md transition-all hover:scale-105 hover:border-[#00dbe9] group cursor-pointer"
+      >
+        <div className="w-10 h-10 rounded-full bg-[#00dbe9]/20 flex items-center justify-center text-[#00dbe9] group-hover:bg-[#00dbe9] group-hover:text-black transition-colors">
+          <Volume2 className="w-5 h-5" />
+        </div>
+        <span className="font-space text-xs font-bold uppercase tracking-wider text-white hidden sm:block">
+          {lang === 'EN' ? "Listen to Sultana's Dream" : "সুলতানার স্বপ্ন শুনুন"}
+        </span>
+      </a>
+
     </div>
   );
 };

@@ -53,7 +53,7 @@ export default function App() {
   }, []);
 
   return (
-    <div className="min-h-screen flex flex-col justify-between relative selection:bg-[#D672CE]/30 text-[#261814]">
+    <div className="min-h-screen flex flex-col justify-between relative selection:bg-white/30 text-[#261814]">
       {/* Animated WebGL Shader Background */}
       <ShaderBackground />
 
