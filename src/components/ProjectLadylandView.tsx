@@ -760,7 +760,7 @@ export const ProjectLadylandView: React.FC<ProjectLadylandViewProps> = ({ onGoHo
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
               <a href="https://www.nutshelltoday.com/article/project-ladyland-sultana-reboot" target="_blank" rel="noopener noreferrer" className="rounded-2xl bg-white/5 hover:bg-white/10 border border-white/10 transition-transform hover:-translate-y-2 block overflow-hidden group">
                 <div className="aspect-video w-full overflow-hidden">
-                  <img src="https://www.nutshelltoday.com/article/project-ladyland-sultana-reboot/opengraph-image?v=2026-08-17T06%3A54%3A51.334Z" alt="Lucid Dreaming" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-80 mix-blend-luminosity hover:mix-blend-normal" />
+                  <img src="https://www.nutshelltoday.com/article/project-ladyland-sultana-reboot/opengraph-image?v=2026-08-17T06%3A54%3A51.334Z" alt="Lucid Dreaming" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-90 hover:opacity-100" />
                 </div>
                 <div className="p-6">
                   <h4 className="text-[#00dbe9] font-space font-bold text-lg mb-2 leading-tight">Lucid Dreaming</h4>
@@ -769,7 +769,7 @@ export const ProjectLadylandView: React.FC<ProjectLadylandViewProps> = ({ onGoHo
               </a>
               <a href="https://www.tbsnews.net/splash/project-ladyland-sultana-dreams-again-121-years-later-1515161" target="_blank" rel="noopener noreferrer" className="rounded-2xl bg-white/5 hover:bg-white/10 border border-white/10 transition-transform hover:-translate-y-2 block overflow-hidden group">
                 <div className="aspect-video w-full overflow-hidden">
-                  <img src="https://www.tbsnews.net/sites/default/files/styles/social_share/public/images/2026/08/14/project_ladyland_2026_pc_shadab_shahrokh_hai_for_herstory_foundation_2.jpg" alt="Project Ladyland: Sultana dreams again" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-80 mix-blend-luminosity hover:mix-blend-normal" />
+                  <img src="https://www.tbsnews.net/sites/default/files/styles/social_share/public/images/2026/08/14/project_ladyland_2026_pc_shadab_shahrokh_hai_for_herstory_foundation_2.jpg" alt="Project Ladyland: Sultana dreams again" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-90 hover:opacity-100" />
                 </div>
                 <div className="p-6">
                   <h4 className="text-white drop-shadow-[0_0_8px_rgba(255,255,255,0.8)] font-space font-bold text-lg mb-2 leading-tight">Project Ladyland: Sultana dreams again, 121 years later</h4>
@@ -778,7 +778,7 @@ export const ProjectLadylandView: React.FC<ProjectLadylandViewProps> = ({ onGoHo
               </a>
               <a href="https://tob.news/in-lady-land-the-tables-turn/" target="_blank" rel="noopener noreferrer" className="rounded-2xl bg-white/5 hover:bg-white/10 border border-white/10 transition-transform hover:-translate-y-2 block overflow-hidden group">
                 <div className="aspect-video w-full overflow-hidden">
-                  <img src="https://tob.news/wp-content/uploads/2026/08/Project-Lady-Land-1.jpg" alt="In Lady Land, the tables turn" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-80 mix-blend-luminosity hover:mix-blend-normal" />
+                  <img src="https://tob.news/wp-content/uploads/2026/08/Project-Lady-Land-1.jpg" alt="In Lady Land, the tables turn" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-90 hover:opacity-100" />
                 </div>
                 <div className="p-6">
                   <h4 className="text-[#b9c3ff] font-space font-bold text-lg mb-2 leading-tight">In Lady Land, the tables turn</h4>
@@ -787,7 +787,7 @@ export const ProjectLadylandView: React.FC<ProjectLadylandViewProps> = ({ onGoHo
               </a>
               <a href="https://www.newagebd.net/post/theatre/309897/project-ladyland-2026-satirises-sunset-law" target="_blank" rel="noopener noreferrer" className="rounded-2xl bg-white/5 hover:bg-white/10 border border-white/10 transition-transform hover:-translate-y-2 block overflow-hidden group">
                 <div className="aspect-video w-full overflow-hidden">
-                  <img src="https://outspoken.newagebd.com/files/img/202608/b1bacf8a49cf087ba58de1275dd2e7be_og.jpg" alt="Project Ladyland 2026 satirises Sunset Law" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-80 mix-blend-luminosity hover:mix-blend-normal" />
+                  <img src="https://outspoken.newagebd.com/files/img/202608/b1bacf8a49cf087ba58de1275dd2e7be_og.jpg" alt="Project Ladyland 2026 satirises Sunset Law" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-90 hover:opacity-100" />
                 </div>
                 <div className="p-6">
                   <h4 className="text-[#ff45a2] font-space font-bold text-lg mb-2 leading-tight">Project Ladyland 2026 satirises Sunset Law</h4>
