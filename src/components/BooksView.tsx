@@ -30,16 +30,16 @@ export const BooksView: React.FC<BooksViewProps> = ({ onSelectBook }) => {
         <span className="font-sans-ui text-xs font-bold text-[#D64E0E] uppercase tracking-widest block">
           HERSTORY PUBLICATIONS & PRESS
         </span>
-        <h1 className="text-4xl sm:text-5xl text-[#261814] font-bold">
+        <h1 className="text-4xl sm:text-5xl text-white font-bold">
           Publications & Books
         </h1>
-        <p className="text-base text-[#594139] leading-relaxed">
+        <p className="text-base text-white/80 leading-relaxed">
           Beautifully illustrated biographies, restored classics, and eco-feminist anthologies created to inspire generations of young readers.
         </p>
       </div>
 
       {reservedBookTitle && (
-        <div className="bg-[#BAD687]/40 border border-[#BAD687] text-[#261814] p-4 rounded-xl text-center font-sans-ui text-xs font-bold flex items-center justify-center gap-2 max-w-xl mx-auto">
+        <div className="bg-white/10/40 border border-[#BAD687] text-white p-4 rounded-xl text-center font-sans-ui text-xs font-bold flex items-center justify-center gap-2 max-w-xl mx-auto">
           <CheckCircle2 className="w-4 h-4 text-[#a53700]" />
           Inquiry sent for "{reservedBookTitle}"! Our publications desk will reach out.
         </div>
@@ -54,7 +54,7 @@ export const BooksView: React.FC<BooksViewProps> = ({ onSelectBook }) => {
             className={`text-xs uppercase tracking-wider font-semibold px-4 py-2 rounded-full transition-all cursor-pointer ${
               selectedGenre === g
                 ? 'bg-[#D64E0E] text-white shadow-sm'
-                : 'bg-[#ffe9e3] text-[#594139] hover:bg-[#fde3da]'
+                : 'bg-black/20 text-white/80 hover:bg-[#fde3da]'
             }`}
           >
             {g}
@@ -68,10 +68,10 @@ export const BooksView: React.FC<BooksViewProps> = ({ onSelectBook }) => {
           <div
             key={book.id}
             onClick={() => onSelectBook(book)}
-            className="bg-[#fff8f6] border border-[#e2bfb4] rounded-2xl p-6 hover:border-[#D64E0E] hover:shadow-xl transition-all cursor-pointer flex flex-col sm:flex-row gap-6 group"
+            className="bg-[#fff8f6] border border-white/10 rounded-2xl p-6 hover:border-[#D64E0E] hover:shadow-xl transition-all cursor-pointer flex flex-col sm:flex-row gap-6 group"
           >
             {/* Book Cover Image */}
-            <div className="w-full sm:w-40 aspect-[3/4] overflow-hidden rounded-xl bg-[#ffe9e3] flex-shrink-0 relative shadow-md">
+            <div className="w-full sm:w-40 aspect-[3/4] overflow-hidden rounded-xl bg-black/20 flex-shrink-0 relative shadow-md">
               <img
                 alt={book.title}
                 className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
@@ -89,7 +89,7 @@ export const BooksView: React.FC<BooksViewProps> = ({ onSelectBook }) => {
                   {book.genre}
                 </span>
 
-                <h3 className="text-xl font-bold text-[#261814] group-hover:text-[#D64E0E] transition-colors leading-snug">
+                <h3 className="text-xl font-bold text-white group-hover:text-[#D64E0E] transition-colors leading-snug">
                   {book.title}
                 </h3>
 
@@ -97,7 +97,7 @@ export const BooksView: React.FC<BooksViewProps> = ({ onSelectBook }) => {
                   By {book.author} {book.illustrator && `• Illus. ${book.illustrator}`}
                 </p>
 
-                <p className="text-xs text-[#594139] mt-3 line-clamp-3 leading-relaxed">
+                <p className="text-xs text-white/80 mt-3 line-clamp-3 leading-relaxed">
                   {book.description}
                 </p>
               </div>
@@ -115,7 +115,7 @@ export const BooksView: React.FC<BooksViewProps> = ({ onSelectBook }) => {
                     Request Book
                   </button>
 
-                  <button className="text-xs font-bold text-[#594139] hover:text-[#D64E0E] flex items-center gap-1">
+                  <button className="text-xs font-bold text-white/80 hover:text-[#D64E0E] flex items-center gap-1">
                     <span>Excerpt</span>
                     <ArrowRight className="w-3.5 h-3.5" />
                   </button>

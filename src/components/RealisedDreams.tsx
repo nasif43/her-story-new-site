@@ -37,7 +37,7 @@ export const RealisedDreams: React.FC<RealisedDreamsProps> = ({
             className={`text-xs uppercase tracking-wider font-semibold px-4 py-2 rounded-full transition-all cursor-pointer ${
               selectedCategory === cat
                 ? 'bg-[#D64E0E] text-white shadow-sm'
-                : 'bg-[#ffe9e3] text-[#594139] hover:bg-[#fde3da]'
+                : 'bg-black/20 text-white/80 hover:bg-[#fde3da]'
             }`}
           >
             {cat}
@@ -51,7 +51,7 @@ export const RealisedDreams: React.FC<RealisedDreamsProps> = ({
           <div
             key={item.id}
             onClick={() => onSelectDream(item)}
-            className="group block cursor-pointer bg-[#fff8f6] border border-[#e2bfb4]/50 rounded-xl p-3 hover:border-[#D64E0E] hover:shadow-lg transition-all duration-300"
+            className="group block cursor-pointer bg-[#fff8f6] border border-white/10/50 rounded-xl p-3 hover:border-[#D64E0E] hover:shadow-lg transition-all duration-300"
           >
             {/* Square Aspect Ratio Container */}
             <div className={`aspect-square mb-4 overflow-hidden rounded-lg ${item.bgAccent} relative`}>
@@ -60,17 +60,17 @@ export const RealisedDreams: React.FC<RealisedDreamsProps> = ({
                 className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                 src={item.imageUrl}
               />
-              <span className="absolute top-3 left-3 bg-[#fff8f6]/90 backdrop-blur-sm text-[#261814] font-sans-ui text-[10px] font-bold px-2.5 py-1 rounded-full uppercase tracking-wider shadow-xs">
+              <span className="absolute top-3 left-3 bg-black/40 backdrop-blur-sm text-white font-sans-ui text-[10px] font-bold px-2.5 py-1 rounded-full uppercase tracking-wider shadow-xs">
                 {item.category}
               </span>
             </div>
 
             {/* Title & Short Description */}
-            <h3 className="font-serif-editorial text-xl font-semibold text-[#261814] group-hover:text-[#D64E0E] transition-colors line-clamp-1">
+            <h3 className="font-serif-editorial text-xl font-semibold text-white group-hover:text-[#D64E0E] transition-colors line-clamp-1">
               {item.title}
             </h3>
 
-            <p className="font-serif-editorial text-sm text-[#594139] mt-2 leading-relaxed line-clamp-2">
+            <p className="font-serif-editorial text-sm text-white/80 mt-2 leading-relaxed line-clamp-2">
               {item.description}
             </p>
 

@@ -26,9 +26,9 @@ export const DetailModal: React.FC<DetailModalProps> = ({ item, onClose }) => {
 
   return (
     <div className="fixed inset-0 z-50 bg-[#261814]/70 backdrop-blur-md flex items-center justify-center p-4 overflow-y-auto">
-      <div className="bg-[#fff8f6] border border-[#e2bfb4] w-full max-w-3xl rounded-2xl shadow-2xl overflow-hidden my-8 max-h-[90vh] flex flex-col animate-in fade-in zoom-in duration-200">
+      <div className="bg-[#fff8f6] border border-white/10 w-full max-w-3xl rounded-2xl shadow-2xl overflow-hidden my-8 max-h-[90vh] flex flex-col animate-in fade-in zoom-in duration-200">
         {/* Header Bar */}
-        <div className="p-4 border-b border-[#ffe9e3] flex items-center justify-between bg-[#fff1ec]">
+        <div className="p-4 border-b border-[#ffe9e3] flex items-center justify-between bg-black/20">
           <div className="flex items-center gap-2">
             <span className="font-sans-ui text-xs font-bold uppercase tracking-wider px-3 py-1 rounded-full bg-[#D64E0E]/15 text-[#D64E0E]">
               {isDream ? 'Dream Archive' : isBook ? 'HerStory Publication' : 'Reflection & Essay'}
@@ -39,7 +39,7 @@ export const DetailModal: React.FC<DetailModalProps> = ({ item, onClose }) => {
             <button
               onClick={() => setSaved(!saved)}
               className={`p-2 rounded-full border transition-colors cursor-pointer ${
-                saved ? 'bg-[#D64E0E] text-white border-[#D64E0E]' : 'border-[#e2bfb4] text-[#594139] hover:bg-[#ffe9e3]'
+                saved ? 'bg-[#D64E0E] text-white border-[#D64E0E]' : 'border-white/10 text-white/80 hover:bg-black/20'
               }`}
               title={saved ? 'Saved to bookmarks' : 'Save story'}
             >
@@ -48,7 +48,7 @@ export const DetailModal: React.FC<DetailModalProps> = ({ item, onClose }) => {
 
             <button
               onClick={handleShare}
-              className="p-2 rounded-full border border-[#e2bfb4] text-[#594139] hover:bg-[#ffe9e3] transition-colors cursor-pointer"
+              className="p-2 rounded-full border border-white/10 text-white/80 hover:bg-black/20 transition-colors cursor-pointer"
               title="Share link"
             >
               <Share2 className="w-4 h-4" />
@@ -56,7 +56,7 @@ export const DetailModal: React.FC<DetailModalProps> = ({ item, onClose }) => {
 
             <button
               onClick={onClose}
-              className="p-2 rounded-full bg-[#e2bfb4]/30 hover:bg-[#e2bfb4]/60 text-[#261814] transition-colors cursor-pointer ml-2"
+              className="p-2 rounded-full bg-[#e2bfb4]/30 hover:bg-[#e2bfb4]/60 text-white transition-colors cursor-pointer ml-2"
             >
               <X className="w-5 h-5" />
             </button>
@@ -66,13 +66,13 @@ export const DetailModal: React.FC<DetailModalProps> = ({ item, onClose }) => {
         {/* Modal Scrollable Body */}
         <div className="p-6 md:p-8 overflow-y-auto space-y-6 font-serif-editorial">
           {copied && (
-            <div className="bg-[#BAD687]/40 text-[#261814] text-xs font-sans-ui font-bold p-3 rounded-lg text-center">
+            <div className="bg-white/10/40 text-white text-xs font-sans-ui font-bold p-3 rounded-lg text-center">
               Link copied to clipboard!
             </div>
           )}
 
           {/* Hero Banner Image */}
-          <div className="rounded-xl overflow-hidden aspect-[16/9] w-full bg-[#ffe9e3] relative shadow-inner">
+          <div className="rounded-xl overflow-hidden aspect-[16/9] w-full bg-black/20 relative shadow-inner">
             <img
               alt={item.title}
               className="w-full h-full object-cover"
@@ -89,19 +89,19 @@ export const DetailModal: React.FC<DetailModalProps> = ({ item, onClose }) => {
           {/* Meta Info Bar */}
           <div className="flex flex-wrap items-center gap-4 text-xs font-sans-ui text-[#8d7167]">
             {'year' in item && (
-              <span className="flex items-center gap-1 bg-[#ffe9e3] px-3 py-1 rounded-full text-[#261814] font-semibold">
+              <span className="flex items-center gap-1 bg-black/20 px-3 py-1 rounded-full text-white font-semibold">
                 <Calendar className="w-3.5 h-3.5 text-[#D64E0E]" />
                 {item.year}
               </span>
             )}
             {'location' in item && item.location && (
-              <span className="flex items-center gap-1 bg-[#ffe9e3] px-3 py-1 rounded-full text-[#261814] font-semibold">
+              <span className="flex items-center gap-1 bg-black/20 px-3 py-1 rounded-full text-white font-semibold">
                 <MapPin className="w-3.5 h-3.5 text-[#D672CE]" />
                 {item.location}
               </span>
             )}
             {'author' in item && (
-              <span className="font-semibold text-[#261814]">
+              <span className="font-semibold text-white">
                 By {item.author}
               </span>
             )}
@@ -109,18 +109,18 @@ export const DetailModal: React.FC<DetailModalProps> = ({ item, onClose }) => {
 
           {/* Title & Headline */}
           <div>
-            <h2 className="text-2xl sm:text-3xl md:text-4xl text-[#261814] font-bold leading-tight">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl text-white font-bold leading-tight">
               {item.title}
             </h2>
             {'description' in item && (
-              <p className="text-base text-[#594139] mt-2 font-medium italic">
+              <p className="text-base text-white/80 mt-2 font-medium italic">
                 {item.description}
               </p>
             )}
           </div>
 
           {/* Audio Snippet Simulator */}
-          <div className="bg-[#fff1ec] border border-[#e2bfb4] p-4 rounded-xl flex items-center justify-between">
+          <div className="bg-black/20 border border-white/10 p-4 rounded-xl flex items-center justify-between">
             <div className="flex items-center gap-3">
               <button
                 onClick={() => setIsPlayingAudio(!isPlayingAudio)}
@@ -129,7 +129,7 @@ export const DetailModal: React.FC<DetailModalProps> = ({ item, onClose }) => {
                 <Volume2 className={`w-5 h-5 ${isPlayingAudio ? 'animate-bounce' : ''}`} />
               </button>
               <div>
-                <p className="font-sans-ui text-xs font-bold text-[#261814]">
+                <p className="font-sans-ui text-xs font-bold text-white">
                   {isPlayingAudio ? 'Playing Audio Commentary & Soundscape' : 'Listen to Audio Excerpt'}
                 </p>
                 <p className="font-sans-ui text-[11px] text-[#8d7167]">
@@ -155,16 +155,16 @@ export const DetailModal: React.FC<DetailModalProps> = ({ item, onClose }) => {
           )}
 
           {/* Narrative Content */}
-          <div className="space-y-4 text-base leading-relaxed text-[#261814] whitespace-pre-line">
+          <div className="space-y-4 text-base leading-relaxed text-white whitespace-pre-line">
             {isDream && item.fullNarrative}
             {isBook && (
               <div>
                 <p className="font-bold mb-2 text-[#D64E0E]">Book Excerpt & Summary:</p>
-                <p className="italic bg-[#ffe9e3]/50 p-4 rounded-xl border border-[#e2bfb4]/40">
+                <p className="italic bg-black/20/50 p-4 rounded-xl border border-white/10/40">
                   {item.excerptText}
                 </p>
                 {item.price && (
-                  <div className="mt-4 font-sans-ui text-sm font-bold text-[#261814]">
+                  <div className="mt-4 font-sans-ui text-sm font-bold text-white">
                     Available from HerStory Publications: <span className="text-[#D64E0E]">{item.price}</span>
                   </div>
                 )}
@@ -177,7 +177,7 @@ export const DetailModal: React.FC<DetailModalProps> = ({ item, onClose }) => {
           {'tags' in item && item.tags && (
             <div className="pt-4 border-t border-[#ffe9e3] flex flex-wrap gap-2 font-sans-ui text-xs">
               {item.tags.map((tag) => (
-                <span key={tag} className="bg-[#ffe9e3] text-[#594139] px-3 py-1 rounded-full font-semibold">
+                <span key={tag} className="bg-black/20 text-white/80 px-3 py-1 rounded-full font-semibold">
                   #{tag}
                 </span>
               ))}
@@ -186,7 +186,7 @@ export const DetailModal: React.FC<DetailModalProps> = ({ item, onClose }) => {
         </div>
 
         {/* Modal Footer */}
-        <div className="p-4 border-t border-[#ffe9e3] bg-[#fff1ec] flex flex-wrap items-center justify-between gap-3">
+        <div className="p-4 border-t border-[#ffe9e3] bg-black/20 flex flex-wrap items-center justify-between gap-3">
           <p className="font-sans-ui text-xs text-[#8d7167]">
             HerStory Foundation & Publications Archive
           </p>

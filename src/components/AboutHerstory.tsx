@@ -13,15 +13,15 @@ export const AboutHerstory: React.FC<AboutHerstoryProps> = ({ onOpenOurStoryModa
           ABOUT HERSTORY
         </span>
 
-        <h2 className="font-serif-editorial text-3xl sm:text-4xl md:text-5xl text-[#261814] mb-6 leading-tight font-bold">
+        <h2 className="font-serif-editorial text-3xl sm:text-4xl md:text-5xl text-white mb-6 leading-tight font-bold">
           Stories make futures
         </h2>
 
-        <p className="font-serif-editorial text-base sm:text-lg text-[#594139] mb-6 leading-relaxed">
+        <p className="font-serif-editorial text-base sm:text-lg text-white/80 mb-6 leading-relaxed">
           Founded on the belief that stories are the primary architecture of civilization, HerStory Foundation works to document, publish, and manifest narratives that celebrate creativity and hope.
         </p>
 
-        <p className="font-serif-editorial text-base sm:text-lg text-[#594139] mb-8 italic">
+        <p className="font-serif-editorial text-base sm:text-lg text-white/80 mb-8 italic">
           A book comes alive when it is shared.
         </p>
 

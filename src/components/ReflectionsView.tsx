@@ -15,10 +15,10 @@ export const ReflectionsView: React.FC<ReflectionsViewProps> = ({ onSelectReflec
         <span className="font-sans-ui text-xs font-bold text-[#D672CE] uppercase tracking-widest block">
           ESSAYS, PODCASTS & ESSENTIAL CRITIQUE
         </span>
-        <h1 className="text-4xl sm:text-5xl text-[#261814] font-bold">
+        <h1 className="text-4xl sm:text-5xl text-white font-bold">
           Reflections Journal
         </h1>
-        <p className="text-base text-[#594139] leading-relaxed">
+        <p className="text-base text-white/80 leading-relaxed">
           Critical essays, audio transcripts, and interviews exploring eco-feminism, oral history preservation, and speculative futures.
         </p>
       </div>
@@ -29,16 +29,16 @@ export const ReflectionsView: React.FC<ReflectionsViewProps> = ({ onSelectReflec
           <div
             key={item.id}
             onClick={() => onSelectReflection(item)}
-            className="bg-[#fff8f6] border border-[#e2bfb4] rounded-2xl overflow-hidden hover:border-[#D64E0E] hover:shadow-xl transition-all cursor-pointer group flex flex-col justify-between"
+            className="bg-[#fff8f6] border border-white/10 rounded-2xl overflow-hidden hover:border-[#D64E0E] hover:shadow-xl transition-all cursor-pointer group flex flex-col justify-between"
           >
             <div>
-              <div className="aspect-[16/10] overflow-hidden bg-[#ffe9e3] relative">
+              <div className="aspect-[16/10] overflow-hidden bg-black/20 relative">
                 <img
                   alt={item.title}
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                   src={item.coverImage}
                 />
-                <span className="absolute top-3 left-3 bg-[#fff8f6]/90 backdrop-blur-sm text-[#261814] font-sans-ui text-[10px] font-bold px-2.5 py-1 rounded-full uppercase tracking-wider">
+                <span className="absolute top-3 left-3 bg-black/40 backdrop-blur-sm text-white font-sans-ui text-[10px] font-bold px-2.5 py-1 rounded-full uppercase tracking-wider">
                   {item.category}
                 </span>
               </div>
@@ -53,15 +53,15 @@ export const ReflectionsView: React.FC<ReflectionsViewProps> = ({ onSelectReflec
                   </span>
                 </div>
 
-                <h3 className="text-xl font-bold text-[#261814] group-hover:text-[#D64E0E] transition-colors leading-snug">
+                <h3 className="text-xl font-bold text-white group-hover:text-[#D64E0E] transition-colors leading-snug">
                   {item.title}
                 </h3>
 
-                <p className="font-sans-ui text-xs font-semibold text-[#594139]">
+                <p className="font-sans-ui text-xs font-semibold text-white/80">
                   By {item.author} ({item.role})
                 </p>
 
-                <p className="text-xs text-[#594139] leading-relaxed line-clamp-3">
+                <p className="text-xs text-white/80 leading-relaxed line-clamp-3">
                   {item.excerpt}
                 </p>
               </div>

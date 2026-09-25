@@ -19,7 +19,6 @@ import {
   Mail,
   Instagram,
   Vote,
-  Ticket,
   Heart,
   ShieldCheck,
   FileSpreadsheet,
@@ -138,16 +137,16 @@ export const ProjectLadylandView: React.FC<ProjectLadylandViewProps> = ({ onGoHo
   const [voteSubmittedToSheet, setVoteSubmittedToSheet] = useState(false);
 
   // Ticket Modal State
-  const [ticketModalOpen, setTicketModalOpen] = useState(false);
-  const [ticketCity, setTicketCity] = useState<'Dhaka' | 'Chattogram'>('Chattogram');
-  const [ticketDate, setTicketDate] = useState('AUG 24');
-  const [ticketQty, setTicketQty] = useState(2);
-  const [ticketTier, setTicketTier] = useState<'Standard' | 'Supporter' | 'Student'>('Standard');
+  
+  
+  
+  
+  
   const [buyerName, setBuyerName] = useState('');
   const [buyerEmail, setBuyerEmail] = useState('');
   const [buyerPhone, setBuyerPhone] = useState('');
-  const [ticketBooked, setTicketBooked] = useState(false);
-  const [ticketRefId, setTicketRefId] = useState('');
+  
+  
 
   // Dreamer Kit Modal State
   const [kitModalOpen, setKitModalOpen] = useState(false);
@@ -242,30 +241,6 @@ export const ProjectLadylandView: React.FC<ProjectLadylandViewProps> = ({ onGoHo
   };
 
   // Handle ticket booking
-  const handleTicketSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    const refId = 'HST-' + Math.floor(100000 + Math.random() * 900000);
-    setTicketRefId(refId);
-    setTicketBooked(true);
-
-    // Redirect to relevant Tickify URL
-    const targetUrl = ticketCity === 'Dhaka'
-      ? 'https://tickify.live/event/project-ladyland-2026-dac/'
-      : 'https://tickify.live/event/project-ladyland-2026-chittagong/';
-    
-    setTimeout(() => {
-      window.open(targetUrl, '_blank');
-    }, 1200);
-  };
-
-  const resetTicketForm = () => {
-    setTicketBooked(false);
-    setTicketModalOpen(false);
-    setBuyerName('');
-    setBuyerEmail('');
-    setBuyerPhone('');
-  };
-
   // Handle Kit Order — activates email directed to sister@herstorybd.org & logs to Google Sheet
   const handleKitSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -399,16 +374,8 @@ export const ProjectLadylandView: React.FC<ProjectLadylandViewProps> = ({ onGoHo
             </div>
 
             <div className="flex items-center gap-2">
-              <span className="hidden lg:inline-flex px-2.5 py-1 rounded-full bg-red-500/20 border border-red-500/40 text-red-300 font-space text-[10px] font-bold uppercase tracking-wider line-through">
-                {TRANSLATIONS.dhaka_sold_out_badge[lang]}
-              </span>
-              <a
-                href="#section-tickets"
-                className="amorphous-btn text-[#00228a] px-4 py-2 font-space text-[11px] font-bold uppercase tracking-widest cursor-pointer shadow-md inline-flex items-center gap-1.5"
-              >
-                <span>{TRANSLATIONS.header_get_tickets[lang]}</span>
-                <ChevronRight className="w-3 h-3" />
-              </a>
+              
+              
             </div>
           </div>
         </nav>
@@ -480,124 +447,7 @@ export const ProjectLadylandView: React.FC<ProjectLadylandViewProps> = ({ onGoHo
         </section>
 
         {/* 2. Ticket Sales & Performance Dates */}
-        <section id="section-tickets" className="scroll-mt-24">
-          <div className="glass-panel p-8 md:p-12 rounded-3xl relative overflow-hidden border border-white/10">
-            <div className="absolute top-0 right-0 w-64 h-64 bg-[#0047ff]/10 blur-3xl rounded-full pointer-events-none" />
-
-            <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-8 border-b border-white/10 pb-8 mb-8">
-              <div>
-                <span className="text-white drop-shadow-[0_0_8px_rgba(255,255,255,0.8)] font-space text-xs uppercase tracking-widest font-bold block mb-2">
-                  {TRANSLATIONS.show_upcoming_title[lang]}
-                </span>
-                <h2 className="text-3xl md:text-4xl font-space font-bold text-white">
-                  {TRANSLATIONS.show_welcome[lang]}
-                </h2>
-                <p className="text-[#c4c5da] text-sm mt-1">
-                  {TRANSLATIONS.show_welcome_desc[lang]}
-                </p>
-              </div>
-
-              <div className="flex flex-wrap items-center gap-3">
-                <div className="px-6 py-3.5 rounded-2xl bg-red-950/60 border border-red-500/50 text-red-300 font-space font-bold text-xs uppercase tracking-wider inline-flex items-center gap-2 shadow-inner">
-                  <span className="line-through">{TRANSLATIONS.show_buy_dhaka[lang]}</span>
-                  <span className="bg-red-500/30 text-red-100 text-[10px] px-2 py-0.5 rounded border border-red-400/40">
-                    {lang === 'EN' ? 'SOLD OUT' : 'আসন পূর্ণ'}
-                  </span>
-                </div>
-                <a
-                  href="https://tickify.live/event/project-ladyland-2026-chittagong/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="amorphous-btn text-[#00228a] px-6 py-3.5 font-space font-bold text-xs uppercase tracking-wider pink-neon-glow cursor-pointer inline-flex items-center gap-2"
-                >
-                  <span>{TRANSLATIONS.show_buy_chittagong[lang]}</span>
-                  <ExternalLink className="w-3.5 h-3.5" />
-                </a>
-              </div>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              {/* Dhaka Performance Location (SOLD OUT OVERLAY) */}
-              <div className="relative bg-red-950/20 border border-red-500/40 p-6 rounded-2xl space-y-4 overflow-hidden group">
-                {/* Sold out overlay banner */}
-                <div className="p-3 bg-red-950/80 border border-red-500/60 rounded-xl text-center flex items-center justify-center gap-2 shadow-lg backdrop-blur-md">
-                  <span className="w-2.5 h-2.5 rounded-full bg-red-400 animate-pulse" />
-                  <span className="font-space text-xs md:text-sm font-bold text-red-200 tracking-wide uppercase">
-                    {TRANSLATIONS.dhaka_sold_out[lang]}
-                  </span>
-                </div>
-
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-2 text-red-300 opacity-80">
-                    <MapPin className="w-4 h-4 text-red-400" />
-                    <span className="font-space text-xs font-bold uppercase tracking-wider line-through">
-                      {TRANSLATIONS.venue_dhaka[lang]}
-                    </span>
-                  </div>
-                  <span className="px-2.5 py-0.5 rounded bg-red-500/30 text-red-100 font-space text-[10px] font-bold border border-red-400/40 uppercase">
-                    {lang === 'EN' ? 'FULL CAPACITY' : 'আসন পূর্ণ'}
-                  </span>
-                </div>
-
-                <div className="flex flex-wrap gap-4 opacity-75">
-                  <div className="relative px-5 py-3 bg-red-950/40 border border-red-500/30 rounded-xl text-center min-w-[120px] overflow-hidden">
-                    <div className="text-red-300/70 text-xs font-bold font-space line-through">{TRANSLATIONS.date_aug13[lang]}</div>
-                    <div className="text-red-200/60 text-xl font-space font-bold line-through">{TRANSLATIONS.time_6pm[lang]}</div>
-                    <span className="absolute inset-0 bg-black/40 flex items-center justify-center font-space text-[10px] font-bold text-red-300 uppercase tracking-widest rotate-[-12deg] border-y border-red-500/30">
-                      {lang === 'EN' ? 'SOLD OUT' : 'আসন পূর্ণ'}
-                    </span>
-                  </div>
-
-                  <div className="relative px-5 py-3 bg-red-950/40 border border-red-500/30 rounded-xl text-center min-w-[120px] overflow-hidden">
-                    <div className="text-red-300/70 text-xs font-bold font-space line-through">{TRANSLATIONS.date_aug14[lang]}</div>
-                    <div className="text-red-200/60 text-xl font-space font-bold line-through">{TRANSLATIONS.time_6pm[lang]}</div>
-                    <span className="absolute inset-0 bg-black/40 flex items-center justify-center font-space text-[10px] font-bold text-red-300 uppercase tracking-widest rotate-[-12deg] border-y border-red-500/30">
-                      {lang === 'EN' ? 'SOLD OUT' : 'আসন পূর্ণ'}
-                    </span>
-                  </div>
-                </div>
-
-                <div className="pt-2 flex flex-wrap items-center justify-between gap-2 text-xs text-red-300/80">
-                  <span className="line-through opacity-60">{TRANSLATIONS.show_door_opens[lang]}</span>
-                  <span className="font-space font-bold text-[11px] text-red-300 bg-red-500/20 px-3 py-1 rounded-full border border-red-500/40 flex items-center gap-1.5">
-                    <span className="w-1.5 h-1.5 rounded-full bg-red-400"></span>
-                    <span>{TRANSLATIONS.dhaka_tickets_sold_out_msg[lang]}</span>
-                  </span>
-                </div>
-              </div>
-
-              {/* Chattogram Performance Location */}
-              <div className="bg-white/5 border border-white/10 p-6 rounded-2xl space-y-4 hover:border-[#ffb0cd]/50 transition-all">
-                <div className="flex items-center gap-2 text-white drop-shadow-[0_0_8px_rgba(255,255,255,0.8)]">
-                  <MapPin className="w-4 h-4 text-[#ff45a2]" />
-                  <span className="font-space text-xs font-bold uppercase tracking-wider">
-                    {TRANSLATIONS.venue_chittagong[lang]}
-                  </span>
-                </div>
-
-                <div className="flex flex-wrap gap-4">
-                  <div className="px-5 py-3 bg-white/5 border border-white/10 rounded-xl text-center min-w-[120px]">
-                    <div className="text-white drop-shadow-[0_0_8px_rgba(255,255,255,0.8)] text-xs font-bold font-space">{TRANSLATIONS.date_aug24[lang]}</div>
-                    <div className="text-white text-xl font-space font-bold">{TRANSLATIONS.time_6pm[lang]}</div>
-                  </div>
-                </div>
-
-                <div className="pt-2 flex items-center justify-between text-xs text-[#c4c5da]">
-                  <span>{TRANSLATIONS.show_door_opens[lang]}</span>
-                  <a
-                    href="https://tickify.live/event/project-ladyland-2026-chittagong/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-white drop-shadow-[0_0_8px_rgba(255,255,255,0.8)] hover:underline font-semibold flex items-center gap-1"
-                  >
-                    <span>{TRANSLATIONS.show_reserve_tickify[lang]}</span>
-                    <ExternalLink className="w-3 h-3" />
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
+        
 
 
         {/* CAROUSEL SECTION */}
@@ -1150,179 +1000,6 @@ export const ProjectLadylandView: React.FC<ProjectLadylandViewProps> = ({ onGoHo
         {/* 9. DREAMER KIT: "The Case of the Dreamer" */}
         
       </main>
-
-      {/* Ticket Booking Modal */}
-      {ticketModalOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md animate-in fade-in duration-200">
-          <div className="glass-panel max-w-lg w-full p-6 md:p-8 rounded-3xl border border-white/20 text-white relative shadow-2xl space-y-6">
-            <button
-              onClick={resetTicketForm}
-              className="absolute top-5 right-5 p-2 rounded-full hover:bg-white/10 text-white/70 hover:text-white transition-colors"
-            >
-              <X className="w-5 h-5" />
-            </button>
-
-            {ticketBooked ? (
-              <div className="text-center py-6 space-y-4 font-space">
-                <CheckCircle2 className="w-14 h-14 text-[#00dbe9] mx-auto animate-bounce" />
-                <h3 className="text-2xl font-bold text-white">Ticket Confirmed!</h3>
-                <p className="text-xs text-[#c4c5da] font-inter">
-                  Your seat reservation for Project Ladyland has been secured. A confirmation email with QR entry code has been sent to <strong className="text-white">{buyerEmail}</strong>.
-                </p>
-
-                <div className="p-4 rounded-2xl bg-white/5 border border-white/10 space-y-1 text-xs">
-                  <div className="text-white drop-shadow-[0_0_8px_rgba(255,255,255,0.8)] uppercase font-bold text-[10px]">Reference ID</div>
-                  <div className="text-xl font-mono font-bold text-white tracking-widest">{ticketRefId}</div>
-                  <div className="text-[#c4c5da] pt-1">
-                    {ticketCity} — {ticketDate} @ 7:00 PM ({ticketQty} Seat{ticketQty > 1 ? 's' : ''})
-                  </div>
-                </div>
-
-                <button
-                  onClick={resetTicketForm}
-                  className="amorphous-btn px-8 py-3.5 text-[#00228a] font-bold text-xs uppercase tracking-wider cursor-pointer"
-                >
-                  Close & Done
-                </button>
-              </div>
-            ) : (
-              <form onSubmit={handleTicketSubmit} className="space-y-4">
-                <div className="flex items-center gap-2 text-[#00dbe9]">
-                  <Ticket className="w-5 h-5" />
-                  <h3 className="font-space text-xl font-bold text-white">Reserve Show Tickets</h3>
-                </div>
-
-                <div className="grid grid-cols-2 gap-3">
-                  <div>
-                    <label className="block text-[11px] font-space font-bold uppercase text-[#c4c5da] mb-1">
-                      City / Venue
-                    </label>
-                    <select
-                      value={ticketCity}
-                      onChange={(e) => {
-                        const city = e.target.value as 'Dhaka' | 'Chattogram';
-                        if (city === 'Dhaka') return;
-                        setTicketCity(city);
-                        setTicketDate('AUG 24');
-                      }}
-                      className="w-full bg-white/10 border border-white/20 p-2.5 rounded-xl text-xs text-white focus:outline-none focus:border-[#00dbe9]"
-                    >
-                      <option value="Dhaka" disabled className="bg-[#11131d] text-gray-500 line-through">
-                        Dhaka (Mahila Samity) — SOLD OUT / আসন পূর্ণ
-                      </option>
-                      <option value="Chattogram" className="bg-[#11131d]">Chattogram (Theatre Inst.)</option>
-                    </select>
-                  </div>
-
-                  <div>
-                    <label className="block text-[11px] font-space font-bold uppercase text-[#c4c5da] mb-1">
-                      Show Date
-                    </label>
-                    <select
-                      value={ticketDate}
-                      onChange={(e) => setTicketDate(e.target.value)}
-                      className="w-full bg-white/10 border border-white/20 p-2.5 rounded-xl text-xs text-white focus:outline-none focus:border-[#00dbe9]"
-                    >
-                      <option value="AUG 24" className="bg-[#11131d]">AUG 24 (7:00 PM)</option>
-                    </select>
-                  </div>
-                </div>
-
-                {ticketCity === 'Dhaka' && (
-                  <div className="p-3 rounded-xl bg-red-950/70 border border-red-500/50 text-red-200 font-space text-xs font-bold flex items-center gap-2">
-                    <span>⚠️</span>
-                    <span>{TRANSLATIONS.dhaka_sold_out[lang]}</span>
-                  </div>
-                )}
-
-                <div className="grid grid-cols-2 gap-3">
-                  <div>
-                    <label className="block text-[11px] font-space font-bold uppercase text-[#c4c5da] mb-1">
-                      Ticket Tier
-                    </label>
-                    <select
-                      value={ticketTier}
-                      onChange={(e) => setTicketTier(e.target.value as any)}
-                      className="w-full bg-white/10 border border-white/20 p-2.5 rounded-xl text-xs text-white focus:outline-none focus:border-[#00dbe9]"
-                    >
-                      <option value="Standard" className="bg-[#11131d]">Standard Pass (৳500)</option>
-                      <option value="Supporter" className="bg-[#11131d]">Supporter Pass (৳1,200)</option>
-                      <option value="Student" className="bg-[#11131d]">Student Pass (৳250)</option>
-                    </select>
-                  </div>
-
-                  <div>
-                    <label className="block text-[11px] font-space font-bold uppercase text-[#c4c5da] mb-1">
-                      Quantity
-                    </label>
-                    <input
-                      type="number"
-                      min={1}
-                      max={10}
-                      value={ticketQty}
-                      onChange={(e) => setTicketQty(parseInt(e.target.value) || 1)}
-                      className="w-full bg-white/10 border border-white/20 p-2.5 rounded-xl text-xs text-white focus:outline-none focus:border-[#00dbe9]"
-                    />
-                  </div>
-                </div>
-
-                <div>
-                  <label className="block text-[11px] font-space font-bold uppercase text-[#c4c5da] mb-1">
-                    Your Full Name *
-                  </label>
-                  <input
-                    type="text"
-                    required
-                    placeholder="e.g. Anika Rahman"
-                    value={buyerName}
-                    onChange={(e) => setBuyerName(e.target.value)}
-                    className="w-full bg-white/10 border border-white/20 p-2.5 rounded-xl text-xs text-white focus:outline-none focus:border-[#00dbe9]"
-                  />
-                </div>
-
-                <div className="grid grid-cols-2 gap-3">
-                  <div>
-                    <label className="block text-[11px] font-space font-bold uppercase text-[#c4c5da] mb-1">
-                      Email *
-                    </label>
-                    <input
-                      type="email"
-                      required
-                      placeholder="anika@example.com"
-                      value={buyerEmail}
-                      onChange={(e) => setBuyerEmail(e.target.value)}
-                      className="w-full bg-white/10 border border-white/20 p-2.5 rounded-xl text-xs text-white focus:outline-none focus:border-[#00dbe9]"
-                    />
-                  </div>
-
-                  <div>
-                    <label className="block text-[11px] font-space font-bold uppercase text-[#c4c5da] mb-1">
-                      Phone Number *
-                    </label>
-                    <input
-                      type="tel"
-                      required
-                      placeholder="01711..."
-                      value={buyerPhone}
-                      onChange={(e) => setBuyerPhone(e.target.value)}
-                      className="w-full bg-white/10 border border-white/20 p-2.5 rounded-xl text-xs text-white focus:outline-none focus:border-[#00dbe9]"
-                    />
-                  </div>
-                </div>
-
-                <div className="pt-2">
-                  <button
-                    type="submit"
-                    className="amorphous-btn w-full text-[#00228a] py-3.5 font-space font-bold text-xs uppercase tracking-wider cursor-pointer"
-                  >
-                    Confirm & Purchase Tickets
-                  </button>
-                </div>
-              </form>
-            )}
-          </div>
-        </div>
-      )}
 
       {/* Dreamer Kit Order Modal */}
       {kitModalOpen && (

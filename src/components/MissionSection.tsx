@@ -7,7 +7,7 @@ export const MissionSection: React.FC = () => {
         <span className="font-sans-ui text-xs text-white/90 font-bold tracking-widest uppercase block mb-4">
           OUR MISSION
         </span>
-        <p className="font-serif-editorial text-xl md:text-2xl lg:text-3xl text-[#594139] leading-relaxed">
+        <p className="font-serif-editorial text-xl md:text-2xl lg:text-3xl text-white/80 leading-relaxed">
           Holding true that clearer dreams make for better worlds, we facilitate people and communities to create alternative visions and solutions.
         </p>
       </div>

@@ -24,7 +24,7 @@ export const DreamsView: React.FC<DreamsViewProps> = ({
         <h1 className="text-4xl sm:text-5xl text-[#D64E0E] font-bold">
           HerStory Dreams Archive
         </h1>
-        <p className="text-base text-[#594139] leading-relaxed">
+        <p className="text-base text-white/80 leading-relaxed">
           From rural textile workshops to speculative sci-fi performances and youth libraries, explore the realized dreams that shape our collective future.
         </p>
       </div>
@@ -38,7 +38,7 @@ export const DreamsView: React.FC<DreamsViewProps> = ({
             className={`text-xs uppercase tracking-wider font-semibold px-4 py-2 rounded-full transition-all cursor-pointer ${
               selectedTag === t
                 ? 'bg-[#D64E0E] text-white shadow-sm'
-                : 'bg-[#ffe9e3] text-[#594139] hover:bg-[#fde3da]'
+                : 'bg-black/20 text-white/80 hover:bg-[#fde3da]'
             }`}
           >
             {t}
@@ -52,7 +52,7 @@ export const DreamsView: React.FC<DreamsViewProps> = ({
           <div
             key={item.id}
             onClick={() => onSelectDream(item)}
-            className="group cursor-pointer bg-[#fff8f6] border border-[#e2bfb4]/60 rounded-2xl p-4 hover:border-[#D64E0E] hover:shadow-xl transition-all duration-300 flex flex-col justify-between"
+            className="group cursor-pointer bg-[#fff8f6] border border-white/10/60 rounded-2xl p-4 hover:border-[#D64E0E] hover:shadow-xl transition-all duration-300 flex flex-col justify-between"
           >
             <div>
               <div className={`aspect-square mb-4 overflow-hidden rounded-xl ${item.bgAccent} relative`}>
@@ -61,16 +61,16 @@ export const DreamsView: React.FC<DreamsViewProps> = ({
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                   src={item.imageUrl}
                 />
-                <span className="absolute top-3 left-3 bg-[#fff8f6]/90 backdrop-blur-sm text-[#261814] font-sans-ui text-[10px] font-bold px-2.5 py-1 rounded-full uppercase tracking-wider shadow-xs">
+                <span className="absolute top-3 left-3 bg-black/40 backdrop-blur-sm text-white font-sans-ui text-[10px] font-bold px-2.5 py-1 rounded-full uppercase tracking-wider shadow-xs">
                   {item.category}
                 </span>
               </div>
 
-              <h3 className="text-xl font-bold text-[#261814] group-hover:text-[#D64E0E] transition-colors">
+              <h3 className="text-xl font-bold text-white group-hover:text-[#D64E0E] transition-colors">
                 {item.title}
               </h3>
 
-              <p className="text-xs text-[#594139] mt-2 line-clamp-3 leading-relaxed">
+              <p className="text-xs text-white/80 mt-2 line-clamp-3 leading-relaxed">
                 {item.description}
               </p>
             </div>

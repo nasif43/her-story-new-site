@@ -20,7 +20,7 @@ export const Footer: React.FC<FooterProps> = ({ onOpenFooterModal }) => {
   };
 
   return (
-    <footer className="bg-[#fff1ec]/80 backdrop-blur-sm w-full pt-16 pb-12 border-t border-[#ffe9e3]">
+    <footer className="bg-black/20/80 backdrop-blur-sm w-full pt-16 pb-12 border-t border-[#ffe9e3]">
       <div className="flex flex-col items-center px-4 md:px-12 max-w-7xl mx-auto space-y-8 text-center">
         {/* HerStory Foundation Logo */}
         <div className="h-12 w-auto">
@@ -32,12 +32,12 @@ export const Footer: React.FC<FooterProps> = ({ onOpenFooterModal }) => {
         </div>
 
         {/* Quick Newsletter Signup Block */}
-        <div className="w-full max-w-md bg-[#fff8f6] p-4 rounded-xl border border-[#e2bfb4]">
-          <p className="font-serif-editorial text-sm text-[#261814] font-semibold mb-2">
+        <div className="w-full max-w-md bg-[#fff8f6] p-4 rounded-xl border border-white/10">
+          <p className="font-serif-editorial text-sm text-white font-semibold mb-2">
             Subscribe to HerStory Dispatch
           </p>
           {subscribed ? (
-            <div className="flex items-center justify-center gap-2 text-xs font-sans-ui text-[#812900] bg-[#BAD687]/30 py-2 rounded-lg font-bold">
+            <div className="flex items-center justify-center gap-2 text-xs font-sans-ui text-[#812900] bg-white/10/30 py-2 rounded-lg font-bold">
               <CheckCircle2 className="w-4 h-4 text-[#a53700]" />
               Welcome to the HerStory circle!
             </div>
@@ -49,7 +49,7 @@ export const Footer: React.FC<FooterProps> = ({ onOpenFooterModal }) => {
                 value={newsletterEmail}
                 onChange={(e) => setNewsletterEmail(e.target.value)}
                 required
-                className="flex-1 text-xs bg-[#fff1ec] border border-[#e2bfb4] px-3 py-2 rounded-lg focus:outline-none focus:border-[#D64E0E] text-[#261814]"
+                className="flex-1 text-xs bg-black/20 border border-white/10 px-3 py-2 rounded-lg focus:outline-none focus:border-[#D64E0E] text-white"
               />
               <button
                 type="submit"
@@ -66,25 +66,25 @@ export const Footer: React.FC<FooterProps> = ({ onOpenFooterModal }) => {
         <div className="flex flex-wrap justify-center gap-6 font-serif-editorial text-sm">
           <button
             onClick={() => onOpenFooterModal('contact')}
-            className="text-[#594139] hover:text-[#D64E0E] hover:underline transition-all cursor-pointer"
+            className="text-white/80 hover:text-[#D64E0E] hover:underline transition-all cursor-pointer"
           >
             Contact
           </button>
           <button
             onClick={() => onOpenFooterModal('privacy')}
-            className="text-[#594139] hover:text-[#D64E0E] hover:underline transition-all cursor-pointer"
+            className="text-white/80 hover:text-[#D64E0E] hover:underline transition-all cursor-pointer"
           >
             Privacy Policy
           </button>
           <button
             onClick={() => onOpenFooterModal('terms')}
-            className="text-[#594139] hover:text-[#D64E0E] hover:underline transition-all cursor-pointer"
+            className="text-white/80 hover:text-[#D64E0E] hover:underline transition-all cursor-pointer"
           >
             Terms of Service
           </button>
           <button
             onClick={() => onOpenFooterModal('newsletter')}
-            className="text-[#594139] hover:text-[#D64E0E] hover:underline transition-all cursor-pointer"
+            className="text-white/80 hover:text-[#D64E0E] hover:underline transition-all cursor-pointer"
           >
             Newsletter Signup
           </button>

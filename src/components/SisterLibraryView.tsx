@@ -25,30 +25,30 @@ export const SisterLibraryView: React.FC = () => {
         <span className="font-sans-ui text-xs font-bold text-[#BAD687] text-stone-700 uppercase tracking-widest block">
           POROUS READING SANCTUARY
         </span>
-        <h1 className="text-4xl sm:text-5xl text-[#261814] font-bold">
+        <h1 className="text-4xl sm:text-5xl text-white font-bold">
           Sister Library
         </h1>
-        <p className="text-base text-[#594139] leading-relaxed">
+        <p className="text-base text-white/80 leading-relaxed">
           A living, community-curated library and zine archive celebrating female, non-binary, and gender-marginalized creators.
         </p>
       </div>
 
       {borrowRequested && (
-        <div className="bg-[#BAD687]/40 border border-[#BAD687] text-[#261814] p-4 rounded-xl text-center font-sans-ui text-xs font-bold flex items-center justify-center gap-2 max-w-xl mx-auto">
+        <div className="bg-white/10/40 border border-[#BAD687] text-white p-4 rounded-xl text-center font-sans-ui text-xs font-bold flex items-center justify-center gap-2 max-w-xl mx-auto">
           <CheckCircle2 className="w-4 h-4 text-[#a53700]" />
           Loan request registered for "{borrowRequested}"! Visit our Sister Room in Dhaka or request mobile delivery.
         </div>
       )}
 
       {/* Search Input */}
-      <div className="max-w-xl mx-auto bg-[#fff1ec] border border-[#e2bfb4] rounded-full p-2 flex items-center gap-3 font-sans-ui px-4">
+      <div className="max-w-xl mx-auto bg-black/20 border border-white/10 rounded-full p-2 flex items-center gap-3 font-sans-ui px-4">
         <Search className="w-5 h-5 text-[#D64E0E]" />
         <input
           type="text"
           placeholder="Search zines, feminist theory, poetry, or curator notes..."
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
-          className="flex-1 bg-transparent text-sm text-[#261814] focus:outline-none placeholder:text-[#8d7167]"
+          className="flex-1 bg-transparent text-sm text-white focus:outline-none placeholder:text-white/40"
         />
       </div>
 
@@ -57,10 +57,10 @@ export const SisterLibraryView: React.FC = () => {
         {filteredItems.map((item) => (
           <div
             key={item.id}
-            className="bg-[#fff8f6] border border-[#e2bfb4] rounded-2xl p-4 flex flex-col justify-between hover:border-[#D672CE] hover:shadow-lg transition-all"
+            className="bg-[#fff8f6] border border-white/10 rounded-2xl p-4 flex flex-col justify-between hover:border-[#D672CE] hover:shadow-lg transition-all"
           >
             <div>
-              <div className="aspect-[3/4] mb-3 overflow-hidden rounded-xl bg-[#ffe9e3] relative">
+              <div className="aspect-[3/4] mb-3 overflow-hidden rounded-xl bg-black/20 relative">
                 <img
                   alt={item.title}
                   className="w-full h-full object-cover"
@@ -69,7 +69,7 @@ export const SisterLibraryView: React.FC = () => {
                 <span
                   className={`absolute top-2 right-2 font-sans-ui text-[10px] font-bold px-2.5 py-1 rounded-full uppercase tracking-wider ${
                     item.condition === 'Available'
-                      ? 'bg-[#BAD687] text-[#261814]'
+                      ? 'bg-white/10 text-white'
                       : item.condition === 'On Loan'
                       ? 'bg-[#D64E0E] text-white'
                       : 'bg-[#D672CE] text-white'
@@ -83,7 +83,7 @@ export const SisterLibraryView: React.FC = () => {
                 {item.category}
               </span>
 
-              <h3 className="text-lg font-bold text-[#261814] mt-1 line-clamp-1">
+              <h3 className="text-lg font-bold text-white mt-1 line-clamp-1">
                 {item.title}
               </h3>
 
@@ -91,7 +91,7 @@ export const SisterLibraryView: React.FC = () => {
                 By {item.author}
               </p>
 
-              <p className="text-xs text-[#594139] mt-3 bg-[#fff1ec] p-3 rounded-lg border border-[#e2bfb4]/40 italic line-clamp-3">
+              <p className="text-xs text-white/80 mt-3 bg-black/20 p-3 rounded-lg border border-white/10/40 italic line-clamp-3">
                 "{item.curatorNote}"
               </p>
             </div>

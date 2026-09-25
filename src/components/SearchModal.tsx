@@ -79,9 +79,9 @@ export const SearchModal: React.FC<SearchModalProps> = ({
 
   return (
     <div className="fixed inset-0 z-50 bg-[#261814]/60 backdrop-blur-sm flex items-start justify-center pt-16 px-4">
-      <div className="bg-[#fff8f6] border border-[#e2bfb4] w-full max-w-2xl rounded-2xl shadow-2xl overflow-hidden flex flex-col max-h-[80vh] animate-in fade-in zoom-in duration-200">
+      <div className="bg-[#fff8f6] border border-white/10 w-full max-w-2xl rounded-2xl shadow-2xl overflow-hidden flex flex-col max-h-[80vh] animate-in fade-in zoom-in duration-200">
         {/* Search Header Input */}
-        <div className="p-4 border-b border-[#ffe9e3] flex items-center gap-3 bg-[#fff1ec]">
+        <div className="p-4 border-b border-[#ffe9e3] flex items-center gap-3 bg-black/20">
           <Search className="w-5 h-5 text-[#D64E0E]" />
           <input
             type="text"
@@ -89,11 +89,11 @@ export const SearchModal: React.FC<SearchModalProps> = ({
             placeholder="Search dreams, books, sister library, reflections..."
             value={query}
             onChange={(e) => setQuery(e.target.value)}
-            className="flex-1 bg-transparent text-base font-serif-editorial text-[#261814] focus:outline-none placeholder:text-[#8d7167]"
+            className="flex-1 bg-transparent text-base font-serif-editorial text-white focus:outline-none placeholder:text-white/40"
           />
           <button
             onClick={onClose}
-            className="p-1.5 rounded-full hover:bg-[#ffe9e3] text-[#8d7167] cursor-pointer"
+            className="p-1.5 rounded-full hover:bg-black/20 text-[#8d7167] cursor-pointer"
           >
             <X className="w-5 h-5" />
           </button>
@@ -108,7 +108,7 @@ export const SearchModal: React.FC<SearchModalProps> = ({
               className={`px-3 py-1 rounded-full uppercase tracking-wider font-semibold cursor-pointer ${
                 filter === type
                   ? 'bg-[#D64E0E] text-white'
-                  : 'bg-[#ffe9e3] text-[#594139] hover:bg-[#fde3da]'
+                  : 'bg-black/20 text-white/80 hover:bg-[#fde3da]'
               }`}
             >
               {type}
@@ -139,11 +139,11 @@ export const SearchModal: React.FC<SearchModalProps> = ({
                           onSelectDream(item);
                           onClose();
                         }}
-                        className="p-3 bg-[#fff1ec] hover:bg-[#ffe9e3] rounded-xl cursor-pointer flex items-center justify-between transition-colors"
+                        className="p-3 bg-black/20 hover:bg-black/20 rounded-xl cursor-pointer flex items-center justify-between transition-colors"
                       >
                         <div>
-                          <p className="font-serif-editorial font-semibold text-[#261814]">{item.title}</p>
-                          <p className="font-serif-editorial text-xs text-[#594139] line-clamp-1">{item.description}</p>
+                          <p className="font-serif-editorial font-semibold text-white">{item.title}</p>
+                          <p className="font-serif-editorial text-xs text-white/80 line-clamp-1">{item.description}</p>
                         </div>
                         <ArrowRight className="w-4 h-4 text-[#D64E0E]" />
                       </div>
@@ -166,11 +166,11 @@ export const SearchModal: React.FC<SearchModalProps> = ({
                           onSelectBook(book);
                           onClose();
                         }}
-                        className="p-3 bg-[#fff1ec] hover:bg-[#ffe9e3] rounded-xl cursor-pointer flex items-center justify-between transition-colors"
+                        className="p-3 bg-black/20 hover:bg-black/20 rounded-xl cursor-pointer flex items-center justify-between transition-colors"
                       >
                         <div>
-                          <p className="font-serif-editorial font-semibold text-[#261814]">{book.title}</p>
-                          <p className="font-serif-editorial text-xs text-[#594139]">By {book.author} • {book.genre}</p>
+                          <p className="font-serif-editorial font-semibold text-white">{book.title}</p>
+                          <p className="font-serif-editorial text-xs text-white/80">By {book.author} • {book.genre}</p>
                         </div>
                         <ArrowRight className="w-4 h-4 text-[#D64E0E]" />
                       </div>
@@ -183,19 +183,19 @@ export const SearchModal: React.FC<SearchModalProps> = ({
               {matchingLibrary.length > 0 && (
                 <div>
                   <h4 className="font-sans-ui text-xs font-bold text-[#BAD687] text-stone-700 uppercase tracking-wider mb-3 flex items-center gap-1.5">
-                    <Library className="w-3.5 h-3.5 text-[#594139]" /> Sister Library Holdings ({matchingLibrary.length})
+                    <Library className="w-3.5 h-3.5 text-white/80" /> Sister Library Holdings ({matchingLibrary.length})
                   </h4>
                   <div className="space-y-2">
                     {matchingLibrary.map((item) => (
                       <div
                         key={item.id}
-                        className="p-3 bg-[#fff1ec] rounded-xl flex items-center justify-between"
+                        className="p-3 bg-black/20 rounded-xl flex items-center justify-between"
                       >
                         <div>
-                          <p className="font-serif-editorial font-semibold text-[#261814]">{item.title}</p>
-                          <p className="font-serif-editorial text-xs text-[#594139]">{item.author} — {item.category}</p>
+                          <p className="font-serif-editorial font-semibold text-white">{item.title}</p>
+                          <p className="font-serif-editorial text-xs text-white/80">{item.author} — {item.category}</p>
                         </div>
-                        <span className="text-[10px] font-sans-ui font-bold px-2.5 py-1 rounded-full bg-[#BAD687]/30 text-[#261814]">
+                        <span className="text-[10px] font-sans-ui font-bold px-2.5 py-1 rounded-full bg-white/10/30 text-white">
                           {item.condition}
                         </span>
                       </div>
@@ -218,11 +218,11 @@ export const SearchModal: React.FC<SearchModalProps> = ({
                           onSelectReflection(ref);
                           onClose();
                         }}
-                        className="p-3 bg-[#fff1ec] hover:bg-[#ffe9e3] rounded-xl cursor-pointer flex items-center justify-between transition-colors"
+                        className="p-3 bg-black/20 hover:bg-black/20 rounded-xl cursor-pointer flex items-center justify-between transition-colors"
                       >
                         <div>
-                          <p className="font-serif-editorial font-semibold text-[#261814]">{ref.title}</p>
-                          <p className="font-serif-editorial text-xs text-[#594139]">By {ref.author} • {ref.date}</p>
+                          <p className="font-serif-editorial font-semibold text-white">{ref.title}</p>
+                          <p className="font-serif-editorial text-xs text-white/80">By {ref.author} • {ref.date}</p>
                         </div>
                         <ArrowRight className="w-4 h-4 text-[#D64E0E]" />
                       </div>

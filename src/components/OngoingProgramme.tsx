@@ -15,7 +15,7 @@ export const OngoingProgramme: React.FC<OngoingProgrammeProps> = ({
 
   return (
     <section className="max-w-7xl mx-auto px-4 md:px-12 py-12">
-      <div className="relative group overflow-hidden rounded-2xl bg-[#fde3da] shadow-md border border-[#e2bfb4]">
+      <div className="relative group overflow-hidden rounded-2xl bg-[#fde3da] shadow-md border border-white/10">
         {/* Banner Background Image */}
         <div className="aspect-[16/9] md:aspect-[21/9] w-full overflow-hidden">
           <img
