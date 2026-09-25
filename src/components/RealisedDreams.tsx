@@ -37,7 +37,7 @@ export const RealisedDreams: React.FC<RealisedDreamsProps> = ({
             className={`text-xs uppercase tracking-wider font-semibold px-4 py-2 rounded-full transition-all cursor-pointer ${
               selectedCategory === cat
                 ? 'bg-[#D64E0E] text-white shadow-sm'
-                : 'bg-black/20 text-white/80 hover:bg-[#fde3da]'
+                : 'bg-black/20 text-white/80 hover:bg-white/10'
             }`}
           >
             {cat}
@@ -51,7 +51,7 @@ export const RealisedDreams: React.FC<RealisedDreamsProps> = ({
           <div
             key={item.id}
             onClick={() => onSelectDream(item)}
-            className="group block cursor-pointer bg-[#fff8f6] border border-white/10/50 rounded-xl p-3 hover:border-[#D64E0E] hover:shadow-lg transition-all duration-300"
+            className="group block cursor-pointer bg-black/40 border border-white/10/50 rounded-xl p-3 hover:border-[#D64E0E] hover:shadow-lg transition-all duration-300"
           >
             {/* Square Aspect Ratio Container */}
             <div className={`aspect-square mb-4 overflow-hidden rounded-lg ${item.bgAccent} relative`}>
@@ -74,7 +74,7 @@ export const RealisedDreams: React.FC<RealisedDreamsProps> = ({
               {item.description}
             </p>
 
-            <div className="mt-4 pt-3 border-t border-[#ffe9e3] flex items-center justify-between text-xs font-sans-ui font-semibold text-[#D64E0E] group-hover:translate-x-1 transition-transform">
+            <div className="mt-4 pt-3 border-t border-white/10 flex items-center justify-between text-xs font-sans-ui font-semibold text-[#D64E0E] group-hover:translate-x-1 transition-transform">
               <span>Read Story & Archives</span>
               <ArrowRight className="w-4 h-4" />
             </div>

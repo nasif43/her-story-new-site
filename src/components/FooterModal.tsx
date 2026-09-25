@@ -27,10 +27,10 @@ export const FooterModal: React.FC<FooterModalProps> = ({ type, onClose }) => {
   };
 
   return (
-    <div className="fixed inset-0 z-50 bg-[#261814]/70 backdrop-blur-md flex items-center justify-center p-4">
-      <div className="bg-[#fff8f6] border border-white/10 w-full max-w-xl rounded-2xl shadow-2xl overflow-hidden animate-in fade-in zoom-in duration-200 font-sans-ui">
+    <div className="fixed inset-0 z-50 bg-black/60 backdrop-blur-md flex items-center justify-center p-4">
+      <div className="bg-black/40 border border-white/10 w-full max-w-xl rounded-2xl shadow-2xl overflow-hidden animate-in fade-in zoom-in duration-200 font-sans-ui">
         {/* Header */}
-        <div className="p-4 border-b border-[#ffe9e3] flex items-center justify-between bg-black/20">
+        <div className="p-4 border-b border-white/10 flex items-center justify-between bg-black/20">
           <div className="flex items-center gap-2">
             {type === 'contact' && <Mail className="w-5 h-5 text-[#D64E0E]" />}
             {type === 'privacy' && <ShieldCheck className="w-5 h-5 text-[#BAD687]" />}
@@ -162,7 +162,7 @@ export const FooterModal: React.FC<FooterModalProps> = ({ type, onClose }) => {
         </div>
 
         {/* Footer */}
-        <div className="p-4 border-t border-[#ffe9e3] bg-black/20 flex justify-end">
+        <div className="p-4 border-t border-white/10 bg-black/20 flex justify-end">
           <button
             onClick={onClose}
             className="bg-[#D64E0E] text-white px-6 py-2 rounded-lg font-bold text-xs uppercase tracking-wider hover:bg-[#a53700] transition-colors cursor-pointer"

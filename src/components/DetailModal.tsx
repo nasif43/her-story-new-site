@@ -25,10 +25,10 @@ export const DetailModal: React.FC<DetailModalProps> = ({ item, onClose }) => {
   };
 
   return (
-    <div className="fixed inset-0 z-50 bg-[#261814]/70 backdrop-blur-md flex items-center justify-center p-4 overflow-y-auto">
-      <div className="bg-[#fff8f6] border border-white/10 w-full max-w-3xl rounded-2xl shadow-2xl overflow-hidden my-8 max-h-[90vh] flex flex-col animate-in fade-in zoom-in duration-200">
+    <div className="fixed inset-0 z-50 bg-black/60 backdrop-blur-md flex items-center justify-center p-4 overflow-y-auto">
+      <div className="bg-black/40 border border-white/10 w-full max-w-3xl rounded-2xl shadow-2xl overflow-hidden my-8 max-h-[90vh] flex flex-col animate-in fade-in zoom-in duration-200">
         {/* Header Bar */}
-        <div className="p-4 border-b border-[#ffe9e3] flex items-center justify-between bg-black/20">
+        <div className="p-4 border-b border-white/10 flex items-center justify-between bg-black/20">
           <div className="flex items-center gap-2">
             <span className="font-sans-ui text-xs font-bold uppercase tracking-wider px-3 py-1 rounded-full bg-[#D64E0E]/15 text-[#D64E0E]">
               {isDream ? 'Dream Archive' : isBook ? 'HerStory Publication' : 'Reflection & Essay'}
@@ -175,7 +175,7 @@ export const DetailModal: React.FC<DetailModalProps> = ({ item, onClose }) => {
 
           {/* Tags */}
           {'tags' in item && item.tags && (
-            <div className="pt-4 border-t border-[#ffe9e3] flex flex-wrap gap-2 font-sans-ui text-xs">
+            <div className="pt-4 border-t border-white/10 flex flex-wrap gap-2 font-sans-ui text-xs">
               {item.tags.map((tag) => (
                 <span key={tag} className="bg-black/20 text-white/80 px-3 py-1 rounded-full font-semibold">
                   #{tag}
@@ -186,7 +186,7 @@ export const DetailModal: React.FC<DetailModalProps> = ({ item, onClose }) => {
         </div>
 
         {/* Modal Footer */}
-        <div className="p-4 border-t border-[#ffe9e3] bg-black/20 flex flex-wrap items-center justify-between gap-3">
+        <div className="p-4 border-t border-white/10 bg-black/20 flex flex-wrap items-center justify-between gap-3">
           <p className="font-sans-ui text-xs text-[#8d7167]">
             HerStory Foundation & Publications Archive
           </p>

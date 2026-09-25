@@ -57,7 +57,7 @@ export const SisterLibraryView: React.FC = () => {
         {filteredItems.map((item) => (
           <div
             key={item.id}
-            className="bg-[#fff8f6] border border-white/10 rounded-2xl p-4 flex flex-col justify-between hover:border-[#D672CE] hover:shadow-lg transition-all"
+            className="bg-black/40 border border-white/10 rounded-2xl p-4 flex flex-col justify-between hover:border-[#D672CE] hover:shadow-lg transition-all"
           >
             <div>
               <div className="aspect-[3/4] mb-3 overflow-hidden rounded-xl bg-black/20 relative">
@@ -96,7 +96,7 @@ export const SisterLibraryView: React.FC = () => {
               </p>
             </div>
 
-            <div className="mt-4 pt-3 border-t border-[#ffe9e3] font-sans-ui text-xs flex items-center justify-between">
+            <div className="mt-4 pt-3 border-t border-white/10 font-sans-ui text-xs flex items-center justify-between">
               <span className="text-[10px] text-[#8d7167]">
                 {item.donatedBy || 'Sister Archive'}
               </span>

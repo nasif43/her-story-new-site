@@ -29,7 +29,7 @@ export const ReflectionsView: React.FC<ReflectionsViewProps> = ({ onSelectReflec
           <div
             key={item.id}
             onClick={() => onSelectReflection(item)}
-            className="bg-[#fff8f6] border border-white/10 rounded-2xl overflow-hidden hover:border-[#D64E0E] hover:shadow-xl transition-all cursor-pointer group flex flex-col justify-between"
+            className="bg-black/40 border border-white/10 rounded-2xl overflow-hidden hover:border-[#D64E0E] hover:shadow-xl transition-all cursor-pointer group flex flex-col justify-between"
           >
             <div>
               <div className="aspect-[16/10] overflow-hidden bg-black/20 relative">

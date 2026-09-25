@@ -78,10 +78,10 @@ export const SearchModal: React.FC<SearchModalProps> = ({
     matchingReflections.length;
 
   return (
-    <div className="fixed inset-0 z-50 bg-[#261814]/60 backdrop-blur-sm flex items-start justify-center pt-16 px-4">
-      <div className="bg-[#fff8f6] border border-white/10 w-full max-w-2xl rounded-2xl shadow-2xl overflow-hidden flex flex-col max-h-[80vh] animate-in fade-in zoom-in duration-200">
+    <div className="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm flex items-start justify-center pt-16 px-4">
+      <div className="bg-black/40 border border-white/10 w-full max-w-2xl rounded-2xl shadow-2xl overflow-hidden flex flex-col max-h-[80vh] animate-in fade-in zoom-in duration-200">
         {/* Search Header Input */}
-        <div className="p-4 border-b border-[#ffe9e3] flex items-center gap-3 bg-black/20">
+        <div className="p-4 border-b border-white/10 flex items-center gap-3 bg-black/20">
           <Search className="w-5 h-5 text-[#D64E0E]" />
           <input
             type="text"
@@ -100,7 +100,7 @@ export const SearchModal: React.FC<SearchModalProps> = ({
         </div>
 
         {/* Filter Pills */}
-        <div className="px-4 py-3 bg-[#fff8f6] border-b border-[#ffe9e3] flex gap-2 overflow-x-auto font-sans-ui text-xs">
+        <div className="px-4 py-3 bg-black/40 border-b border-white/10 flex gap-2 overflow-x-auto font-sans-ui text-xs">
           {(['All', 'Dreams', 'Books', 'Library', 'Reflections'] as const).map((type) => (
             <button
               key={type}
@@ -108,7 +108,7 @@ export const SearchModal: React.FC<SearchModalProps> = ({
               className={`px-3 py-1 rounded-full uppercase tracking-wider font-semibold cursor-pointer ${
                 filter === type
                   ? 'bg-[#D64E0E] text-white'
-                  : 'bg-black/20 text-white/80 hover:bg-[#fde3da]'
+                  : 'bg-black/20 text-white/80 hover:bg-white/10'
               }`}
             >
               {type}

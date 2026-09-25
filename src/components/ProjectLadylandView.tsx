@@ -338,9 +338,7 @@ export const ProjectLadylandView: React.FC<ProjectLadylandViewProps> = ({ onGoHo
           </div>
 
           <div className="hidden md:flex items-center gap-6 font-space text-xs tracking-wider uppercase">
-            <a href="#section-tickets" className="text-[#c4c5da] hover:text-[#b9c3ff] transition-colors">
-              {TRANSLATIONS.nav_performances[lang]}
-            </a>
+            {/* <a href="#section-tickets" className="text-[#c4c5da] hover:text-[#b9c3ff] transition-colors">{TRANSLATIONS.nav_performances[lang]}</a> */}
             <a href="#section-synopsis" className="text-[#c4c5da] hover:text-[#b9c3ff] transition-colors">
               {TRANSLATIONS.nav_reimagining[lang]}
             </a>
@@ -402,10 +400,10 @@ export const ProjectLadylandView: React.FC<ProjectLadylandViewProps> = ({ onGoHo
               <span className="px-3.5 py-1 rounded-full bg-[#0047ff]/20 border border-[#0047ff]/40 text-[#b9c3ff] font-space text-[11px] font-bold uppercase tracking-widest backdrop-blur-sm">
                 {TRANSLATIONS.hero_cities[lang]}
               </span>
-              <span className="px-3.5 py-1 rounded-full bg-red-500/20 border border-red-500/40 text-red-300 font-space text-[11px] font-bold uppercase tracking-widest backdrop-blur-sm flex items-center gap-1.5 shadow-md">
+              {/* <span className="px-3.5 py-1 rounded-full bg-red-500/20 border border-red-500/40 text-red-300 font-space text-[11px] font-bold uppercase tracking-widest backdrop-blur-sm flex items-center gap-1.5 shadow-md">
                 <span className="w-2 h-2 rounded-full bg-red-400 animate-pulse"></span>
                 <span>{TRANSLATIONS.dhaka_sold_out[lang]}</span>
-              </span>
+              </span> */}
             </div>
 
             <h1 className="font-space text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-[#ffffff] via-[#ffb0cd] to-[#00dbe9] drop-shadow-[0_0_15px_rgba(255,255,255,0.3)] leading-none">
@@ -420,7 +418,8 @@ export const ProjectLadylandView: React.FC<ProjectLadylandViewProps> = ({ onGoHo
               )}
             </p>
 
-            <div className="pt-2 flex flex-wrap items-center gap-4">
+            {/* 
+<div className="pt-2 flex flex-wrap items-center gap-4">
               <a
                 href="https://tickify.live/event/project-ladyland-2026-chittagong/"
                 target="_blank"
@@ -436,6 +435,7 @@ export const ProjectLadylandView: React.FC<ProjectLadylandViewProps> = ({ onGoHo
                 <span>{TRANSLATIONS.dhaka_sold_out[lang]}</span>
               </div>
             </div>
+*/}
           </div>
 
           {/* Background Ambient design layers */}
@@ -446,7 +446,7 @@ export const ProjectLadylandView: React.FC<ProjectLadylandViewProps> = ({ onGoHo
           </div>
         </section>
 
-        {/* 2. Ticket Sales & Performance Dates */}
+        
         
 
 

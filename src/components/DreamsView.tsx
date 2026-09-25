@@ -38,7 +38,7 @@ export const DreamsView: React.FC<DreamsViewProps> = ({
             className={`text-xs uppercase tracking-wider font-semibold px-4 py-2 rounded-full transition-all cursor-pointer ${
               selectedTag === t
                 ? 'bg-[#D64E0E] text-white shadow-sm'
-                : 'bg-black/20 text-white/80 hover:bg-[#fde3da]'
+                : 'bg-black/20 text-white/80 hover:bg-white/10'
             }`}
           >
             {t}
@@ -52,7 +52,7 @@ export const DreamsView: React.FC<DreamsViewProps> = ({
           <div
             key={item.id}
             onClick={() => onSelectDream(item)}
-            className="group cursor-pointer bg-[#fff8f6] border border-white/10/60 rounded-2xl p-4 hover:border-[#D64E0E] hover:shadow-xl transition-all duration-300 flex flex-col justify-between"
+            className="group cursor-pointer bg-black/40 border border-white/10/60 rounded-2xl p-4 hover:border-[#D64E0E] hover:shadow-xl transition-all duration-300 flex flex-col justify-between"
           >
             <div>
               <div className={`aspect-square mb-4 overflow-hidden rounded-xl ${item.bgAccent} relative`}>
@@ -75,7 +75,7 @@ export const DreamsView: React.FC<DreamsViewProps> = ({
               </p>
             </div>
 
-            <div className="mt-4 pt-3 border-t border-[#ffe9e3] flex items-center justify-between font-sans-ui text-xs font-semibold text-[#D64E0E]">
+            <div className="mt-4 pt-3 border-t border-white/10 flex items-center justify-between font-sans-ui text-xs font-semibold text-[#D64E0E]">
               <span>View Full Archive</span>
               <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
             </div>

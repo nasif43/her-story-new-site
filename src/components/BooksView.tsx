@@ -54,7 +54,7 @@ export const BooksView: React.FC<BooksViewProps> = ({ onSelectBook }) => {
             className={`text-xs uppercase tracking-wider font-semibold px-4 py-2 rounded-full transition-all cursor-pointer ${
               selectedGenre === g
                 ? 'bg-[#D64E0E] text-white shadow-sm'
-                : 'bg-black/20 text-white/80 hover:bg-[#fde3da]'
+                : 'bg-black/20 text-white/80 hover:bg-white/10'
             }`}
           >
             {g}
@@ -68,7 +68,7 @@ export const BooksView: React.FC<BooksViewProps> = ({ onSelectBook }) => {
           <div
             key={book.id}
             onClick={() => onSelectBook(book)}
-            className="bg-[#fff8f6] border border-white/10 rounded-2xl p-6 hover:border-[#D64E0E] hover:shadow-xl transition-all cursor-pointer flex flex-col sm:flex-row gap-6 group"
+            className="bg-black/40 border border-white/10 rounded-2xl p-6 hover:border-[#D64E0E] hover:shadow-xl transition-all cursor-pointer flex flex-col sm:flex-row gap-6 group"
           >
             {/* Book Cover Image */}
             <div className="w-full sm:w-40 aspect-[3/4] overflow-hidden rounded-xl bg-black/20 flex-shrink-0 relative shadow-md">
@@ -77,7 +77,7 @@ export const BooksView: React.FC<BooksViewProps> = ({ onSelectBook }) => {
                 className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                 src={book.coverImage}
               />
-              <span className="absolute bottom-2 left-2 bg-[#261814]/80 text-white font-sans-ui text-[10px] font-bold px-2 py-0.5 rounded-md">
+              <span className="absolute bottom-2 left-2 bg-black/60 text-white font-sans-ui text-[10px] font-bold px-2 py-0.5 rounded-md">
                 {book.pages} pages
               </span>
             </div>
@@ -102,7 +102,7 @@ export const BooksView: React.FC<BooksViewProps> = ({ onSelectBook }) => {
                 </p>
               </div>
 
-              <div className="pt-3 border-t border-[#ffe9e3] flex flex-wrap items-center justify-between gap-2 font-sans-ui">
+              <div className="pt-3 border-t border-white/10 flex flex-wrap items-center justify-between gap-2 font-sans-ui">
                 <span className="text-sm font-bold text-[#D64E0E]">
                   {book.price || 'Library Collection'}
                 </span>

@@ -20,7 +20,7 @@ export const Footer: React.FC<FooterProps> = ({ onOpenFooterModal }) => {
   };
 
   return (
-    <footer className="bg-black/20/80 backdrop-blur-sm w-full pt-16 pb-12 border-t border-[#ffe9e3]">
+    <footer className="bg-black/20/80 backdrop-blur-sm w-full pt-16 pb-12 border-t border-white/10">
       <div className="flex flex-col items-center px-4 md:px-12 max-w-7xl mx-auto space-y-8 text-center">
         {/* HerStory Foundation Logo */}
         <div className="h-12 w-auto">
@@ -32,7 +32,7 @@ export const Footer: React.FC<FooterProps> = ({ onOpenFooterModal }) => {
         </div>
 
         {/* Quick Newsletter Signup Block */}
-        <div className="w-full max-w-md bg-[#fff8f6] p-4 rounded-xl border border-white/10">
+        <div className="w-full max-w-md bg-black/40 p-4 rounded-xl border border-white/10">
           <p className="font-serif-editorial text-sm text-white font-semibold mb-2">
             Subscribe to HerStory Dispatch
           </p>
