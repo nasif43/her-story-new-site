@@ -21,12 +21,12 @@ export const OngoingProgramme: React.FC<OngoingProgrammeProps> = ({
           <img
             alt="Project Ladyland 2026 - HerStory Foundation"
             className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
-            src="https://lh3.googleusercontent.com/aida-public/AB6AXuC3AdXCBnNP1PxM57H4Drd7yukTHziz2-AxqwUPWPkREBPvNZPdHDiZKWjT5yyFzvVcA1fYv7ZFaF_jM78_IVhL5ma-soEKs68MnkvRfFIDYXB4wHhv_wJkrMl3C6PoupNLHGZEgho4YKFHV5NYJNVnVXTe1rjzmcP3pGB0o4H8Q2HX6mDWylK6JyDK1y90Pf1qLYBpiWsp5brEP7f21ncEogNvbVXY082UnRX4w1zRCMJ1dOiOhgS03ZRm-4Sr36rFRU1tLArYAww5"
+            src="/images/home-page.jpeg"
           />
         </div>
 
         {/* Overlay Gradient */}
-        <div className="absolute inset-0 bg-gradient-to-t from-[#261814]/90 via-[#261814]/40 to-transparent pointer-events-none" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent pointer-events-none" />
 
         {/* Card Content Overlay */}
         <div className="absolute bottom-0 left-0 p-6 md:p-12 text-white max-w-3xl">
