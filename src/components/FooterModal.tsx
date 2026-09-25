@@ -45,7 +45,7 @@ export const FooterModal: React.FC<FooterModalProps> = ({ type, onClose }) => {
           </div>
           <button
             onClick={onClose}
-            className="p-1.5 rounded-full hover:bg-black/20 text-[#8d7167] cursor-pointer"
+            className="p-1.5 rounded-full hover:bg-black/20 text-[#c4c5da] cursor-pointer"
           >
             <X className="w-5 h-5" />
           </button>

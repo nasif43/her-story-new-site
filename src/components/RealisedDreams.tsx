@@ -51,7 +51,7 @@ export const RealisedDreams: React.FC<RealisedDreamsProps> = ({
           <div
             key={item.id}
             onClick={() => onSelectDream(item)}
-            className="group block cursor-pointer bg-black/40 border border-white/10/50 rounded-xl p-3 hover:border-[#D64E0E] hover:shadow-lg transition-all duration-300"
+            className="group block cursor-pointer bg-black/40 border border-white/20 rounded-xl p-3 hover:border-[#D64E0E] hover:shadow-lg transition-all duration-300"
           >
             {/* Square Aspect Ratio Container */}
             <div className={`aspect-square mb-4 overflow-hidden rounded-lg ${item.bgAccent} relative`}>

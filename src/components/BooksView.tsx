@@ -39,7 +39,7 @@ export const BooksView: React.FC<BooksViewProps> = ({ onSelectBook }) => {
       </div>
 
       {reservedBookTitle && (
-        <div className="bg-white/10/40 border border-[#BAD687] text-white p-4 rounded-xl text-center font-sans-ui text-xs font-bold flex items-center justify-center gap-2 max-w-xl mx-auto">
+        <div className="bg-white/10 border border-[#BAD687] text-white p-4 rounded-xl text-center font-sans-ui text-xs font-bold flex items-center justify-center gap-2 max-w-xl mx-auto">
           <CheckCircle2 className="w-4 h-4 text-[#a53700]" />
           Inquiry sent for "{reservedBookTitle}"! Our publications desk will reach out.
         </div>
@@ -93,7 +93,7 @@ export const BooksView: React.FC<BooksViewProps> = ({ onSelectBook }) => {
                   {book.title}
                 </h3>
 
-                <p className="font-sans-ui text-xs font-semibold text-[#8d7167] mt-1">
+                <p className="font-sans-ui text-xs font-semibold text-[#c4c5da] mt-1">
                   By {book.author} {book.illustrator && `• Illus. ${book.illustrator}`}
                 </p>
 

@@ -91,7 +91,7 @@ export const Footer: React.FC<FooterProps> = ({ onOpenFooterModal }) => {
         </div>
 
         {/* Copyright notice */}
-        <div className="font-serif-editorial text-xs text-[#8d7167]">
+        <div className="font-serif-editorial text-xs text-[#c4c5da]">
           © {new Date().getFullYear()} HerStory Foundation & Publications. All rights reserved.
         </div>
       </div>

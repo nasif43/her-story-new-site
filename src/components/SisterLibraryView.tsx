@@ -22,7 +22,7 @@ export const SisterLibraryView: React.FC = () => {
     <div className="max-w-7xl mx-auto px-4 md:px-12 py-10 space-y-12 animate-in fade-in duration-300 font-serif-editorial">
       {/* Title Header */}
       <div className="text-center max-w-3xl mx-auto space-y-4">
-        <span className="font-sans-ui text-xs font-bold text-[#BAD687] text-stone-700 uppercase tracking-widest block">
+        <span className="font-sans-ui text-xs font-bold text-[#BAD687] uppercase tracking-widest block">
           POROUS READING SANCTUARY
         </span>
         <h1 className="text-4xl sm:text-5xl text-white font-bold">
@@ -34,7 +34,7 @@ export const SisterLibraryView: React.FC = () => {
       </div>
 
       {borrowRequested && (
-        <div className="bg-white/10/40 border border-[#BAD687] text-white p-4 rounded-xl text-center font-sans-ui text-xs font-bold flex items-center justify-center gap-2 max-w-xl mx-auto">
+        <div className="bg-white/10 border border-[#BAD687] text-white p-4 rounded-xl text-center font-sans-ui text-xs font-bold flex items-center justify-center gap-2 max-w-xl mx-auto">
           <CheckCircle2 className="w-4 h-4 text-[#a53700]" />
           Loan request registered for "{borrowRequested}"! Visit our Sister Room in Dhaka or request mobile delivery.
         </div>
@@ -87,23 +87,23 @@ export const SisterLibraryView: React.FC = () => {
                 {item.title}
               </h3>
 
-              <p className="font-sans-ui text-xs text-[#8d7167] font-medium">
+              <p className="font-sans-ui text-xs text-[#c4c5da] font-medium">
                 By {item.author}
               </p>
 
-              <p className="text-xs text-white/80 mt-3 bg-black/20 p-3 rounded-lg border border-white/10/40 italic line-clamp-3">
+              <p className="text-xs text-white/80 mt-3 bg-black/20 p-3 rounded-lg border border-white/20 italic line-clamp-3">
                 "{item.curatorNote}"
               </p>
             </div>
 
             <div className="mt-4 pt-3 border-t border-white/10 font-sans-ui text-xs flex items-center justify-between">
-              <span className="text-[10px] text-[#8d7167]">
+              <span className="text-[10px] text-[#c4c5da]">
                 {item.donatedBy || 'Sister Archive'}
               </span>
 
               <button
                 onClick={() => handleBorrow(item.title)}
-                className="bg-[#D672CE]/20 text-[#953891] hover:bg-[#D672CE]/30 px-3 py-1.5 rounded-lg font-bold transition-colors cursor-pointer"
+                className="bg-[#D672CE]/20 text-[#ffb0cd] hover:bg-[#D672CE]/30 px-3 py-1.5 rounded-lg font-bold transition-colors cursor-pointer"
               >
                 Request Loan
               </button>

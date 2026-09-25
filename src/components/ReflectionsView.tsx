@@ -44,7 +44,7 @@ export const ReflectionsView: React.FC<ReflectionsViewProps> = ({ onSelectReflec
               </div>
 
               <div className="p-6 space-y-3">
-                <div className="flex items-center gap-2 font-sans-ui text-xs text-[#8d7167]">
+                <div className="flex items-center gap-2 font-sans-ui text-xs text-[#c4c5da]">
                   <span>{item.date}</span>
                   <span>•</span>
                   <span className="flex items-center gap-1">

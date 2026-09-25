@@ -52,7 +52,7 @@ export const DreamsView: React.FC<DreamsViewProps> = ({
           <div
             key={item.id}
             onClick={() => onSelectDream(item)}
-            className="group cursor-pointer bg-black/40 border border-white/10/60 rounded-2xl p-4 hover:border-[#D64E0E] hover:shadow-xl transition-all duration-300 flex flex-col justify-between"
+            className="group cursor-pointer bg-black/40 border border-white/20 rounded-2xl p-4 hover:border-[#D64E0E] hover:shadow-xl transition-all duration-300 flex flex-col justify-between"
           >
             <div>
               <div className={`aspect-square mb-4 overflow-hidden rounded-xl ${item.bgAccent} relative`}>

@@ -93,7 +93,7 @@ export const SearchModal: React.FC<SearchModalProps> = ({
           />
           <button
             onClick={onClose}
-            className="p-1.5 rounded-full hover:bg-black/20 text-[#8d7167] cursor-pointer"
+            className="p-1.5 rounded-full hover:bg-black/20 text-[#c4c5da] cursor-pointer"
           >
             <X className="w-5 h-5" />
           </button>
@@ -119,7 +119,7 @@ export const SearchModal: React.FC<SearchModalProps> = ({
         {/* Search Results List */}
         <div className="flex-1 overflow-y-auto p-4 space-y-6">
           {totalMatches === 0 ? (
-            <div className="text-center py-12 text-[#8d7167] font-serif-editorial">
+            <div className="text-center py-12 text-[#c4c5da] font-serif-editorial">
               <p className="text-lg">No archives matching "{query}"</p>
               <p className="text-xs mt-1 font-sans-ui">Try searching for 'Sultana', 'Nakshi', 'Library', or 'Feminist'</p>
             </div>
@@ -182,7 +182,7 @@ export const SearchModal: React.FC<SearchModalProps> = ({
               {/* Sister Library Results */}
               {matchingLibrary.length > 0 && (
                 <div>
-                  <h4 className="font-sans-ui text-xs font-bold text-[#BAD687] text-stone-700 uppercase tracking-wider mb-3 flex items-center gap-1.5">
+                  <h4 className="font-sans-ui text-xs font-bold text-[#BAD687] uppercase tracking-wider mb-3 flex items-center gap-1.5">
                     <Library className="w-3.5 h-3.5 text-white/80" /> Sister Library Holdings ({matchingLibrary.length})
                   </h4>
                   <div className="space-y-2">

@@ -66,7 +66,7 @@ export const DetailModal: React.FC<DetailModalProps> = ({ item, onClose }) => {
         {/* Modal Scrollable Body */}
         <div className="p-6 md:p-8 overflow-y-auto space-y-6 font-serif-editorial">
           {copied && (
-            <div className="bg-white/10/40 text-white text-xs font-sans-ui font-bold p-3 rounded-lg text-center">
+            <div className="bg-white/10 text-white text-xs font-sans-ui font-bold p-3 rounded-lg text-center">
               Link copied to clipboard!
             </div>
           )}
@@ -87,7 +87,7 @@ export const DetailModal: React.FC<DetailModalProps> = ({ item, onClose }) => {
           </div>
 
           {/* Meta Info Bar */}
-          <div className="flex flex-wrap items-center gap-4 text-xs font-sans-ui text-[#8d7167]">
+          <div className="flex flex-wrap items-center gap-4 text-xs font-sans-ui text-[#c4c5da]">
             {'year' in item && (
               <span className="flex items-center gap-1 bg-black/20 px-3 py-1 rounded-full text-white font-semibold">
                 <Calendar className="w-3.5 h-3.5 text-[#D64E0E]" />
@@ -132,7 +132,7 @@ export const DetailModal: React.FC<DetailModalProps> = ({ item, onClose }) => {
                 <p className="font-sans-ui text-xs font-bold text-white">
                   {isPlayingAudio ? 'Playing Audio Commentary & Soundscape' : 'Listen to Audio Excerpt'}
                 </p>
-                <p className="font-sans-ui text-[11px] text-[#8d7167]">
+                <p className="font-sans-ui text-[11px] text-[#c4c5da]">
                   {isPlayingAudio ? '01:42 / 04:15 — Voice archive recorded in Dhaka' : 'Narrated by HerStory Oral History Fellows'}
                 </p>
               </div>
@@ -148,7 +148,7 @@ export const DetailModal: React.FC<DetailModalProps> = ({ item, onClose }) => {
 
           {/* Quote Block if available */}
           {'quote' in item && item.quote && (
-            <div className="bg-[#D672CE]/10 border-l-4 border-[#D672CE] p-4 rounded-r-xl italic text-base text-[#953891]">
+            <div className="bg-[#D672CE]/10 border-l-4 border-[#D672CE] p-4 rounded-r-xl italic text-base text-[#ffb0cd]">
               <Quote className="w-5 h-5 mb-1 opacity-60" />
               {item.quote}
             </div>
@@ -160,7 +160,7 @@ export const DetailModal: React.FC<DetailModalProps> = ({ item, onClose }) => {
             {isBook && (
               <div>
                 <p className="font-bold mb-2 text-[#D64E0E]">Book Excerpt & Summary:</p>
-                <p className="italic bg-black/20/50 p-4 rounded-xl border border-white/10/40">
+                <p className="italic bg-black/40 p-4 rounded-xl border border-white/20">
                   {item.excerptText}
                 </p>
                 {item.price && (
@@ -187,7 +187,7 @@ export const DetailModal: React.FC<DetailModalProps> = ({ item, onClose }) => {
 
         {/* Modal Footer */}
         <div className="p-4 border-t border-white/10 bg-black/20 flex flex-wrap items-center justify-between gap-3">
-          <p className="font-sans-ui text-xs text-[#8d7167]">
+          <p className="font-sans-ui text-xs text-[#c4c5da]">
             HerStory Foundation & Publications Archive
           </p>
           <div className="flex gap-2 font-sans-ui text-xs">
