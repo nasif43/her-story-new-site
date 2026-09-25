@@ -97,7 +97,7 @@ export const BooksView: React.FC<BooksViewProps> = ({ onSelectBook }) => {
                   By {book.author} {book.illustrator && `• Illus. ${book.illustrator}`}
                 </p>
 
-                <p className="text-xs text-white/80 mt-3 line-clamp-3 leading-relaxed">
+                <p className="text-xs text-white/80 mt-3 leading-relaxed">
                   {book.description}
                 </p>
               </div>

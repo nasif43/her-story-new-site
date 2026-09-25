@@ -61,7 +61,7 @@ export const ReflectionsView: React.FC<ReflectionsViewProps> = ({ onSelectReflec
                   By {item.author} ({item.role})
                 </p>
 
-                <p className="text-xs text-white/80 leading-relaxed line-clamp-3">
+                <p className="text-xs text-white/80 leading-relaxed">
                   {item.excerpt}
                 </p>
               </div>

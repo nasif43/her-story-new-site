@@ -70,7 +70,7 @@ export const DreamsView: React.FC<DreamsViewProps> = ({
                 {item.title}
               </h3>
 
-              <p className="text-xs text-white/80 mt-2 line-clamp-3 leading-relaxed">
+              <p className="text-xs text-white/80 mt-2 leading-relaxed">
                 {item.description}
               </p>
             </div>

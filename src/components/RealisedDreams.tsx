@@ -66,11 +66,11 @@ export const RealisedDreams: React.FC<RealisedDreamsProps> = ({
             </div>
 
             {/* Title & Short Description */}
-            <h3 className="font-serif-editorial text-xl font-semibold text-white group-hover:text-[#D64E0E] transition-colors line-clamp-1">
+            <h3 className="font-serif-editorial text-xl font-semibold text-white group-hover:text-[#D64E0E] transition-colors">
               {item.title}
             </h3>
 
-            <p className="font-serif-editorial text-sm text-white/80 mt-2 leading-relaxed line-clamp-2">
+            <p className="font-serif-editorial text-sm text-white/80 mt-2 leading-relaxed">
               {item.description}
             </p>
 

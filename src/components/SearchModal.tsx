@@ -143,7 +143,7 @@ export const SearchModal: React.FC<SearchModalProps> = ({
                       >
                         <div>
                           <p className="font-serif-editorial font-semibold text-white">{item.title}</p>
-                          <p className="font-serif-editorial text-xs text-white/80 line-clamp-1">{item.description}</p>
+                          <p className="font-serif-editorial text-xs text-white/80">{item.description}</p>
                         </div>
                         <ArrowRight className="w-4 h-4 text-[#D64E0E]" />
                       </div>

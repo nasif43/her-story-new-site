@@ -83,7 +83,7 @@ export const SisterLibraryView: React.FC = () => {
                 {item.category}
               </span>
 
-              <h3 className="text-lg font-bold text-white mt-1 line-clamp-1">
+              <h3 className="text-lg font-bold text-white mt-1">
                 {item.title}
               </h3>
 
@@ -91,7 +91,7 @@ export const SisterLibraryView: React.FC = () => {
                 By {item.author}
               </p>
 
-              <p className="text-xs text-white/80 mt-3 bg-black/20 p-3 rounded-lg border border-white/20 italic line-clamp-3">
+              <p className="text-xs text-white/80 mt-3 bg-black/20 p-3 rounded-lg border border-white/20 italic">
                 "{item.curatorNote}"
               </p>
             </div>
