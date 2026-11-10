@@ -119,3 +119,194 @@
   background: #D64E0E;
 }
 
+/* Tactile Neo-Brutalist & Print Craft Custom Utilities for Sister Library */
+.block-shadow-pink {
+  box-shadow: 3px 3px 0px #ff1493;
+}
+.block-shadow-orange {
+  box-shadow: 3px 3px 0px #ff7a00;
+}
+.block-shadow-purple {
+  box-shadow: 3px 3px 0px #7e22ce;
+}
+.block-shadow-blue {
+  box-shadow: 3px 3px 0px #2563eb;
+}
+.block-shadow-dark {
+  box-shadow: 3px 3px 0px #1c1c16;
+}
+.block-shadow-sm {
+  box-shadow: 2px 2px 0px #1c1c16;
+}
+.btn-press:active {
+  transform: translate(2px, 2px);
+  box-shadow: 0px 0px 0px transparent;
+}
+.paper-tape {
+  background: #fdf9ef;
+  border-left: 2px dashed #857378;
+  border-right: 2px dashed #857378;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+}
+.stamp-rotate-left {
+  transform: rotate(-1.5deg);
+}
+.stamp-rotate-right {
+  transform: rotate(1.5deg);
+}
+
+@keyframes marquee-ltr {
+  0% {
+    transform: translateX(-50%);
+  }
+  100% {
+    transform: translateX(0%);
+  }
+}
+
+@keyframes marquee-rtl {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-marquee-ltr {
+  display: flex;
+  width: max-content;
+  animation: marquee-ltr 32s linear infinite;
+  will-change: transform;
+}
+
+.animate-marquee-ltr:hover {
+  animation-play-state: paused;
+}
+
+.animate-marquee-rtl {
+  display: flex;
+  width: max-content;
+  animation: marquee-rtl 32s linear infinite;
+  will-change: transform;
+}
+
+.animate-marquee-rtl:hover {
+  animation-play-state: paused;
+}
+
+@keyframes rainbow-flow {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.rainbow-text-gradient {
+  background: linear-gradient(
+    90deg,
+    #ff007f 0%,
+    #ea580c 20%,
+    #d9822b 35%,
+    #059669 50%,
+    #2563eb 70%,
+    #7e22ce 85%,
+    #ff007f 100%
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: rainbow-flow 3.5s linear infinite;
+}
+
+@keyframes sparkle-twinkle {
+  0%, 100% {
+    transform: scale(0.9) rotate(0deg);
+    opacity: 0.85;
+  }
+  50% {
+    transform: scale(1.2) rotate(15deg);
+    opacity: 1;
+    filter: drop-shadow(0 0 5px rgba(255, 20, 147, 0.7));
+  }
+}
+
+.animate-sparkle {
+  animation: sparkle-twinkle 1.8s ease-in-out infinite;
+}
+
+@theme {
+  --color-riso-pink: #ff1493;
+  --color-primary: #ff1493;
+  --color-primary-container: #e10080;
+  --color-on-primary: #ffffff;
+  --color-on-primary-container: #fffbff;
+  --color-primary-fixed: #ffd9e3;
+  --color-primary-fixed-dim: #ffb0ca;
+  --color-vibrant-orange: #ff7a00;
+  --color-vibrant-orange-dark: #ea580c;
+  --color-rich-purple: #7e22ce;
+  --color-rich-purple-light: #9333ea;
+  --color-sky-blue: #2563eb;
+  --color-sky-blue-cyan: #0284c7;
+  --color-secondary: #7e22ce;
+  --color-secondary-container: #ede9fe;
+  --color-on-secondary: #ffffff;
+  --color-on-secondary-container: #4c1d95;
+  --color-tertiary: #ea580c;
+  --color-tertiary-container: #ffedd5;
+  --color-on-tertiary: #ffffff;
+  --color-on-tertiary-container: #7c2d12;
+  --color-surface: #fdf9ef;
+  --color-surface-container-lowest: #ffffff;
+  --color-surface-container-low: #f7f3e9;
+  --color-surface-container: #f1eee4;
+  --color-surface-container-high: #ece8de;
+  --color-surface-container-highest: #e6e2d9;
+  --color-background: #fdf9ef;
+  --color-on-surface: #1c1c16;
+  --color-on-surface-variant: #4a4245;
+  /* outline bumped from #857378 (contrast 4.23) to #5a4a50 (contrast 7.1) on cream */
+  --color-outline: #5a4a50;
+  --color-outline-variant: #c0b0b6;
+  --color-paper-cream: #fdf9ef;
+  --color-ink-black: #1c1c16;
+  --color-archival-indigo: #1d2a44;
+  --color-marigold-ochre: #d9822b;
+  --color-muted-sage: #60725a;
+
+  /* Dark-page surface tokens — used by AI Theatre & Women Online dark pages */
+  --color-surface-bright: #e8e4f0;      /* near-white on dark, contrast ~12 on #0c0d10 */
+  --color-surface-variant: #c8c3d8;     /* muted light lavender, contrast ~8 on #0c0d10 */
+  --color-surface-dim: #9994aa;         /* subdued on dark bg, contrast ~5 on #0c0d10 */
+
+  --spacing-space-3xs: 0.125rem;
+  --spacing-space-2xs: 0.25rem;
+  --spacing-space-xs: 0.5rem;
+  --spacing-space-sm: 0.75rem;
+  --spacing-space-md: 1rem;
+  --spacing-space-lg: 1.5rem;
+  --spacing-space-xl: 2rem;
+  --spacing-space-2xl: 3rem;
+  --spacing-space-3xl: 4.5rem;
+  --spacing-space-4xl: 6rem;
+  --spacing-gutter-desktop: 2rem;
+  --spacing-gutter-mobile: 1rem;
+  --spacing-max-content-width: 75rem;
+
+  --font-display-hero: 'Newsreader', serif;
+  --font-headline-lg: 'Newsreader', serif;
+  --font-headline-md: 'Newsreader', serif;
+  --font-headline-sm: 'Newsreader', serif;
+  --font-title-editorial: 'Newsreader', serif;
+  --font-body-lg: 'Work Sans', sans-serif;
+  --font-body-md: 'Work Sans', sans-serif;
+  --font-body-sm: 'Work Sans', sans-serif;
+  --font-label-stamp: 'JetBrains Mono', monospace;
+  --font-label-code: 'JetBrains Mono', monospace;
+}

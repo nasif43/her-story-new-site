@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Sparkles } from 'lucide-react';
 import { NavTab, DreamItem, BookItem, ReflectionItem } from './types';
 import { ShaderBackground } from './components/ShaderBackground';
 import { Header } from './components/Header';
@@ -30,6 +31,7 @@ export default function App() {
   };
 
   const [activeTab, setActiveTabState] = useState<NavTab>(getTabFromPath);
+  const [transitionTarget, setTransitionTarget] = useState<'sister-library' | 'ladyland' | null>(null);
   const [searchOpen, setSearchOpen] = useState(false);
   const [ourStoryOpen, setOurStoryOpen] = useState(false);
   const [footerModalType, setFooterModalType] = useState<'contact' | 'privacy' | 'terms' | 'newsletter' | null>(null);
@@ -37,6 +39,22 @@ export default function App() {
   const [selectedDetailItem, setSelectedDetailItem] = useState<DreamItem | BookItem | ReflectionItem | null>(null);
 
   const setActiveTab = (tab: NavTab) => {
+    // If transitioning to sister-library or ladyland from anywhere else, show cinematic flash
+    if ((tab === 'sister-library' || tab === 'ladyland') && activeTab !== tab) {
+      setTransitionTarget(tab);
+      const targetPath = `/${tab}`;
+      if (window.location.pathname !== targetPath) {
+        window.history.pushState(null, '', targetPath);
+      }
+      setTimeout(() => {
+        setActiveTabState(tab);
+      }, 150);
+      setTimeout(() => {
+        setTransitionTarget(null);
+      }, 950);
+      return;
+    }
+
     setActiveTabState(tab);
     const targetPath = tab === 'home' ? '/' : `/${tab}`;
     if (window.location.pathname !== targetPath) {
@@ -54,11 +72,70 @@ export default function App() {
 
   return (
     <div className="min-h-screen flex flex-col justify-between relative selection:bg-white/30 text-white">
+      {/* Loading Flash Transition Screen for Sister Library & Project Ladyland */}
+      {transitionTarget && (
+        <div
+          className={`fixed inset-0 z-[100] flex flex-col items-center justify-center p-6 text-center select-none transition-opacity duration-300 ${
+            transitionTarget === 'sister-library'
+              ? 'bg-[#fdf9ef] text-[#1c1c16]'
+              : 'bg-[#080911] text-white'
+          }`}
+        >
+          {transitionTarget === 'sister-library' ? (
+            <div className="flex flex-col items-center max-w-lg mx-auto animate-in fade-in zoom-in-95 duration-200">
+              <div className="px-3 py-1 bg-[#ea580c] text-white font-mono text-xs font-bold uppercase tracking-widest rounded-xs shadow-xs mb-4 flex items-center gap-2">
+                <span className="w-2 h-2 rounded-full bg-white animate-pulse" />
+                <span>ACCESSION ROUTE // ARCHIVE</span>
+              </div>
+
+              <h2 className="font-serif text-3xl sm:text-5xl font-bold tracking-tight text-[#1c1c16] flex items-center gap-3">
+                <Sparkles className="w-7 h-7 sm:w-9 sm:h-9 text-[#ff1493] animate-sparkle shrink-0" />
+                <span className="rainbow-text-gradient">GOING TO SISTER LIBRARY</span>
+                <Sparkles className="w-7 h-7 sm:w-9 sm:h-9 text-[#ea580c] animate-sparkle shrink-0" />
+              </h2>
+
+              <p className="font-sans text-sm sm:text-base text-[#5a4a50] mt-3 font-medium tracking-wide">
+                Entering Dhaka Sanctuary, autonomous print commons &amp; reading room...
+              </p>
+
+              {/* Paper-tape loading bar */}
+              <div className="w-64 sm:w-80 h-2.5 bg-[#eae4d5] border border-[#1c1c16]/20 rounded-full mt-6 overflow-hidden p-0.5">
+                <div className="h-full bg-gradient-to-r from-[#ff1493] via-[#ea580c] to-[#7e22ce] rounded-full animate-marquee-ltr w-[200%]" />
+              </div>
+            </div>
+          ) : (
+            <div className="flex flex-col items-center max-w-lg mx-auto animate-in fade-in zoom-in-95 duration-200">
+              <div className="px-3.5 py-1 bg-[#2563eb] text-white font-mono text-xs font-bold uppercase tracking-widest rounded-full shadow-lg shadow-blue-500/20 mb-4 flex items-center gap-2">
+                <span className="w-2 h-2 rounded-full bg-[#38bdf8] animate-ping" />
+                <span>ROKEYA 2026 // UTOPIAN REALM</span>
+              </div>
+
+              <h2 className="font-serif text-3xl sm:text-5xl font-bold tracking-tight text-white flex items-center gap-3">
+                <span className="w-3 h-3 rounded-full bg-[#38bdf8] animate-pulse" />
+                <span className="bg-gradient-to-r from-white via-[#b9c3ff] to-[#38bdf8] bg-clip-text text-transparent">
+                  GOING TO LADYLAND
+                </span>
+                <span className="w-3 h-3 rounded-full bg-[#818cf8] animate-pulse" />
+              </h2>
+
+              <p className="font-sans text-sm sm:text-base text-[#94a3b8] mt-3 font-medium tracking-wide">
+                Entering Sultana's Dream interactive feminist world...
+              </p>
+
+              {/* Cosmic glowing bar */}
+              <div className="w-64 sm:w-80 h-2 bg-white/10 rounded-full mt-6 overflow-hidden p-0.5 border border-white/20">
+                <div className="h-full bg-gradient-to-r from-[#2563eb] via-[#818cf8] to-[#38bdf8] rounded-full shadow-[0_0_12px_#38bdf8] animate-pulse" />
+              </div>
+            </div>
+          )}
+        </div>
+      )}
+
       {/* Animated WebGL Shader Background */}
       <ShaderBackground />
 
-      {/* Top Header (Hidden on Project Ladyland page as per design requirement) */}
-      {activeTab !== 'ladyland' && (
+      {/* Top Header (Hidden on Project Ladyland + Sister Library — each has its own subnav) */}
+      {activeTab !== 'ladyland' && activeTab !== 'sister-library' && (
         <Header
           activeTab={activeTab}
           setActiveTab={setActiveTab}
@@ -101,7 +178,7 @@ export default function App() {
         )}
 
         {activeTab === 'sister-library' && (
-          <SisterLibraryView />
+          <SisterLibraryView onGoHome={() => setActiveTab('home')} />
         )}
 
         {activeTab === 'reflections' && (

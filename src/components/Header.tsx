@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Search, Menu, X } from 'lucide-react';
+import { Search, Menu, X, Sparkles } from 'lucide-react';
 import { NavTab } from '../types';
 
 interface HeaderProps {
@@ -15,11 +15,11 @@ export const Header: React.FC<HeaderProps> = ({
 }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
-  const navItems: { id: NavTab; label: string; isHighlight?: boolean }[] = [
+  const navItems: { id: NavTab; label: string; isHighlight?: boolean; isRainbow?: boolean }[] = [
     { id: 'dreams', label: 'Dreams' },
     { id: 'books', label: 'Books' },
-    { id: 'sister-library', label: 'Sister Library' },
     { id: 'reflections', label: 'Reflections' },
+    { id: 'sister-library', label: 'Sister Library', isRainbow: true },
     { id: 'ladyland', label: 'Project Ladyland 2026', isHighlight: true }
   ];
 
@@ -61,6 +61,26 @@ export const Header: React.FC<HeaderProps> = ({
               >
                 <span className={`w-2.5 h-2.5 rounded-full animate-pulse-dot ${isActive ? 'bg-white' : 'bg-[#141414]'}`} />
                 {item.label}
+              </button>
+            );
+          }
+
+          if (item.isRainbow) {
+            return (
+              <button
+                key={item.id}
+                onClick={() => handleNavClick(item.id)}
+                className={`text-sm tracking-wide transition-all duration-200 cursor-pointer flex items-center gap-1.5 px-3 py-1.5 rounded-full hover:bg-white/40 ${
+                  isActive
+                    ? 'bg-white/40 font-bold border border-[#ff007f]/40 shadow-xs'
+                    : ''
+                }`}
+                title="Sister Library — Dhaka Sanctuary Archive"
+              >
+                <Sparkles className="w-3.5 h-3.5 text-[#ff007f] animate-sparkle shrink-0" />
+                <span className="rainbow-text-gradient font-bold tracking-wide">
+                  {item.label}
+                </span>
               </button>
             );
           }
@@ -112,22 +132,42 @@ export const Header: React.FC<HeaderProps> = ({
           >
             Home Overview
           </button>
-          {navItems.map((item) => (
-            <button
-              key={item.id}
-              onClick={() => handleNavClick(item.id)}
-              className={`text-left py-2 text-base font-medium flex items-center justify-between ${
-                activeTab === item.id ? 'text-[#141414] font-bold' : 'text-[#141414]/70'
-              }`}
-            >
-              <span>{item.label}</span>
-              {item.isHighlight && (
-                <span className="w-2 h-2 bg-[#141414] rounded-full animate-pulse-dot" />
-              )}
-            </button>
-          ))}
+          {navItems.map((item) => {
+            if (item.isRainbow) {
+              return (
+                <button
+                  key={item.id}
+                  onClick={() => handleNavClick(item.id)}
+                  className={`text-left py-2 text-base font-medium flex items-center gap-2 ${
+                    activeTab === item.id ? 'font-bold' : ''
+                  }`}
+                >
+                  <Sparkles className="w-4 h-4 text-[#ff007f] animate-sparkle shrink-0" />
+                  <span className="rainbow-text-gradient font-bold">
+                    {item.label}
+                  </span>
+                </button>
+              );
+            }
+
+            return (
+              <button
+                key={item.id}
+                onClick={() => handleNavClick(item.id)}
+                className={`text-left py-2 text-base font-medium flex items-center justify-between ${
+                  activeTab === item.id ? 'text-[#141414] font-bold' : 'text-[#141414]/70'
+                }`}
+              >
+                <span>{item.label}</span>
+                {item.isHighlight && (
+                  <span className="w-2 h-2 bg-[#141414] rounded-full animate-pulse-dot" />
+                )}
+              </button>
+            );
+          })}
         </div>
       )}
     </header>
   );
 };
+
