@@ -34,12 +34,12 @@ export const Header: React.FC<HeaderProps> = ({
       {/* Logo / Brand Home Link */}
       <button
         onClick={() => handleNavClick('home')}
-        className="h-14 py-2 flex items-center text-left focus:outline-none group cursor-pointer"
+        className="h-16 py-1 flex items-center text-left focus:outline-none group cursor-pointer"
         aria-label="HerStory Foundation Home"
       >
         <img
           alt="HerStory Foundation & Publications"
-          className="h-full w-auto object-contain transition-transform group-hover:scale-[1.02] brightness-0"
+          className="h-12 md:h-14 w-auto object-contain transition-transform group-hover:scale-[1.02] brightness-0 invert"
           src="https://lh3.googleusercontent.com/aida-public/AB6AXuDjg2Qx_aTe8hUg2nAI0OPE_tImw2Nl2ICR0K7pZlASJLhU7n-oxBihz4KIyFuNA7f8pTLisJr1z0OD8YYyFNKdnHLO1BVQpnq44nBjndUukUgJIcWhZfDyUXSiZXUWq5kICJeJfdpexlbUgIdAec_kfQei-KGlGRAp7lDr04FLTCEj8Ryr-sSpz1csXhVnHav0sBWNsAFJKHSZ-iJLvCgRVt1dcBuOP5nvEOJ97Nz4EmMXv_pOy1R1zesAwNy64GMrJ3oVySrCvQ"
         />
       </button>
@@ -53,13 +53,13 @@ export const Header: React.FC<HeaderProps> = ({
               <button
                 key={item.id}
                 onClick={() => handleNavClick(item.id)}
-                className={`text-sm font-bold flex items-center gap-2 px-4 py-2 rounded-full transition-all cursor-pointer ${
+                className={`text-base font-bold flex items-center gap-2 px-4 py-2 rounded-full transition-all cursor-pointer ${
                   isActive
-                    ? 'bg-[#141414] text-white shadow-sm scale-105'
-                    : 'bg-white/30 text-[#141414] hover:bg-white/50 hover:brightness-95'
+                    ? 'bg-white text-[#141414] shadow-sm scale-105'
+                    : 'bg-white/20 text-white hover:bg-white/30'
                 }`}
               >
-                <span className={`w-2.5 h-2.5 rounded-full animate-pulse-dot ${isActive ? 'bg-white' : 'bg-[#141414]'}`} />
+                <span className={`w-2.5 h-2.5 rounded-full animate-pulse-dot ${isActive ? 'bg-[#141414]' : 'bg-white'}`} />
                 {item.label}
               </button>
             );
@@ -70,14 +70,14 @@ export const Header: React.FC<HeaderProps> = ({
               <button
                 key={item.id}
                 onClick={() => handleNavClick(item.id)}
-                className={`text-sm tracking-wide transition-all duration-200 cursor-pointer flex items-center gap-1.5 px-3 py-1.5 rounded-full hover:bg-white/40 ${
+                className={`text-base font-bold tracking-wide transition-all duration-200 cursor-pointer flex items-center gap-1.5 px-3 py-1.5 rounded-full hover:bg-white/20 ${
                   isActive
-                    ? 'bg-white/40 font-bold border border-[#ff007f]/40 shadow-xs'
+                    ? 'bg-white/20 font-bold border border-[#ff69b4]/60 shadow-xs'
                     : ''
                 }`}
                 title="Sister Library — Dhaka Sanctuary Archive"
               >
-                <Sparkles className="w-3.5 h-3.5 text-[#ff007f] animate-sparkle shrink-0" />
+                <Sparkles className="w-4 h-4 text-[#ff69b4] animate-sparkle shrink-0" />
                 <span className="rainbow-text-gradient font-bold tracking-wide">
                   {item.label}
                 </span>
@@ -89,10 +89,10 @@ export const Header: React.FC<HeaderProps> = ({
             <button
               key={item.id}
               onClick={() => handleNavClick(item.id)}
-              className={`text-sm tracking-wide transition-colors duration-200 cursor-pointer ${
+              className={`text-base font-bold tracking-wide transition-colors duration-200 cursor-pointer ${
                 isActive
-                  ? 'text-[#141414] font-bold border-b-2 border-[#141414] pb-0.5'
-                  : 'text-[#141414]/70 hover:text-[#141414]'
+                  ? 'text-white border-b-2 border-white pb-0.5'
+                  : 'text-white/80 hover:text-white'
               }`}
             >
               {item.label}
@@ -105,7 +105,7 @@ export const Header: React.FC<HeaderProps> = ({
       <div className="flex items-center gap-3">
         <button
           onClick={onOpenSearch}
-          className="p-2 text-[#141414] hover:bg-white/30 rounded-full transition-colors cursor-pointer"
+          className="p-2 text-white hover:bg-white/20 rounded-full transition-colors cursor-pointer"
           aria-label="Search HerStory Foundation"
           title="Search HerStory Foundation (Cmd+K)"
         >
@@ -114,7 +114,7 @@ export const Header: React.FC<HeaderProps> = ({
 
         <button
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-          className="lg:hidden p-2 text-[#141414] hover:bg-white/30 rounded-full transition-colors cursor-pointer"
+          className="lg:hidden p-2 text-white hover:bg-white/20 rounded-full transition-colors cursor-pointer"
           aria-label="Toggle Navigation Menu"
         >
           {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
@@ -142,7 +142,7 @@ export const Header: React.FC<HeaderProps> = ({
                     activeTab === item.id ? 'font-bold' : ''
                   }`}
                 >
-                  <Sparkles className="w-4 h-4 text-[#ff007f] animate-sparkle shrink-0" />
+                  <Sparkles className="w-4 h-4 text-[#ff69b4] animate-sparkle shrink-0" />
                   <span className="rainbow-text-gradient font-bold">
                     {item.label}
                   </span>

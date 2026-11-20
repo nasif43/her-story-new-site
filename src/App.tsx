@@ -157,6 +157,7 @@ export default function App() {
             <MissionSection />
             <RealisedDreams
               onSelectDream={(dream) => setSelectedDetailItem(dream)}
+              onGoToSisterLibrary={() => setActiveTab('sister-library')}
             />
             <AboutHerstory
               onOpenOurStoryModal={() => setOurStoryOpen(true)}

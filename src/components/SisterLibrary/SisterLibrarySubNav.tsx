@@ -1,6 +1,7 @@
 import React from "react";
 import { SisterSubPage } from "./SisterLibraryHub";
 import { Search, ArrowLeft } from "lucide-react";
+import { getBulletinItems } from "../../data/sisterLibraryBulletin";
 
 interface SisterLibrarySubNavProps {
   currentPage: SisterSubPage;
@@ -27,16 +28,6 @@ const NAV_LINKS: NavLink[] = [
   { key: "reading-community", label: "Reading Community", badge: "Lending", badgeColor: "#7e22ce" },
 ];
 
-const BULLETIN_ITEMS = [
-  "Currently reading: Collective Memory & Zine Praxis",
-  "Reading Room open Thu–Sun 2PM–8PM",
-  "Next Zine Jam: 14th Oct",
-  "Autonomous Feminist Print Spaces Open",
-  "Dhaka Sanctuary Archive Est. 2019",
-  "Vol. 08 Dispatch: Cyber-Feminism & Data Sovereignty",
-  "South Asian Women's Literature & Pamphleteering",
-];
-
 export const SisterLibrarySubNav: React.FC<SisterLibrarySubNavProps> = ({
   currentPage,
   onNavigate,
@@ -45,7 +36,8 @@ export const SisterLibrarySubNav: React.FC<SisterLibrarySubNavProps> = ({
   onSearchChange,
   isDark = false,
 }) => {
-  const tickerText = BULLETIN_ITEMS.join("  ✦  ") + "  ✦  ";
+  const tickerItems = getBulletinItems();
+  const tickerText = tickerItems.join("  ✦  ") + "  ✦  ";
 
   return (
     <header
@@ -78,6 +70,7 @@ export const SisterLibrarySubNav: React.FC<SisterLibrarySubNavProps> = ({
           <div className="relative overflow-hidden flex-1 mask-fade select-none">
             <div
               className="animate-marquee-ltr flex items-center whitespace-nowrap cursor-default"
+              style={{ animationDuration: '70s' }}
               title="Continuous Bulletin Dispatch — Hover to Pause"
             >
               <span className="inline-block text-[11px] sm:text-xs font-medium tracking-wide pr-8">
@@ -96,8 +89,6 @@ export const SisterLibrarySubNav: React.FC<SisterLibrarySubNavProps> = ({
             }`}
           >
             <span className="text-[#ff1493] font-bold">VOL. 08 DISPATCH</span>
-            <span>|</span>
-            <span>SANCTUARY LIVE</span>
           </div>
         </div>
       </div>
@@ -132,22 +123,13 @@ export const SisterLibrarySubNav: React.FC<SisterLibrarySubNavProps> = ({
             }}
             className="flex items-center space-x-2.5 text-left cursor-pointer group"
           >
-            <div className="flex flex-col">
-              <span
-                className={`font-display-hero text-2xl sm:text-3xl font-bold tracking-tight leading-none group-hover:text-[#ff1493] transition-colors ${
-                  isDark ? "text-white" : "text-on-surface"
-                }`}
-              >
-                SISTER LIBRARY
-              </span>
-              <span
-                className={`font-label-code text-[9px] uppercase tracking-widest mt-0.5 ${
-                  isDark ? "text-white/60" : "text-outline"
-                }`}
-              >
-                DHAKA SANCTUARY
-              </span>
-            </div>
+            <span
+              className={`font-display-hero text-2xl sm:text-3xl font-bold tracking-tight leading-none group-hover:text-[#ff1493] transition-colors ${
+                isDark ? "text-white" : "text-on-surface"
+              }`}
+            >
+              Sister Library (Dhaka)
+            </span>
           </button>
 
           {/* Taped Archive Stamp */}
@@ -168,7 +150,7 @@ export const SisterLibrarySubNav: React.FC<SisterLibrarySubNavProps> = ({
             <div className="relative">
               <input
                 type="text"
-                placeholder="Search catalog & archives..."
+                placeholder="Search the Library Archive"
                 value={searchQuery}
                 onChange={(e) => onSearchChange(e.target.value)}
                 className={`w-36 sm:w-52 md:w-64 px-3 py-1.5 pl-8 border rounded-xs text-xs font-label-code focus:outline-none focus:border-[#ff1493] transition-colors ${
@@ -187,12 +169,20 @@ export const SisterLibrarySubNav: React.FC<SisterLibrarySubNavProps> = ({
 
           <button
             onClick={() => {
-              onNavigate("reading-community");
-              window.scrollTo({ top: 0, behavior: "smooth" });
+              if (currentPage !== "hub") {
+                onNavigate("hub");
+                setTimeout(() => {
+                  const el = document.getElementById("pink-shelf");
+                  if (el) el.scrollIntoView({ behavior: "smooth" });
+                }, 100);
+              } else {
+                const el = document.getElementById("pink-shelf");
+                if (el) el.scrollIntoView({ behavior: "smooth" });
+              }
             }}
             className="px-3 sm:px-4 py-1.5 sm:py-2 bg-[#ff1493] text-white font-label-code text-xs font-bold uppercase tracking-wider border-2 border-on-surface block-shadow-sm hover:translate-x-0.5 hover:translate-y-0.5 active:translate-x-1 active:translate-y-1 transition-all cursor-pointer whitespace-nowrap"
           >
-            Support &amp; Visit
+            Pink Shelf Visit
           </button>
         </div>
       </div>

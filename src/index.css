@@ -210,13 +210,13 @@
 .rainbow-text-gradient {
   background: linear-gradient(
     90deg,
-    #ff007f 0%,
-    #ea580c 20%,
-    #d9822b 35%,
-    #059669 50%,
-    #2563eb 70%,
-    #7e22ce 85%,
-    #ff007f 100%
+    #ff69b4 0%,
+    #ff8c42 18%,
+    #facc15 36%,
+    #34d399 52%,
+    #38bdf8 70%,
+    #c084fc 85%,
+    #ff69b4 100%
   );
   background-size: 200% auto;
   -webkit-background-clip: text;

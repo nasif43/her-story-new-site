@@ -21,6 +21,13 @@ export const SisterLibraryView: React.FC<SisterLibraryViewProps> = ({ onGoHome }
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
+  const handleSearchChange = (q: string) => {
+    setSearchQuery(q);
+    if (q.trim() && subPage !== "hub") {
+      setSubPage("hub");
+    }
+  };
+
   const isDark = subPage === "ai-theatre" || subPage === "women-online";
 
   return (
@@ -42,14 +49,18 @@ export const SisterLibraryView: React.FC<SisterLibraryViewProps> = ({ onGoHome }
         onNavigate={handleNavigate}
         onGoHome={onGoHome}
         searchQuery={searchQuery}
-        onSearchChange={setSearchQuery}
+        onSearchChange={handleSearchChange}
         isDark={isDark}
       />
 
       {/* 3. Sub-Page Views */}
       <div className="flex-1 w-full animate-in fade-in duration-300 relative z-10 pb-16">
         {subPage === "hub" && (
-          <SisterLibraryHub onNavigate={handleNavigate} />
+          <SisterLibraryHub
+            onNavigate={handleNavigate}
+            searchQuery={searchQuery}
+            onClearSearch={() => setSearchQuery("")}
+          />
         )}
 
         {subPage === "ai-theatre" && (

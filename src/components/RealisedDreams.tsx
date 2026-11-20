@@ -5,10 +5,12 @@ import { ArrowRight } from 'lucide-react';
 
 interface RealisedDreamsProps {
   onSelectDream: (dream: DreamItem) => void;
+  onGoToSisterLibrary?: () => void;
 }
 
 export const RealisedDreams: React.FC<RealisedDreamsProps> = ({
   onSelectDream,
+  onGoToSisterLibrary,
 }) => {
   const [selectedCategory, setSelectedCategory] = useState<string>('All');
 
@@ -17,6 +19,14 @@ export const RealisedDreams: React.FC<RealisedDreamsProps> = ({
   const filteredItems = selectedCategory === 'All'
     ? DREAM_ITEMS
     : DREAM_ITEMS.filter((item) => item.category === selectedCategory);
+
+  const handleCardClick = (item: DreamItem) => {
+    if (item.id === 'sister-library' && onGoToSisterLibrary) {
+      onGoToSisterLibrary();
+      return;
+    }
+    onSelectDream(item);
+  };
 
   return (
     <section id="realised-dreams-section" className="max-w-7xl mx-auto px-4 md:px-12 py-16">
@@ -50,7 +60,7 @@ export const RealisedDreams: React.FC<RealisedDreamsProps> = ({
         {filteredItems.map((item) => (
           <div
             key={item.id}
-            onClick={() => onSelectDream(item)}
+            onClick={() => handleCardClick(item)}
             className="group block cursor-pointer bg-black/40 border border-white/20 rounded-xl p-3 hover:border-[#D64E0E] hover:shadow-lg transition-all duration-300"
           >
             {/* Square Aspect Ratio Container */}
