@@ -260,7 +260,7 @@ export const SisterLibraryHub: React.FC<SisterLibraryHubProps> = ({
 
   return (
     <div className="w-full text-[#1c1c16] font-serif-editorial">
-      <main className="w-full max-w-max-content-width mx-auto px-gutter-desktop">
+      <main className="w-full max-w-max-content-width mx-auto px-4 md:px-gutter-desktop">
         {/* Search Feedback Banner */}
         {isSearching && (
           <div className="mt-space-lg p-space-md bg-[#ede9fe]/90 border-2 border-[#7e22ce] rounded-xs flex flex-wrap items-center justify-between gap-space-sm font-label-code text-label-code block-shadow-sm">
@@ -285,7 +285,7 @@ export const SisterLibraryHub: React.FC<SisterLibraryHubProps> = ({
         {/* ─────────────────────────────────────────────────────────────
             HERO SECTION
             ───────────────────────────────────────────────────────────── */}
-        <section className="py-space-3xl border-b border-on-surface/20 grid grid-cols-12 gap-gutter-desktop items-start">
+        <section className="py-space-3xl border-b border-on-surface/20 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-gutter-desktop items-start">
           <div className="col-span-12 lg:col-span-7 flex flex-col justify-between space-y-space-xl">
             <div className="space-y-space-md">
               <div className="flex items-center space-x-space-sm">
@@ -302,7 +302,7 @@ export const SisterLibraryHub: React.FC<SisterLibraryHubProps> = ({
               </h1>
               <blockquote className="space-y-space-sm">
                 <p>
-                  Powered by female excellence, Sister Library is a space to celebrate female creativity. The library is an evolving participatory project founded by <span className="font-bold bg-gradient-to-r from-[#ff1493] via-[#ff7a00] via-[#7e22ce] to-[#2563eb] bg-clip-text text-transparent underline decoration-[#ff1493]/40 underline-offset-4 tracking-wide inline-block drop-shadow-xs">Aqui Thami</span> in Bombay in 2017. The Dhaka branch is independent and has been hosting readings since 2020 as a collaborative effort of <span className="font-bold bg-gradient-to-r from-[#ff1493] via-[#ff7a00] via-[#7e22ce] to-[#2563eb] bg-clip-text text-transparent underline decoration-[#ff1493]/40 underline-offset-4 tracking-wide inline-block drop-shadow-xs">HerStory Foundation</span> and the <span className="font-bold bg-gradient-to-r from-[#ff1493] via-[#ff7a00] via-[#7e22ce] to-[#2563eb] bg-clip-text text-transparent underline decoration-[#ff1493]/40 underline-offset-4 tracking-wide inline-block drop-shadow-xs">Goethe-Institut</span>. We organise reading circles, discussions, events, theatre and zine-making gatherings. The pink shelf at the Goethe-Institut library is a growing, curated collection of works by women in English, Bangla, German and other languages of Bangladesh.
+                  Powered by female excellence, Sister Library is a space to celebrate female creativity. The library is an evolving participatory project founded by <strong className="font-bold text-[#1c1c16] underline decoration-[#ff1493] decoration-2 underline-offset-4 tracking-wide inline-block">Aqui Thami</strong> in Bombay in 2017. The Dhaka branch is independent and has been hosting readings since 2020 as a collaborative effort of <strong className="font-bold text-[#1c1c16] underline decoration-[#ff1493] decoration-2 underline-offset-4 tracking-wide inline-block">HerStory Foundation</strong> and the <strong className="font-bold text-[#1c1c16] underline decoration-[#ff1493] decoration-2 underline-offset-4 tracking-wide inline-block">Goethe-Institut</strong>. We organise reading circles, discussions, events, theatre and zine-making gatherings. The pink shelf at the Goethe-Institut library is a growing, curated collection of works by women in English, Bangla, German and other languages of Bangladesh.
                 </p>
                 <p>
                   Zines are small-circulation booklets that are often made by folding or binding a sheet of paper. Created with minimal expenditure and circulated in non-commercial publishing spaces, zines serve as a medium of expression for artists, allowing them to explore personal experiences, social issues, and creative ideas with greater freedom and nuance.
@@ -313,7 +313,7 @@ export const SisterLibraryHub: React.FC<SisterLibraryHubProps> = ({
               </blockquote>
             </div>
 
-            <div className="grid grid-cols-3 gap-space-sm py-space-sm border-y border-on-surface/20">
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-space-sm py-space-sm border-y border-on-surface/20">
               <div className="bg-[#ffffff]/85 backdrop-blur-sm p-space-sm border border-on-surface/30">
                 <p className="font-display-hero text-headline-md text-[#ff1493] font-bold">2020</p>
                 <p className="font-label-code text-label-code text-on-surface-variant uppercase font-medium">DHAKA BRANCH FOUNDATION</p>
@@ -419,7 +419,7 @@ export const SisterLibraryHub: React.FC<SisterLibraryHubProps> = ({
               No branch programs matching "{searchQuery}".
             </p>
           ) : (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-gutter-desktop">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-gutter-desktop">
               {filteredBranchPrograms.map((program) => (
                 <article
                   key={program.id}
@@ -468,8 +468,8 @@ export const SisterLibraryHub: React.FC<SisterLibraryHubProps> = ({
         {/* ─────────────────────────────────────────────────────────────
             MANIFESTO SECTION (R5: Promoted badge line, removed duplicate)
             ───────────────────────────────────────────────────────────── */}
-        <section className="py-space-3xl border-b border-on-surface/20" id="manifesto">
-          <div className="grid grid-cols-12 gap-gutter-desktop items-center">
+        <section className="py-space-3xl border-b border-on-surface/20 overflow-hidden" id="manifesto">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-gutter-desktop items-center">
             <div className="col-span-12 lg:col-span-7 flex flex-col justify-between space-y-space-lg">
               <div>
                 <h2 className="flex items-center space-x-space-xs mb-space-md">
@@ -495,14 +495,14 @@ export const SisterLibraryHub: React.FC<SisterLibraryHubProps> = ({
               <div className="pt-space-md border-t border-on-surface/20 flex flex-wrap items-center justify-between gap-space-sm font-label-code text-label-code">
                 <div className="flex items-center space-x-space-xs">
                   <span className="text-outline">Initiated by</span>
-                  <span className="font-bold bg-gradient-to-r from-[#ff1493] via-[#ff7a00] via-[#7e22ce] to-[#2563eb] bg-clip-text text-transparent underline decoration-[#ff1493]/40 underline-offset-4 tracking-wide inline-block drop-shadow-xs">
+                  <strong className="font-bold text-[#1c1c16] underline decoration-[#ff1493] decoration-2 underline-offset-4 tracking-wide inline-block">
                     Aqui Thami
-                  </span>
+                  </strong>
                   <span className="text-outline">• Mumbai • Dhaka</span>
                 </div>
               </div>
             </div>
-            <div className="col-span-12 lg:col-span-5 relative mt-space-lg lg:mt-0">
+            <div className="col-span-12 lg:col-span-5 relative mt-space-lg lg:mt-0 overflow-hidden sm:overflow-visible">
               <div className="bg-[#fdf9ef]/90 backdrop-blur-md border-2 border-on-surface p-space-sm block-shadow-pink relative z-10">
                 <div className="relative border border-on-surface overflow-hidden aspect-[4/3] bg-surface-container">
                   <img
@@ -534,10 +534,10 @@ export const SisterLibraryHub: React.FC<SisterLibraryHubProps> = ({
             </h2>
           </div>
 
-          <div className="grid grid-cols-12 gap-gutter-desktop">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-gutter-desktop">
             {/* Featured Large Daily Star Box */}
             {featuredPressMatches ? (
-              <div className="col-span-12 lg:col-span-7 bg-[#fdf9ef]/90 backdrop-blur-md border-2 border-on-surface p-space-xl flex flex-col justify-between block-shadow-dark">
+              <div className="col-span-12 lg:col-span-7 bg-[#fdf9ef]/90 backdrop-blur-md border-2 border-on-surface p-4 sm:p-space-lg md:p-space-xl flex flex-col justify-between block-shadow-dark">
                 <div className="space-y-space-md">
                   <div className="flex items-center justify-between border-b border-on-surface/20 pb-space-xs mb-space-sm">
                     <span className="font-label-stamp text-label-stamp uppercase tracking-widest text-[#ff1493] font-bold">
@@ -664,8 +664,8 @@ export const SisterLibraryHub: React.FC<SisterLibraryHubProps> = ({
 
           {/* Featured Keynote Video */}
           {featuredVideoMatches && (
-            <div className="bg-[#fdf9ef]/90 backdrop-blur-md border-2 border-on-surface p-space-lg mb-space-2xl block-shadow-pink">
-              <div className="grid grid-cols-12 gap-gutter-desktop items-center">
+            <div className="bg-[#fdf9ef]/90 backdrop-blur-md border-2 border-on-surface p-4 sm:p-space-md md:p-space-lg mb-space-2xl block-shadow-pink">
+              <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-gutter-desktop items-center">
                 <div className="col-span-12 lg:col-span-7 relative aspect-video bg-on-surface border border-on-surface overflow-hidden group cursor-pointer">
                   <img
                     className="w-full h-full object-cover opacity-85 group-hover:scale-105 transition-transform duration-300"
@@ -726,7 +726,7 @@ export const SisterLibraryHub: React.FC<SisterLibraryHubProps> = ({
               No video recordings matching "{searchQuery}".
             </p>
           ) : (
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-gutter-desktop">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-gutter-desktop">
               {filteredRecordings.map((recording) => (
                 <article
                   key={recording.id}
@@ -797,10 +797,10 @@ export const SisterLibraryHub: React.FC<SisterLibraryHubProps> = ({
             VISITING & HOURS (R3: ID is #pink-shelf)
             ───────────────────────────────────────────────────────────── */}
         <section
-          className="py-space-3xl grid grid-cols-12 gap-gutter-desktop items-start"
+          className="py-space-3xl grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-gutter-desktop items-start"
           id="pink-shelf"
         >
-          <div className="col-span-12 lg:col-span-7 bg-[#fdf9ef]/90 backdrop-blur-md border-2 border-on-surface p-space-xl block-shadow-purple space-y-space-lg">
+          <div className="col-span-12 lg:col-span-7 bg-[#fdf9ef]/90 backdrop-blur-md border-2 border-on-surface p-4 sm:p-space-lg md:p-space-xl block-shadow-purple space-y-space-lg">
             <div>
               <div className="flex items-center space-x-space-xs mb-space-2xs">
                 <span className="px-space-xs py-space-3xs bg-[#7e22ce] text-white font-label-stamp text-label-stamp uppercase stamp-rotate-right font-bold">
@@ -879,7 +879,7 @@ export const SisterLibraryHub: React.FC<SisterLibraryHubProps> = ({
             </div>
           </div>
 
-          <div className="col-span-12 lg:col-span-5 bg-[#fdf9ef]/95 backdrop-blur-md border-2 border-on-surface p-space-xl block-shadow-orange relative">
+          <div className="col-span-12 lg:col-span-5 bg-[#fdf9ef]/95 backdrop-blur-md border-2 border-on-surface p-4 sm:p-space-lg md:p-space-xl block-shadow-orange relative">
             <span className="absolute -top-3 right-6 px-space-sm py-space-3xs bg-[#ea580c] text-white font-label-stamp text-label-stamp uppercase stamp-rotate-right font-bold shadow-xs">
               MAILING LIST
             </span>

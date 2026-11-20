@@ -6,6 +6,17 @@
     --font-sans: 'Hanken Grotesk', system-ui, sans-serif;
   }
 
+  /* High-Contrast Universal Selection (WCAG AA Compliant: 4.71:1) */
+  ::selection {
+    background-color: #ff1493;
+    color: #1c1c16;
+  }
+
+  ::-moz-selection {
+    background-color: #ff1493;
+    color: #1c1c16;
+  }
+
   body {
     font-family: var(--font-serif);
     background-color: #fff8f6;

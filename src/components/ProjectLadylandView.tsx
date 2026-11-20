@@ -306,7 +306,7 @@ export const ProjectLadylandView: React.FC<ProjectLadylandViewProps> = ({ onGoHo
   }, []);
 
   return (
-    <div className="bg-transparent text-[#e2e1f0] min-h-screen relative font-inter overflow-x-hidden selection:bg-[#ff45a2]/30 selection:text-white pb-24">
+    <div className="bg-transparent text-[#e2e1f0] min-h-screen relative font-inter overflow-x-hidden pb-24">
       {/* Atmospheric Dynamic Background Glow */}
       <div
         className="fixed inset-0 pointer-events-none z-0 transition-all duration-1000 ease-in-out"

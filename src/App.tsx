@@ -71,7 +71,7 @@ export default function App() {
   }, []);
 
   return (
-    <div className="min-h-screen flex flex-col justify-between relative selection:bg-white/30 text-white">
+    <div className="min-h-screen flex flex-col justify-between relative text-white">
       {/* Loading Flash Transition Screen for Sister Library & Project Ladyland */}
       {transitionTarget && (
         <div
@@ -90,7 +90,7 @@ export default function App() {
 
               <h2 className="font-serif text-3xl sm:text-5xl font-bold tracking-tight text-[#1c1c16] flex items-center gap-3">
                 <Sparkles className="w-7 h-7 sm:w-9 sm:h-9 text-[#ff1493] animate-sparkle shrink-0" />
-                <span className="rainbow-text-gradient">GOING TO SISTER LIBRARY</span>
+                <span>GOING TO <span className="text-[#ff1493]">SISTER LIBRARY</span></span>
                 <Sparkles className="w-7 h-7 sm:w-9 sm:h-9 text-[#ea580c] animate-sparkle shrink-0" />
               </h2>
 
@@ -112,9 +112,7 @@ export default function App() {
 
               <h2 className="font-serif text-3xl sm:text-5xl font-bold tracking-tight text-white flex items-center gap-3">
                 <span className="w-3 h-3 rounded-full bg-[#38bdf8] animate-pulse" />
-                <span className="bg-gradient-to-r from-white via-[#b9c3ff] to-[#38bdf8] bg-clip-text text-transparent">
-                  GOING TO LADYLAND
-                </span>
+                <span>GOING TO <span className="text-[#38bdf8]">LADYLAND</span></span>
                 <span className="w-3 h-3 rounded-full bg-[#818cf8] animate-pulse" />
               </h2>
 

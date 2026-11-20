@@ -76,7 +76,7 @@ export const SisterLibraryReadingCommunity: React.FC<SisterLibraryReadingCommuni
 
       <main className="w-full max-w-max-content-width mx-auto px-4 md:px-gutter-desktop">
         {/* 1. Hero Broadsheet Grid */}
-        <section className="py-space-3xl border-b border-on-surface/20 grid grid-cols-12 gap-gutter-desktop items-start">
+        <section className="py-space-3xl border-b border-on-surface/20 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-gutter-desktop items-start">
           {/* Left Column: Manifesto Headline & Archival Metrics */}
           <div className="col-span-12 lg:col-span-7 flex flex-col justify-between space-y-space-xl">
             <div className="space-y-space-md">
@@ -100,7 +100,7 @@ export const SisterLibraryReadingCommunity: React.FC<SisterLibraryReadingCommuni
             </div>
 
             {/* Archival Metric Badges */}
-            <div className="grid grid-cols-3 gap-space-sm py-space-sm border-y border-on-surface/20">
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-space-sm py-space-sm border-y border-on-surface/20">
               <div className="bg-[#f1eee4] p-space-sm border border-on-surface/20">
                 <p className="font-display-hero text-headline-md text-[#ff1493] font-bold">3,400+</p>
                 <p className="font-label-code text-label-code text-on-surface-variant uppercase">Cataloged Works</p>
@@ -193,7 +193,7 @@ export const SisterLibraryReadingCommunity: React.FC<SisterLibraryReadingCommuni
 
         {/* 2. Living Doctrine / Manifesto: Why We Read Women */}
         <section className="py-space-3xl border-b border-on-surface/20" id="manifesto">
-          <div className="grid grid-cols-12 gap-gutter-desktop items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-gutter-desktop items-center">
             <div className="col-span-12 lg:col-span-7 flex flex-col justify-between space-y-space-lg">
               <div>
                 <div className="flex items-center space-x-space-xs mb-space-2xs">
@@ -249,8 +249,8 @@ export const SisterLibraryReadingCommunity: React.FC<SisterLibraryReadingCommuni
         </section>
 
         {/* 3. The Pink Shelf & Visiting Etiquette */}
-        <section className="py-space-3xl border-b border-on-surface/20 grid grid-cols-12 gap-gutter-desktop items-start" id="visiting">
-          <div className="col-span-12 lg:col-span-7 bg-[#fdf9ef]/90 backdrop-blur-md border-2 border-on-surface p-space-xl block-shadow-purple space-y-space-lg">
+        <section className="py-space-3xl border-b border-on-surface/20 grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-gutter-desktop items-start" id="visiting">
+          <div className="col-span-12 lg:col-span-7 bg-[#fdf9ef]/90 backdrop-blur-md border-2 border-on-surface p-4 sm:p-space-lg md:p-space-xl block-shadow-purple space-y-space-lg">
             <div>
               <div className="flex items-center space-x-space-xs mb-space-2xs">
                 <span className="px-space-xs py-space-3xs bg-[#7e22ce] text-white font-label-stamp text-label-stamp uppercase stamp-rotate-right font-bold">
@@ -343,7 +343,7 @@ export const SisterLibraryReadingCommunity: React.FC<SisterLibraryReadingCommuni
               <button
                 key={cat}
                 onClick={() => setSelectedCategory(cat)}
-                className={`px-3 py-1.5 text-xs font-label-code font-bold uppercase transition-all cursor-pointer border ${
+                className={`min-h-[40px] px-3.5 py-2 text-xs font-label-code font-bold uppercase transition-all cursor-pointer border ${
                   selectedCategory === cat
                     ? "bg-[#ff1493] text-white border-on-surface shadow-[2px_2px_0px_#1c1c16]"
                     : "bg-white text-on-surface border-on-surface/30 hover:border-on-surface hover:bg-[#f1eee4]"
@@ -355,7 +355,7 @@ export const SisterLibraryReadingCommunity: React.FC<SisterLibraryReadingCommuni
           </div>
 
           {/* Book Cards Grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-gutter-desktop">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-gutter-desktop">
             {filteredItems.map((item) => (
               <article
                 key={item.id}
@@ -374,7 +374,7 @@ export const SisterLibraryReadingCommunity: React.FC<SisterLibraryReadingCommuni
                           ? "bg-[#BAD687] text-[#1c1c16]"
                           : item.condition === "On Loan"
                           ? "bg-[#ea580c] text-white"
-                          : "bg-[#ff1493] text-white"
+                          : "bg-[#ff1493] text-[#1c1c16]"
                       }`}
                     >
                       {item.condition}
@@ -405,7 +405,7 @@ export const SisterLibraryReadingCommunity: React.FC<SisterLibraryReadingCommuni
 
                   <button
                     onClick={() => handleBorrow(item.title)}
-                    className="bg-[#ff1493] hover:bg-[#e10080] text-white px-3 py-1.5 font-bold uppercase text-[11px] border border-on-surface shadow-[1px_1px_0px_#1c1c16] active:translate-x-0.5 active:translate-y-0.5 transition-all cursor-pointer"
+                    className="min-h-[38px] bg-[#ff1493] hover:bg-[#e10080] text-[#1c1c16] px-3.5 py-2 font-black uppercase text-[11px] border border-on-surface shadow-[1px_1px_0px_#1c1c16] active:translate-x-0.5 active:translate-y-0.5 transition-all cursor-pointer"
                   >
                     Request Loan
                   </button>

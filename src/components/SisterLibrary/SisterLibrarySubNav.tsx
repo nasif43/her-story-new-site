@@ -88,7 +88,7 @@ export const SisterLibrarySubNav: React.FC<SisterLibrarySubNavProps> = ({
               isDark ? "text-white/60" : "text-outline"
             }`}
           >
-            <span className="text-[#ff1493] font-bold">VOL. 08 DISPATCH</span>
+            <span className="text-[#b80058] font-bold">VOL. 08 DISPATCH</span>
           </div>
         </div>
       </div>
@@ -96,19 +96,20 @@ export const SisterLibrarySubNav: React.FC<SisterLibrarySubNavProps> = ({
       {/* ─────────────────────────────────────────────────────────────
           2. LEVEL 1: BRANDING, SEARCH & CTA
           ───────────────────────────────────────────────────────────── */}
-      <div className="max-w-max-content-width mx-auto px-4 md:px-gutter-desktop py-2.5 sm:py-3 flex items-center justify-between gap-4">
+      <div className="max-w-max-content-width mx-auto px-4 md:px-gutter-desktop py-2.5 sm:py-3 flex flex-wrap items-center justify-between gap-2.5 sm:gap-4">
         {/* Brand & Origin Mark */}
-        <div className="flex items-center gap-3 shrink-0">
+        <div className="flex items-center gap-2 sm:gap-3 min-w-0">
           {/* Back to HerStory Main Site (Exact same behavior as Project Ladyland) */}
           {onGoHome && (
             <button
               onClick={onGoHome}
-              className={`inline-flex items-center gap-1 px-2.5 py-1 text-xs font-label-code font-bold uppercase tracking-wider rounded-xs transition-colors cursor-pointer border ${
+              className={`inline-flex items-center gap-1 min-h-[44px] min-w-[44px] px-2.5 py-1 text-xs font-label-code font-bold uppercase tracking-wider rounded-xs transition-colors cursor-pointer border shrink-0 ${
                 isDark
                   ? "bg-[#181b24] border-white/20 text-[#c8cde0] hover:text-white hover:border-[#ff1493]"
                   : "bg-white border-on-surface/20 text-on-surface hover:text-[#ff1493] hover:border-[#ff1493]"
               }`}
               title="Return to HerStory Foundation Main Site"
+              aria-label="Back to HerStory Main Site"
             >
               <ArrowLeft className="w-3.5 h-3.5 text-[#ff1493]" />
               <span className="hidden sm:inline">HerStory</span>
@@ -121,10 +122,10 @@ export const SisterLibrarySubNav: React.FC<SisterLibrarySubNavProps> = ({
               onNavigate("hub");
               window.scrollTo({ top: 0, behavior: "smooth" });
             }}
-            className="flex items-center space-x-2.5 text-left cursor-pointer group"
+            className="flex items-center space-x-2 text-left cursor-pointer group min-h-[44px] shrink-0"
           >
             <span
-              className={`font-display-hero text-2xl sm:text-3xl font-bold tracking-tight leading-none group-hover:text-[#ff1493] transition-colors ${
+              className={`font-display-hero text-xl sm:text-2xl md:text-3xl font-bold tracking-tight leading-none group-hover:text-[#ff1493] transition-colors ${
                 isDark ? "text-white" : "text-on-surface"
               }`}
             >
@@ -134,7 +135,7 @@ export const SisterLibrarySubNav: React.FC<SisterLibrarySubNavProps> = ({
 
           {/* Taped Archive Stamp */}
           <div
-            className={`hidden lg:inline-flex items-center px-2 py-0.5 font-label-stamp text-[10px] uppercase stamp-rotate-left border ${
+            className={`hidden lg:inline-flex items-center px-2 py-0.5 font-label-stamp text-[10px] uppercase stamp-rotate-left border shrink-0 ${
               isDark
                 ? "bg-[#191d28] border-white/20 text-white/90"
                 : "bg-[#f1eee4] border-on-surface/20 text-on-surface"
@@ -145,23 +146,23 @@ export const SisterLibrarySubNav: React.FC<SisterLibrarySubNavProps> = ({
         </div>
 
         {/* Search Input & Primary CTA Button */}
-        <div className="flex items-center space-x-2 sm:space-x-3 shrink-0">
+        <div className="flex items-center space-x-2 sm:space-x-3 min-w-0">
           {onSearchChange && (
-            <div className="relative">
+            <div className="relative min-w-0">
               <input
                 type="text"
-                placeholder="Search the Library Archive"
+                placeholder="Search Archive"
                 value={searchQuery}
                 onChange={(e) => onSearchChange(e.target.value)}
-                className={`w-36 sm:w-52 md:w-64 px-3 py-1.5 pl-8 border rounded-xs text-xs font-label-code focus:outline-none focus:border-[#ff1493] transition-colors ${
+                className={`w-32 xs:w-36 sm:w-44 md:w-56 lg:w-64 max-w-full min-h-[40px] px-3 py-1.5 pl-8 border rounded-xs text-xs font-label-code focus:outline-none focus:border-[#ff1493] transition-colors ${
                   isDark
-                    ? "bg-[#14161d] border-white/20 text-white placeholder:text-white/40"
+                    ? "bg-[#14161d] border-white/40 text-white placeholder:text-white/70"
                     : "bg-[#ffffff] border-on-surface/30 text-on-surface placeholder:text-outline"
                 }`}
               />
               <Search
                 className={`w-3.5 h-3.5 absolute left-2.5 top-1/2 -translate-y-1/2 ${
-                  isDark ? "text-white/40" : "text-outline"
+                  isDark ? "text-white/70" : "text-outline"
                 }`}
               />
             </div>
@@ -180,9 +181,10 @@ export const SisterLibrarySubNav: React.FC<SisterLibrarySubNavProps> = ({
                 if (el) el.scrollIntoView({ behavior: "smooth" });
               }
             }}
-            className="px-3 sm:px-4 py-1.5 sm:py-2 bg-[#ff1493] text-white font-label-code text-xs font-bold uppercase tracking-wider border-2 border-on-surface block-shadow-sm hover:translate-x-0.5 hover:translate-y-0.5 active:translate-x-1 active:translate-y-1 transition-all cursor-pointer whitespace-nowrap"
+            className="min-h-[40px] px-3 sm:px-4 py-2 bg-[#ff1493] text-[#1c1c16] font-label-code text-xs font-black uppercase tracking-wider border-2 border-on-surface block-shadow-sm hover:translate-x-0.5 hover:translate-y-0.5 active:translate-x-1 active:translate-y-1 transition-all cursor-pointer whitespace-nowrap flex items-center justify-center shrink-0"
           >
-            Pink Shelf Visit
+            <span className="hidden sm:inline">Pink Shelf Visit</span>
+            <span className="sm:hidden">Pink Shelf</span>
           </button>
         </div>
       </div>
@@ -191,14 +193,14 @@ export const SisterLibrarySubNav: React.FC<SisterLibrarySubNavProps> = ({
           3. LEVEL 2: ALL MENU ITEMS (Clean Horizontal Tab Row)
           ───────────────────────────────────────────────────────────── */}
       <div
-        className={`w-full border-t transition-colors ${
+        className={`w-full border-t transition-colors overflow-hidden ${
           isDark
             ? "border-[#232738] bg-[#0c0e14]"
             : "border-on-surface/10 bg-[#f7f3e8]"
         }`}
       >
         <div className="max-w-max-content-width mx-auto px-4 md:px-gutter-desktop">
-          <nav className="flex items-center space-x-1 sm:space-x-2 overflow-x-auto no-scrollbar py-2">
+          <nav className="flex items-center space-x-1 sm:space-x-2 overflow-x-auto no-scrollbar py-2 touch-pan-x">
             {NAV_LINKS.map((link) => {
               const isActive = currentPage === link.key;
               return (
@@ -208,7 +210,7 @@ export const SisterLibrarySubNav: React.FC<SisterLibrarySubNavProps> = ({
                     onNavigate(link.key);
                     window.scrollTo({ top: 0, behavior: "smooth" });
                   }}
-                  className={`relative px-3 sm:px-4 py-1.5 text-xs sm:text-sm font-body-md transition-all cursor-pointer whitespace-nowrap rounded-xs flex items-center gap-2 ${
+                  className={`relative min-h-[44px] px-3 sm:px-4 py-2 text-xs sm:text-sm font-body-md transition-all cursor-pointer whitespace-nowrap rounded-xs flex items-center gap-2 ${
                     isActive
                       ? isDark
                         ? "font-bold text-white bg-[#191d28] border-2 border-[#ff1493] shadow-[2px_2px_0px_#ff1493]"

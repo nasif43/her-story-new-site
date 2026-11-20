@@ -17,24 +17,24 @@ export const SisterLibraryAiTheatre: React.FC<SisterLibraryAiTheatreProps> = ({
   return (
     <div className="w-full bg-[#0c0d10] text-[#f4f0e7] font-serif-editorial min-h-screen">
       {/* Action Toolbar — Prompt Score + Manifesto (Back handled by SubNav) */}
-      <div className="max-w-max-content-width mx-auto px-gutter-mobile lg:px-gutter-desktop pt-6 pb-4 flex flex-wrap items-center justify-end gap-2 border-b border-white/10 mb-6">
+      <div className="max-w-max-content-width mx-auto px-4 md:px-gutter-desktop pt-6 pb-4 flex flex-wrap items-center justify-end gap-2 border-b border-white/10 mb-6">
         <button
           onClick={() => setTranscriptOpen(true)}
-          className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xs bg-[#ff1493]/20 hover:bg-[#ff1493]/30 text-[#ff1493] border border-[#ff1493]/50 text-xs font-label-code font-semibold transition-all cursor-pointer"
+          className="inline-flex items-center gap-1.5 min-h-[40px] px-3.5 py-2 rounded-xs bg-[#ff1493]/20 hover:bg-[#ff1493]/30 text-[#ff1493] border border-[#ff1493]/50 text-xs font-label-code font-semibold transition-all cursor-pointer"
         >
           <FileText className="w-3.5 h-3.5" />
           <span>Prompt Score</span>
         </button>
         <button
           onClick={() => setManifestoOpen(true)}
-          className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xs bg-marigold-ochre/20 hover:bg-marigold-ochre/30 text-marigold-ochre border border-marigold-ochre/50 text-xs font-label-code font-semibold transition-all cursor-pointer"
+          className="inline-flex items-center gap-1.5 min-h-[40px] px-3.5 py-2 rounded-xs bg-marigold-ochre/20 hover:bg-marigold-ochre/30 text-marigold-ochre border border-marigold-ochre/50 text-xs font-label-code font-semibold transition-all cursor-pointer"
         >
           <Sparkles className="w-3.5 h-3.5" />
           <span>Manifesto</span>
         </button>
       </div>
 
-      <main className="w-full max-w-max-content-width mx-auto px-gutter-desktop pt-6">
+      <main className="w-full max-w-max-content-width mx-auto px-4 md:px-gutter-desktop pt-6">
         <div className="flex flex-col w-full relative">
           {/* Section 0: Primary Cinematic Video Showcase */}
           <section className="w-full pt-space-xs pb-space-lg">
@@ -62,7 +62,7 @@ export const SisterLibraryAiTheatre: React.FC<SisterLibraryAiTheatreProps> = ({
                 </div>
               </div>
 
-              <div className="p-space-lg bg-[#0d0e14]/95 backdrop-blur-md grid grid-cols-12 gap-space-md items-center border-t border-white/10">
+              <div className="p-4 sm:p-space-lg bg-[#0d0e14]/95 backdrop-blur-md grid grid-cols-1 lg:grid-cols-12 gap-space-md items-center border-t border-white/10">
                 <div className="col-span-12 lg:col-span-8 space-y-space-xs">
                   <div className="flex flex-wrap items-center gap-space-xs">
                     <span className="font-label-code text-label-code text-riso-pink font-bold">
@@ -194,7 +194,7 @@ export const SisterLibraryAiTheatre: React.FC<SisterLibraryAiTheatreProps> = ({
 
           {/* Section 2: Collective Covenant */}
           <section className="w-full py-space-xl border-t border-white/10 mb-space-2xl">
-            <div className="grid grid-cols-12 gap-space-xl items-start">
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-space-xl items-start">
               <div className="col-span-12 lg:col-span-7 space-y-space-md">
                 <div className="inline-flex items-center gap-space-2xs px-space-xs py-space-3xs bg-[#191d29] rounded border border-white/15">
                   <span className="w-2 h-2 rounded-full bg-riso-pink inline-block animate-pulse" />
@@ -278,7 +278,7 @@ export const SisterLibraryAiTheatre: React.FC<SisterLibraryAiTheatreProps> = ({
           {/* Transcript Modal */}
           {transcriptOpen && (
             <div className="fixed inset-0 z-50 bg-black/80 backdrop-blur-md flex items-center justify-center p-4">
-              <div className="w-full max-w-2xl bg-[#0f1118] border border-white/20 rounded-lg p-space-lg shadow-2xl space-y-space-md max-h-[870px] overflow-y-auto">
+              <div className="w-full max-w-2xl bg-[#0f1118] border border-white/20 rounded-lg p-4 sm:p-space-lg shadow-2xl space-y-space-md max-h-[calc(100dvh-2.5rem)] overflow-y-auto">
                 <div className="flex items-center justify-between border-b border-white/10 pb-space-sm">
                   <div>
                     <span className="font-label-stamp text-label-stamp text-riso-pink uppercase font-bold">
@@ -331,7 +331,7 @@ export const SisterLibraryAiTheatre: React.FC<SisterLibraryAiTheatreProps> = ({
           {/* Manifesto Modal */}
           {manifestoOpen && (
             <div className="fixed inset-0 z-50 bg-black/80 backdrop-blur-md flex items-center justify-center p-4">
-              <div className="w-full max-w-2xl bg-[#0f1118] border border-white/20 rounded-lg p-space-lg shadow-2xl space-y-space-md max-h-[870px] overflow-y-auto">
+              <div className="w-full max-w-2xl bg-[#0f1118] border border-white/20 rounded-lg p-4 sm:p-space-lg shadow-2xl space-y-space-md max-h-[calc(100dvh-2.5rem)] overflow-y-auto">
                 <div className="flex items-center justify-between border-b border-white/10 pb-space-sm">
                   <div>
                     <span className="font-label-stamp text-label-stamp text-marigold-ochre uppercase font-bold">

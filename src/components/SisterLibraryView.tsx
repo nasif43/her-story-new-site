@@ -32,7 +32,7 @@ export const SisterLibraryView: React.FC<SisterLibraryViewProps> = ({ onGoHome }
 
   return (
     <div
-      className={`w-full min-h-screen font-body-md relative selection:bg-[#ff1493] selection:text-white flex flex-col transition-colors duration-300 ${
+      className={`w-full min-h-screen font-body-md relative flex flex-col transition-colors duration-300 ${
         isDark
           ? subPage === "women-online"
             ? "bg-[#0a0a0e] text-white"
