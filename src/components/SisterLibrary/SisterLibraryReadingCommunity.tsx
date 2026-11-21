@@ -54,8 +54,7 @@ const ZINE_ITEMS: ZineItem[] = [
     desc: "A collaborative collection of essays, recipes, and strike posters interrogating unpaid reproductive labor and neighborhood kitchens as radical organizing sites.",
     specs: "36 pages • Riso 2-color",
     actionText: "Read Excerpt →",
-    imageUrl:
-      "https://lh3.googleusercontent.com/aida-public/AB6AXuDBf0-fueAeJ7oQbxy9svqIn6wNcWojjDzqjyd8exGFc_zPThALBPcJex7TViiQq-QzTPllmQr-GNTPGoQo_c8hReYrbZZJfD7zXdgQiZq1kIMjuCT7TRqfKXm2txTAhdtVbngtQWSPZfu5M8Vlfva0HtcUvY8UG-7hWUQgBwGX1xlklu1SXc8wUp7YXQgFUSOEIIHfNz3a6H0_ooyLboThFBncKowutlGwX0ZkvGL45CQ9HmglPWhRkA",
+    imageUrl: "/images/pink-shelf/zine-domestic-resistance.jpg",
     imageAlt: "Risograph zine cover featuring bold abstract feminist linework printed in scarlet red and archival navy blue ink onto thick cream recycled paper.",
   },
   {
@@ -70,8 +69,7 @@ const ZINE_ITEMS: ZineItem[] = [
     desc: "Trilingual anthology gathering radical verse from student protests, Dalit feminist tracts, and anti-authoritarian underground broadsheets.",
     specs: "52 pages • Hand-bound",
     actionText: "Request Copy →",
-    imageUrl:
-      "https://lh3.googleusercontent.com/aida-public/AB6AXuC7o7tCzu69_BDZlnG1fvsRO-QBM8joTRlCexJ-dW8XUGtcjKbFgDnpKhw5deS5gpMsT8hd5s0kSNnr49lHAmEn2VPWTubjupNDPIkIvm3lQKPLWJa17zWPAgL9u5tkPCSjTvWJijfdowTxUUNolgsBO5PTXbw868UDrxxPFMrua3EZc2nlnXYegnQ1HkRxl6ZrDk0ZvMtFHspZKafV80PxyR8qLiPF2H7bYsMFgDiDKp9UXTHB4Cr_KA",
+    imageUrl: "/images/pink-shelf/zine-feminist-poetry.jpg",
     imageAlt: "Artisanal hand-bound pamphlet with exposed singer-sewn spine stitches lying flat on an unpolished wooden library desk.",
   },
   {
@@ -86,8 +84,7 @@ const ZINE_ITEMS: ZineItem[] = [
     desc: "Step-by-step DIY guide to saddle stitching, pamphlet sewing, drum-leaf binding, and stenciling for community organizers on zero budget.",
     specs: "24 pages • Unbleached",
     actionText: "Download PDF →",
-    imageUrl:
-      "https://lh3.googleusercontent.com/aida-public/AB6AXuDo3Bvtom5TvSNTp6mowo3vmgexKgRgEN3lwXZS6t5TgQodKxIAfxfr-dukYckW6NQRNjUjOlDnZAanFSotubRRNS8MlLpNSME4fy_4f4TW_Bq1tjCtxRuWut_fvqYUEQNtQ59i--9l8967INg-Qh-Wzv-WuZDyF4Aca11wipg8oPGYHRoN98a91yfNtwvS2dMwqxvVlXJvfZXWgTOglwWQXUhNC_jzYxAuTVZgvlnPq-4ZeFKvnHwANQ",
+    imageUrl: "/images/pink-shelf/zine-binding-memory.jpg",
     imageAlt: "Overhead flatlay photograph of a DIY bookbinding instruction manual open on a worktable with bone folders and linen binding thread.",
   },
   {
@@ -102,9 +99,8 @@ const ZINE_ITEMS: ZineItem[] = [
     desc: "Cartographic logs from our wheeled library's journey through public train concourses, community gardens, and textile worker neighborhoods.",
     specs: "Accordion Fold • 18 panels",
     actionText: "Read Excerpt →",
-    imageUrl:
-      "https://lh3.googleusercontent.com/aida-public/AB6AXuBC6g4iP9Rz0hIqGz84XU1X-u91U_zX4-Bw9w6g7h8_i9j0k1l2m3n4o5p6q7r8s9t0u1v2w3x4y5z6a7b8c9d0e1f2g3h4i5j6k7l8m9n0o1p2q3r4s5t6u7v8w9x0y1z2",
-    imageAlt: "Risograph map fold-out showing traveling library route coordinates across South Asian communities.",
+    imageUrl: "/images/pink-shelf/zine-travelling-cart.jpg",
+    imageAlt: "Archival photograph of travelling zine cart and community library route coordinates across South Asian communities.",
   },
 ];
 
