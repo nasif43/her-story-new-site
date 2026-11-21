@@ -104,7 +104,7 @@ export const SisterLibraryWomenOnline: React.FC<SisterLibraryWomenOnlineProps> =
             <img
               alt="Digital discussion circle & community screening session under ambient glow"
               className="w-full h-auto max-h-[500px] object-cover filter contrast-[1.05]"
-              src="https://lh3.googleusercontent.com/aida/AEtjO1V6GEjwEPXivzoMJjdeH8G7DbcPZVQYydSSo_2DCBvh-9DNea6-LU44HtbNjowA72HkfGM9CeSh4VL_nQehP5lCBZ6bOyyyEsAX_LNDnuFXl8tpplBV71sCyrXq9T-5kpEZXI6ExFZvgtEWOXt4ASpeOSYIF7Fzb4Ul1ucATqR1CTi9jhBg9fQ_tHUTgKAtZY0y4MpIGlmm8XSkMd9RRLz1cwvukv0mSF_eFcsMtUHhutikEhDjMKQOQqLm"
+              src="https://lh3.googleusercontent.com/aida-public/AB6AXuB188xepQQ570vIkCm8wlYco_Iext5gA8Y3s9ngqSe84YkLZ6_BxWpBZ6mPCnsYiHs93x0IxQZo7lHnn7lRtbYTO05-8ITTicLxu_NCH54pIWIKayf2UWRUDvDmU7ojzXQE8NRTVhG0YfZ77MoaJZvyD78fbm98NPas2VGZ1u-9JbrP6VehsPLaXf_eNnFX9qV_OK9NTHhbcZyjTKFYg3mPt3fOwrV3C9I7pUU4kLR16zKwpa-5Ql6khktyvqaj5o4cZktVDOeXSBSUlmo"
             />
             <div className="absolute bottom-0 inset-x-0 p-space-md bg-gradient-to-t from-black via-black/80 to-transparent flex flex-col sm:flex-row sm:items-end justify-between gap-space-xs">
               <div className="flex flex-col gap-space-3xs">

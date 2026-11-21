@@ -79,7 +79,7 @@ const BRANCH_PROGRAMS: BranchProgram[] = [
   },
   {
     id: "ai-theatre",
-    code: "THEATRE-DOC",
+    code: "AI-DOC-25",
     title: "AI MAFIA BOYFRIEND & MY AI BFF",
     desc: "Exploring the joys and perils of human - AI relationships through theatre of the oppressed.",
     date: "2025, 2026",
@@ -471,13 +471,16 @@ export const SisterLibraryHub: React.FC<SisterLibraryHubProps> = ({
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-gutter-desktop items-center">
             <div className="col-span-12 lg:col-span-7 flex flex-col justify-between space-y-space-lg">
               <div>
-                <h2 className="flex items-center space-x-space-xs mb-space-md">
+                <div className="flex items-center space-x-space-xs mb-space-2xs">
                   <span className="px-space-xs py-space-3xs bg-[#ff1493] text-white font-label-stamp text-label-stamp uppercase stamp-rotate-left font-bold">
                     [MANIFESTO]
                   </span>
                   <span className="font-label-code text-label-code text-outline uppercase font-medium">
                     / WHY WE READ WOMEN
                   </span>
+                </div>
+                <h2 className="font-display-hero text-headline-lg lg:text-display-hero text-on-surface tracking-tight leading-tight mt-space-2xs">
+                  Why We Read Women.
                 </h2>
                 <div className="space-y-space-md pt-space-xs font-body-lg text-body-lg text-on-surface-variant">
                   <p>
@@ -524,11 +527,11 @@ export const SisterLibraryHub: React.FC<SisterLibraryHubProps> = ({
             DISPATCHES & PRESS (R6: Spacing & Daily Star Article Preview)
             ───────────────────────────────────────────────────────────── */}
         <section className="py-space-3xl border-b border-on-surface/20" id="press">
-          <div className="mb-space-2xl space-y-3">
+          <div className="mb-space-2xl space-y-4">
             <span className="px-space-xs py-space-3xs bg-[#ede9fe] text-[#7e22ce] font-label-stamp text-label-stamp uppercase stamp-rotate-left inline-block font-bold border border-[#7e22ce]/30">
               Dispatches &amp; Reviews
             </span>
-            <h2 className="font-headline-lg text-headline-lg text-on-surface mt-3">
+            <h2 className="font-headline-lg text-headline-lg text-on-surface mt-4 pt-1">
               Press About Sister Library (Dhaka)
             </h2>
           </div>
@@ -561,6 +564,19 @@ export const SisterLibraryHub: React.FC<SisterLibraryHubProps> = ({
                     <p className="font-label-code text-label-code text-outline mb-space-sm">
                       {featuredPress.byline}
                     </p>
+
+                    {/* Article Visual Preview */}
+                    <div className="my-space-sm rounded overflow-hidden border border-on-surface/30 aspect-[16/9] bg-surface-container relative">
+                      <img
+                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuCxntmqUHyj1W2MN30VdNBh9hD_ARk-3dUVdnq212qRZ6PXwdVnbsFnR4IuUDGa0Bf0WhA0pP_Hnvv1jVZt3VmlWdgfg_oc-cKRwn_ulOBMfRlrsmUyfgmg1bHZZpAX6H3EJVWoMhuzA5GtPXgne9YsiKJccwNuvw4ZPHICZPM8CB5eXIUn8Nfpmc-DwlJyl1zzkRKt0w8opz7LwVrAvm3UdNBnKWE0WV6AMmxm-5lBvs0-yDI2c5omgO1WIFeU63pzzZyU6-O4tqOTfig"
+                        alt="Dhaka Zine Mela coverage in The Daily Star"
+                        className="w-full h-full object-cover"
+                      />
+                      <div className="absolute bottom-2 left-2 px-2 py-0.5 bg-black/80 text-white font-label-code text-[10px] uppercase">
+                        The Daily Star Culture Desk
+                      </div>
+                    </div>
+
                     <p className="font-body-md text-body-md text-on-surface-variant leading-relaxed mb-space-md">
                       {featuredPress.lead}
                     </p>
@@ -652,11 +668,11 @@ export const SisterLibraryHub: React.FC<SisterLibraryHubProps> = ({
               Channels:{" "}
               <a
                 className="text-[#ff1493] underline font-bold"
-                href="https://www.youtube.com/watch?v=kjHxVvXnmoU&list=PLnK8E1Gtex1OgvybpL3_SXOaVRADD_CMq&index=33"
+                href="https://www.youtube.com/@HerstoryFoundation"
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                YouTube
+                YouTube ↗
               </a>
             </div>
           </div>
@@ -842,11 +858,11 @@ export const SisterLibraryHub: React.FC<SisterLibraryHubProps> = ({
                 <p className="font-label-code text-label-code text-outline mt-space-xs">
                   <a
                     className="text-[#ff1493] hover:underline font-bold transition-colors"
-                    href="https://www.goethe.de/ins/bd/en/kul/bib.html"
+                    href="https://www.goethe.de/ins/bd/en/"
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    LINK TO THE WEBSITE ↗
+                    GOETHE-INSTITUT BANGLADESH ↗
                   </a>
                 </p>
               </div>
