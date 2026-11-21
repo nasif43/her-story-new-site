@@ -1,5 +1,4 @@
-import React, { useState } from "react";
-import { Sparkles, FileText } from "lucide-react";
+import React from "react";
 import { SisterSubPage } from "./SisterLibraryHub";
 
 interface SisterLibraryAiTheatreProps {
@@ -11,30 +10,9 @@ export const SisterLibraryAiTheatre: React.FC<SisterLibraryAiTheatreProps> = ({
   onBack,
   onNavigate,
 }) => {
-  const [transcriptOpen, setTranscriptOpen] = useState(false);
-  const [manifestoOpen, setManifestoOpen] = useState(false);
-
   return (
     <div className="w-full bg-[#0c0d10] text-[#f4f0e7] font-serif-editorial min-h-screen">
-      {/* Action Toolbar — Prompt Score + Manifesto (Back handled by SubNav) */}
-      <div className="max-w-max-content-width mx-auto px-4 md:px-gutter-desktop pt-6 pb-4 flex flex-wrap items-center justify-end gap-2 border-b border-white/10 mb-6">
-        <button
-          onClick={() => setTranscriptOpen(true)}
-          className="inline-flex items-center gap-1.5 min-h-[40px] px-3.5 py-2 rounded-xs bg-[#ff1493]/20 hover:bg-[#ff1493]/30 text-[#ff1493] border border-[#ff1493]/50 text-xs font-label-code font-semibold transition-all cursor-pointer"
-        >
-          <FileText className="w-3.5 h-3.5" />
-          <span>Prompt Score</span>
-        </button>
-        <button
-          onClick={() => setManifestoOpen(true)}
-          className="inline-flex items-center gap-1.5 min-h-[40px] px-3.5 py-2 rounded-xs bg-marigold-ochre/20 hover:bg-marigold-ochre/30 text-marigold-ochre border border-marigold-ochre/50 text-xs font-label-code font-semibold transition-all cursor-pointer"
-        >
-          <Sparkles className="w-3.5 h-3.5" />
-          <span>Manifesto</span>
-        </button>
-      </div>
-
-      <main className="w-full max-w-max-content-width mx-auto px-4 md:px-gutter-desktop pt-6">
+      <main className="w-full max-w-max-content-width mx-auto px-4 md:px-gutter-desktop pt-8">
         <div className="flex flex-col w-full relative">
           {/* Section 0: Primary Cinematic Video Showcase */}
           <section className="w-full pt-space-xs pb-space-lg">
@@ -169,9 +147,11 @@ export const SisterLibraryAiTheatre: React.FC<SisterLibraryAiTheatreProps> = ({
                   <div className="relative aspect-video w-full overflow-hidden bg-black">
                     <iframe
                       className="w-full h-full border-0 absolute inset-0 z-10"
-                      src="https://drive.google.com/file/d/1zaxMp51X439hnj51tyMa5yL8jOyLBHkr/preview"
+                      src="https://drive.google.com/file/d/1MleCGFtnfZ4zgzDqVGtVvDxMwzLA-x0-/preview"
                       allow="fullscreen"
                       allowFullScreen
+                      loading="lazy"
+                      title="Node 02: Fun is My Love Language"
                     />
                   </div>
                   <div className="p-space-md flex-1 flex flex-col justify-between space-y-space-md bg-[#0f1017]">
@@ -185,6 +165,16 @@ export const SisterLibraryAiTheatre: React.FC<SisterLibraryAiTheatreProps> = ({
                       <p className="font-body-sm text-body-sm text-[#c8cde0] line-clamp-3 font-serif-editorial">
                         No one plans to become addicted. It just happens when something feels good, you do it over and over again.
                       </p>
+                    </div>
+                    <div className="pt-space-xs flex items-center justify-between border-t border-white/10">
+                      <a
+                        href="https://drive.google.com/file/d/1MleCGFtnfZ4zgzDqVGtVvDxMwzLA-x0-/view?usp=drive_link"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-xs text-marigold-ochre hover:underline inline-flex items-center gap-1 font-label-code"
+                      >
+                        Watch Recording on Google Drive ↗
+                      </a>
                     </div>
                   </div>
                 </article>
@@ -274,102 +264,6 @@ export const SisterLibraryAiTheatre: React.FC<SisterLibraryAiTheatreProps> = ({
               </div>
             </div>
           </section>
-
-          {/* Transcript Modal */}
-          {transcriptOpen && (
-            <div className="fixed inset-0 z-50 bg-black/80 backdrop-blur-md flex items-center justify-center p-4">
-              <div className="w-full max-w-2xl bg-[#0f1118] border border-white/20 rounded-lg p-4 sm:p-space-lg shadow-2xl space-y-space-md max-h-[calc(100dvh-2.5rem)] overflow-y-auto">
-                <div className="flex items-center justify-between border-b border-white/10 pb-space-sm">
-                  <div>
-                    <span className="font-label-stamp text-label-stamp text-riso-pink uppercase font-bold">
-                      DOCUMENT REF: SL-TR-2025-01
-                    </span>
-                    <h3 className="font-headline-sm text-headline-sm text-surface-bright font-serif">
-                      Performance Transcript &amp; Prompt Score
-                    </h3>
-                  </div>
-                  <button
-                    aria-label="Close modal"
-                    className="text-surface-variant hover:text-white p-space-2xs cursor-pointer"
-                    onClick={() => setTranscriptOpen(false)}
-                    type="button"
-                  >
-                    ✕
-                  </button>
-                </div>
-                <div className="font-label-code text-body-sm text-[#c8cde0] space-y-space-sm bg-black/50 p-space-md rounded border border-white/10">
-                  <p className="text-marigold-ochre font-bold">[TIMECODE 00:04:12 // PROMPT INPUT]</p>
-                  <p className="italic text-surface-variant">
-                    "Reconstruct the voices of three anonymous female typesetters from 1970s Chittagong. Strip colonial phonemes. Let the ink bleed across the vocal cords."
-                  </p>
-                  <p className="text-riso-pink font-bold mt-space-sm">[NEURAL SYNTHESIS OUTPUT]</p>
-                  <p className="leading-relaxed">
-                    "We do not replicate; we resist. The machine does not remember what was never recorded, yet in the empty margin of the book, our collective pulse remains legible..."
-                  </p>
-                </div>
-                <div className="flex justify-end gap-space-sm pt-space-xs">
-                  <button
-                    className="px-space-md py-space-2xs text-body-sm text-surface-variant hover:text-white cursor-pointer"
-                    onClick={() => setTranscriptOpen(false)}
-                    type="button"
-                  >
-                    Close
-                  </button>
-                  <a
-                    className="px-space-md py-space-2xs bg-riso-pink text-white font-body-sm font-semibold rounded hover:bg-[#e10080]"
-                    href="https://www.youtube.com/watch?v=S8ozfFh9U4E"
-                    rel="noopener noreferrer"
-                    target="_blank"
-                  >
-                    Watch Video Scene
-                  </a>
-                </div>
-              </div>
-            </div>
-          )}
-
-          {/* Manifesto Modal */}
-          {manifestoOpen && (
-            <div className="fixed inset-0 z-50 bg-black/80 backdrop-blur-md flex items-center justify-center p-4">
-              <div className="w-full max-w-2xl bg-[#0f1118] border border-white/20 rounded-lg p-4 sm:p-space-lg shadow-2xl space-y-space-md max-h-[calc(100dvh-2.5rem)] overflow-y-auto">
-                <div className="flex items-center justify-between border-b border-white/10 pb-space-sm">
-                  <div>
-                    <span className="font-label-stamp text-label-stamp text-marigold-ochre uppercase font-bold">
-                      MANIFESTO DECLARATION
-                    </span>
-                    <h3 className="font-headline-sm text-headline-sm text-surface-bright font-serif">
-                      Sister Library Computational Manifesto
-                    </h3>
-                  </div>
-                  <button
-                    aria-label="Close modal"
-                    className="text-surface-variant hover:text-white p-space-2xs cursor-pointer"
-                    onClick={() => setManifestoOpen(false)}
-                    type="button"
-                  >
-                    ✕
-                  </button>
-                </div>
-                <div className="font-body-md text-body-md text-[#c8cde0] space-y-space-sm leading-relaxed font-serif-editorial">
-                  <p>
-                    We do not surrender our libraries to corporate scraper engines. Generative neural networks are tools of collective remembrance only when operated by the communities whose voices they synthesize.
-                  </p>
-                  <p>
-                    Through risograph ink, physical gatherings, and intentional machine friction, we affirm that memory is somatic, communal, and radically alive.
-                  </p>
-                </div>
-                <div className="flex justify-end pt-space-xs">
-                  <button
-                    className="px-space-md py-space-2xs bg-riso-pink text-white font-body-sm font-semibold rounded cursor-pointer hover:bg-[#e10080]"
-                    onClick={() => setManifestoOpen(false)}
-                    type="button"
-                  >
-                    Acknowledge &amp; Return
-                  </button>
-                </div>
-              </div>
-            </div>
-          )}
         </div>
       </main>
     </div>

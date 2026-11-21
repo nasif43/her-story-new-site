@@ -25,7 +25,7 @@ const NAV_LINKS: NavLink[] = [
   { key: "ai-theatre", label: "AI Theatre", badge: "Live", badgeColor: "#ff1493" },
   { key: "zine-mela", label: "Dhaka Zine Mela", badge: "2026", badgeColor: "#ea580c" },
   { key: "women-online", label: "Women Online", badge: "Dot BD", badgeColor: "#2563eb" },
-  { key: "reading-community", label: "Reading Community", badge: "Lending", badgeColor: "#7e22ce" },
+  { key: "reading-community", label: "PINK SHELF", badge: "Archive", badgeColor: "#ff1493" },
 ];
 
 export const SisterLibrarySubNav: React.FC<SisterLibrarySubNavProps> = ({
@@ -151,7 +151,7 @@ export const SisterLibrarySubNav: React.FC<SisterLibrarySubNavProps> = ({
             <div className="relative min-w-0">
               <input
                 type="text"
-                placeholder="Search Archive"
+                placeholder="Search the Library Archive"
                 value={searchQuery}
                 onChange={(e) => onSearchChange(e.target.value)}
                 className={`w-32 xs:w-36 sm:w-44 md:w-56 lg:w-64 max-w-full min-h-[40px] px-3 py-1.5 pl-8 border rounded-xs text-xs font-label-code focus:outline-none focus:border-[#ff1493] transition-colors ${
@@ -170,15 +170,15 @@ export const SisterLibrarySubNav: React.FC<SisterLibrarySubNavProps> = ({
 
           <button
             onClick={() => {
-              if (currentPage !== "hub") {
-                onNavigate("hub");
-                setTimeout(() => {
-                  const el = document.getElementById("pink-shelf");
-                  if (el) el.scrollIntoView({ behavior: "smooth" });
-                }, 100);
+              const el = document.getElementById("pink-shelf");
+              if (el) {
+                el.scrollIntoView({ behavior: "smooth" });
               } else {
-                const el = document.getElementById("pink-shelf");
-                if (el) el.scrollIntoView({ behavior: "smooth" });
+                onNavigate("reading-community");
+                setTimeout(() => {
+                  const target = document.getElementById("pink-shelf");
+                  if (target) target.scrollIntoView({ behavior: "smooth" });
+                }, 150);
               }
             }}
             className="min-h-[40px] px-3 sm:px-4 py-2 bg-[#ff1493] text-[#1c1c16] font-label-code text-xs font-black uppercase tracking-wider border-2 border-on-surface block-shadow-sm hover:translate-x-0.5 hover:translate-y-0.5 active:translate-x-1 active:translate-y-1 transition-all cursor-pointer whitespace-nowrap flex items-center justify-center shrink-0"

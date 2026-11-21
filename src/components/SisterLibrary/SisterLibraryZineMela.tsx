@@ -24,13 +24,10 @@ export const SisterLibraryZineMela: React.FC<SisterLibraryZineMelaProps> = () =>
             <span className="px-space-xs py-space-3xs bg-[#ff1493] text-white font-label-stamp text-label-stamp font-bold uppercase tracking-wider stamp-rotate-left">
               [PRINT CRAFT // AUTONOMOUS FAIR]
             </span>
-            <span className="font-label-code text-label-code text-on-surface-variant uppercase font-medium">
-              / BIENNIAL GATHERING
-            </span>
           </div>
 
           <h1 className="font-headline-lg md:font-display-hero text-headline-lg md:text-display-hero text-archival-indigo font-normal tracking-tight leading-[1.08] text-balance">
-            DHAKA ZINE MELA 2026
+            DHAKA ZINE MELA &amp; SCENE
           </h1>
 
           <p className="font-body-lg text-body-lg text-on-surface-variant leading-relaxed font-normal max-w-3xl">
@@ -43,7 +40,7 @@ export const SisterLibraryZineMela: React.FC<SisterLibraryZineMelaProps> = () =>
             <div className="inline-flex items-center gap-space-xs px-space-md py-space-xs bg-surface-container rounded shadow-sm border border-on-surface/15">
               <Calendar className="w-4 h-4 text-[#ff1493]" />
               <span className="font-label-code text-label-code text-archival-indigo font-bold">
-                March 2026
+                Last held March 2026
               </span>
             </div>
             <div className="inline-flex items-center gap-space-xs px-space-md py-space-xs bg-surface-container rounded shadow-sm border border-on-surface/15">
@@ -58,20 +55,20 @@ export const SisterLibraryZineMela: React.FC<SisterLibraryZineMelaProps> = () =>
           </div>
         </header>
 
-        {/* 2. Primary Archival Image Plate & Video Feature */}
+        {/* 2. Primary Archival Image Plate */}
         <figure className="flex flex-col gap-space-xs group">
           <div className="relative w-full overflow-hidden rounded bg-surface-container-high aspect-[16/10] border-2 border-ink-black shadow-[3px_3px_0px_#1c1c16]">
-            <iframe
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-              allowFullScreen
-              className="w-full h-full"
-              src="https://www.youtube.com/embed/S8ozfFh9U4E?start=2&controls=1&rel=0"
-              title="Dhaka Zine Mela in Motion"
+            <img
+              src="/images/dzm-archival.jpg"
+              alt="Visitors reading independent handmade zines hung on the exhibition wall at Dhaka Zine Mela"
+              className="w-full h-full object-cover group-hover:scale-[1.02] transition-transform duration-500 ease-out"
+              loading="eager"
+              decoding="async"
             />
           </div>
           <figcaption className="flex flex-col sm:flex-row sm:items-center justify-between gap-space-2xs px-space-xs pt-space-2xs text-on-surface-variant font-label-code text-label-code">
             <span className="text-primary font-bold">PHOTO: ARCHIVAL FILE / DHAKA</span>
-            <span>VIDEO DOCUMENTARY // 00:04:12</span>
+            <span>EXHIBITION INSTALLATION // WALL DISPLAY</span>
           </figcaption>
         </figure>
 
@@ -229,7 +226,7 @@ export const SisterLibraryZineMela: React.FC<SisterLibraryZineMelaProps> = () =>
                       <img
                         alt="Dhaka Zine Mela Official Emblem"
                         className="w-full h-full object-cover rounded-full"
-                        src="https://lh3.googleusercontent.com/aida/AEtjO1V8KIAMl_w3krc88N0xhrBIxZDDdIJ0bo75EE-0cGRNE3FsmGTo6vELKSwPrild5smnGBdXLgV1KmPzhd8rwhRFiPAXogR0fMzG9j567-iiTPwKRfVnATulklFzsgmn1akvaXcI_J96afSWJmSzeMnVVHGl9sAEVYA79ClybltpdcmYb2I-SrL4oZm2Ae5v7Tyuvh5v-vEcj3nSy_brmeCvf-TB_hH4xIPeuED8d804Sw"
+                        src="/images/dhaka-zine-mela-logo.png"
                       />
                     </div>
                   </div>
@@ -253,7 +250,7 @@ export const SisterLibraryZineMela: React.FC<SisterLibraryZineMelaProps> = () =>
                     </span>
                   </div>
                   <p className="font-body-xs text-xs text-on-surface-variant truncate">
-                    Dhaka Zine Mela • Biennial Independent Print Craft Fair
+                    Dhaka Zine Mela &amp; Scene • Independent Print Craft Fair
                   </p>
                   <div className="flex items-center gap-space-sm pt-space-3xs font-label-code text-xs text-on-surface-variant">
                     <span className="font-bold text-on-surface">48 posts</span>
@@ -348,7 +345,7 @@ export const SisterLibraryZineMela: React.FC<SisterLibraryZineMelaProps> = () =>
                 className="group relative aspect-square overflow-hidden rounded bg-surface-container-high border-2 border-ink-black shadow-[2px_2px_0px_#1c1c16]"
               >
                 <img
-                  src="https://lh3.googleusercontent.com/aida/AEtjO1V8KIAMl_w3krc88N0xhrBIxZDDdIJ0bo75EE-0cGRNE3FsmGTo6vELKSwPrild5smnGBdXLgV1KmPzhd8rwhRFiPAXogR0fMzG9j567-iiTPwKRfVnATulklFzsgmn1akvaXcI_J96afSWJmSzeMnVVHGl9sAEVYA79ClybltpdcmYb2I-SrL4oZm2Ae5v7Tyuvh5v-vEcj3nSy_brmeCvf-TB_hH4xIPeuED8d804Sw"
+                  src="/images/dhaka-zine-mela-logo.png"
                   alt="Official Dhaka Zine Mela logo illustration"
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                 />

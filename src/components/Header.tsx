@@ -76,10 +76,10 @@ export const Header: React.FC<HeaderProps> = ({
                       ? 'bg-white/15 font-bold border border-[#ff69b4]/60 shadow-xs text-white'
                       : 'text-white/90 hover:text-white'
                   }`}
-                  title="Sister Library — Dhaka Sanctuary Archive"
+                  title="Sister Library (Dhaka) Archive"
                 >
                   <Sparkles className="w-4 h-4 text-[#ff69b4] animate-sparkle shrink-0" />
-                  <span className="font-bold tracking-wide">
+                  <span className="rainbow-text-gradient font-bold tracking-wide">
                     {item.label}
                   </span>
                 </button>
@@ -145,7 +145,7 @@ export const Header: React.FC<HeaderProps> = ({
                   }`}
                 >
                   <Sparkles className="w-4 h-4 text-[#ff69b4] animate-sparkle shrink-0" />
-                  <span className="font-bold text-white">
+                  <span className="rainbow-text-gradient font-bold tracking-wide">
                     {item.label}
                   </span>
                 </button>
