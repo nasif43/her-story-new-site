@@ -45,9 +45,9 @@ export const SisterLibraryAiTheatre: React.FC<SisterLibraryAiTheatreProps> = ({
                       COMMISSIONED BY HERSTORY FOUNDATION &amp; GOETHE-INSTITUT
                     </span>
                   </div>
-                  <h2 className="font-headline-md text-headline-md text-surface-bright leading-tight font-serif">
+                  <h1 className="font-headline-md text-headline-md text-surface-bright leading-tight font-serif">
                     STIMULATING EMOTIONAL RESPONSE WITH ARTIFICIAL ACTORS
-                  </h2>
+                  </h1>
                   <p className="font-body-md text-body-md text-[#c8cde0] leading-relaxed max-w-3xl font-serif-editorial">
                     A performance of the Venn diagram of love, technology, and misogyny. What would you do to fill the gaps left open by an absent partner?
                   </p>

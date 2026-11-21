@@ -122,16 +122,8 @@ export const SisterLibrarySubNav: React.FC<SisterLibrarySubNavProps> = ({
 
           <button
             onClick={() => {
-              const el = document.getElementById("pink-shelf");
-              if (el) {
-                el.scrollIntoView({ behavior: "smooth" });
-              } else {
-                onNavigate("reading-community");
-                setTimeout(() => {
-                  const target = document.getElementById("pink-shelf");
-                  if (target) target.scrollIntoView({ behavior: "smooth" });
-                }, 150);
-              }
+              onNavigate("reading-community");
+              window.scrollTo({ top: 0, behavior: "smooth" });
             }}
             className="min-h-[40px] px-3 sm:px-4 py-2 bg-[#ff1493] text-[#1c1c16] font-label-code text-xs font-black uppercase tracking-wider border-2 border-on-surface block-shadow-sm hover:translate-x-0.5 hover:translate-y-0.5 active:translate-x-1 active:translate-y-1 transition-all cursor-pointer whitespace-nowrap flex items-center justify-center shrink-0"
           >
