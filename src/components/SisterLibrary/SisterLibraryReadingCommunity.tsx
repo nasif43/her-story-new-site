@@ -121,19 +121,17 @@ export const SisterLibraryReadingCommunity: React.FC<SisterLibraryReadingCommuni
   const categories = [
     "All",
     "Feminist Theory",
-    "Poetry & Plays",
-    "Ecofeminism",
-    "Memoir & Diaries",
-    "Radical Pedagogies",
+    "Art Book",
+    "Poetry",
+    "Fiction",
+    "Zine",
   ];
 
   const filteredBooks = SISTER_LIBRARY_ITEMS.filter((item) => {
     const matchesSearch =
       item.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
       item.author.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      item.tags.some((tag) =>
-        tag.toLowerCase().includes(searchQuery.toLowerCase())
-      );
+      item.curatorNote.toLowerCase().includes(searchQuery.toLowerCase());
     const matchesCategory =
       selectedCategory === "All" || item.category === selectedCategory;
     return matchesSearch && matchesCategory;
@@ -607,7 +605,7 @@ export const SisterLibraryReadingCommunity: React.FC<SisterLibraryReadingCommuni
                       {book.category}
                     </span>
                     <span className="font-label-code text-[11px] text-[#ff1493] font-bold">
-                      {book.status}
+                      {book.condition}
                     </span>
                   </div>
 
@@ -615,26 +613,15 @@ export const SisterLibraryReadingCommunity: React.FC<SisterLibraryReadingCommuni
                     {book.title}
                   </h3>
                   <p className="font-label-code text-xs text-on-surface-variant mb-space-xs">
-                    By {book.author} ({book.year})
+                    By {book.author}
                   </p>
                   <p className="font-body-sm text-xs text-on-surface-variant line-clamp-3 mb-space-sm">
-                    {book.description}
+                    {book.curatorNote}
                   </p>
-
-                  <div className="flex flex-wrap gap-1 mb-space-sm">
-                    {book.tags.slice(0, 3).map((tag) => (
-                      <span
-                        key={tag}
-                        className="px-1.5 py-0.5 bg-[#f7f3e9] text-[#1d2a44] font-label-code text-[10px] border border-[#1d2a44]/15"
-                      >
-                        #{tag}
-                      </span>
-                    ))}
-                  </div>
                 </div>
 
                 <div className="pt-space-xs border-t border-on-surface/15 flex justify-between items-center font-label-code text-xs">
-                  <span className="text-on-surface-variant">LOC: {book.location}</span>
+                  <span className="text-on-surface-variant">{book.donatedBy || "Sister Library Archive"}</span>
                   <button
                     onClick={() => handleBorrowRequest(book.title)}
                     className="text-[#ff1493] font-bold hover:underline cursor-pointer"
