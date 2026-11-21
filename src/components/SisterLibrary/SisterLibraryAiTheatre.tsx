@@ -20,24 +20,22 @@ export const SisterLibraryAiTheatre: React.FC<SisterLibraryAiTheatreProps> = ({
               <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-riso-pink via-marigold-ochre to-[#7b2cbf] z-20" />
 
               <div className="relative aspect-video w-full overflow-hidden bg-black flex items-center justify-center">
-                <iframe
-                  className="w-full h-full border-0 absolute inset-0 z-10"
-                  src="https://drive.google.com/file/d/1zaxMp51X439hnj51tyMa5yL8jOyLBHkr/preview"
-                  allow="fullscreen"
-                  allowFullScreen
+                <video
+                  className="w-full h-full object-cover absolute inset-0 z-10"
+                  src="/videos/ai-theatre-primary.mp4"
+                  controls
+                  playsInline
+                  preload="metadata"
+                  title="Stimulating Emotional Response with Artificial Actors"
                 />
-                <div className="absolute bottom-0 left-0 right-0 p-space-sm bg-gradient-to-t from-black/90 to-transparent flex flex-col gap-space-2xs z-20 pointer-events-none">
-                  <div className="w-full bg-white/20 h-1 rounded overflow-hidden">
-                    <div className="bg-gradient-to-r from-riso-pink to-marigold-ochre h-full w-[46%] shadow-[0_0_8px_#ff1493]" />
-                  </div>
-                  <div className="flex items-center justify-between font-label-code text-label-code text-surface-variant/90 pt-space-3xs">
-                    <span className="flex items-center gap-space-2xs">
-                      <span className="w-2 h-2 rounded-full bg-riso-pink inline-block animate-pulse" />
-                      FEED: STEREO NEURAL RESYNTHESIS
-                    </span>
-                    <span>CH. 01 / 02 [SURROUND ENCODE]</span>
-                  </div>
-                </div>
+              </div>
+
+              <div className="px-4 py-2.5 bg-black/80 border-t border-white/10 flex items-center justify-between font-label-code text-[11px] text-[#c8cde0]">
+                <span className="flex items-center gap-2">
+                  <span className="w-2 h-2 rounded-full bg-riso-pink inline-block animate-pulse" />
+                  FEED: STEREO NEURAL RESYNTHESIS — COMMISSIONED RECORDING
+                </span>
+                <span className="hidden sm:inline font-mono text-[10px] text-white/60">CH. 01 / 02 [SURROUND ENCODE]</span>
               </div>
 
               <div className="p-4 sm:p-space-lg bg-[#0d0e14]/95 backdrop-blur-md grid grid-cols-1 lg:grid-cols-12 gap-space-md items-center border-t border-white/10">
@@ -145,12 +143,13 @@ export const SisterLibraryAiTheatre: React.FC<SisterLibraryAiTheatreProps> = ({
 
                 <article className="flex flex-col bg-[#0f1017]/90 backdrop-blur-md rounded-lg overflow-hidden border border-white/15 hover:border-marigold-ochre/60 transition-all duration-300 shadow-lg group">
                   <div className="relative aspect-video w-full overflow-hidden bg-black">
-                    <iframe
-                      className="w-full h-full border-0 absolute inset-0 z-10"
-                      src="https://drive.google.com/file/d/1MleCGFtnfZ4zgzDqVGtVvDxMwzLA-x0-/preview"
-                      allow="fullscreen"
-                      allowFullScreen
-                      loading="lazy"
+                    <video
+                      className="w-full h-full object-cover absolute inset-0 z-10"
+                      src="/videos/ai-theatre-primary.mp4"
+                      poster="/images/ai-theatre-node2-poster.png"
+                      controls
+                      playsInline
+                      preload="metadata"
                       title="Node 02: Fun is My Love Language"
                     />
                   </div>
@@ -168,12 +167,12 @@ export const SisterLibraryAiTheatre: React.FC<SisterLibraryAiTheatreProps> = ({
                     </div>
                     <div className="pt-space-xs flex items-center justify-between border-t border-white/10">
                       <a
-                        href="https://drive.google.com/file/d/1MleCGFtnfZ4zgzDqVGtVvDxMwzLA-x0-/view?usp=drive_link"
+                        href="/videos/ai-theatre-primary.mp4"
                         target="_blank"
                         rel="noopener noreferrer"
                         className="text-xs text-marigold-ochre hover:underline inline-flex items-center gap-1 font-label-code"
                       >
-                        Watch Recording on Google Drive ↗
+                        Stream Full Quality Recording ↗
                       </a>
                     </div>
                   </div>

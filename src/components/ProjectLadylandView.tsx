@@ -46,6 +46,57 @@ export const ProjectLadylandView: React.FC<ProjectLadylandViewProps> = ({ onGoHo
   const [isPlayingVideo, setIsPlayingVideo] = useState(true);
   const [heroVideoModalOpen, setHeroVideoModalOpen] = useState(false);
 
+  // Real Novella Audio Player state
+  const [novellaAudioPlaying, setNovellaAudioPlaying] = useState(false);
+  const [novellaAudioOpen, setNovellaAudioOpen] = useState(false);
+  const [novellaAudioTime, setNovellaAudioTime] = useState(0);
+  const [novellaAudioDuration, setNovellaAudioDuration] = useState(0);
+  const [novellaVolume, setNovellaVolume] = useState(0.85);
+  const [novellaMuted, setNovellaMuted] = useState(false);
+  const novellaAudioRef = React.useRef<HTMLAudioElement | null>(null);
+
+  const toggleNovellaAudio = () => {
+    if (!novellaAudioRef.current) return;
+    if (novellaAudioPlaying) {
+      novellaAudioRef.current.pause();
+    } else {
+      setNovellaAudioOpen(true);
+      novellaAudioRef.current.play().catch(err => console.warn('Audio play failed:', err));
+    }
+  };
+
+  const formatAudioTime = (seconds: number) => {
+    if (isNaN(seconds) || seconds <= 0) return '0:00';
+    const m = Math.floor(seconds / 60);
+    const s = Math.floor(seconds % 60);
+    return `${m}:${s < 10 ? '0' : ''}${s}`;
+  };
+
+  useEffect(() => {
+    const audio = novellaAudioRef.current;
+    if (!audio) return;
+
+    const onTimeUpdate = () => setNovellaAudioTime(audio.currentTime);
+    const onLoadedMetadata = () => setNovellaAudioDuration(audio.duration || 0);
+    const onEnded = () => setNovellaAudioPlaying(false);
+    const onPlay = () => setNovellaAudioPlaying(true);
+    const onPause = () => setNovellaAudioPlaying(false);
+
+    audio.addEventListener('timeupdate', onTimeUpdate);
+    audio.addEventListener('loadedmetadata', onLoadedMetadata);
+    audio.addEventListener('ended', onEnded);
+    audio.addEventListener('play', onPlay);
+    audio.addEventListener('pause', onPause);
+
+    return () => {
+      audio.removeEventListener('timeupdate', onTimeUpdate);
+      audio.removeEventListener('loadedmetadata', onLoadedMetadata);
+      audio.removeEventListener('ended', onEnded);
+      audio.removeEventListener('play', onPlay);
+      audio.removeEventListener('pause', onPause);
+    };
+  }, []);
+
   // Close modal on Escape key press
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -745,16 +796,22 @@ export const ProjectLadylandView: React.FC<ProjectLadylandViewProps> = ({ onGoHo
                   <ExternalLink className="w-3.5 h-3.5 opacity-80" />
                 </a>
 
-                <a
-                  href="https://drive.google.com/file/d/15O-vITUgPke4R-3pNwJqT_vWKRf9iS-d/view?usp=drive_link"
-                  target="_blank"
-                  rel="noopener noreferrer"
+                <button
+                  type="button"
+                  onClick={toggleNovellaAudio}
                   className="px-8 py-3.5 rounded-full bg-white/10 hover:bg-white/20 border border-white/20 text-white font-space text-xs font-bold uppercase tracking-wider transition-all inline-flex items-center gap-2 cursor-pointer backdrop-blur-md hover:scale-105 shadow-lg"
                 >
-                  <Volume2 className="w-4 h-4 text-[#00dbe9]" />
-                  <span>{TRANSLATIONS.listen_story[lang]}</span>
-                  <ExternalLink className="w-3.5 h-3.5 opacity-70" />
-                </a>
+                  {novellaAudioPlaying ? (
+                    <Pause className="w-4 h-4 text-[#00dbe9] animate-pulse" />
+                  ) : (
+                    <Volume2 className="w-4 h-4 text-[#00dbe9]" />
+                  )}
+                  <span>
+                    {novellaAudioPlaying
+                      ? (lang === 'EN' ? "Pause Story Audio" : "অডিও থামান")
+                      : TRANSLATIONS.listen_story[lang]}
+                  </span>
+                </button>
               </div>
             </div>
           </div>
@@ -1319,20 +1376,147 @@ export const ProjectLadylandView: React.FC<ProjectLadylandViewProps> = ({ onGoHo
       )}
 
 
-      {/* Floating Audio Story Link */}
-      <a
-        href="https://drive.google.com/file/d/15O-vITUgPke4R-3pNwJqT_vWKRf9iS-d/view?usp=drive_link"
-        target="_blank"
-        rel="noopener noreferrer"
-        className="fixed bottom-6 right-6 z-50 flex items-center gap-3 bg-[#020208]/80 hover:bg-[#11131d] border border-[#00dbe9]/50 p-3 pr-5 rounded-full shadow-[0_0_20px_rgba(0,219,233,0.3)] backdrop-blur-md transition-all hover:scale-105 hover:border-[#00dbe9] group cursor-pointer"
-      >
-        <div className="w-10 h-10 rounded-full bg-[#00dbe9]/20 flex items-center justify-center text-[#00dbe9] group-hover:bg-[#00dbe9] group-hover:text-black transition-colors">
-          <Volume2 className="w-5 h-5" />
-        </div>
-        <span className="font-space text-xs font-bold uppercase tracking-wider text-white hidden sm:block">
-          {lang === 'EN' ? "Listen to Sultana's Dream" : "সুলতানার স্বপ্ন শুনুন"}
-        </span>
-      </a>
+      {/* Floating Audio Story Player & Pill */}
+      {!novellaAudioOpen && (
+        <button
+          type="button"
+          onClick={() => {
+            setNovellaAudioOpen(true);
+            if (!novellaAudioPlaying && novellaAudioRef.current) {
+              novellaAudioRef.current.play().catch(() => {});
+            }
+          }}
+          className="fixed bottom-6 right-6 z-50 flex items-center gap-3 bg-[#020208]/90 hover:bg-[#11131d] border border-[#00dbe9]/60 p-3 pr-5 rounded-full shadow-[0_0_25px_rgba(0,219,233,0.35)] backdrop-blur-md transition-all hover:scale-105 hover:border-[#00dbe9] group cursor-pointer"
+        >
+          <div className="w-10 h-10 rounded-full bg-[#00dbe9]/20 flex items-center justify-center text-[#00dbe9] group-hover:bg-[#00dbe9] group-hover:text-black transition-colors">
+            {novellaAudioPlaying ? <Pause className="w-5 h-5 animate-pulse" /> : <Volume2 className="w-5 h-5" />}
+          </div>
+          <div className="flex flex-col text-left">
+            <span className="font-space text-xs font-bold uppercase tracking-wider text-white hidden sm:block">
+              {lang === 'EN' ? "Listen to Sultana's Dream" : "সুলতানার স্বপ্ন শুনুন"}
+            </span>
+            <span className="text-[10px] text-[#00dbe9] font-mono hidden sm:block">
+              {novellaAudioPlaying ? "Now Playing (On-Site)" : "Narrated by Zareen Azmi"}
+            </span>
+          </div>
+        </button>
+      )}
+
+      {/* Floating Docked Audio Player Widget */}
+      {novellaAudioOpen && (
+        <aside
+          aria-label="Novella Audio Player"
+          className="fixed bottom-6 right-4 sm:right-6 z-50 w-[calc(100vw-2rem)] sm:w-[420px] bg-[#070913]/95 border border-[#00dbe9]/50 rounded-2xl p-4 shadow-[0_10px_40px_rgba(0,0,0,0.8),0_0_25px_rgba(0,219,233,0.25)] backdrop-blur-xl animate-in slide-in-from-bottom-5 duration-200"
+        >
+          <div className="flex items-center justify-between pb-2 mb-2 border-b border-white/10">
+            <div className="flex items-center gap-2">
+              <span className={`w-2.5 h-2.5 rounded-full bg-[#00dbe9] ${novellaAudioPlaying ? 'animate-pulse' : ''}`} />
+              <span className="font-space text-[11px] font-bold tracking-wider uppercase text-[#00dbe9]">
+                Sultana's Dream (1905)
+              </span>
+            </div>
+            <div className="flex items-center gap-1">
+              <a
+                href="/audio/sultanas-dream-audio.mp3"
+                download="sultanas-dream-audio.mp3"
+                title="Download MP3"
+                className="px-2 py-0.5 rounded-md text-white/60 hover:text-white hover:bg-white/10 transition-colors text-xs font-mono"
+              >
+                MP3 ↓
+              </a>
+              <button
+                type="button"
+                onClick={() => setNovellaAudioOpen(false)}
+                className="p-1 rounded-md text-white/60 hover:text-white hover:bg-white/10 transition-colors cursor-pointer"
+                title="Minimize player"
+              >
+                <X className="w-4 h-4" />
+              </button>
+            </div>
+          </div>
+
+          <div className="text-xs text-white/90 font-medium truncate mb-2">
+            Novella Reading — Narrated by Zareen Azmi
+          </div>
+
+          {/* Scrubber / Progress */}
+          <div className="space-y-1 mb-3">
+            <input
+              type="range"
+              min={0}
+              max={novellaAudioDuration || 100}
+              value={novellaAudioTime}
+              onChange={(e) => {
+                const val = parseFloat(e.target.value);
+                setNovellaAudioTime(val);
+                if (novellaAudioRef.current) novellaAudioRef.current.currentTime = val;
+              }}
+              className="w-full h-1.5 bg-white/20 rounded-lg appearance-none cursor-pointer accent-[#00dbe9]"
+            />
+            <div className="flex justify-between text-[10px] font-mono text-white/60">
+              <span>{formatAudioTime(novellaAudioTime)}</span>
+              <span>{formatAudioTime(novellaAudioDuration)}</span>
+            </div>
+          </div>
+
+          {/* Controls */}
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-3">
+              <button
+                type="button"
+                onClick={toggleNovellaAudio}
+                className="w-10 h-10 rounded-full bg-[#00dbe9] text-black hover:bg-[#6ef5ff] flex items-center justify-center transition-transform hover:scale-105 font-bold shadow-md cursor-pointer"
+              >
+                {novellaAudioPlaying ? <Pause className="w-5 h-5 fill-black" /> : <Play className="w-5 h-5 fill-black ml-0.5" />}
+              </button>
+              <span className="text-xs font-space text-white/80">
+                {novellaAudioPlaying ? "Playing" : "Paused"}
+              </span>
+            </div>
+
+            {/* Volume */}
+            <div className="flex items-center gap-2">
+              <button
+                type="button"
+                onClick={() => {
+                  if (novellaAudioRef.current) {
+                    const newMuted = !novellaMuted;
+                    setNovellaMuted(newMuted);
+                    novellaAudioRef.current.muted = newMuted;
+                  }
+                }}
+                className="text-white/70 hover:text-white cursor-pointer"
+              >
+                {novellaMuted || novellaVolume === 0 ? <VolumeX className="w-4 h-4 text-red-400" /> : <Volume2 className="w-4 h-4 text-[#00dbe9]" />}
+              </button>
+              <input
+                type="range"
+                min={0}
+                max={1}
+                step={0.05}
+                value={novellaMuted ? 0 : novellaVolume}
+                onChange={(e) => {
+                  const v = parseFloat(e.target.value);
+                  setNovellaVolume(v);
+                  setNovellaMuted(false);
+                  if (novellaAudioRef.current) {
+                    novellaAudioRef.current.volume = v;
+                    novellaAudioRef.current.muted = false;
+                  }
+                }}
+                className="w-16 h-1 bg-white/20 rounded appearance-none cursor-pointer accent-[#00dbe9]"
+              />
+            </div>
+          </div>
+        </aside>
+      )}
+
+      {/* Hidden Native Audio Element */}
+      <audio
+        ref={novellaAudioRef}
+        src="/audio/sultanas-dream-audio.mp3"
+        preload="metadata"
+      />
 
     </div>
   );

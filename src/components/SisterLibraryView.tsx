@@ -13,11 +13,33 @@ interface SisterLibraryViewProps {
 }
 
 export const SisterLibraryView: React.FC<SisterLibraryViewProps> = ({ onGoHome }) => {
-  const [subPage, setSubPage] = useState<SisterSubPage>("hub");
+  const [subPage, setSubPage] = useState<SisterSubPage>(() => {
+    if (typeof window !== "undefined") {
+      const params = new URLSearchParams(window.location.search);
+      const sub = params.get("sub") as SisterSubPage;
+      if (sub && ["hub", "reading-community", "zine-mela", "women-online", "ai-theatre"].includes(sub)) {
+        return sub;
+      }
+      const hash = window.location.hash.replace("#", "") as SisterSubPage;
+      if (hash && ["hub", "reading-community", "zine-mela", "women-online", "ai-theatre"].includes(hash)) {
+        return hash;
+      }
+    }
+    return "hub";
+  });
   const [searchQuery, setSearchQuery] = useState("");
 
   const handleNavigate = (page: SisterSubPage) => {
     setSubPage(page);
+    if (typeof window !== "undefined") {
+      const url = new URL(window.location.href);
+      if (page === "hub") {
+        url.searchParams.delete("sub");
+      } else {
+        url.searchParams.set("sub", page);
+      }
+      window.history.replaceState({}, "", url.toString());
+    }
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
