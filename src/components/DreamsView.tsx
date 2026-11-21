@@ -5,14 +5,24 @@ import { ArrowRight } from 'lucide-react';
 
 interface DreamsViewProps {
   onSelectDream: (dream: DreamItem) => void;
+  onGoToSisterLibrary?: () => void;
 }
 
 export const DreamsView: React.FC<DreamsViewProps> = ({
   onSelectDream,
+  onGoToSisterLibrary,
 }) => {
   const [selectedTag, setSelectedTag] = useState<string>('All');
 
   const tags = ['All', 'Textile Art', 'Theatre & Performance', 'Community Space', 'Fairy Tale & Lore'];
+
+  const handleCardClick = (item: DreamItem) => {
+    if (item.id === 'sister-library' && onGoToSisterLibrary) {
+      onGoToSisterLibrary();
+      return;
+    }
+    onSelectDream(item);
+  };
 
   return (
     <div className="max-w-7xl mx-auto px-4 md:px-12 py-10 space-y-12 animate-in fade-in duration-300 font-serif-editorial">
@@ -51,7 +61,7 @@ export const DreamsView: React.FC<DreamsViewProps> = ({
         {DREAM_ITEMS.filter((item) => selectedTag === 'All' || item.category === selectedTag).map((item) => (
           <div
             key={item.id}
-            onClick={() => onSelectDream(item)}
+            onClick={() => handleCardClick(item)}
             className="group cursor-pointer bg-black/40 border border-white/20 rounded-2xl p-4 hover:border-[#D64E0E] hover:shadow-xl transition-all duration-300 flex flex-col justify-between"
           >
             <div>

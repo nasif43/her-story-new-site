@@ -1,7 +1,6 @@
 import React from "react";
 import { SisterSubPage } from "./SisterLibraryHub";
 import { Search, ArrowLeft } from "lucide-react";
-import { getBulletinItems } from "../../data/sisterLibraryBulletin";
 
 interface SisterLibrarySubNavProps {
   currentPage: SisterSubPage;
@@ -23,7 +22,7 @@ interface NavLink {
 const NAV_LINKS: NavLink[] = [
   { key: "hub", label: "Overview" },
   { key: "ai-theatre", label: "AI Theatre", badge: "Live", badgeColor: "#ff1493" },
-  { key: "zine-mela", label: "Dhaka Zine Mela", badge: "2026", badgeColor: "#ea580c" },
+  { key: "zine-mela", label: "Dhaka Zine Mela & Scene" },
   { key: "women-online", label: "Women Online", badge: "Dot BD", badgeColor: "#2563eb" },
   { key: "reading-community", label: "PINK SHELF", badge: "Archive", badgeColor: "#ff1493" },
 ];
@@ -36,9 +35,6 @@ export const SisterLibrarySubNav: React.FC<SisterLibrarySubNavProps> = ({
   onSearchChange,
   isDark = false,
 }) => {
-  const tickerItems = getBulletinItems();
-  const tickerText = tickerItems.join("  ✦  ") + "  ✦  ";
-
   return (
     <header
       className={`w-full sticky top-0 z-40 transition-colors duration-300 shadow-sm ${
@@ -48,90 +44,46 @@ export const SisterLibrarySubNav: React.FC<SisterLibrarySubNavProps> = ({
       }`}
     >
       {/* ─────────────────────────────────────────────────────────────
-          1. PAPER-TAPE BULLETIN TICKER (Continuous Left-to-Right Marquee)
+          1. BRANDING, SEARCH & CTA
           ───────────────────────────────────────────────────────────── */}
-      <div
-        className={`w-full py-1.5 px-4 text-xs font-label-code overflow-hidden border-b transition-colors flex items-center ${
-          isDark
-            ? "bg-[#14161d] border-[#252836] text-[#c8cde0]"
-            : "bg-[#f5f0e2] border-on-surface/15 text-on-surface"
-        }`}
-      >
-        <div className="max-w-max-content-width mx-auto w-full flex items-center gap-3">
-          {/* Static Bulletin Badge on the Left */}
-          <div className="shrink-0 flex items-center gap-1.5 z-10">
-            <span className="px-2 py-0.5 bg-[#ea580c] text-white font-bold uppercase text-[10px] tracking-wider rounded-xs flex items-center gap-1">
-              <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" />
-              BULLETIN
-            </span>
-          </div>
-
-          {/* Marquee Track moving from Left to Right */}
-          <div className="relative overflow-hidden flex-1 mask-fade select-none">
-            <div
-              className="animate-marquee-ltr flex items-center whitespace-nowrap cursor-default"
-              style={{ animationDuration: '70s' }}
-              title="Continuous Bulletin Dispatch — Hover to Pause"
-            >
-              <span className="inline-block text-[11px] sm:text-xs font-medium tracking-wide pr-8">
-                {tickerText}
-              </span>
-              <span className="inline-block text-[11px] sm:text-xs font-medium tracking-wide pr-8">
-                {tickerText}
-              </span>
-            </div>
-          </div>
-
-          {/* Right Status Badge */}
-          <div
-            className={`hidden md:flex items-center space-x-2 text-[10px] shrink-0 font-label-code uppercase tracking-wider ${
-              isDark ? "text-white/60" : "text-outline"
-            }`}
-          >
-            <span className="text-[#b80058] font-bold">VOL. 08 DISPATCH</span>
-          </div>
-        </div>
-      </div>
-
-      {/* ─────────────────────────────────────────────────────────────
-          2. LEVEL 1: BRANDING, SEARCH & CTA
-          ───────────────────────────────────────────────────────────── */}
-      <div className="max-w-max-content-width mx-auto px-4 md:px-gutter-desktop py-2.5 sm:py-3 flex flex-wrap items-center justify-between gap-2.5 sm:gap-4">
+      <div className="max-w-max-content-width mx-auto px-4 md:px-gutter-desktop py-2.5 sm:py-3 flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-2.5 sm:gap-4">
         {/* Brand & Origin Mark */}
-        <div className="flex items-center gap-2 sm:gap-3 min-w-0">
-          {/* Back to HerStory Main Site (Exact same behavior as Project Ladyland) */}
-          {onGoHome && (
-            <button
-              onClick={onGoHome}
-              className={`inline-flex items-center gap-1 min-h-[44px] min-w-[44px] px-2.5 py-1 text-xs font-label-code font-bold uppercase tracking-wider rounded-xs transition-colors cursor-pointer border shrink-0 ${
-                isDark
-                  ? "bg-[#181b24] border-white/20 text-[#c8cde0] hover:text-white hover:border-[#ff1493]"
-                  : "bg-white border-on-surface/20 text-on-surface hover:text-[#ff1493] hover:border-[#ff1493]"
-              }`}
-              title="Return to HerStory Foundation Main Site"
-              aria-label="Back to HerStory Main Site"
-            >
-              <ArrowLeft className="w-3.5 h-3.5 text-[#ff1493]" />
-              <span className="hidden sm:inline">HerStory</span>
-            </button>
-          )}
+        <div className="flex items-center justify-between sm:justify-start gap-2 sm:gap-3 w-full sm:w-auto min-w-0">
+          <div className="flex items-center gap-2 sm:gap-3 min-w-0">
+            {/* Back to HerStory Main Site */}
+            {onGoHome && (
+              <button
+                onClick={onGoHome}
+                className={`inline-flex items-center gap-1 min-h-[44px] min-w-[44px] px-2.5 py-1 text-xs font-label-code font-bold uppercase tracking-wider rounded-xs transition-colors cursor-pointer border shrink-0 ${
+                  isDark
+                    ? "bg-[#181b24] border-white/20 text-[#c8cde0] hover:text-white hover:border-[#ff1493]"
+                    : "bg-white border-on-surface/20 text-on-surface hover:text-[#ff1493] hover:border-[#ff1493]"
+                }`}
+                title="Return to HerStory Foundation Main Site"
+                aria-label="Back to HerStory Main Site"
+              >
+                <ArrowLeft className="w-3.5 h-3.5 text-[#ff1493]" />
+                <span className="hidden sm:inline">HerStory</span>
+              </button>
+            )}
 
-          {/* SISTER LIBRARY Wordmark */}
-          <button
-            onClick={() => {
-              onNavigate("hub");
-              window.scrollTo({ top: 0, behavior: "smooth" });
-            }}
-            className="flex items-center space-x-2 text-left cursor-pointer group min-h-[44px] shrink-0"
-          >
-            <span
-              className={`font-display-hero text-xl sm:text-2xl md:text-3xl font-bold tracking-tight leading-none group-hover:text-[#ff1493] transition-colors ${
-                isDark ? "text-white" : "text-on-surface"
-              }`}
+            {/* SISTER LIBRARY Wordmark */}
+            <button
+              onClick={() => {
+                onNavigate("hub");
+                window.scrollTo({ top: 0, behavior: "smooth" });
+              }}
+              className="flex items-center space-x-2 text-left cursor-pointer group min-h-[44px] shrink-0"
             >
-              Sister Library (Dhaka)
-            </span>
-          </button>
+              <span
+                className={`font-display-hero text-xl sm:text-2xl md:text-3xl font-bold tracking-tight leading-none group-hover:text-[#ff1493] transition-colors ${
+                  isDark ? "text-white" : "text-on-surface"
+                }`}
+              >
+                Sister Library (Dhaka)
+              </span>
+            </button>
+          </div>
 
           {/* Taped Archive Stamp */}
           <div
@@ -146,15 +98,15 @@ export const SisterLibrarySubNav: React.FC<SisterLibrarySubNavProps> = ({
         </div>
 
         {/* Search Input & Primary CTA Button */}
-        <div className="flex items-center space-x-2 sm:space-x-3 min-w-0">
+        <div className="flex items-center space-x-2 sm:space-x-3 w-full sm:w-auto min-w-0 justify-between sm:justify-end">
           {onSearchChange && (
-            <div className="relative min-w-0">
+            <div className="relative min-w-0 flex-1 sm:flex-initial">
               <input
                 type="text"
                 placeholder="Search the Library Archive"
                 value={searchQuery}
                 onChange={(e) => onSearchChange(e.target.value)}
-                className={`w-32 xs:w-36 sm:w-44 md:w-56 lg:w-64 max-w-full min-h-[40px] px-3 py-1.5 pl-8 border rounded-xs text-xs font-label-code focus:outline-none focus:border-[#ff1493] transition-colors ${
+                className={`w-full sm:w-44 md:w-56 lg:w-64 max-w-full min-h-[40px] px-3 py-1.5 pl-8 border rounded-xs text-xs font-label-code focus:outline-none focus:border-[#ff1493] transition-colors ${
                   isDark
                     ? "bg-[#14161d] border-white/40 text-white placeholder:text-white/70"
                     : "bg-[#ffffff] border-on-surface/30 text-on-surface placeholder:text-outline"
@@ -190,7 +142,7 @@ export const SisterLibrarySubNav: React.FC<SisterLibrarySubNavProps> = ({
       </div>
 
       {/* ─────────────────────────────────────────────────────────────
-          3. LEVEL 2: ALL MENU ITEMS (Clean Horizontal Tab Row)
+          2. ALL MENU ITEMS (Clean Horizontal Tab Row)
           ───────────────────────────────────────────────────────────── */}
       <div
         className={`w-full border-t transition-colors overflow-hidden ${

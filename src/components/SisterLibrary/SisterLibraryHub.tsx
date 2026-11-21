@@ -51,9 +51,9 @@ const BRANCH_PROGRAMS: BranchProgram[] = [
   {
     id: "zine-mela",
     code: "ZINE-FAIR-26",
-    title: "DHAKA ZINE MELA",
+    title: "DHAKA ZINE MELA & SCENE",
     desc: "A collection of makers coming together to share, make, and workshop.",
-    date: "JUNE 2026",
+    date: "LAST HELD MARCH 2026",
     actionText: "SEE MORE →",
     accentColor: "#ff1493",
     hoverColorClass: "group-hover:text-[#ff1493]",
@@ -80,7 +80,6 @@ const BRANCH_PROGRAMS: BranchProgram[] = [
   {
     id: "ai-theatre",
     code: "THEATRE-DOC",
-    tag: "PERFORMANCE",
     title: "AI MAFIA BOYFRIEND & MY AI BFF",
     desc: "Exploring the joys and perils of human - AI relationships through theatre of the oppressed.",
     date: "2025, 2026",
@@ -525,11 +524,11 @@ export const SisterLibraryHub: React.FC<SisterLibraryHubProps> = ({
             DISPATCHES & PRESS (R6: Spacing & Daily Star Article Preview)
             ───────────────────────────────────────────────────────────── */}
         <section className="py-space-3xl border-b border-on-surface/20" id="press">
-          <div className="mb-space-xl">
-            <span className="px-space-xs py-space-3xs bg-[#ede9fe] text-[#7e22ce] font-label-stamp text-label-stamp uppercase stamp-rotate-left inline-block mb-space-md font-bold border border-[#7e22ce]/30">
+          <div className="mb-space-2xl space-y-3">
+            <span className="px-space-xs py-space-3xs bg-[#ede9fe] text-[#7e22ce] font-label-stamp text-label-stamp uppercase stamp-rotate-left inline-block font-bold border border-[#7e22ce]/30">
               Dispatches &amp; Reviews
             </span>
-            <h2 className="font-headline-lg text-headline-lg text-on-surface">
+            <h2 className="font-headline-lg text-headline-lg text-on-surface mt-3">
               Press About Sister Library (Dhaka)
             </h2>
           </div>
@@ -859,7 +858,7 @@ export const SisterLibraryHub: React.FC<SisterLibraryHubProps> = ({
                 <div className="flex items-start space-x-space-xs">
                   <span className="material-symbols-outlined text-[#ff1493] text-[20px] shrink-0">check_box</span>
                   <span>
-                    <strong>Free Entry &amp; Open Browsing:</strong> No library card required to sit, read, make tea, or consult the archive.
+                    <strong>Open Browsing &amp; Archival Consultation:</strong> No library card required to sit, read, make tea, or consult the archive.
                   </span>
                 </div>
 

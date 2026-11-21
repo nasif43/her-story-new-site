@@ -35,18 +35,18 @@ export const Header: React.FC<HeaderProps> = ({
         {/* Logo / Brand Home Link */}
         <button
           onClick={() => handleNavClick('home')}
-          className="min-h-[44px] h-16 py-1 flex items-center text-left focus:outline-none group cursor-pointer"
+          className="min-h-[48px] h-16 md:h-20 py-1 flex items-center text-left focus:outline-none group cursor-pointer"
           aria-label="HerStory Foundation Home"
         >
           <img
             alt="HerStory Foundation & Publications"
-            className="h-12 md:h-14 w-auto object-contain transition-transform group-hover:scale-[1.02] brightness-0 invert"
-            src="https://lh3.googleusercontent.com/aida-public/AB6AXuDjg2Qx_aTe8hUg2nAI0OPE_tImw2Nl2ICR0K7pZlASJLhU7n-oxBihz4KIyFuNA7f8pTLisJr1z0OD8YYyFNKdnHLO1BVQpnq44nBjndUukUgJIcWhZfDyUXSiZXUWq5kICJeJfdpexlbUgIdAec_kfQei-KGlGRAp7lDr04FLTCEj8Ryr-sSpz1csXhVnHav0sBWNsAFJKHSZ-iJLvCgRVt1dcBuOP5nvEOJ97Nz4EmMXv_pOy1R1zesAwNy64GMrJ3oVySrCvQ"
+            className="h-14 md:h-16 lg:h-18 w-auto object-contain transition-transform group-hover:scale-[1.03]"
+            src="/images/herstory-logo-white.png"
           />
         </button>
 
         {/* Desktop Navigation */}
-        <nav className="hidden lg:flex gap-6 items-center font-sans-ui">
+        <nav className="hidden lg:flex gap-7 items-center font-sans-ui">
           {navItems.map((item) => {
             const isActive = activeTab === item.id;
             if (item.isHighlight) {
@@ -54,7 +54,7 @@ export const Header: React.FC<HeaderProps> = ({
                 <button
                   key={item.id}
                   onClick={() => handleNavClick(item.id)}
-                  className={`min-h-[44px] text-base font-bold flex items-center gap-2 px-4 py-2 rounded-full transition-all cursor-pointer ${
+                  className={`min-h-[44px] text-base md:text-lg font-bold flex items-center gap-2 px-4 py-2 rounded-full transition-all cursor-pointer ${
                     isActive
                       ? 'bg-white text-[#141414] shadow-sm scale-105'
                       : 'bg-white/10 text-white hover:bg-white/20 border border-white/15'
@@ -71,10 +71,10 @@ export const Header: React.FC<HeaderProps> = ({
                 <button
                   key={item.id}
                   onClick={() => handleNavClick(item.id)}
-                  className={`min-h-[44px] text-base font-bold tracking-wide transition-all duration-200 cursor-pointer flex items-center gap-1.5 px-3 py-1.5 rounded-full hover:bg-white/10 ${
+                  className={`min-h-[44px] text-base md:text-lg font-bold tracking-wide transition-all duration-200 cursor-pointer flex items-center gap-1.5 px-3.5 py-1.5 rounded-full hover:bg-white/10 ${
                     isActive
-                      ? 'bg-white/15 font-bold border border-[#ff69b4]/60 shadow-xs text-white'
-                      : 'text-white/90 hover:text-white'
+                      ? 'bg-white/20 font-bold border border-[#ff69b4]/70 shadow-xs text-white'
+                      : 'text-white hover:text-white'
                   }`}
                   title="Sister Library (Dhaka) Archive"
                 >
@@ -90,10 +90,10 @@ export const Header: React.FC<HeaderProps> = ({
               <button
                 key={item.id}
                 onClick={() => handleNavClick(item.id)}
-                className={`min-h-[44px] text-base font-bold tracking-wide transition-colors duration-200 cursor-pointer ${
+                className={`min-h-[44px] text-base md:text-lg font-bold tracking-wide transition-colors duration-200 cursor-pointer ${
                   isActive
                     ? 'text-white border-b-2 border-white pb-0.5'
-                    : 'text-white/80 hover:text-white'
+                    : 'text-white hover:text-white/80'
                 }`}
               >
                 {item.label}

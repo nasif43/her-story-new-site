@@ -336,9 +336,6 @@ export const SisterLibraryReadingCommunity: React.FC<SisterLibraryReadingCommuni
                 <span className="font-label-code text-label-code text-[#ea580c] uppercase font-bold">
                   Next Assemblage
                 </span>
-                <span className="px-space-xs py-space-3xs bg-[#ea580c] text-white font-label-stamp text-label-stamp stamp-rotate-right uppercase font-bold">
-                  Free &amp; Open
-                </span>
               </div>
 
               {/* Featured Image with risograph style tone */}

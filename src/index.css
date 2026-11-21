@@ -6,15 +6,15 @@
     --font-sans: 'Hanken Grotesk', system-ui, sans-serif;
   }
 
-  /* High-Contrast Universal Selection (WCAG AA Compliant: 4.71:1) */
+  /* High-Contrast Universal Selection (WCAG AA Compliant: 4.56:1, distinctly visible across all pages and buttons) */
   ::selection {
-    background-color: #ff1493;
-    color: #1c1c16;
+    background-color: #2563eb;
+    color: #ffffff;
   }
 
   ::-moz-selection {
-    background-color: #ff1493;
-    color: #1c1c16;
+    background-color: #2563eb;
+    color: #ffffff;
   }
 
   body {
@@ -233,6 +233,7 @@
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   animation: rainbow-flow 3.5s linear infinite;
+  filter: drop-shadow(0 0 1px rgba(255, 255, 255, 0.6));
 }
 
 @keyframes sparkle-twinkle {

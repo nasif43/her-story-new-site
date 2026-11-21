@@ -95,7 +95,7 @@ export default function App() {
               </h2>
 
               <p className="font-sans text-sm sm:text-base text-[#5a4a50] mt-3 font-medium tracking-wide">
-                Entering Dhaka Sanctuary, autonomous print commons &amp; reading room...
+                Entering Sister Library (Dhaka), autonomous print commons &amp; reading room...
               </p>
 
               {/* Paper-tape loading bar */}
@@ -167,6 +167,7 @@ export default function App() {
         {activeTab === 'dreams' && (
           <DreamsView
             onSelectDream={(dream) => setSelectedDetailItem(dream)}
+            onGoToSisterLibrary={() => setActiveTab('sister-library')}
           />
         )}
 
