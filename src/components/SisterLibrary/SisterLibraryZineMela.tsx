@@ -406,13 +406,11 @@ export const SisterLibraryZineMela: React.FC<SisterLibraryZineMelaProps> = () =>
               </h3>
             </div>
 
-            <div className="relative w-full aspect-video rounded overflow-hidden bg-black border border-on-surface/20 my-space-xs shadow-sm">
-              <iframe
-                className="w-full h-full"
-                src="https://www.youtube-nocookie.com/embed/S8ozfFh9U4E?start=2&rel=0"
-                title="Dhaka Zine Mela in Motion - Video Document"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
+            <div className="relative w-full overflow-hidden rounded bg-surface-container-high border-2 border-ink-black my-space-xs shadow-[3px_3px_0px_#1c1c16]">
+              <img
+                src="/images/dzm-post-uprising.jpg"
+                alt="Participants gathered at Dhaka Zine Mela workshop creating zines"
+                className="w-full h-auto object-cover max-h-[500px]"
               />
             </div>
 
