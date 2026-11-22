@@ -4,6 +4,7 @@ import { TRANSLATIONS } from '../data/translations';
 import {
   Calendar,
   MapPin,
+  Ticket,
   Volume2,
   VolumeX,
   Play,
@@ -436,25 +437,18 @@ export const ProjectLadylandView: React.FC<ProjectLadylandViewProps> = ({ onGoHo
           {/* Background Image Layer */}
           <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
             <img
-              src="/images/header/header-26.jpg"
+              src="/images/ladyland/tickify-ticket-head.jpg"
               alt="Project Ladyland Atmosphere"
               className="w-full h-full object-cover opacity-50 mix-blend-screen"
             />
             <div className="absolute inset-0 bg-gradient-to-r from-[#0a0c16] via-[#0a0c16]/70 to-transparent" />
           </div>
 
-          <div className="relative z-20 space-y-6 max-w-3xl">
+          <div className="relative z-20 space-y-8 max-w-4xl">
             <div className="flex flex-wrap items-center gap-3">
               <span className="px-3.5 py-1 rounded-full bg-[#ff45a2]/20 border border-[#ff45a2]/40 text-white drop-shadow-[0_0_8px_rgba(255,255,255,0.8)] font-space text-[11px] font-bold uppercase tracking-widest">
                 {TRANSLATIONS.hero_immersive[lang]}
               </span>
-              <span className="px-3.5 py-1 rounded-full bg-[#0047ff]/20 border border-[#0047ff]/40 text-[#b9c3ff] font-space text-[11px] font-bold uppercase tracking-widest backdrop-blur-sm">
-                {TRANSLATIONS.hero_cities[lang]}
-              </span>
-              {/* <span className="px-3.5 py-1 rounded-full bg-red-500/20 border border-red-500/40 text-red-300 font-space text-[11px] font-bold uppercase tracking-widest backdrop-blur-sm flex items-center gap-1.5 shadow-md">
-                <span className="w-2 h-2 rounded-full bg-red-400 animate-pulse"></span>
-                <span>{TRANSLATIONS.dhaka_sold_out[lang]}</span>
-              </span> */}
             </div>
 
             <h1 className="font-space text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-[#ffffff] via-[#ffb0cd] to-[#00dbe9] drop-shadow-[0_0_15px_rgba(255,255,255,0.3)] leading-none">
@@ -462,31 +456,75 @@ export const ProjectLadylandView: React.FC<ProjectLadylandViewProps> = ({ onGoHo
             </h1>
 
             <p className="text-lg md:text-xl text-white font-inter leading-relaxed font-light drop-shadow-md">
-              {lang === 'EN' ? (
-                <>A speculative techno-feminist performance inspired by Rokeya Sakhawat Hossain's 1905 utopian vision <i>Sultana's Dream</i>. Reimagining climate harmony, carecraft, and universal equality through participatory theatre, shadow puppetry, and recycled ornamentation.</>
-              ) : (
-                TRANSLATIONS.hero_description.BN
-              )}
+              {TRANSLATIONS.hero_description[lang]}
             </p>
 
-            {/* 
-<div className="pt-2 flex flex-wrap items-center gap-4">
-              <a
-                href="https://tickify.live/event/project-ladyland-2026-chittagong/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="amorphous-btn text-[#00228a] px-8 py-4 font-space font-bold text-sm uppercase tracking-widest neon-box-glow cursor-pointer inline-flex items-center gap-2"
-              >
-                <span>{lang === 'EN' ? 'GET CHATTOGRAM TICKETS' : 'চট্টগ্রামের টিকিট কাটুন'}</span>
-                <ExternalLink className="w-4 h-4" />
-              </a>
+            {/* Next Performance Ticket Card */}
+            <div className="p-6 sm:p-8 rounded-2xl bg-white/10 backdrop-blur-md border border-white/20 shadow-2xl space-y-5 max-w-2xl">
+              <div className="flex items-center justify-between border-b border-white/10 pb-3">
+                <span className="text-[#00dbe9] font-space text-xs sm:text-sm font-bold uppercase tracking-widest flex items-center gap-2">
+                  <Ticket className="w-4 h-4" />
+                  {TRANSLATIONS.next_perf_title[lang]}
+                </span>
+                <span className="px-2.5 py-0.5 rounded-full bg-[#ff45a2]/20 border border-[#ff45a2]/30 text-white text-[10px] font-space font-bold uppercase tracking-wider">
+                  Live Show
+                </span>
+              </div>
 
-              <div className="px-4 py-3 rounded-2xl bg-red-950/70 border border-red-500/50 text-red-200 font-space text-xs font-bold uppercase tracking-wider flex items-center gap-2 backdrop-blur-md shadow-lg">
-                <span className="w-2 h-2 rounded-full bg-red-400 animate-ping"></span>
-                <span>{TRANSLATIONS.dhaka_sold_out[lang]}</span>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div className="flex items-start gap-3">
+                  <Calendar className="w-5 h-5 text-[#b9c3ff] shrink-0 mt-0.5" />
+                  <div>
+                    <span className="text-white/60 text-[10px] uppercase font-space block tracking-wider">
+                      {lang === 'EN' ? 'Date & Time' : 'তারিখ ও সময়'}
+                    </span>
+                    <span className="text-white font-bold text-sm sm:text-base">
+                      {TRANSLATIONS.next_perf_datetime[lang]}
+                    </span>
+                  </div>
+                </div>
+
+                <div className="flex items-start gap-3">
+                  <MapPin className="w-5 h-5 text-[#ffb0cd] shrink-0 mt-0.5" />
+                  <div>
+                    <span className="text-white/60 text-[10px] uppercase font-space block tracking-wider">
+                      {lang === 'EN' ? 'Venue' : 'ভেন্যু'}
+                    </span>
+                    <span className="text-white font-bold text-sm sm:text-base">
+                      {TRANSLATIONS.next_perf_venue[lang]}
+                    </span>
+                  </div>
+                </div>
+              </div>
+
+              <div className="pt-2">
+                <a
+                  href="https://tickify.live"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="amorphous-btn text-[#00228a] px-8 py-3.5 font-space font-bold text-sm uppercase tracking-widest neon-box-glow cursor-pointer inline-flex items-center gap-2 transition-transform hover:scale-105"
+                >
+                  <span>{TRANSLATIONS.next_perf_buy_btn[lang]}</span>
+                  <ExternalLink className="w-4 h-4" />
+                </a>
               </div>
             </div>
-*/}
+
+            {/* Performance Trailer */}
+            <div className="space-y-3 pt-4 max-w-3xl">
+              <span className="text-[#b9c3ff] font-space text-xs font-bold uppercase tracking-widest block">
+                {TRANSLATIONS.trailer_title[lang]}
+              </span>
+              <div className="relative aspect-video w-full rounded-2xl overflow-hidden border border-white/20 shadow-2xl bg-black">
+                <iframe
+                  className="w-full h-full border-0 absolute inset-0"
+                  src="https://www.youtube.com/embed/DpHQS6kx9mM"
+                  title="Project Ladyland 2026 - Performance Trailer"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  allowFullScreen
+                />
+              </div>
+            </div>
           </div>
 
           {/* Background Ambient design layers */}
@@ -845,7 +883,8 @@ export const ProjectLadylandView: React.FC<ProjectLadylandViewProps> = ({ onGoHo
                   </li>
                   <li>
                     <span className="text-white/60 text-[10px] uppercase font-space block">{TRANSLATIONS.supported_by[lang]}</span>
-                    <strong className="text-white">{TRANSLATIONS.org_british_council_wow[lang]}</strong>
+                    <strong className="text-white block">{TRANSLATIONS.org_british_council_wow[lang]}</strong>
+                    <strong className="text-white block mt-1">{TRANSLATIONS.org_undp_aus[lang]}</strong>
                   </li>
                 </ul>
               </div>
@@ -884,16 +923,16 @@ export const ProjectLadylandView: React.FC<ProjectLadylandViewProps> = ({ onGoHo
                     <strong className="text-white">{TRANSLATIONS.person_katerina[lang]}</strong>
                   </li>
                   <li>
-                    <span className="text-white/60 text-[10px] uppercase font-space block">{TRANSLATIONS.staging_director[lang]}</span>
+                    <span className="text-white/60 text-[10px] uppercase font-space block">{TRANSLATIONS.choreography_direction[lang]}</span>
+                    <strong className="text-white">{TRANSLATIONS.person_shovan[lang]}</strong>
+                  </li>
+                  <li>
+                    <span className="text-white/60 text-[10px] uppercase font-space block">{TRANSLATIONS.original_staging_director[lang]}</span>
                     <strong className="text-white">{TRANSLATIONS.person_wajed[lang]}</strong>
                   </li>
                   <li>
                     <span className="text-white/60 text-[10px] uppercase font-space block">{TRANSLATIONS.production_manager[lang]}</span>
                     <strong className="text-white">{TRANSLATIONS.person_bappy[lang]}</strong>
-                  </li>
-                  <li>
-                    <span className="text-white/60 text-[10px] uppercase font-space block">{TRANSLATIONS.co_producer[lang]}</span>
-                    <strong className="text-white">{TRANSLATIONS.person_risana[lang]}</strong>
                   </li>
                   <li>
                     <span className="text-white/60 text-[10px] uppercase font-space block">{TRANSLATIONS.co_producer[lang]}</span>
@@ -938,7 +977,6 @@ export const ProjectLadylandView: React.FC<ProjectLadylandViewProps> = ({ onGoHo
                   <li><span className="text-white/60 text-[10px] uppercase font-space block">{TRANSLATIONS.shadow_puppeteer[lang]}</span><strong className="text-white">{TRANSLATIONS.person_shafrin[lang]}</strong></li>
                   <li><span className="text-white/60 text-[10px] uppercase font-space block">{TRANSLATIONS.shadow_puppet_assistant[lang]}</span><strong className="text-white">{TRANSLATIONS.person_anika_tabassum[lang]}</strong></li>
                   <li><span className="text-white/60 text-[10px] uppercase font-space block">{TRANSLATIONS.animation[lang]}</span><strong className="text-white">{TRANSLATIONS.person_fahim[lang]}</strong></li>
-                  <li><span className="text-white/60 text-[10px] uppercase font-space block">{TRANSLATIONS.choreography[lang]}</span><strong className="text-white">{TRANSLATIONS.person_shovan[lang]}</strong></li>
                   <li><span className="text-white/60 text-[10px] uppercase font-space block">{TRANSLATIONS.costume[lang]}</span><strong className="text-white">{TRANSLATIONS.person_bushra[lang]}</strong></li>
                   <li><span className="text-white/60 text-[10px] uppercase font-space block">{TRANSLATIONS.makeup[lang]}</span><strong className="text-white">{TRANSLATIONS.person_robin[lang]}</strong></li>
                   <li><span className="text-white/60 text-[10px] uppercase font-space block">{TRANSLATIONS.stage_assistants[lang]}</span><strong className="text-white">{TRANSLATIONS.person_stage_assistants[lang]}</strong></li>

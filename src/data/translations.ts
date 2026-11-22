@@ -6,8 +6,8 @@ export const TRANSLATIONS = {
     "BN": "হারস্টোরি"
   },
   "header_project_ladyland": {
-    "EN": "PROJECT LADYLAND",
-    "BN": "প্রজেক্ট লেডিল্যান্ড"
+    "EN": "PROJECT LADYLAND 2026",
+    "BN": "প্রজেক্ট লেডিল্যান্ড ২০২৬"
   },
   "header_toggle": {
     "EN": "EN / BN",
@@ -26,12 +26,32 @@ export const TRANSLATIONS = {
     "BN": "ঢাকা ও চট্টগ্রাম ২০২৬"
   },
   "hero_title": {
-    "EN": "PROJECT LADYLAND",
-    "BN": "প্রজেক্ট লেডিল্যান্ড"
+    "EN": "PROJECT LADYLAND 2026",
+    "BN": "প্রজেক্ট লেডিল্যান্ড ২০২৬"
   },
   "hero_description": {
-    "EN": "A speculative techno-feminist performance inspired by Rokeya Sakhawat Hossain's 1905 utopian vision Sultana's Dream. Reimagining climate harmony, carecraft, and universal equality through participatory theatre, shadow puppetry, and recycled ornamentation.",
-    "BN": "রোকেয়া সাখাওয়াত হোসেনের ১৯০৫ সালের ইউটোপিয়ান কাহিনী ‘সুলতানার স্বপ্ন’ থেকে অনুপ্রাণিত এক কাল্পনিক টেকনো-নারীবাদী নাট্য প্রযোজনা। অংশগ্রহণমূলক থিয়েটার, ছায়াপুতুল এবং পুনর্ব্যবহার হওয়া উপকরণের মাধ্যমে প্রকৃতির সাথে সহাবস্থান, যত্নের সংস্কৃতি এবং সবার জন্য সমান অধিকারের এক নতুন কল্পলোকে আমন্ত্রণ!"
+    "EN": "A participatory theatre production inspired by Sultana’s Dream, the iconic short-story by Rokeya Sakhawat Hosein. Imagining Ladyland 121 years after Rokeya, the story invites the audience to decide if to grant men night rights or not. Produced by HerStory Foundation with the support of UNDP and AUS. Originally created with the assistance of the British Council’s Women of the World grant 2026.",
+    "BN": "রোকেয়া সাখাওয়াত হোসেনের কালজয়ী ছোটগল্প ‘সুলতানার স্বপ্ন’ থেকে অনুপ্রাণিত এক অংশগ্রহণমূলক নাট্য প্রযোজনা। রোকেয়ার ১২১ বছর পরের লেডিল্যান্ডকে কল্পনা করে, এই নাটক দর্শকদের সিদ্ধান্ত নিতে আহ্বান জানায়—পুরুষদের রাতের অধিকার দেওয়া উচিত কি না। হারস্টোরি ফাউন্ডেশন কর্তৃক প্রযোজিত, ইউএনডিপি (UNDP) এবং এইউএস (AUS)-এর সহযোগিতায়। মূলত ব্রিটিশ কাউন্সিলের উইমেন অব দ্য ওয়ার্ল্ড (WOW) গ্রান্ট ২০২৬-এর সহায়তায় নির্মিত।"
+  },
+  "next_perf_title": {
+    "EN": "Next Performance",
+    "BN": "পরবর্তী প্রদর্শনী"
+  },
+  "next_perf_datetime": {
+    "EN": "December 11, 2026 7PM",
+    "BN": "১১ ডিসেম্বর, ২০২৬ সন্ধ্যা ৭টা"
+  },
+  "next_perf_venue": {
+    "EN": "Main Auditorium, Bangladesh Shilpakala Academy",
+    "BN": "মূল মিলনায়তন, বাংলাদেশ শিল্পকলা একাডেমি"
+  },
+  "next_perf_buy_btn": {
+    "EN": "BUY TICKET",
+    "BN": "টিকিট কাটুন"
+  },
+  "trailer_title": {
+    "EN": "Performance Trailer",
+    "BN": "প্রদর্শনী ট্রেইলার"
   },
   "hero_reserve_tickets": {
     "EN": "RESERVE TICKETS",
@@ -221,9 +241,17 @@ export const TRANSLATIONS = {
     "EN": "Production and Vision",
     "BN": "প্রোডাকশন ও ভিশন"
   },
+  "choreography_direction": {
+    "EN": "Choreography and Direction",
+    "BN": "কোরিওগ্রাফি ও নির্দেশনা"
+  },
+  "original_staging_director": {
+    "EN": "Original Staging Director",
+    "BN": "মূল অভিনয় নির্দেশক"
+  },
   "staging_director": {
-    "EN": "Staging Director",
-    "BN": "অভিনয় নির্দেশক"
+    "EN": "Original Staging Director",
+    "BN": "মূল অভিনয় নির্দেশক"
   },
   "production_manager": {
     "EN": "Production Manager",
@@ -465,6 +493,10 @@ export const TRANSLATIONS = {
     "EN": "British Council and Women of the World (WOW) Foundation",
     "BN": "ব্রিটিশ কাউন্সিল ও উইমেন অব দ্য ওয়ার্ল্ড (ওয়াও) ফাউন্ডেশন"
   },
+  "org_undp_aus": {
+    "EN": "UNDP & AUS",
+    "BN": "ইউএনডিপি (UNDP) ও এইউএস (AUS)"
+  },
   "work_sultanas_dream": {
     "EN": "Sultana's Dream by Begum Rokeya Sakhawat Hossain",
     "BN": "বেগম রোকেয়া সাখাওয়াত হোসেনের ‘সুলতানার স্বপ্ন’"
@@ -514,8 +546,8 @@ export const TRANSLATIONS = {
     "BN": "প্রীতি দাস"
   },
   "cast_name_shishir": {
-    "EN": "Salim Shadman (Sasha)",
-    "BN": "সালিম শাদমান (সাশা)"
+    "EN": "Rafel Afrad",
+    "BN": "রাফেল আফ্রাদ"
   },
   "cast_name_robots": {
     "EN": "Israt Jahan Ikra",
@@ -590,8 +622,8 @@ export const TRANSLATIONS = {
     "BN": "রবিন আহমেদ"
   },
   "person_stage_assistants": {
-    "EN": "Priti Das, Md. Tanvir Jaman",
-    "BN": "প্রীতি দাস, মো. তানভীর জামান"
+    "EN": "Pujan Roy, Md. Tanvir Jaman",
+    "BN": "পুজন রায়, মো. তানভীর জামান"
   },
   "person_tanaya": {
     "EN": "Tanaya Sayma",

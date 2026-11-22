@@ -145,7 +145,7 @@ export const SisterLibraryAiTheatre: React.FC<SisterLibraryAiTheatreProps> = ({
                   <div className="relative aspect-video w-full overflow-hidden bg-black">
                     <video
                       className="w-full h-full object-cover absolute inset-0 z-10"
-                      src="/videos/ai-theatre-primary.mp4"
+                      src="/videos/ai-theatre-node2.mp4"
                       poster="/images/ai-theatre-node2-poster.png"
                       controls
                       playsInline
@@ -167,7 +167,7 @@ export const SisterLibraryAiTheatre: React.FC<SisterLibraryAiTheatreProps> = ({
                     </div>
                     <div className="pt-space-xs flex items-center justify-between border-t border-white/10">
                       <a
-                        href="/videos/ai-theatre-primary.mp4"
+                        href="/videos/ai-theatre-node2.mp4"
                         target="_blank"
                         rel="noopener noreferrer"
                         className="text-xs text-marigold-ochre hover:underline inline-flex items-center gap-1 font-label-code"
