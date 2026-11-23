@@ -132,8 +132,8 @@ export default function App() {
       {/* Animated WebGL Shader Background */}
       <ShaderBackground />
 
-      {/* Top Header (Hidden on Project Ladyland + Sister Library — each has its own subnav) */}
-      {activeTab !== 'ladyland' && activeTab !== 'sister-library' && (
+      {/* Top Header (Hidden only on Sister Library — has its own subnav) */}
+      {activeTab !== 'sister-library' && (
         <Header
           activeTab={activeTab}
           setActiveTab={setActiveTab}

@@ -67,7 +67,7 @@ export const OngoingProgramme: React.FC<OngoingProgrammeProps> = ({
             <div className="lg:col-span-4 flex flex-col gap-3.5 w-full sm:w-auto">
               {/* Primary Buy Ticket Button */}
               <a
-                href="https://tickify.live"
+                href="https://tickify.live/o/tickify/project-ladyland"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-full bg-[#D64E0E] hover:bg-[#b53e08] text-white py-3.5 px-6 rounded-full font-sans-ui text-xs sm:text-sm font-bold uppercase tracking-wider transition-all shadow-[0_0_20px_rgba(214,78,14,0.4)] hover:shadow-[0_0_25px_rgba(214,78,14,0.6)] flex items-center justify-center gap-2 cursor-pointer text-center"

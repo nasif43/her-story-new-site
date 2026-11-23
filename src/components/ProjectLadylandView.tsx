@@ -372,59 +372,6 @@ export const ProjectLadylandView: React.FC<ProjectLadylandViewProps> = ({ onGoHo
         }}
       />
 
-      {/* Floating Navigation Sub-Island */}
-      <div className="sticky top-4 z-40 max-w-6xl mx-auto px-4 mb-8">
-        <nav className="glass-panel rounded-full px-6 md:px-8 py-3.5 md:py-4 flex items-center justify-between shadow-2xl border border-white/15 backdrop-blur-xl bg-[#0a0c16]/85">
-          <div className="flex items-center gap-3 sm:gap-4">
-            <button
-              onClick={onGoHome}
-              className="font-space font-extrabold text-white tracking-tight text-lg sm:text-2xl hover:text-[#b9c3ff] transition-colors cursor-pointer flex items-center gap-2 drop-shadow-md"
-              title="Return to HerStory Foundation Home"
-            >
-              {TRANSLATIONS.header_herstory[lang]}
-            </button>
-            <div className="hidden sm:block w-px h-6 bg-white/30" />
-            <div className="hidden sm:block font-space text-sm sm:text-base font-bold text-[#b9c3ff] tracking-wide uppercase drop-shadow-sm">
-              {TRANSLATIONS.header_project_ladyland[lang]}
-            </div>
-          </div>
-
-          <div className="hidden md:flex items-center gap-6 lg:gap-8 font-space text-sm lg:text-base font-medium tracking-wide">
-            {/* <a href="#section-tickets" className="text-[#c4c5da] hover:text-[#b9c3ff] transition-colors">{TRANSLATIONS.nav_performances[lang]}</a> */}
-            <a href="#section-synopsis" className="text-[#c4c5da] hover:text-[#b9c3ff] transition-colors">
-              {TRANSLATIONS.nav_reimagining[lang]}
-            </a>
-            <a href="#section-vote" className="text-[#c4c5da] hover:text-[#b9c3ff] transition-colors">
-              {TRANSLATIONS.nav_the_vote[lang]}
-            </a>
-            <a href="#section-cast" className="text-[#c4c5da] hover:text-[#b9c3ff] transition-colors">
-              {TRANSLATIONS.nav_the_dreamers[lang]}
-            </a>
-            <a href="#section-dreamer-kit" className="text-[#c4c5da] hover:text-[#b9c3ff] transition-colors">
-              {TRANSLATIONS.nav_dreamer_kit[lang]}
-            </a>
-          </div>
-
-          <div className="flex items-center gap-3">
-            {/* Language Switch */}
-            <div className="flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/10 border border-white/20 font-space text-xs sm:text-sm shadow-inner">
-              <button
-                onClick={() => handleSetLang('EN')}
-                className={`font-bold transition-colors ${lang === 'EN' ? 'text-[#b9c3ff] drop-shadow-[0_0_8px_rgba(185,195,255,0.8)]' : 'text-[#c4c5da] hover:text-white'}`}
-              >
-                EN
-              </button>
-              <span className="opacity-30">/</span>
-              <button
-                onClick={() => handleSetLang('BN')}
-                className={`font-bold transition-colors ${lang === 'BN' ? 'text-white drop-shadow-[0_0_8px_rgba(255,255,255,0.9)]' : 'text-[#c4c5da] hover:text-white'}`}
-              >
-                বাংলা
-              </button>
-            </div>
-          </div>
-        </nav>
-      </div>
 
       <main className="relative z-10 max-w-7xl mx-auto px-4 md:px-12 space-y-16 sm:space-y-20">
         {/* Section 1: Hero Image (Clean, No Text Overlay, same artwork with UNDP logo as Home page) */}
@@ -437,70 +384,77 @@ export const ProjectLadylandView: React.FC<ProjectLadylandViewProps> = ({ onGoHo
         </section>
 
         {/* Section 2: Narrative & Performance Details (matching home page design language) */}
-        <section id="section-story" className="relative rounded-3xl overflow-hidden glass-panel border border-white/10 p-6 sm:p-10 md:p-14 bg-[#0a0c16]/90 shadow-2xl">
-          <div className="relative z-20 space-y-8 max-w-4xl mx-auto">
-            <div className="flex flex-wrap items-center gap-3">
-              <span className="px-4 py-1.5 rounded-full bg-[#ff45a2]/20 border border-[#ff45a2]/40 text-white drop-shadow-[0_0_8px_rgba(255,255,255,0.8)] font-space text-xs sm:text-sm font-bold uppercase tracking-widest">
-                {TRANSLATIONS.hero_immersive[lang]}
-              </span>
-            </div>
-
-            <h1 className="font-space text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-[#ffffff] via-[#ffb0cd] to-[#00dbe9] drop-shadow-[0_0_15px_rgba(255,255,255,0.3)] leading-tight">
-              {TRANSLATIONS.hero_title[lang]}
-            </h1>
-
-            <p className="text-lg md:text-xl text-white font-inter leading-relaxed font-light drop-shadow-md">
-              {TRANSLATIONS.hero_description[lang]}
-            </p>
-
-            {/* Next Performance Ticket Card */}
-            <div className="p-6 sm:p-8 rounded-2xl bg-white/10 backdrop-blur-md border border-white/20 shadow-2xl space-y-5 max-w-2xl">
-              <div className="flex items-center justify-between border-b border-white/10 pb-3">
-                <span className="text-[#00dbe9] font-space text-xs sm:text-sm font-bold uppercase tracking-widest flex items-center gap-2">
-                  <Ticket className="w-4 h-4" />
-                  {TRANSLATIONS.next_perf_title[lang]}
-                </span>
-                <span className="px-2.5 py-0.5 rounded-full bg-[#ff45a2]/20 border border-[#ff45a2]/30 text-white text-[10px] font-space font-bold uppercase tracking-wider">
-                  Live Show
-                </span>
-              </div>
-
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <div className="flex items-start gap-3">
-                  <Calendar className="w-5 h-5 text-[#b9c3ff] shrink-0 mt-0.5" />
-                  <div>
-                    <span className="text-white/60 text-[10px] uppercase font-space block tracking-wider">
-                      {lang === "EN" ? "Date & Time" : "তারিখ ও সময়"}
-                    </span>
-                    <span className="text-white font-bold text-sm sm:text-base">
-                      {TRANSLATIONS.next_perf_datetime[lang]}
-                    </span>
-                  </div>
+        <section id="section-story" className="relative rounded-3xl overflow-hidden glass-panel border border-white/10 p-6 sm:p-10 md:p-12 bg-[#0a0c16]/90 shadow-2xl">
+          <div className="relative z-20 max-w-6xl mx-auto">
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+              {/* Left Column: Badge, Title & Body Text */}
+              <div className="lg:col-span-7 space-y-5">
+                <div className="flex flex-wrap items-center gap-3">
+                  <span className="px-4 py-1 rounded-full bg-[#ff45a2]/20 border border-[#ff45a2]/40 text-white drop-shadow-[0_0_8px_rgba(255,255,255,0.8)] font-space text-xs sm:text-sm font-bold uppercase tracking-widest">
+                    {TRANSLATIONS.hero_immersive[lang]}
+                  </span>
                 </div>
 
-                <div className="flex items-start gap-3">
-                  <MapPin className="w-5 h-5 text-[#ffb0cd] shrink-0 mt-0.5" />
-                  <div>
-                    <span className="text-white/60 text-[10px] uppercase font-space block tracking-wider">
-                      {lang === "EN" ? "Venue" : "ভেন্যু"}
-                    </span>
-                    <span className="text-white font-bold text-sm sm:text-base">
-                      {TRANSLATIONS.next_perf_venue[lang]}
-                    </span>
-                  </div>
-                </div>
+                <h1 className="font-space text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-[#ffffff] via-[#ffb0cd] to-[#00dbe9] drop-shadow-[0_0_15px_rgba(255,255,255,0.3)] leading-tight">
+                  {TRANSLATIONS.hero_title[lang]}
+                </h1>
+
+                <p className="text-base sm:text-lg md:text-xl text-white/95 font-inter leading-relaxed font-light drop-shadow-md">
+                  {TRANSLATIONS.hero_description[lang]}
+                </p>
               </div>
 
-              <div className="pt-2">
-                <a
-                  href="https://tickify.live"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="amorphous-btn text-[#00228a] px-8 py-3.5 font-space font-bold text-sm uppercase tracking-widest neon-box-glow cursor-pointer inline-flex items-center gap-2 transition-transform hover:scale-105"
-                >
-                  <span>{TRANSLATIONS.next_perf_buy_btn[lang]}</span>
-                  <ExternalLink className="w-4 h-4" />
-                </a>
+              {/* Right Column: Next Performance Ticket Card */}
+              <div className="lg:col-span-5 w-full">
+                <div className="p-6 sm:p-7 rounded-2xl bg-white/10 backdrop-blur-md border border-white/20 shadow-2xl space-y-5">
+                  <div className="flex items-center justify-between border-b border-white/10 pb-3">
+                    <span className="text-[#00dbe9] font-space text-xs sm:text-sm font-bold uppercase tracking-widest flex items-center gap-2">
+                      <Ticket className="w-4 h-4" />
+                      {TRANSLATIONS.next_perf_title[lang]}
+                    </span>
+                    <span className="px-2.5 py-0.5 rounded-full bg-[#ff45a2]/20 border border-[#ff45a2]/30 text-white text-[10px] font-space font-bold uppercase tracking-wider">
+                      Live Show
+                    </span>
+                  </div>
+
+                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-4">
+                    <div className="flex items-start gap-3">
+                      <Calendar className="w-5 h-5 text-[#b9c3ff] shrink-0 mt-0.5" />
+                      <div>
+                        <span className="text-white/60 text-[10px] uppercase font-space block tracking-wider">
+                          {lang === "EN" ? "Date & Time" : "তারিখ ও সময়"}
+                        </span>
+                        <span className="text-white font-bold text-sm sm:text-base">
+                          {TRANSLATIONS.next_perf_datetime[lang]}
+                        </span>
+                      </div>
+                    </div>
+
+                    <div className="flex items-start gap-3">
+                      <MapPin className="w-5 h-5 text-[#ffb0cd] shrink-0 mt-0.5" />
+                      <div>
+                        <span className="text-white/60 text-[10px] uppercase font-space block tracking-wider">
+                          {lang === "EN" ? "Venue" : "ভেন্যু"}
+                        </span>
+                        <span className="text-white font-bold text-sm sm:text-base">
+                          {TRANSLATIONS.next_perf_venue[lang]}
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="pt-2">
+                    <a
+                      href="https://tickify.live/o/tickify/project-ladyland"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="amorphous-btn w-full text-center justify-center text-[#00228a] px-6 py-3.5 font-space font-bold text-sm uppercase tracking-widest neon-box-glow cursor-pointer inline-flex items-center gap-2 transition-transform hover:scale-105"
+                    >
+                      <span>{TRANSLATIONS.next_perf_buy_btn[lang]}</span>
+                      <ExternalLink className="w-4 h-4" />
+                    </a>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -508,7 +462,7 @@ export const ProjectLadylandView: React.FC<ProjectLadylandViewProps> = ({ onGoHo
           {/* Background Ambient design layers */}
           <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none opacity-40">
             <div className="blob w-[380px] h-[380px] bg-[#ffb0cd]/20 top-10 -left-20 animate-pulse" />
-            <div className="blob w-[320px] h-[320px] bg-[#00dbe9]/10 bottom-10 -right-20 animate-pulse" />
+            <div className="blob w-[220px] sm:w-[320px] h-[220px] sm:h-[320px] bg-[#00dbe9]/10 bottom-10 -right-8 sm:-right-20 animate-pulse" />
           </div>
         </section>
 
@@ -587,7 +541,7 @@ export const ProjectLadylandView: React.FC<ProjectLadylandViewProps> = ({ onGoHo
           </section>
         
         <section id="section-vote" className="scroll-mt-24">
-          <div className="glass-panel p-10 md:p-16 rounded-3xl text-center space-y-8 relative overflow-hidden border border-white/10 shadow-2xl">
+          <div className="glass-panel p-5 sm:p-10 md:p-16 rounded-3xl text-center space-y-8 relative overflow-hidden border border-white/10 shadow-2xl">
             <div className="space-y-3">
               <span className="text-white drop-shadow-[0_0_8px_rgba(255,255,255,0.8)] font-space text-xs font-bold uppercase tracking-widest block">
                 {TRANSLATIONS.participatory_decision[lang]}
@@ -1303,7 +1257,7 @@ export const ProjectLadylandView: React.FC<ProjectLadylandViewProps> = ({ onGoHo
             </div>
 
             {/* Live Tally Cards */}
-            <div className="grid grid-cols-3 gap-3 mb-6">
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-6">
               <div className="p-3.5 rounded-2xl bg-white/5 border border-white/10 text-center">
                 <span className="text-[10px] font-space text-[#b9c3ff] uppercase font-bold block mb-1">
                   Total Votes
