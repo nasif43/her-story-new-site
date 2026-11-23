@@ -506,17 +506,20 @@ export const ProjectLadylandView: React.FC<ProjectLadylandViewProps> = ({
         </section>
 
         {/* Section 3: Performance Video Trailer */}
-        <section id="section-video" className="scroll-mt-24 space-y-4 max-w-5xl mx-auto w-full">
-          <div className="flex items-center gap-3">
-            <span className="text-[#b9c3ff] font-space text-sm font-bold uppercase tracking-widest">
-              {TRANSLATIONS.trailer_title[lang]}
+        <section id="section-video" className="scroll-mt-24 space-y-6 max-w-5xl mx-auto w-full">
+          <div className="space-y-2">
+            <span className="text-[#ffb0cd] font-space text-xs font-bold uppercase tracking-widest block">
+              {lang === 'EN' ? 'OFFICIAL PREVIEW' : 'অফিসিয়াল প্রিভিউ'}
             </span>
+            <h2 className="font-space text-2xl sm:text-3xl md:text-4xl font-bold text-white tracking-tight">
+              {lang === 'EN' ? 'Project Ladyland 1905 Preview' : 'প্রজেক্ট লেডিল্যান্ড ১৯০৫ প্রিভিউ'}
+            </h2>
           </div>
           <div className="relative aspect-video w-full rounded-3xl overflow-hidden border border-white/20 shadow-2xl bg-black">
             <iframe
               className="w-full h-full border-0 absolute inset-0"
               src="https://www.youtube.com/embed/DpHQS6kx9mM"
-              title="Project Ladyland 2026 - Performance Trailer"
+              title="Project Ladyland 1905 Preview"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
               allowFullScreen
             />
@@ -524,7 +527,15 @@ export const ProjectLadylandView: React.FC<ProjectLadylandViewProps> = ({
         </section>
 
         {/* Section 4: Archival Photo Gallery */}
-        <section id="section-gallery" className="scroll-mt-24 mb-16 relative">
+        <section id="section-gallery" className="scroll-mt-24 mb-16 space-y-6 relative">
+          <div className="max-w-7xl mx-auto space-y-2">
+            <span className="text-[#00dbe9] font-space text-xs font-bold uppercase tracking-widest block">
+              {lang === 'EN' ? 'PRODUCTION STILLS' : 'প্রযোজনা স্থিরচিত্র'}
+            </span>
+            <h2 className="font-space text-2xl sm:text-3xl md:text-4xl font-bold text-white tracking-tight">
+              {lang === 'EN' ? 'Image Gallery' : 'ছবি গ্যালারি'}
+            </h2>
+          </div>
           <PhotoCarousel images={Array.from({length: 25}, (_, i) => `/images/carousel/Project Ladyland 2026_PC Shadab Shahrokh Hai for HerStory Foundation_${i+1}.jpg`)} />
         </section>
 

@@ -38,6 +38,15 @@ export const Header: React.FC<HeaderProps> = ({
     { id: 'ladyland', label: 'Project Ladyland 2026', isHighlight: true }
   ];
 
+  const ladylandSectionLinks: { href: string; labelEn: string; labelBn: string }[] = [
+    { href: '#section-video', labelEn: 'Preview', labelBn: 'প্রিভিউ' },
+    { href: '#section-gallery', labelEn: 'Gallery', labelBn: 'গ্যালারি' },
+    { href: '#section-synopsis', labelEn: 'Reimagining', labelBn: 'নতুন ভাবনা' },
+    { href: '#section-vote', labelEn: 'The Vote', labelBn: 'ভোট' },
+    { href: '#section-cast', labelEn: 'Dreamers', labelBn: 'অভিনয়শিল্পী' },
+    { href: '#section-dreamer-kit', labelEn: 'Dreamer Kit', labelBn: 'ড্রিমার কিট' }
+  ];
+
   const handleNavClick = (tab: NavTab) => {
     setActiveTab(tab);
     setMobileMenuOpen(false);
@@ -61,61 +70,75 @@ export const Header: React.FC<HeaderProps> = ({
         </button>
 
         {/* Desktop Navigation */}
-        <nav className="hidden lg:flex gap-7 items-center font-sans-ui">
-          {navItems.map((item) => {
-            const isActive = activeTab === item.id;
-            if (item.isHighlight) {
+        {activeTab === 'ladyland' ? (
+          <nav className="hidden lg:flex gap-6 lg:gap-8 items-center font-space text-sm lg:text-base font-medium tracking-wide">
+            {ladylandSectionLinks.map((sec) => (
+              <a
+                key={sec.href}
+                href={sec.href}
+                className="text-[#c4c5da] hover:text-[#b9c3ff] transition-colors cursor-pointer"
+              >
+                {ladylandLang === 'EN' ? sec.labelEn : sec.labelBn}
+              </a>
+            ))}
+          </nav>
+        ) : (
+          <nav className="hidden lg:flex gap-7 items-center font-sans-ui">
+            {navItems.map((item) => {
+              const isActive = activeTab === item.id;
+              if (item.isHighlight) {
+                return (
+                  <button
+                    key={item.id}
+                    onClick={() => handleNavClick(item.id)}
+                    className={`min-h-[44px] text-base md:text-lg font-bold flex items-center gap-2 px-4 py-2 rounded-full transition-all cursor-pointer ${
+                      isActive
+                        ? 'bg-white text-[#141414] shadow-sm scale-105'
+                        : 'bg-white/10 text-white hover:bg-white/20 border border-white/15'
+                    }`}
+                  >
+                    <span className={`w-2.5 h-2.5 rounded-full animate-pulse-dot ${isActive ? 'bg-[#141414]' : 'bg-[#38bdf8]'}`} />
+                    {item.label}
+                  </button>
+                );
+              }
+
+              if (item.isRainbow) {
+                return (
+                  <button
+                    key={item.id}
+                    onClick={() => handleNavClick(item.id)}
+                    className={`min-h-[44px] text-base md:text-lg font-bold tracking-wide transition-all duration-200 cursor-pointer flex items-center gap-1.5 px-3.5 py-1.5 rounded-full hover:bg-white/10 ${
+                      isActive
+                        ? 'bg-white/20 font-bold border border-[#ff69b4]/70 shadow-xs text-white'
+                        : 'text-white hover:text-white'
+                    }`}
+                    title="Sister Library (Dhaka) Archive"
+                  >
+                    <Sparkles className="w-4 h-4 text-[#ff69b4] animate-sparkle shrink-0" />
+                    <span className="rainbow-text-gradient font-bold tracking-wide">
+                      {item.label}
+                    </span>
+                  </button>
+                );
+              }
+
               return (
                 <button
                   key={item.id}
                   onClick={() => handleNavClick(item.id)}
-                  className={`min-h-[44px] text-base md:text-lg font-bold flex items-center gap-2 px-4 py-2 rounded-full transition-all cursor-pointer ${
+                  className={`min-h-[44px] text-base md:text-lg font-bold tracking-wide transition-colors duration-200 cursor-pointer ${
                     isActive
-                      ? 'bg-white text-[#141414] shadow-sm scale-105'
-                      : 'bg-white/10 text-white hover:bg-white/20 border border-white/15'
+                      ? 'text-white border-b-2 border-white pb-0.5'
+                      : 'text-white hover:text-white/80'
                   }`}
                 >
-                  <span className={`w-2.5 h-2.5 rounded-full animate-pulse-dot ${isActive ? 'bg-[#141414]' : 'bg-[#38bdf8]'}`} />
                   {item.label}
                 </button>
               );
-            }
-
-            if (item.isRainbow) {
-              return (
-                <button
-                  key={item.id}
-                  onClick={() => handleNavClick(item.id)}
-                  className={`min-h-[44px] text-base md:text-lg font-bold tracking-wide transition-all duration-200 cursor-pointer flex items-center gap-1.5 px-3.5 py-1.5 rounded-full hover:bg-white/10 ${
-                    isActive
-                      ? 'bg-white/20 font-bold border border-[#ff69b4]/70 shadow-xs text-white'
-                      : 'text-white hover:text-white'
-                  }`}
-                  title="Sister Library (Dhaka) Archive"
-                >
-                  <Sparkles className="w-4 h-4 text-[#ff69b4] animate-sparkle shrink-0" />
-                  <span className="rainbow-text-gradient font-bold tracking-wide">
-                    {item.label}
-                  </span>
-                </button>
-              );
-            }
-
-            return (
-              <button
-                key={item.id}
-                onClick={() => handleNavClick(item.id)}
-                className={`min-h-[44px] text-base md:text-lg font-bold tracking-wide transition-colors duration-200 cursor-pointer ${
-                  isActive
-                    ? 'text-white border-b-2 border-white pb-0.5'
-                    : 'text-white hover:text-white/80'
-                }`}
-              >
-                {item.label}
-              </button>
-            );
-          })}
-        </nav>
+            })}
+          </nav>
+        )}
 
         {/* Action Controls: Search & Menu */}
         <div className="flex items-center gap-2 sm:gap-3">
@@ -175,50 +198,76 @@ export const Header: React.FC<HeaderProps> = ({
           id="mobile-nav-drawer"
           className="lg:hidden absolute top-20 left-0 w-full bg-[#0c0d10]/95 backdrop-blur-xl border-b border-white/10 shadow-2xl p-6 flex flex-col gap-3 font-sans-ui z-50 max-h-[calc(100dvh-5rem)] overflow-y-auto overscroll-contain"
         >
-          <button
-            onClick={() => handleNavClick('home')}
-            aria-current={activeTab === 'home' ? 'page' : undefined}
-            className={`text-left min-h-[44px] flex items-center px-3 py-2 text-base font-medium rounded-xs hover:bg-white/10 transition-colors ${
-              activeTab === 'home' ? 'text-white font-bold bg-white/10' : 'text-white/80'
-            }`}
-          >
-            Home Overview
-          </button>
-          {navItems.map((item) => {
-            if (item.isRainbow) {
-              return (
-                <button
-                  key={item.id}
-                  onClick={() => handleNavClick(item.id)}
-                  aria-current={activeTab === item.id ? 'page' : undefined}
-                  className={`text-left min-h-[44px] px-3 py-2 text-base font-medium flex items-center gap-2 rounded-xs hover:bg-white/10 transition-colors ${
-                    activeTab === item.id ? 'font-bold text-white bg-white/10 border border-[#ff69b4]/50' : 'text-white/90'
-                  }`}
-                >
-                  <Sparkles className="w-4 h-4 text-[#ff69b4] animate-sparkle shrink-0" />
-                  <span className="rainbow-text-gradient font-bold tracking-wide">
-                    {item.label}
-                  </span>
-                </button>
-              );
-            }
-
-            return (
+          {activeTab === 'ladyland' ? (
+            <>
               <button
-                key={item.id}
-                onClick={() => handleNavClick(item.id)}
-                aria-current={activeTab === item.id ? 'page' : undefined}
-                className={`text-left min-h-[44px] px-3 py-2 text-base font-medium flex items-center justify-between rounded-xs hover:bg-white/10 transition-colors ${
-                  activeTab === item.id ? 'text-white font-bold bg-white/10' : 'text-white/80'
+                onClick={() => handleNavClick('home')}
+                className="text-left min-h-[44px] flex items-center px-3 py-2 text-base font-medium rounded-xs hover:bg-white/10 text-white/80 transition-colors"
+              >
+                ← Return to HerStory Home
+              </button>
+              <div className="text-xs uppercase font-space tracking-wider text-[#b9c3ff] px-3 pt-2 font-bold">
+                Project Ladyland Sections
+              </div>
+              {ladylandSectionLinks.map((sec) => (
+                <a
+                  key={sec.href}
+                  href={sec.href}
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="text-left min-h-[44px] flex items-center px-3 py-2 text-base font-medium rounded-xs hover:bg-white/10 text-white/90 hover:text-white transition-colors"
+                >
+                  {ladylandLang === 'EN' ? sec.labelEn : sec.labelBn}
+                </a>
+              ))}
+            </>
+          ) : (
+            <>
+              <button
+                onClick={() => handleNavClick('home')}
+                aria-current={activeTab === 'home' ? 'page' : undefined}
+                className={`text-left min-h-[44px] flex items-center px-3 py-2 text-base font-medium rounded-xs hover:bg-white/10 transition-colors ${
+                  activeTab === 'home' ? 'text-white font-bold bg-white/10' : 'text-white/80'
                 }`}
               >
-                <span>{item.label}</span>
-                {item.isHighlight && (
-                  <span className="w-2 h-2 bg-[#38bdf8] rounded-full animate-pulse-dot" />
-                )}
+                Home Overview
               </button>
-            );
-          })}
+              {navItems.map((item) => {
+                if (item.isRainbow) {
+                  return (
+                    <button
+                      key={item.id}
+                      onClick={() => handleNavClick(item.id)}
+                      aria-current={activeTab === item.id ? 'page' : undefined}
+                      className={`text-left min-h-[44px] px-3 py-2 text-base font-medium flex items-center gap-2 rounded-xs hover:bg-white/10 transition-colors ${
+                        activeTab === item.id ? 'font-bold text-white bg-white/10 border border-[#ff69b4]/50' : 'text-white/90'
+                      }`}
+                    >
+                      <Sparkles className="w-4 h-4 text-[#ff69b4] animate-sparkle shrink-0" />
+                      <span className="rainbow-text-gradient font-bold tracking-wide">
+                        {item.label}
+                      </span>
+                    </button>
+                  );
+                }
+
+                return (
+                  <button
+                    key={item.id}
+                    onClick={() => handleNavClick(item.id)}
+                    aria-current={activeTab === item.id ? 'page' : undefined}
+                    className={`text-left min-h-[44px] px-3 py-2 text-base font-medium flex items-center justify-between rounded-xs hover:bg-white/10 transition-colors ${
+                      activeTab === item.id ? 'text-white font-bold bg-white/10' : 'text-white/80'
+                    }`}
+                  >
+                    <span>{item.label}</span>
+                    {item.isHighlight && (
+                      <span className="w-2 h-2 bg-[#38bdf8] rounded-full animate-pulse-dot" />
+                    )}
+                  </button>
+                );
+              })}
+            </>
+          )}
 
           {/* Mobile Drawer Language Switcher for Ladyland */}
           {activeTab === 'ladyland' && onToggleLadylandLang && ladylandLang && (
