@@ -374,22 +374,22 @@ export const ProjectLadylandView: React.FC<ProjectLadylandViewProps> = ({ onGoHo
 
       {/* Floating Navigation Sub-Island */}
       <div className="sticky top-4 z-40 max-w-6xl mx-auto px-4 mb-8">
-        <nav className="glass-panel rounded-full px-6 py-3 flex items-center justify-between shadow-2xl border border-white/10">
-          <div className="flex items-center gap-3">
+        <nav className="glass-panel rounded-full px-6 md:px-8 py-3.5 md:py-4 flex items-center justify-between shadow-2xl border border-white/15 backdrop-blur-xl bg-[#0a0c16]/85">
+          <div className="flex items-center gap-3 sm:gap-4">
             <button
               onClick={onGoHome}
-              className="font-space font-bold text-white tracking-tighter text-base sm:text-lg hover:text-[#b9c3ff] transition-colors cursor-pointer flex items-center gap-2"
+              className="font-space font-extrabold text-white tracking-tight text-lg sm:text-2xl hover:text-[#b9c3ff] transition-colors cursor-pointer flex items-center gap-2 drop-shadow-md"
               title="Return to HerStory Foundation Home"
             >
               {TRANSLATIONS.header_herstory[lang]}
             </button>
-            <div className="hidden sm:block w-px h-5 bg-white/20" />
-            <div className="hidden sm:block font-space text-xs font-bold text-[#b9c3ff] tracking-wider uppercase">
+            <div className="hidden sm:block w-px h-6 bg-white/30" />
+            <div className="hidden sm:block font-space text-sm sm:text-base font-bold text-[#b9c3ff] tracking-wide uppercase drop-shadow-sm">
               {TRANSLATIONS.header_project_ladyland[lang]}
             </div>
           </div>
 
-          <div className="hidden md:flex items-center gap-6 font-space text-xs tracking-wider uppercase">
+          <div className="hidden md:flex items-center gap-6 lg:gap-8 font-space text-sm lg:text-base font-medium tracking-wide">
             {/* <a href="#section-tickets" className="text-[#c4c5da] hover:text-[#b9c3ff] transition-colors">{TRANSLATIONS.nav_performances[lang]}</a> */}
             <a href="#section-synopsis" className="text-[#c4c5da] hover:text-[#b9c3ff] transition-colors">
               {TRANSLATIONS.nav_reimagining[lang]}
@@ -407,51 +407,45 @@ export const ProjectLadylandView: React.FC<ProjectLadylandViewProps> = ({ onGoHo
 
           <div className="flex items-center gap-3">
             {/* Language Switch */}
-            <div className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/5 border border-white/10 font-space text-[10px]">
+            <div className="flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/10 border border-white/20 font-space text-xs sm:text-sm shadow-inner">
               <button
                 onClick={() => handleSetLang('EN')}
-                className={`font-bold ${lang === 'EN' ? 'text-[#b9c3ff]' : 'text-[#c4c5da] hover:text-white'}`}
+                className={`font-bold transition-colors ${lang === 'EN' ? 'text-[#b9c3ff] drop-shadow-[0_0_8px_rgba(185,195,255,0.8)]' : 'text-[#c4c5da] hover:text-white'}`}
               >
-                {TRANSLATIONS.header_toggle[lang].split(' / ')[0]}
+                EN
               </button>
-              <span className="opacity-20">/</span>
+              <span className="opacity-30">/</span>
               <button
                 onClick={() => handleSetLang('BN')}
-                className={`font-bold ${lang === 'BN' ? 'text-white drop-shadow-[0_0_8px_rgba(255,255,255,0.8)]' : 'text-[#c4c5da] hover:text-white'}`}
+                className={`font-bold transition-colors ${lang === 'BN' ? 'text-white drop-shadow-[0_0_8px_rgba(255,255,255,0.9)]' : 'text-[#c4c5da] hover:text-white'}`}
               >
-                {TRANSLATIONS.header_toggle[lang].split(' / ')[1]}
+                বাংলা
               </button>
-            </div>
-
-            <div className="flex items-center gap-2">
-              
-              
             </div>
           </div>
         </nav>
       </div>
 
-      <main className="relative z-10 max-w-7xl mx-auto px-4 md:px-12 space-y-24">
-        {/* 1. Cinematic Hero & Video Section */}
-        <section className="relative rounded-3xl overflow-hidden glass-panel border border-white/10 p-8 md:p-14 bg-[#0a0c16]/80">
-          {/* Background Image Layer */}
-          <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
-            <img
-              src="/images/ladyland/tickify-ticket-head.jpg"
-              alt="Project Ladyland Atmosphere"
-              className="w-full h-full object-cover opacity-50 mix-blend-screen"
-            />
-            <div className="absolute inset-0 bg-gradient-to-r from-[#0a0c16] via-[#0a0c16]/70 to-transparent" />
-          </div>
+      <main className="relative z-10 max-w-7xl mx-auto px-4 md:px-12 space-y-16 sm:space-y-20">
+        {/* Section 1: Hero Image (Clean, No Text Overlay, same artwork with UNDP logo as Home page) */}
+        <section className="relative rounded-3xl overflow-hidden border border-white/15 shadow-2xl bg-[#0a0c16]">
+          <img
+            src="/images/ladyland/tickify-ticket-head.jpg"
+            alt="Project Ladyland - HerStory Foundation"
+            className="w-full h-auto max-h-[70vh] object-contain sm:object-cover mx-auto block"
+          />
+        </section>
 
-          <div className="relative z-20 space-y-8 max-w-4xl">
+        {/* Section 2: Narrative & Performance Details (matching home page design language) */}
+        <section id="section-story" className="relative rounded-3xl overflow-hidden glass-panel border border-white/10 p-6 sm:p-10 md:p-14 bg-[#0a0c16]/90 shadow-2xl">
+          <div className="relative z-20 space-y-8 max-w-4xl mx-auto">
             <div className="flex flex-wrap items-center gap-3">
-              <span className="px-3.5 py-1 rounded-full bg-[#ff45a2]/20 border border-[#ff45a2]/40 text-white drop-shadow-[0_0_8px_rgba(255,255,255,0.8)] font-space text-[11px] font-bold uppercase tracking-widest">
+              <span className="px-4 py-1.5 rounded-full bg-[#ff45a2]/20 border border-[#ff45a2]/40 text-white drop-shadow-[0_0_8px_rgba(255,255,255,0.8)] font-space text-xs sm:text-sm font-bold uppercase tracking-widest">
                 {TRANSLATIONS.hero_immersive[lang]}
               </span>
             </div>
 
-            <h1 className="font-space text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-[#ffffff] via-[#ffb0cd] to-[#00dbe9] drop-shadow-[0_0_15px_rgba(255,255,255,0.3)] leading-none">
+            <h1 className="font-space text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-[#ffffff] via-[#ffb0cd] to-[#00dbe9] drop-shadow-[0_0_15px_rgba(255,255,255,0.3)] leading-tight">
               {TRANSLATIONS.hero_title[lang]}
             </h1>
 
@@ -476,7 +470,7 @@ export const ProjectLadylandView: React.FC<ProjectLadylandViewProps> = ({ onGoHo
                   <Calendar className="w-5 h-5 text-[#b9c3ff] shrink-0 mt-0.5" />
                   <div>
                     <span className="text-white/60 text-[10px] uppercase font-space block tracking-wider">
-                      {lang === 'EN' ? 'Date & Time' : 'তারিখ ও সময়'}
+                      {lang === "EN" ? "Date & Time" : "তারিখ ও সময়"}
                     </span>
                     <span className="text-white font-bold text-sm sm:text-base">
                       {TRANSLATIONS.next_perf_datetime[lang]}
@@ -488,7 +482,7 @@ export const ProjectLadylandView: React.FC<ProjectLadylandViewProps> = ({ onGoHo
                   <MapPin className="w-5 h-5 text-[#ffb0cd] shrink-0 mt-0.5" />
                   <div>
                     <span className="text-white/60 text-[10px] uppercase font-space block tracking-wider">
-                      {lang === 'EN' ? 'Venue' : 'ভেন্যু'}
+                      {lang === "EN" ? "Venue" : "ভেন্যু"}
                     </span>
                     <span className="text-white font-bold text-sm sm:text-base">
                       {TRANSLATIONS.next_perf_venue[lang]}
@@ -509,38 +503,35 @@ export const ProjectLadylandView: React.FC<ProjectLadylandViewProps> = ({ onGoHo
                 </a>
               </div>
             </div>
-
-            {/* Performance Trailer */}
-            <div className="space-y-3 pt-4 max-w-3xl">
-              <span className="text-[#b9c3ff] font-space text-xs font-bold uppercase tracking-widest block">
-                {TRANSLATIONS.trailer_title[lang]}
-              </span>
-              <div className="relative aspect-video w-full rounded-2xl overflow-hidden border border-white/20 shadow-2xl bg-black">
-                <iframe
-                  className="w-full h-full border-0 absolute inset-0"
-                  src="https://www.youtube.com/embed/DpHQS6kx9mM"
-                  title="Project Ladyland 2026 - Performance Trailer"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                  allowFullScreen
-                />
-              </div>
-            </div>
           </div>
 
           {/* Background Ambient design layers */}
           <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none opacity-40">
-            {/* Animated Blobs */}
             <div className="blob w-[380px] h-[380px] bg-[#ffb0cd]/20 top-10 -left-20 animate-pulse" />
             <div className="blob w-[320px] h-[320px] bg-[#00dbe9]/10 bottom-10 -right-20 animate-pulse" />
           </div>
         </section>
 
-        
-        
+        {/* Section 3: Performance Video Trailer */}
+        <section id="section-video" className="scroll-mt-24 space-y-4 max-w-5xl mx-auto w-full">
+          <div className="flex items-center gap-3">
+            <span className="text-[#b9c3ff] font-space text-sm font-bold uppercase tracking-widest">
+              {TRANSLATIONS.trailer_title[lang]}
+            </span>
+          </div>
+          <div className="relative aspect-video w-full rounded-3xl overflow-hidden border border-white/20 shadow-2xl bg-black">
+            <iframe
+              className="w-full h-full border-0 absolute inset-0"
+              src="https://www.youtube.com/embed/DpHQS6kx9mM"
+              title="Project Ladyland 2026 - Performance Trailer"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowFullScreen
+            />
+          </div>
+        </section>
 
-
-        {/* CAROUSEL SECTION */}
-        <section className="scroll-mt-24 mb-16 relative">
+        {/* Section 4: Archival Photo Gallery */}
+        <section id="section-gallery" className="scroll-mt-24 mb-16 relative">
           <PhotoCarousel images={Array.from({length: 25}, (_, i) => `/images/carousel/Project Ladyland 2026_PC Shadab Shahrokh Hai for HerStory Foundation_${i+1}.jpg`)} />
         </section>
 
