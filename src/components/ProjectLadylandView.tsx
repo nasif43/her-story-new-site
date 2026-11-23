@@ -39,9 +39,15 @@ import {
 
 interface ProjectLadylandViewProps {
   onGoHome?: () => void;
+  lang?: 'EN' | 'BN';
+  onSetLang?: (lang: 'EN' | 'BN') => void;
 }
 
-export const ProjectLadylandView: React.FC<ProjectLadylandViewProps> = ({ onGoHome }) => {
+export const ProjectLadylandView: React.FC<ProjectLadylandViewProps> = ({
+  onGoHome,
+  lang: externalLang,
+  onSetLang: externalSetLang
+}) => {
   // Audio & Video Modal state
   const [isPlayingAudio, setIsPlayingAudio] = useState(false);
   const [isPlayingVideo, setIsPlayingVideo] = useState(true);
@@ -155,7 +161,7 @@ export const ProjectLadylandView: React.FC<ProjectLadylandViewProps> = ({ onGoHo
   }, [isPlayingAudio]);
 
   // Language state
-  const [lang, setLang] = useState<'EN' | 'BN'>(() => {
+  const [internalLang, setInternalLang] = useState<'EN' | 'BN'>(() => {
     if (typeof window !== 'undefined') {
       const params = new URLSearchParams(window.location.search);
       const urlLang = params.get('lang')?.toUpperCase();
@@ -166,8 +172,14 @@ export const ProjectLadylandView: React.FC<ProjectLadylandViewProps> = ({ onGoHo
     return 'BN';
   });
 
+  const lang = externalLang || internalLang;
+
   const handleSetLang = (newLang: 'EN' | 'BN') => {
-    setLang(newLang);
+    if (externalSetLang) {
+      externalSetLang(newLang);
+    } else {
+      setInternalLang(newLang);
+    }
     if (typeof window !== 'undefined') {
       const url = new URL(window.location.href);
       url.searchParams.set('lang', newLang);
@@ -389,10 +401,37 @@ export const ProjectLadylandView: React.FC<ProjectLadylandViewProps> = ({ onGoHo
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
               {/* Left Column: Badge, Title & Body Text */}
               <div className="lg:col-span-7 space-y-5">
-                <div className="flex flex-wrap items-center gap-3">
+                <div className="flex flex-wrap items-center justify-between gap-3">
                   <span className="px-4 py-1 rounded-full bg-[#ff45a2]/20 border border-[#ff45a2]/40 text-white drop-shadow-[0_0_8px_rgba(255,255,255,0.8)] font-space text-xs sm:text-sm font-bold uppercase tracking-widest">
                     {TRANSLATIONS.hero_immersive[lang]}
                   </span>
+
+                  {/* Language Toggle */}
+                  <div className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/10 border border-white/20 font-space text-xs sm:text-sm shadow-inner">
+                    <button
+                      onClick={() => handleSetLang('EN')}
+                      className={`min-h-[36px] px-2.5 flex items-center justify-center font-bold transition-colors cursor-pointer rounded-full ${
+                        lang === 'EN'
+                          ? 'text-[#b9c3ff] bg-white/10 drop-shadow-[0_0_8px_rgba(185,195,255,0.8)]'
+                          : 'text-white/60 hover:text-white'
+                      }`}
+                      aria-label="Switch to English"
+                    >
+                      EN
+                    </button>
+                    <span className="opacity-30">/</span>
+                    <button
+                      onClick={() => handleSetLang('BN')}
+                      className={`min-h-[36px] px-2.5 flex items-center justify-center font-bold transition-colors cursor-pointer rounded-full ${
+                        lang === 'BN'
+                          ? 'text-white bg-white/10 drop-shadow-[0_0_8px_rgba(255,255,255,0.9)]'
+                          : 'text-white/60 hover:text-white'
+                      }`}
+                      aria-label="Switch to Bangla"
+                    >
+                      বাংলা
+                    </button>
+                  </div>
                 </div>
 
                 <h1 className="font-space text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-[#ffffff] via-[#ffb0cd] to-[#00dbe9] drop-shadow-[0_0_15px_rgba(255,255,255,0.3)] leading-tight">

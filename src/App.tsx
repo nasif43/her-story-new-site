@@ -31,6 +31,14 @@ export default function App() {
   };
 
   const [activeTab, setActiveTabState] = useState<NavTab>(getTabFromPath);
+  const [ladylandLang, setLadylandLang] = useState<'EN' | 'BN'>(() => {
+    if (typeof window !== 'undefined') {
+      const params = new URLSearchParams(window.location.search);
+      const urlLang = params.get('lang')?.toUpperCase();
+      if (urlLang === 'BN' || urlLang === 'EN') return urlLang;
+    }
+    return 'BN';
+  });
   const [transitionTarget, setTransitionTarget] = useState<'sister-library' | 'ladyland' | null>(null);
   const [searchOpen, setSearchOpen] = useState(false);
   const [ourStoryOpen, setOurStoryOpen] = useState(false);
@@ -138,6 +146,8 @@ export default function App() {
           activeTab={activeTab}
           setActiveTab={setActiveTab}
           onOpenSearch={() => setSearchOpen(true)}
+          ladylandLang={ladylandLang}
+          onToggleLadylandLang={(l) => setLadylandLang(l)}
         />
       )}
 
@@ -188,7 +198,11 @@ export default function App() {
         )}
 
         {activeTab === 'ladyland' && (
-          <ProjectLadylandView onGoHome={() => setActiveTab('home')} />
+          <ProjectLadylandView
+            onGoHome={() => setActiveTab('home')}
+            lang={ladylandLang}
+            onSetLang={(l) => setLadylandLang(l)}
+          />
         )}
       </main>
 

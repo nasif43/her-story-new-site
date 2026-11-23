@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Search, Menu, X, Sparkles } from 'lucide-react';
 import { NavTab } from '../types';
 
@@ -6,14 +6,29 @@ interface HeaderProps {
   activeTab: NavTab;
   setActiveTab: (tab: NavTab) => void;
   onOpenSearch: () => void;
+  ladylandLang?: 'EN' | 'BN';
+  onToggleLadylandLang?: (lang: 'EN' | 'BN') => void;
 }
 
 export const Header: React.FC<HeaderProps> = ({
   activeTab,
   setActiveTab,
-  onOpenSearch
+  onOpenSearch,
+  ladylandLang,
+  onToggleLadylandLang
 }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+  useEffect(() => {
+    if (mobileMenuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [mobileMenuOpen]);
 
   const navItems: { id: NavTab; label: string; isHighlight?: boolean; isRainbow?: boolean }[] = [
     { id: 'dreams', label: 'Dreams' },
@@ -104,6 +119,35 @@ export const Header: React.FC<HeaderProps> = ({
 
         {/* Action Controls: Search & Menu */}
         <div className="flex items-center gap-2 sm:gap-3">
+          {/* Language Switcher for Ladyland */}
+          {activeTab === 'ladyland' && onToggleLadylandLang && ladylandLang && (
+            <div className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/10 border border-white/20 font-space text-xs sm:text-sm shadow-inner">
+              <button
+                onClick={() => onToggleLadylandLang('EN')}
+                className={`min-h-[40px] px-2 flex items-center justify-center font-bold transition-colors cursor-pointer ${
+                  ladylandLang === 'EN'
+                    ? 'text-[#b9c3ff] drop-shadow-[0_0_8px_rgba(185,195,255,0.8)]'
+                    : 'text-white/60 hover:text-white'
+                }`}
+                aria-label="Switch to English"
+              >
+                EN
+              </button>
+              <span className="opacity-30">/</span>
+              <button
+                onClick={() => onToggleLadylandLang('BN')}
+                className={`min-h-[40px] px-2 flex items-center justify-center font-bold transition-colors cursor-pointer ${
+                  ladylandLang === 'BN'
+                    ? 'text-white drop-shadow-[0_0_8px_rgba(255,255,255,0.9)]'
+                    : 'text-white/60 hover:text-white'
+                }`}
+                aria-label="Switch to Bangla"
+              >
+                বাংলা
+              </button>
+            </div>
+          )}
+
           <button
             onClick={onOpenSearch}
             className="min-h-[44px] min-w-[44px] flex items-center justify-center p-2 text-white hover:bg-white/10 rounded-full transition-colors cursor-pointer"
@@ -117,6 +161,8 @@ export const Header: React.FC<HeaderProps> = ({
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             className="lg:hidden min-h-[44px] min-w-[44px] flex items-center justify-center p-2 text-white hover:bg-white/10 rounded-full transition-colors cursor-pointer"
             aria-label="Toggle Navigation Menu"
+            aria-expanded={mobileMenuOpen}
+            aria-controls="mobile-nav-drawer"
           >
             {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
           </button>
@@ -125,9 +171,13 @@ export const Header: React.FC<HeaderProps> = ({
 
       {/* Mobile Drawer Menu */}
       {mobileMenuOpen && (
-        <div className="lg:hidden absolute top-20 left-0 w-full bg-[#0c0d10]/95 backdrop-blur-xl border-b border-white/10 shadow-2xl p-6 flex flex-col gap-3 font-sans-ui z-50 max-h-[calc(100dvh-5rem)] overflow-y-auto overscroll-contain">
+        <div
+          id="mobile-nav-drawer"
+          className="lg:hidden absolute top-20 left-0 w-full bg-[#0c0d10]/95 backdrop-blur-xl border-b border-white/10 shadow-2xl p-6 flex flex-col gap-3 font-sans-ui z-50 max-h-[calc(100dvh-5rem)] overflow-y-auto overscroll-contain"
+        >
           <button
             onClick={() => handleNavClick('home')}
+            aria-current={activeTab === 'home' ? 'page' : undefined}
             className={`text-left min-h-[44px] flex items-center px-3 py-2 text-base font-medium rounded-xs hover:bg-white/10 transition-colors ${
               activeTab === 'home' ? 'text-white font-bold bg-white/10' : 'text-white/80'
             }`}
@@ -140,6 +190,7 @@ export const Header: React.FC<HeaderProps> = ({
                 <button
                   key={item.id}
                   onClick={() => handleNavClick(item.id)}
+                  aria-current={activeTab === item.id ? 'page' : undefined}
                   className={`text-left min-h-[44px] px-3 py-2 text-base font-medium flex items-center gap-2 rounded-xs hover:bg-white/10 transition-colors ${
                     activeTab === item.id ? 'font-bold text-white bg-white/10 border border-[#ff69b4]/50' : 'text-white/90'
                   }`}
@@ -156,6 +207,7 @@ export const Header: React.FC<HeaderProps> = ({
               <button
                 key={item.id}
                 onClick={() => handleNavClick(item.id)}
+                aria-current={activeTab === item.id ? 'page' : undefined}
                 className={`text-left min-h-[44px] px-3 py-2 text-base font-medium flex items-center justify-between rounded-xs hover:bg-white/10 transition-colors ${
                   activeTab === item.id ? 'text-white font-bold bg-white/10' : 'text-white/80'
                 }`}
@@ -167,6 +219,32 @@ export const Header: React.FC<HeaderProps> = ({
               </button>
             );
           })}
+
+          {/* Mobile Drawer Language Switcher for Ladyland */}
+          {activeTab === 'ladyland' && onToggleLadylandLang && ladylandLang && (
+            <div className="pt-2 mt-1 border-t border-white/10 flex items-center justify-between">
+              <span className="text-xs uppercase font-space tracking-wider text-white/60">Language / ভাষা</span>
+              <div className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/10 border border-white/20 font-space text-xs">
+                <button
+                  onClick={() => onToggleLadylandLang('EN')}
+                  className={`min-h-[40px] px-2 font-bold transition-colors ${
+                    ladylandLang === 'EN' ? 'text-[#b9c3ff]' : 'text-white/60 hover:text-white'
+                  }`}
+                >
+                  EN
+                </button>
+                <span className="opacity-30">/</span>
+                <button
+                  onClick={() => onToggleLadylandLang('BN')}
+                  className={`min-h-[40px] px-2 font-bold transition-colors ${
+                    ladylandLang === 'BN' ? 'text-white' : 'text-white/60 hover:text-white'
+                  }`}
+                >
+                  বাংলা
+                </button>
+              </div>
+            </div>
+          )}
         </div>
       )}
     </header>
