@@ -373,7 +373,7 @@ export const ProjectLadylandView: React.FC<ProjectLadylandViewProps> = ({ onGoHo
       />
 
 
-      <main className="relative z-10 max-w-7xl mx-auto px-4 md:px-12 space-y-16 sm:space-y-20">
+      <main className="relative z-10 max-w-7xl mx-auto px-4 md:px-12 pt-8 sm:pt-10 md:pt-12 space-y-16 sm:space-y-20">
         {/* Section 1: Hero Image (Clean, No Text Overlay, same artwork with UNDP logo as Home page) */}
         <section className="relative rounded-3xl overflow-hidden border border-white/15 shadow-2xl bg-[#0a0c16]">
           <img
