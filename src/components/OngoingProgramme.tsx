@@ -1,4 +1,5 @@
 import React from 'react';
+import { ExternalLink, Calendar, MapPin, ArrowRight } from 'lucide-react';
 import { DREAM_ITEMS } from '../data/mockData';
 import { DreamItem } from '../types';
 
@@ -14,48 +15,83 @@ export const OngoingProgramme: React.FC<OngoingProgrammeProps> = ({
   const ladylandItem = DREAM_ITEMS.find((d) => d.id === 'ladyland-2026') || DREAM_ITEMS[1];
 
   return (
-    <section className="max-w-7xl mx-auto px-4 md:px-12 py-12">
-      <div className="relative group overflow-hidden rounded-2xl bg-white/10 shadow-md border border-white/10">
-        {/* Banner Background Image */}
-        <div className="aspect-[16/9] md:aspect-[21/9] w-full overflow-hidden">
+    <section className="max-w-7xl mx-auto px-4 md:px-12 pt-8 pb-12 relative z-10">
+      <div className="bg-black/30 backdrop-blur-xl rounded-3xl border border-white/15 overflow-hidden shadow-2xl transition-all">
+        {/* Banner Picture - Clean with NO text overlay */}
+        <div className="w-full overflow-hidden bg-black/40">
           <img
             alt="Project Ladyland 2026 - HerStory Foundation"
-            className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
-            src="/images/home-page.jpeg"
+            className="w-full h-auto max-h-[500px] object-cover object-center transition-transform duration-700 hover:scale-[1.01]"
+            src="/images/ladyland/tickify-ticket-head.jpg"
           />
         </div>
 
-        {/* Overlay Gradient */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent pointer-events-none" />
+        {/* Show Info & Action Elements Under the Picture */}
+        <div className="p-6 md:p-10 lg:p-12 space-y-6">
+          <div className="flex flex-wrap items-center justify-between gap-3 border-b border-white/10 pb-4">
+            <div className="flex items-center gap-2">
+              <span className="px-3 py-1 rounded-full bg-[#ff45a2]/20 border border-[#ff45a2]/40 text-[#ffb0cd] font-sans-ui text-xs font-bold uppercase tracking-widest">
+                ONGOING PROGRAMME
+              </span>
+              <span className="px-3 py-1 rounded-full bg-[#00dbe9]/20 border border-[#00dbe9]/40 text-[#00dbe9] font-sans-ui text-xs font-bold uppercase tracking-widest hidden sm:inline-block">
+                PARTICIPATORY THEATRE
+              </span>
+            </div>
+            <div className="flex items-center gap-4 text-xs font-sans-ui text-white/70">
+              <span className="flex items-center gap-1.5">
+                <Calendar className="w-3.5 h-3.5 text-[#ff45a2]" />
+                December 11, 2026 • 7:00 PM
+              </span>
+              <span className="hidden md:flex items-center gap-1.5">
+                <MapPin className="w-3.5 h-3.5 text-[#00dbe9]" />
+                Bangladesh Shilpakala Academy
+              </span>
+            </div>
+          </div>
 
-        {/* Card Content Overlay */}
-        <div className="absolute bottom-0 left-0 p-6 md:p-12 text-white max-w-3xl">
-          <span className="font-sans-ui text-xs text-[#BAD687] font-bold uppercase tracking-widest mb-2 block">
-            ONGOING PROGRAMME
-          </span>
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+            <div className="lg:col-span-8 space-y-4">
+              <h2 className="font-serif-editorial text-3xl sm:text-4xl md:text-5xl text-white font-bold tracking-tight">
+                Project Ladyland 2026
+              </h2>
 
-          <h2 className="font-serif-editorial text-2xl sm:text-3xl md:text-4xl text-white mb-3 font-semibold">
-            Project Ladyland 2026
-          </h2>
+              <p className="font-serif-editorial text-base sm:text-lg text-white/90 leading-relaxed font-light">
+                A participatory theatre production inspired by Sultana&rsquo;s Dream, the iconic short-story by Rokeya Sakhawat Hosein. Imagining Ladyland 121 years after Rokeya, the story invites the audience to decide if to grant men night rights or not.
+              </p>
 
-          <p className="font-serif-editorial text-sm sm:text-base text-white/90 mb-6 leading-relaxed max-w-2xl">
-            British Council and Women of the World Foundation grantee for the production of a participatory performance inspired by the 1905 sci-fi short story 'Sultana's Dream' by Rokeya Sakhawat Hosein.
-          </p>
+              <p className="font-sans-ui text-xs sm:text-sm text-white/70 leading-relaxed">
+                Produced by HerStory Foundation with the support of UNDP and AUS. Originally created with the assistance of the British Council&rsquo;s Women of the World grant 2026.
+              </p>
+            </div>
 
-          <div className="flex items-center gap-4">
-            <button
-              onClick={() => onSelectDream(ladylandItem)}
-              className="font-sans-ui text-xs font-bold text-white uppercase tracking-wider border-b-2 border-white hover:text-white/70 hover:border-white/70 transition-all pb-1 cursor-pointer"
-            >
-              LEARN MORE
-            </button>
+            <div className="lg:col-span-4 flex flex-col gap-3.5 w-full sm:w-auto">
+              {/* Primary Buy Ticket Button */}
+              <a
+                href="https://tickify.live"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-full bg-[#D64E0E] hover:bg-[#b53e08] text-white py-3.5 px-6 rounded-full font-sans-ui text-xs sm:text-sm font-bold uppercase tracking-wider transition-all shadow-[0_0_20px_rgba(214,78,14,0.4)] hover:shadow-[0_0_25px_rgba(214,78,14,0.6)] flex items-center justify-center gap-2 cursor-pointer text-center"
+              >
+                <span>DECEMBER SHOWS BUY TICKET</span>
+                <ExternalLink className="w-4 h-4 shrink-0" />
+              </a>
 
-            <button
-              onClick={onGoToLadyland}
-              className="font-sans-ui text-xs font-bold bg-[#D64E0E] hover:bg-[#a53700] text-white px-4 py-2 rounded-full transition-all cursor-pointer shadow-sm"
-            >
-              Explore Ladyland Portal →
-            </button>
+              {/* Secondary Portal Link */}
+              <button
+                onClick={onGoToLadyland}
+                className="w-full border border-white/20 hover:border-white/50 bg-white/5 hover:bg-white/10 text-white py-3 px-6 rounded-full font-sans-ui text-xs sm:text-sm font-semibold transition-all flex items-center justify-center gap-2 cursor-pointer text-center"
+              >
+                <span>Explore Ladyland Portal</span>
+                <ArrowRight className="w-4 h-4 shrink-0" />
+              </button>
+
+              <button
+                onClick={() => onSelectDream(ladylandItem)}
+                className="text-center font-sans-ui text-xs text-white/60 hover:text-white transition-colors cursor-pointer py-1"
+              >
+                View Production Details &amp; Background
+              </button>
+            </div>
           </div>
         </div>
       </div>

@@ -145,12 +145,12 @@ export default function App() {
       <main className="flex-1 relative z-10 pb-16">
         {activeTab === 'home' && (
           <div>
-            <Hero
-              setActiveTab={setActiveTab}
-            />
             <OngoingProgramme
               onSelectDream={(dream) => setSelectedDetailItem(dream)}
               onGoToLadyland={() => setActiveTab('ladyland')}
+            />
+            <Hero
+              setActiveTab={setActiveTab}
             />
             <MissionSection />
             <RealisedDreams
