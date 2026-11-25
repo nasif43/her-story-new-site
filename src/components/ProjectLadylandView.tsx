@@ -457,30 +457,35 @@ export const ProjectLadylandView: React.FC<ProjectLadylandViewProps> = ({
                   </div>
 
                   {/* Dec 10 Free Show */}
-                  <div className="space-y-3 pb-4 border-b border-white/10">
+                  <div className="space-y-3.5 pb-4 border-b border-white/10">
                     <div className="flex items-start gap-3">
-                      <Calendar className="w-5 h-5 text-[#00dbe9] shrink-0 mt-0.5" />
+                      <Calendar className="w-5 h-5 text-[#b9c3ff] shrink-0 mt-0.5" />
                       <div>
                         <span className="text-white/70 text-[11px] uppercase font-space block tracking-wider">
+                          {lang === 'EN' ? 'Date' : 'তারিখ'}
+                        </span>
+                        <span className="text-white font-bold text-sm sm:text-base">
                           {lang === 'EN' ? 'December 10, 2026' : '১০ ডিসেম্বর, ২০২৬'}
                         </span>
-                        <p className="text-white font-semibold text-sm">
-                          {lang === 'EN'
-                            ? 'Free show with English translation provided'
-                            : 'ফ্রি প্রদর্শনী (ইংরেজি অনুবাদসহ)'}
-                        </p>
                       </div>
                     </div>
 
-                    <a
-                      href="https://ladyland.tickify.live/register"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="w-full min-h-[44px] px-6 py-3 rounded-full bg-[#00dbe9] hover:bg-[#00c4d1] text-[#080911] font-space font-bold text-xs sm:text-sm uppercase tracking-widest cursor-pointer inline-flex items-center justify-center gap-2 transition-transform hover:scale-[1.02] shadow-lg"
-                    >
-                      <span>{lang === 'EN' ? 'REGISTER FOR DEC 10 (FREE)' : '১০ ডিসেম্বর নিবন্ধন (ফ্রি)'}</span>
-                      <ExternalLink className="w-4 h-4 shrink-0" />
-                    </a>
+                    <div className="space-y-1.5">
+                      <p className="text-center text-xs text-white/80 font-inter">
+                        {lang === 'EN'
+                          ? 'Free show with English translation provided'
+                          : 'ফ্রি প্রদর্শনী • ইংরেজি অনুবাদসহ'}
+                      </p>
+                      <a
+                        href="https://ladyland.tickify.live/register"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="amorphous-btn w-full min-h-[44px] text-center justify-center text-[#00228a] px-6 py-3.5 font-space font-bold text-sm uppercase tracking-widest neon-box-glow cursor-pointer inline-flex items-center gap-2 transition-transform hover:scale-[1.02]"
+                      >
+                        <span>{lang === 'EN' ? 'REGISTER (DEC 10)' : 'নিবন্ধন (১০ ডিসেম্বর)'}</span>
+                        <ExternalLink className="w-4 h-4 shrink-0" />
+                      </a>
+                    </div>
                   </div>
 
                   {/* Dec 11 Paid Show */}
