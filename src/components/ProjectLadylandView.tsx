@@ -443,54 +443,82 @@ export const ProjectLadylandView: React.FC<ProjectLadylandViewProps> = ({
                 </p>
               </div>
 
-              {/* Right Column: Next Performance Ticket Card */}
+              {/* Right Column: Upcoming Performances Ticket Card */}
               <div className="lg:col-span-5 w-full">
                 <div className="p-6 sm:p-7 rounded-2xl bg-white/10 backdrop-blur-md border border-white/20 shadow-2xl space-y-5">
                   <div className="flex items-center justify-between border-b border-white/10 pb-3">
                     <span className="text-[#00dbe9] font-space text-xs sm:text-sm font-bold uppercase tracking-widest flex items-center gap-2">
                       <Ticket className="w-4 h-4" />
-                      {TRANSLATIONS.next_perf_title[lang]}
+                      {lang === 'EN' ? 'Upcoming Performances' : 'আসন্ন প্রদর্শনীসমূহ'}
                     </span>
                     <span className="px-2.5 py-0.5 rounded-full bg-[#ff45a2]/20 border border-[#ff45a2]/30 text-white text-[10px] font-space font-bold uppercase tracking-wider">
-                      Live Show
+                      Live Shows
                     </span>
                   </div>
 
-                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-4">
+                  {/* Dec 10 Free Show */}
+                  <div className="space-y-3 pb-4 border-b border-white/10">
                     <div className="flex items-start gap-3">
-                      <Calendar className="w-5 h-5 text-[#b9c3ff] shrink-0 mt-0.5" />
+                      <Calendar className="w-5 h-5 text-[#00dbe9] shrink-0 mt-0.5" />
                       <div>
-                        <span className="text-white/60 text-[10px] uppercase font-space block tracking-wider">
-                          {lang === "EN" ? "Date & Time" : "তারিখ ও সময়"}
+                        <span className="text-white/70 text-[11px] uppercase font-space block tracking-wider">
+                          {lang === 'EN' ? 'December 10, 2026' : '১০ ডিসেম্বর, ২০২৬'}
                         </span>
-                        <span className="text-white font-bold text-sm sm:text-base">
-                          {TRANSLATIONS.next_perf_datetime[lang]}
-                        </span>
+                        <p className="text-white font-semibold text-sm">
+                          {lang === 'EN'
+                            ? 'Free show with English translation provided'
+                            : 'ফ্রি প্রদর্শনী (ইংরেজি অনুবাদসহ)'}
+                        </p>
                       </div>
                     </div>
 
-                    <div className="flex items-start gap-3">
-                      <MapPin className="w-5 h-5 text-[#ffb0cd] shrink-0 mt-0.5" />
-                      <div>
-                        <span className="text-white/60 text-[10px] uppercase font-space block tracking-wider">
-                          {lang === "EN" ? "Venue" : "ভেন্যু"}
-                        </span>
-                        <span className="text-white font-bold text-sm sm:text-base">
-                          {TRANSLATIONS.next_perf_venue[lang]}
-                        </span>
-                      </div>
-                    </div>
+                    <a
+                      href="https://ladyland.tickify.live/register"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="w-full min-h-[44px] px-6 py-3 rounded-full bg-[#00dbe9] hover:bg-[#00c4d1] text-[#080911] font-space font-bold text-xs sm:text-sm uppercase tracking-widest cursor-pointer inline-flex items-center justify-center gap-2 transition-transform hover:scale-[1.02] shadow-lg"
+                    >
+                      <span>{lang === 'EN' ? 'REGISTER FOR DEC 10 (FREE)' : '১০ ডিসেম্বর নিবন্ধন (ফ্রি)'}</span>
+                      <ExternalLink className="w-4 h-4 shrink-0" />
+                    </a>
                   </div>
 
-                  <div className="pt-2">
+                  {/* Dec 11 Paid Show */}
+                  <div className="space-y-3.5">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-3">
+                      <div className="flex items-start gap-3">
+                        <Calendar className="w-5 h-5 text-[#b9c3ff] shrink-0 mt-0.5" />
+                        <div>
+                          <span className="text-white/70 text-[11px] uppercase font-space block tracking-wider">
+                            {lang === 'EN' ? 'Date & Time' : 'তারিখ ও সময়'}
+                          </span>
+                          <span className="text-white font-bold text-sm sm:text-base">
+                            {TRANSLATIONS.next_perf_datetime[lang]}
+                          </span>
+                        </div>
+                      </div>
+
+                      <div className="flex items-start gap-3">
+                        <MapPin className="w-5 h-5 text-[#ffb0cd] shrink-0 mt-0.5" />
+                        <div>
+                          <span className="text-white/70 text-[11px] uppercase font-space block tracking-wider">
+                            {lang === 'EN' ? 'Venue' : 'ভেন্যু'}
+                          </span>
+                          <span className="text-white font-bold text-sm sm:text-base">
+                            {TRANSLATIONS.next_perf_venue[lang]}
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+
                     <a
                       href="https://tickify.live/o/tickify/project-ladyland"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="amorphous-btn w-full text-center justify-center text-[#00228a] px-6 py-3.5 font-space font-bold text-sm uppercase tracking-widest neon-box-glow cursor-pointer inline-flex items-center gap-2 transition-transform hover:scale-105"
+                      className="amorphous-btn w-full min-h-[44px] text-center justify-center text-[#00228a] px-6 py-3.5 font-space font-bold text-sm uppercase tracking-widest neon-box-glow cursor-pointer inline-flex items-center gap-2 transition-transform hover:scale-[1.02]"
                     >
-                      <span>{TRANSLATIONS.next_perf_buy_btn[lang]}</span>
-                      <ExternalLink className="w-4 h-4" />
+                      <span>{lang === 'EN' ? 'BUY TICKET (DEC 11)' : 'টিকিট কাটুন (১১ ডিসেম্বর)'}</span>
+                      <ExternalLink className="w-4 h-4 shrink-0" />
                     </a>
                   </div>
                 </div>

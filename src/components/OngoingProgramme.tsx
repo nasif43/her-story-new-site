@@ -40,7 +40,7 @@ export const OngoingProgramme: React.FC<OngoingProgrammeProps> = ({
             <div className="flex items-center gap-4 text-xs font-sans-ui text-white/70">
               <span className="flex items-center gap-1.5">
                 <Calendar className="w-3.5 h-3.5 text-[#ff45a2]" />
-                December 11, 2026 • 7:00 PM
+                December 10 &amp; 11, 2026
               </span>
               <span className="hidden md:flex items-center gap-1.5">
                 <MapPin className="w-3.5 h-3.5 text-[#00dbe9]" />
@@ -64,15 +64,31 @@ export const OngoingProgramme: React.FC<OngoingProgrammeProps> = ({
               </p>
             </div>
 
-            <div className="lg:col-span-4 flex flex-col gap-3.5 w-full sm:w-auto">
-              {/* Primary Buy Ticket Button */}
+            <div className="lg:col-span-4 flex flex-col gap-3 w-full sm:w-auto">
+              {/* Dec 10 Free Registration */}
+              <div className="space-y-1.5">
+                <p className="text-center font-sans-ui text-xs text-[#00dbe9] font-medium">
+                  Dec 10: Free show with English translation provided
+                </p>
+                <a
+                  href="https://ladyland.tickify.live/register"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-full min-h-[44px] bg-[#00dbe9] hover:bg-[#00c4d1] text-[#080911] py-3 px-6 rounded-full font-sans-ui text-xs sm:text-sm font-bold uppercase tracking-wider transition-all shadow-[0_0_20px_rgba(0,219,233,0.3)] hover:shadow-[0_0_25px_rgba(0,219,233,0.5)] flex items-center justify-center gap-2 cursor-pointer text-center"
+                >
+                  <span>DEC 10 FREE REGISTRATION</span>
+                  <ExternalLink className="w-4 h-4 shrink-0" />
+                </a>
+              </div>
+
+              {/* Dec 11 Buy Ticket Button */}
               <a
                 href="https://tickify.live/o/tickify/project-ladyland"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full bg-[#D64E0E] hover:bg-[#b53e08] text-white py-3.5 px-6 rounded-full font-sans-ui text-xs sm:text-sm font-bold uppercase tracking-wider transition-all shadow-[0_0_20px_rgba(214,78,14,0.4)] hover:shadow-[0_0_25px_rgba(214,78,14,0.6)] flex items-center justify-center gap-2 cursor-pointer text-center"
+                className="w-full min-h-[44px] bg-[#D64E0E] hover:bg-[#b53e08] text-white py-3.5 px-6 rounded-full font-sans-ui text-xs sm:text-sm font-bold uppercase tracking-wider transition-all shadow-[0_0_20px_rgba(214,78,14,0.4)] hover:shadow-[0_0_25px_rgba(214,78,14,0.6)] flex items-center justify-center gap-2 cursor-pointer text-center"
               >
-                <span>DECEMBER SHOWS BUY TICKET</span>
+                <span>DEC 11 • BUY TICKET</span>
                 <ExternalLink className="w-4 h-4 shrink-0" />
               </a>
 
