@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Search, Menu, X, Sparkles } from 'lucide-react';
+import { Search, Menu, X, Sparkles, Ticket } from 'lucide-react';
 import { NavTab } from '../types';
 
 interface HeaderProps {
@@ -51,6 +51,18 @@ export const Header: React.FC<HeaderProps> = ({
     setActiveTab(tab);
     setMobileMenuOpen(false);
     window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const handleTicketsClick = () => {
+    setMobileMenuOpen(false);
+    if (activeTab === 'ladyland') {
+      document.getElementById('section-story')?.scrollIntoView({ behavior: 'smooth' });
+    } else {
+      setActiveTab('ladyland');
+      setTimeout(() => {
+        document.getElementById('section-story')?.scrollIntoView({ behavior: 'smooth' });
+      }, 250);
+    }
   };
 
   return (
@@ -140,8 +152,16 @@ export const Header: React.FC<HeaderProps> = ({
           </nav>
         )}
 
-        {/* Action Controls: Search & Menu */}
+        {/* Action Controls: Tickets, Language, Search & Menu */}
         <div className="flex items-center gap-2 sm:gap-3">
+          <button
+            onClick={handleTicketsClick}
+            className="hidden sm:inline-flex min-h-[40px] px-4 py-1.5 rounded-full bg-[#D64E0E] hover:bg-[#b53e08] text-white font-sans-ui text-xs sm:text-sm font-bold uppercase tracking-wider items-center gap-1.5 transition-all shadow-[0_0_15px_rgba(214,78,14,0.35)] hover:shadow-[0_0_20px_rgba(214,78,14,0.55)] cursor-pointer shrink-0"
+          >
+            <Ticket className="w-4 h-4 shrink-0" />
+            <span>{activeTab === 'ladyland' && ladylandLang === 'BN' ? 'টিকিট' : 'Tickets'}</span>
+          </button>
+
           {/* Language Switcher for Ladyland */}
           {activeTab === 'ladyland' && onToggleLadylandLang && ladylandLang && (
             <div className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/10 border border-white/20 font-space text-xs sm:text-sm shadow-inner">
@@ -198,6 +218,13 @@ export const Header: React.FC<HeaderProps> = ({
           id="mobile-nav-drawer"
           className="lg:hidden absolute top-20 left-0 w-full bg-[#0c0d10]/95 backdrop-blur-xl border-b border-white/10 shadow-2xl p-6 flex flex-col gap-3 font-sans-ui z-50 max-h-[calc(100dvh-5rem)] overflow-y-auto overscroll-contain"
         >
+          <button
+            onClick={handleTicketsClick}
+            className="w-full min-h-[44px] bg-[#D64E0E] hover:bg-[#b53e08] text-white py-2.5 px-4 rounded-full font-sans-ui text-sm font-bold uppercase tracking-wider flex items-center justify-center gap-2 cursor-pointer shadow-[0_0_15px_rgba(214,78,14,0.35)]"
+          >
+            <Ticket className="w-4 h-4 shrink-0" />
+            <span>{activeTab === 'ladyland' && ladylandLang === 'BN' ? 'টিকিট ও নিবন্ধন' : 'Get Tickets'}</span>
+          </button>
           {activeTab === 'ladyland' ? (
             <>
               <button
