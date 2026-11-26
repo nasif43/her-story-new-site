@@ -546,8 +546,8 @@ export const TRANSLATIONS = {
     "BN": "প্রীতি দাস"
   },
   "cast_name_shishir": {
-    "EN": "Rafel Afrad",
-    "BN": "রাফেল আফ্রাদ"
+    "EN": "Sasha",
+    "BN": "সাশা"
   },
   "cast_name_robots": {
     "EN": "Israt Jahan Ikra",

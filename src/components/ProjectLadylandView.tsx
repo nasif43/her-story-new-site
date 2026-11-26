@@ -386,12 +386,12 @@ export const ProjectLadylandView: React.FC<ProjectLadylandViewProps> = ({
 
 
       <main className="relative z-10 max-w-7xl mx-auto px-4 md:px-12 pt-8 sm:pt-10 md:pt-12 space-y-16 sm:space-y-20">
-        {/* Section 1: Hero Image (Clean, No Text Overlay, same artwork with UNDP logo as Home page) */}
+        {/* Section 1: Hero Image */}
         <section className="relative rounded-3xl overflow-hidden border border-white/15 shadow-2xl bg-[#0a0c16]">
           <img
             src="/images/ladyland/tickify-ticket-head.jpg"
-            alt="Project Ladyland - HerStory Foundation"
-            className="w-full h-auto max-h-[70vh] object-contain sm:object-cover mx-auto block"
+            alt="Project Ladyland 2026 - HerStory Foundation"
+            className="w-full h-auto object-contain mx-auto block"
           />
         </section>
 
@@ -480,7 +480,7 @@ export const ProjectLadylandView: React.FC<ProjectLadylandViewProps> = ({
                         href="https://ladyland.tickify.live/register"
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="amorphous-btn w-full min-h-[44px] text-center justify-center text-[#00228a] px-6 py-3.5 font-space font-bold text-sm uppercase tracking-widest neon-box-glow cursor-pointer inline-flex items-center gap-2 transition-transform hover:scale-[1.02]"
+                        className="w-full min-h-[48px] text-center justify-center bg-gradient-to-r from-[#ff45a2] to-[#D64E0E] hover:from-[#ff5eb0] hover:to-[#e55a17] text-white px-6 py-3.5 rounded-full font-space font-bold text-sm uppercase tracking-widest border border-white/30 shadow-[0_0_24px_rgba(255,69,162,0.45)] hover:shadow-[0_0_32px_rgba(255,69,162,0.65)] cursor-pointer inline-flex items-center gap-2 transition-all hover:scale-[1.02]"
                       >
                         <span>{lang === 'EN' ? 'REGISTER (DEC 10)' : 'নিবন্ধন (১০ ডিসেম্বর)'}</span>
                         <ExternalLink className="w-4 h-4 shrink-0" />
@@ -520,7 +520,7 @@ export const ProjectLadylandView: React.FC<ProjectLadylandViewProps> = ({
                       href="https://tickify.live/o/tickify/project-ladyland"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="amorphous-btn w-full min-h-[44px] text-center justify-center text-[#00228a] px-6 py-3.5 font-space font-bold text-sm uppercase tracking-widest neon-box-glow cursor-pointer inline-flex items-center gap-2 transition-transform hover:scale-[1.02]"
+                      className="w-full min-h-[48px] text-center justify-center bg-gradient-to-r from-[#ff45a2] to-[#D64E0E] hover:from-[#ff5eb0] hover:to-[#e55a17] text-white px-6 py-3.5 rounded-full font-space font-bold text-sm uppercase tracking-widest border border-white/30 shadow-[0_0_24px_rgba(255,69,162,0.45)] hover:shadow-[0_0_32px_rgba(255,69,162,0.65)] cursor-pointer inline-flex items-center gap-2 transition-all hover:scale-[1.02]"
                     >
                       <span>{lang === 'EN' ? 'BUY TICKET (DEC 11)' : 'টিকিট কাটুন (১১ ডিসেম্বর)'}</span>
                       <ExternalLink className="w-4 h-4 shrink-0" />
@@ -556,6 +556,43 @@ export const ProjectLadylandView: React.FC<ProjectLadylandViewProps> = ({
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
               allowFullScreen
             />
+          </div>
+
+          {/* Repeated Ticket CTAs after Video */}
+          <div className="p-6 sm:p-8 rounded-2xl bg-white/10 backdrop-blur-md border border-white/20 shadow-2xl grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
+            <div className="space-y-2">
+              <p className="text-center md:text-left text-xs text-white/85 font-inter">
+                {lang === 'EN'
+                  ? 'Dec 10 • Free show with English translation provided'
+                  : '১০ ডিসেম্বর • ফ্রি প্রদর্শনী (ইংরেজি অনুবাদসহ)'}
+              </p>
+              <a
+                href="https://ladyland.tickify.live/register"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-full min-h-[48px] text-center justify-center bg-gradient-to-r from-[#ff45a2] to-[#D64E0E] hover:from-[#ff5eb0] hover:to-[#e55a17] text-white px-6 py-3.5 rounded-full font-space font-bold text-sm uppercase tracking-widest border border-white/30 shadow-[0_0_24px_rgba(255,69,162,0.45)] hover:shadow-[0_0_32px_rgba(255,69,162,0.65)] cursor-pointer inline-flex items-center gap-2 transition-all hover:scale-[1.02]"
+              >
+                <span>{lang === 'EN' ? 'REGISTER (DEC 10)' : 'নিবন্ধন (১০ ডিসেম্বর)'}</span>
+                <ExternalLink className="w-4 h-4 shrink-0" />
+              </a>
+            </div>
+
+            <div className="space-y-2">
+              <p className="text-center md:text-left text-xs text-white/85 font-inter">
+                {lang === 'EN'
+                  ? 'Dec 11, 7:00 PM • Bangladesh Shilpakala Academy'
+                  : '১১ ডিসেম্বর, সন্ধ্যা ৭টা • বাংলাদেশ শিল্পকলা একাডেমি'}
+              </p>
+              <a
+                href="https://tickify.live/o/tickify/project-ladyland"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-full min-h-[48px] text-center justify-center bg-gradient-to-r from-[#ff45a2] to-[#D64E0E] hover:from-[#ff5eb0] hover:to-[#e55a17] text-white px-6 py-3.5 rounded-full font-space font-bold text-sm uppercase tracking-widest border border-white/30 shadow-[0_0_24px_rgba(255,69,162,0.45)] hover:shadow-[0_0_32px_rgba(255,69,162,0.65)] cursor-pointer inline-flex items-center gap-2 transition-all hover:scale-[1.02]"
+              >
+                <span>{lang === 'EN' ? 'BUY TICKET (DEC 11)' : 'টিকিট কাটুন (১১ ডিসেম্বর)'}</span>
+                <ExternalLink className="w-4 h-4 shrink-0" />
+              </a>
+            </div>
           </div>
         </section>
 
@@ -1121,7 +1158,56 @@ export const ProjectLadylandView: React.FC<ProjectLadylandViewProps> = ({
         </section>
 
         {/* 9. DREAMER KIT: "The Case of the Dreamer" */}
-        
+
+        {/* Final Repeated Ticket CTAs at End of Page */}
+        <section className="scroll-mt-24">
+          <div className="p-6 sm:p-10 rounded-3xl bg-white/10 backdrop-blur-md border border-white/20 shadow-2xl space-y-6">
+            <div className="text-center space-y-2 max-w-2xl mx-auto">
+              <span className="text-[#00dbe9] font-space text-xs font-bold uppercase tracking-widest block">
+                {lang === 'EN' ? 'LIVE SHOWS • DECEMBER 10 & 11' : 'সরাসরি প্রদর্শনী • ১০ ও ১১ ডিসেম্বর'}
+              </span>
+              <h2 className="font-space text-2xl sm:text-3xl font-bold text-white">
+                {lang === 'EN' ? 'Reserve Your Seat in Ladyland' : 'লেডিল্যান্ডে আপনার আসন নিশ্চিত করুন'}
+              </h2>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-end max-w-4xl mx-auto">
+              <div className="space-y-2">
+                <p className="text-center text-xs text-white/85 font-inter">
+                  {lang === 'EN'
+                    ? 'Dec 10 • Free show with English translation provided'
+                    : '১০ ডিসেম্বর • ফ্রি প্রদর্শনী (ইংরেজি অনুবাদসহ)'}
+                </p>
+                <a
+                  href="https://ladyland.tickify.live/register"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-full min-h-[48px] text-center justify-center bg-gradient-to-r from-[#ff45a2] to-[#D64E0E] hover:from-[#ff5eb0] hover:to-[#e55a17] text-white px-6 py-3.5 rounded-full font-space font-bold text-sm uppercase tracking-widest border border-white/30 shadow-[0_0_24px_rgba(255,69,162,0.45)] hover:shadow-[0_0_32px_rgba(255,69,162,0.65)] cursor-pointer inline-flex items-center gap-2 transition-all hover:scale-[1.02]"
+                >
+                  <span>{lang === 'EN' ? 'REGISTER (DEC 10)' : 'নিবন্ধন (১০ ডিসেম্বর)'}</span>
+                  <ExternalLink className="w-4 h-4 shrink-0" />
+                </a>
+              </div>
+
+              <div className="space-y-2">
+                <p className="text-center text-xs text-white/85 font-inter">
+                  {lang === 'EN'
+                    ? 'Dec 11, 7:00 PM • Bangladesh Shilpakala Academy'
+                    : '১১ ডিসেম্বর, সন্ধ্যা ৭টা • বাংলাদেশ শিল্পকলা একাডেমি'}
+                </p>
+                <a
+                  href="https://tickify.live/o/tickify/project-ladyland"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-full min-h-[48px] text-center justify-center bg-gradient-to-r from-[#ff45a2] to-[#D64E0E] hover:from-[#ff5eb0] hover:to-[#e55a17] text-white px-6 py-3.5 rounded-full font-space font-bold text-sm uppercase tracking-widest border border-white/30 shadow-[0_0_24px_rgba(255,69,162,0.45)] hover:shadow-[0_0_32px_rgba(255,69,162,0.65)] cursor-pointer inline-flex items-center gap-2 transition-all hover:scale-[1.02]"
+                >
+                  <span>{lang === 'EN' ? 'BUY TICKET (DEC 11)' : 'টিকিট কাটুন (১১ ডিসেম্বর)'}</span>
+                  <ExternalLink className="w-4 h-4 shrink-0" />
+                </a>
+              </div>
+            </div>
+          </div>
+        </section>
       </main>
 
       {/* Dreamer Kit Order Modal */}

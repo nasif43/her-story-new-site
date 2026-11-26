@@ -18,10 +18,10 @@ export const OngoingProgramme: React.FC<OngoingProgrammeProps> = ({
     <section className="max-w-7xl mx-auto px-4 md:px-12 pt-8 pb-12 relative z-10">
       <div className="bg-black/30 backdrop-blur-xl rounded-3xl border border-white/15 overflow-hidden shadow-2xl transition-all">
         {/* Banner Picture - Clean with NO text overlay */}
-        <div className="w-full overflow-hidden bg-black/40">
+        <div className="w-full overflow-hidden bg-[#0a0c16]">
           <img
             alt="Project Ladyland 2026 - HerStory Foundation"
-            className="w-full h-auto max-h-[500px] object-cover object-center transition-transform duration-700 hover:scale-[1.01]"
+            className="w-full h-auto object-contain block"
             src="/images/ladyland/tickify-ticket-head.jpg"
           />
         </div>
@@ -67,14 +67,14 @@ export const OngoingProgramme: React.FC<OngoingProgrammeProps> = ({
             <div className="lg:col-span-4 flex flex-col gap-3.5 w-full sm:w-auto">
               {/* Dec 10 Free Registration */}
               <div className="space-y-1.5">
-                <p className="text-center font-sans-ui text-xs text-white/75">
+                <p className="text-center font-sans-ui text-xs text-white/85 font-medium">
                   Dec 10: Free show with English translation provided
                 </p>
                 <a
                   href="https://ladyland.tickify.live/register"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-full min-h-[44px] bg-[#D64E0E] hover:bg-[#b53e08] text-white py-3.5 px-6 rounded-full font-sans-ui text-xs sm:text-sm font-bold uppercase tracking-wider transition-all shadow-[0_0_20px_rgba(214,78,14,0.4)] hover:shadow-[0_0_25px_rgba(214,78,14,0.6)] flex items-center justify-center gap-2 cursor-pointer text-center"
+                  className="w-full min-h-[48px] bg-gradient-to-r from-[#ff45a2] to-[#D64E0E] hover:from-[#ff5eb0] hover:to-[#e55a17] text-white py-3.5 px-6 rounded-full font-sans-ui text-xs sm:text-sm font-bold uppercase tracking-wider border border-white/30 transition-all shadow-[0_0_24px_rgba(255,69,162,0.45)] hover:shadow-[0_0_32px_rgba(255,69,162,0.65)] hover:scale-[1.02] flex items-center justify-center gap-2 cursor-pointer text-center"
                 >
                   <span>DEC 10 • REGISTER (FREE)</span>
                   <ExternalLink className="w-4 h-4 shrink-0" />
@@ -86,7 +86,7 @@ export const OngoingProgramme: React.FC<OngoingProgrammeProps> = ({
                 href="https://tickify.live/o/tickify/project-ladyland"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full min-h-[44px] bg-[#D64E0E] hover:bg-[#b53e08] text-white py-3.5 px-6 rounded-full font-sans-ui text-xs sm:text-sm font-bold uppercase tracking-wider transition-all shadow-[0_0_20px_rgba(214,78,14,0.4)] hover:shadow-[0_0_25px_rgba(214,78,14,0.6)] flex items-center justify-center gap-2 cursor-pointer text-center"
+                className="w-full min-h-[48px] bg-gradient-to-r from-[#ff45a2] to-[#D64E0E] hover:from-[#ff5eb0] hover:to-[#e55a17] text-white py-3.5 px-6 rounded-full font-sans-ui text-xs sm:text-sm font-bold uppercase tracking-wider border border-white/30 transition-all shadow-[0_0_24px_rgba(255,69,162,0.45)] hover:shadow-[0_0_32px_rgba(255,69,162,0.65)] hover:scale-[1.02] flex items-center justify-center gap-2 cursor-pointer text-center"
               >
                 <span>DEC 11 • BUY TICKET</span>
                 <ExternalLink className="w-4 h-4 shrink-0" />
