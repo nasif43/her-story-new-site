@@ -538,16 +538,16 @@ export const TRANSLATIONS = {
     "BN": "মাইশা মাশফিকা তানিসা"
   },
   "cast_name_sutrodor": {
-    "EN": "Tawsiad Shaolin",
-    "BN": "তাওসিয়াদ শাওলিন"
+    "EN": "Tasniad Shaolin Priyota",
+    "BN": "তাসনিয়াদ শাওলীন"
   },
   "cast_name_sara": {
     "EN": "Priti Das",
-    "BN": "প্রীতি দাস"
+    "BN": "প্রীতি দাশ"
   },
   "cast_name_shishir": {
-    "EN": "Sasha",
-    "BN": "সাশা"
+    "EN": "Momo",
+    "BN": "মোমো"
   },
   "cast_name_robots": {
     "EN": "Israt Jahan Ikra",
@@ -555,19 +555,19 @@ export const TRANSLATIONS = {
   },
   "cast_name_dadima": {
     "EN": "Juliet Rajeena Quiah",
-    "BN": "জুলিয়েট রাজীনা কুইয়াহ"
+    "BN": "জুলিয়েট রেজিনা কুইয়া"
   },
   "cast_name_kolpona": {
     "EN": "Muntasrin Rahman (Mim)",
-    "BN": "মুন্তাসরিন রহমান (মিম)"
+    "BN": "মুনতাছরিন রহমান মীম"
   },
   "cast_name_bidut": {
     "EN": "Dipu Mahmud",
-    "BN": "দীপু মাহমুদ"
+    "BN": "দিপু মাহমুদ"
   },
   "cast_name_motmo": {
     "EN": "Afrida Amir",
-    "BN": "আফ্রাইদা আমির"
+    "BN": "আফরিদা আমীর"
   },
   "cast_name_taj": {
     "EN": "Ohiduzzaman (Tony)",

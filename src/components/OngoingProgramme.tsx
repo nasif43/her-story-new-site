@@ -22,7 +22,7 @@ export const OngoingProgramme: React.FC<OngoingProgrammeProps> = ({
           <img
             alt="Project Ladyland 2026 - HerStory Foundation"
             className="w-full h-auto object-contain block"
-            src="/images/ladyland/tickify-ticket-head.jpg"
+            src="/images/ladyland/ladyland-preview.jpg"
           />
         </div>
 
